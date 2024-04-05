@@ -1,0 +1,29 @@
+### IntelliJ IDEA ###
+../../.idea/
+.idea/
+target/
+out/
+src/test/
+*.iws
+*.iml
+*.ipr
+*.xml
+
+
+### Eclipse ###
+src/main/webapp/WEB-INF/lib/
+src/main/webapp/META-INF/
+.metadata
+bin/
+tmp/
+*.tmp
+*.bak
+*.swp
+*~.nib
+local.properties
+.settings/
+.loadpath
+.recommenders
+.classpath
+.project
+build/
