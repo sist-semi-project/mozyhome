@@ -15,7 +15,7 @@ public class ProductDao {
 
 	DbConnect db=new DbConnect();
 	
-	public ProductDto getAllProduct(int pro_num) {
+	public ProductDto getAllProduct(String pro_num) {
 		
 		ProductDto dto=new ProductDto();
 		
@@ -28,7 +28,7 @@ public class ProductDao {
 		
 		try {
 			pstmt=conn.prepareStatement(sql);
-			pstmt.setInt(1, pro_num);
+			pstmt.setString(1, pro_num);
 			rs=pstmt.executeQuery();
 			
 			if(rs.next())

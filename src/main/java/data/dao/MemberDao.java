@@ -54,4 +54,30 @@ public class MemberDao {
 		}
 		return dto;
 	}
+	
+	public String getNum(String id)
+	{
+		String num="";
+		
+		Connection conn=db.getConnection();
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		
+		String sql="select mem_num from member where id=?";
+		
+		try {
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setString(1, num);
+			rs=pstmt.executeQuery();
+			
+			if(rs.next())
+				num=rs.getString("num");
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			db.dbClose(rs, pstmt, conn);
+		}
+		return num;
+	}
 }

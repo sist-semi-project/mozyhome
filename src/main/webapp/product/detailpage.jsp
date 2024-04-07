@@ -1,3 +1,6 @@
+<%@page import="java.text.NumberFormat"%>
+<%@page import="data.dto.ProductDto"%>
+<%@page import="data.dao.ProductDao"%>
 <%@page import="data.dao.MemberDao"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
    pageEncoding="UTF-8"%>
@@ -12,7 +15,7 @@
 <title>Insert title here</title>
 <style type="text/css">
 .imgdiv {
-	position: relative;
+	position: absolute;
 	width: 577px;
 	height: 577px;
 	left: 363px;
@@ -22,6 +25,7 @@
 }
 
 .imgdiv .imgsub {
+	position: relative;
 	margin-top: 24px;
 	width: 124px;
 	height: 124px; 
@@ -40,42 +44,72 @@
 position: absolute;
 left: 1020px; 
 top: 613px; 
-
+width: 600px;
+height: 84px;
 
 }
 
-.btndiv .heart, .btndiv .cart, .btndiv .buynow{
+.btndiv .heart, .btndiv .cart{
 position: relative;
 box-sizing: border-box; 
 width: 84px; 
 height: 84px; 
 border: 1px solid #000000;
+background-color: #ffffff;
 margin-right: 24px;
 }
+
+.btndiv .buynow{
+position: relative;
+box-sizing: border-box; 
+
+width: 336px; 
+height: 84px; 
+line-height: 84px;
+font-size: 20px;
+background-color: #FF5C00;
+color: #ffffff;
+margin-right: 24px;
+border: none;
+}
+
+.infodiv{
+position: absolute;
+left: 1020px;
+top: 120px;
+width: 550px;
+height: 458px;
+}
+
+hr{
+height: 1px;
+background-color: #000000;
+border: none;
+}
 </style>
-
 <script type="text/javascript">
-	
 </script>
-
 </head>
+
 <%
-   String shopnum=request.getParameter("shopnum");
+   String pro_num=request.getParameter("pro_num");
    String loginok=(String)session.getAttribute("loginok");
-   String myid=(String)session.getAttribute("myid");
+   String mem_id=(String)session.getAttribute("mem_id");
    //아이디에 해당하는 멤버 시퀀스
    MemberDao mdao=new MemberDao();
-   String num=mdao.getNum(myid);
+   String num=mdao.getNum(mem_id);
    
    //해당상품에대한 데이타
-   ShopDao sdao=new ShopDao();
-   ShopDto dto=sdao.getData(shopnum);
+   ProductDao pdao=new ProductDao();
+   ProductDto dto=pdao.getAllProduct(pro_num);
    
    NumberFormat nf=NumberFormat.getCurrencyInstance();
 %>
-<body>
-<form action="">
 
+<body>
+<form action=""  id="form1">
+
+		<!-- 상품이미지 -->
 		<div class="imgdiv">
 			<img class="imgmain" alt="" src="/mozyhome/image/sofa/greensofa1.jpg">
 
@@ -83,18 +117,91 @@ margin-right: 24px;
 			<img class="imgsub" alt="" src="/mozyhome/image/sofa/greensofa3.jpg">
 			<img class="imgsub" alt="" src="/mozyhome/image/sofa/greensofa4.jpg">
 		</div>
-
+		
+		<!-- 상품정보 -->
+		<div class="infodiv">
+			<h4><%=dto.getPro_name() %></h4>
+			<h4><%=nf.format(dto.getPro_price())%></h4>
+			<h4>price <%=dto.getPro_price() %></h4>
+			<h4>Quantity<input type="number" min="1" max="99" value="1"
+			step="1" name="cnt" id="quantity" onchange="updateTotalPrice()">  </h4>
+			<h4>사이즈
+			 	<select style="width: 300px;">
+					<option value="option1"></option>
+					<option value="option2"></option>
+					<option value="option3"></option>			
+				</select>
+			</h4>
+			
+			<hr>
+			
+		<!-- total 비용 -->	
+		<h4 id="totalPrice">총 상품금액 <%=nf.format(dto.getPro_price()) %></h4>
+			
+		<script type="text/javascript">
+			function updateTotalPrice(){
+				var quantity = parseInt(document.getElementById("quantity").value);
+				var unitPrice = <%=dto.getPro_price()%>;
+				var totalPrice = quantity * unitPrice;
+				document.getElementById("totalPrice").innerHTML = "총 상품금액(수량)"+totalPrice
+			}
+		</script>
+			
+	
+		
+		</div>
+		
+		<!-- 장바구니, 위시리스트, buynow 버튼 -->
 		<div class="btndiv">
 			<button name="heart" class="heart">
+				<i class="bi bi-suit-heart-fill" style="font-size: 25px; color: #FF5C00;"></i>
 			</button>
 			<button name="cart" class="cart">
-				<!--style="box-sizing: border-box; position: absolute; width: 84px; height: 84px; left: 1128px; top: 613px; border: 1px solid #000000;" -->	
+				<i class="bi bi-cart" style="font-size: 25px;"></i>
 			</button>
 			<button name="buynow" class="buynow">
-				<!-- style="position: absolute; width: 361px; height: 84px; left: 1236px; top: 613px; background: #D9D9D9; font-family: 'Inter'; font-style: normal; font-weight: 400; font-size: 16px; line-height: 19px; color: #000000;" -->
-			BUY NOW
+				BUY NOW
 			</button>
 		</div>
 	</form>
+	
+	<!-- 장바구니 -->
+	 <script type="text/javascript">
+    $("#cart").click(function(){
+    	var login="<%=loginok%>";
+    	
+    	if(login=="null"){
+    		alert("먼저 로그인을 해주세요");
+    		return;
+    	}
+    	
+    	
+    	//form태그 가져오기
+    	var cartdata=$("#form1").serialize();
+    	//alert(cartdata);
+    	
+    	//insert
+    	$.ajax({
+    		type:"post",
+    		dataType:"html",
+    		data:cartdata,
+    		url:"product/detailprocess.jsp",
+    		success:function(){
+    			
+    			//alert("success");
+    			
+    			var a=confirm("장바구니에 저장하였습니다\n장바구니로 이동하려면 [확인]을 눌러주세요");
+    			
+    			if(a){
+    				location.href="index.jsp?main=product/mycart.jsp";
+    			}
+    		}
+    	})
+    	
+    	
+    })
+    
+    </script>
+	
 </body>
 </html>
