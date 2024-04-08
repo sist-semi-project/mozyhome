@@ -11,7 +11,7 @@ public class ProductDao {
 
     DbConnect db = new DbConnect();
 
-    //insert
+    //insert_product
     public void addProduct(ProductDto dto)
     {
         Connection conn=db.getConnection();
