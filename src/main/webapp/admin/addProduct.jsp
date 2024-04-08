@@ -156,20 +156,20 @@
     </div>
     <div class="imageIconContainer">
         <!-- 이미지 아이콘과 숨겨진 파일 입력 필드 -->
-        <div id="icon1" class="imageIcon" onclick="previewImage('main_image', 'icon1')" style="background-image: url('/image/staticImage/icon_mainimage.png');"></div>
+        <div id="icon1" class="imageIcon" onclick="previewImage('main_image', 'icon1')" style="background-image: url('../image/staticImage/icon_mainimage.png');"></div>
         <input type="file" id="main_image" name="main_image" accept="image/*" class="fileInput">
 
         <!-- 나머지 아이콘 및 입력 필드도 비슷한 방식으로 추가 -->
         <!-- 예: 서브 이미지 1 -->
-        <div id="icon2" class="imageIcon" onclick="previewImage('sub_image1', 'icon2')" style="background-image: url('/image/staticImage/icon_subimage.png');"></div>
+        <div id="icon2" class="imageIcon" onclick="previewImage('sub_image1', 'icon2')" style="background-image: url('../image/staticImage/icon_subimage.png');"></div>
         <input type="file" id="sub_image1" name="sub_image1" accept="image/*" class="fileInput">
-        <div id="icon3" class="imageIcon" onclick="previewImage('sub_image2', 'icon3')" style="background-image: url('/image/staticImage/icon_subimage.png');"></div>
+        <div id="icon3" class="imageIcon" onclick="previewImage('sub_image2', 'icon3')" style="background-image: url('../image/staticImage/icon_subimage.png');"></div>
         <input type="file" id="sub_image2" name="sub_image2" accept="image/*" class="fileInput">
-        <div id="icon4" class="imageIcon" onclick="previewImage('sub_image3', 'icon4')" style="background-image: url('/image/staticImage/icon_subimage.png');"></div>
+        <div id="icon4" class="imageIcon" onclick="previewImage('sub_image3', 'icon4')" style="background-image: url('../image/staticImage/icon_subimage.png');"></div>
         <input type="file" id="sub_image3" name="sub_image3" accept="image/*" class="fileInput">
-        <div id="icon5" class="imageIcon" onclick="previewImage('sub_image4', 'icon5')" style="background-image: url('/image/staticImage/icon_subimage.png');"></div>
+        <div id="icon5" class="imageIcon" onclick="previewImage('sub_image4', 'icon5')" style="background-image: url('../image/staticImage/icon_subimage.png');"></div>
         <input type="file" id="sub_image4" name="sub_image4" accept="image/*" class="fileInput">
-        <div id="icon6" class="imageIcon" onclick="previewImage('sub_image5', 'icon6')" style="background-image: url('/image/staticImage/icon_subimage.png');"></div>
+        <div id="icon6" class="imageIcon" onclick="previewImage('sub_image5', 'icon6')" style="background-image: url('../image/staticImage/icon_subimage.png');"></div>
         <input type="file" id="sub_image5" name="sub_image5" accept="image/*" class="fileInput">
     </div>
     <div>
