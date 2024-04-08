@@ -88,7 +88,7 @@
 <body>
 
 <div class="sidebar">
-    <img src="/image/staticImage/logo.png" class="logo" alt="쇼핑몰 로고">
+    <img src="../image/staticImage/logo.png" class="logo" alt="쇼핑몰 로고">
     <ul class="menu">
         <li class="menu-item dashboard"><a href="#">대시보드</a></li>
         <li class="menu-item">
