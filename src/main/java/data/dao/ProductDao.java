@@ -1,11 +1,14 @@
 package data.dao;
 
-import data.dto.ProductDto;
-import db.DbConnect;
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+
 import java.sql.SQLException;
+
+
+
+import data.dto.ProductDto;
+import db.DbConnect;
 
 public class ProductDao {
 
