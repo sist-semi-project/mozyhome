@@ -24,8 +24,8 @@ public class ProductDao {
         PreparedStatement pstmt=null;
 
         //카테고리,상품명,상품설명,재고수량,가격,메인이미지1,서브이미지5,판매상태
-        String sql="insert into product(cate_num,pro_name,pro_explain,pro_stock,pro_price,pro_main_img,pro_sub_img1," +
-                "pro_sub_img2,pro_sub_img3,pro_sub_img4,pro_sub_img5,pro_sale_status)  values(?,?,?,?,?,?,?,?,?,?,?,?)";
+        String sql="insert into product(cate_num,pro_name,pro_explain,pro_stock,pro_price,pro_size,pro_color,pro_main_img,pro_sub_img1," +
+                "pro_sub_img2,pro_sub_img3,pro_sub_img4,pro_sub_img5,pro_sale_status)  values(?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 
         try {
             pstmt=conn.prepareStatement(sql);
@@ -35,13 +35,15 @@ public class ProductDao {
             pstmt.setString(3, dto.getPro_explain());
             pstmt.setInt(4, dto.getPro_stock());
             pstmt.setInt(5, dto.getPro_price());
-            pstmt.setString(6, dto.getPro_main_img());
-            pstmt.setString(7, dto.getPro_sub_img1());
-            pstmt.setString(8, dto.getPro_sub_img2());
-            pstmt.setString(9, dto.getPro_sub_img3());
-            pstmt.setString(10, dto.getPro_sub_img4());
-            pstmt.setString(11, dto.getPro_sub_img5());
-            pstmt.setString(12,dto.getPro_sale_status());
+            pstmt.setString(6, dto.getPro_size());
+            pstmt.setString(7, dto.getPro_color());
+            pstmt.setString(8, dto.getPro_main_img());
+            pstmt.setString(9, dto.getPro_sub_img1());
+            pstmt.setString(10, dto.getPro_sub_img2());
+            pstmt.setString(11, dto.getPro_sub_img3());
+            pstmt.setString(12, dto.getPro_sub_img4());
+            pstmt.setString(13, dto.getPro_sub_img5());
+            pstmt.setString(14,dto.getPro_sale_status());
             pstmt.execute();
         } catch (SQLException e) {
             // TODO Auto-generated catch block
@@ -74,6 +76,8 @@ public class ProductDao {
 				dto.setPro_explain(rs.getString("pro_explain"));
 				dto.setPro_stock(rs.getInt("pro_stock"));
 				dto.setPro_price(rs.getInt("pro_price"));
+				dto.setPro_size(rs.getString("pro_size"));
+				dto.setPro_color(rs.getString("pro_color"));
 				dto.setPro_main_img(rs.getString("pro_main_img"));
 				dto.setPro_sub_img1(rs.getString("pro_sub_img1"));
 				dto.setPro_sub_img2(rs.getString("pro_sub_img2"));
