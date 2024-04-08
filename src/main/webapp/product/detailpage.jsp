@@ -112,7 +112,7 @@ hr{
    
    //해당상품에대한 데이타
    ProductDao pdao=new ProductDao();
-   List<ProductDto> dto=pdao.getAllProduct();
+   ProductDto dto=pdao.getProduct(pro_num);
    
    NumberFormat nf=NumberFormat.getCurrencyInstance();
 %>
@@ -137,29 +137,34 @@ hr{
 			<h4>Quantity<input type="number" min="1" max="99" value="1"
 			step="1" name="cnt" id="quantity" onchange="updateTotalPrice()">  </h4>
 			<h4>사이즈
-			 	<select style="width: 300px;" >
+			 	<select style="width: 300px;" name="size" >
 					<option value="option1" selected="selected">-[필수]옵션을 선택해 주세요-</option>
-					<option value="option2"></option>
-					<option value="option3"></option>			
+			<%
+			var getSize=dto.getPro_size();
+			var size=getSize.split(",");
+			for(var i=0;i<=size.length;i++)
+			{
+			%>
+					<option value="option"><%=size[i] %></option>
+			<%
+			}
+			%>				
 				</select>
 			</h4>
 			
 			<hr>
-			
-		<!-- total 비용 -->	
-		<h4 id="totalPrice">총 상품금액 <%=nf.format(dto.getPro_price()) %></h4>
-			
-		<script type="text/javascript">
-			function updateTotalPrice(){
-				var quantity = parseInt(document.getElementById("quantity").value);
-				var unitPrice = <%=dto.getPro_price()%>;
-				var totalPrice = quantity * unitPrice;
-				document.getElementById("totalPrice").innerHTML = "총 상품금액(수량)"+totalPrice;
-			}
-		</script>
-			
-	
-		
+				
+			<!-- total 비용 -->	
+			<h4 id="totalPrice">총 상품금액 <%=nf.format(dto.getPro_price()) %></h4>
+				
+			<script type="text/javascript">
+				function updateTotalPrice(){
+					var quantity = parseInt(document.getElementById("quantity").value);
+					var unitPrice = <%=dto.getPro_price()%>;
+					var totalPrice = quantity * unitPrice;
+					document.getElementById("totalPrice").innerHTML = "총 상품금액(수량)"+totalPrice;
+					}
+			</script>
 		</div>
 		
 		<!-- 장바구니, 위시리스트, buynow 버튼 -->
