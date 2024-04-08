@@ -1,3 +1,4 @@
+<%@page import="java.util.List"%>
 <%@page import="java.text.NumberFormat"%>
 <%@page import="data.dto.ProductDto"%>
 <%@page import="data.dao.ProductDao"%>
@@ -111,7 +112,7 @@ hr{
    
    //해당상품에대한 데이타
    ProductDao pdao=new ProductDao();
-   ProductDto dto=pdao.getAllProduct(pro_num);
+   List<ProductDto> dto=pdao.getAllProduct();
    
    NumberFormat nf=NumberFormat.getCurrencyInstance();
 %>
