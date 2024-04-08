@@ -3,13 +3,14 @@ package data.dto;
 import java.sql.Timestamp;
 
 public class ProductDto {
-
     private String pro_num;
     private String cate_num;
     private String pro_name;
     private String pro_explain;
     private int pro_stock;
     private int pro_price;
+    private String pro_size;
+    private String pro_color;
     private String pro_main_img;
     private String pro_sub_img1;
     private String pro_sub_img2;
@@ -130,4 +131,21 @@ public class ProductDto {
     public void setPro_sale_status(String pro_sale_status) {
         this.pro_sale_status = pro_sale_status;
     }
+
+	public String getPro_size() {
+		return pro_size;
+	}
+
+	public void setPro_size(String pro_size) {
+		this.pro_size = pro_size;
+	}
+
+	public String getPro_color() {
+		return pro_color;
+	}
+
+	public void setPro_color(String pro_color) {
+		this.pro_color = pro_color;
+	}
+    
 }
