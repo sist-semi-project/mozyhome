@@ -2,12 +2,16 @@ package data.dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+
+import java.sql.SQLException;
+
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.Vector;
 
 import data.dto.ProductDto;
+import data.dto.WishlistDto;
 import db.DbConnect;
 
 public class ProductDao {
@@ -51,17 +55,18 @@ public class ProductDao {
     }
     
 	// 상품 전체 출력
-	public List<ProductDto> getAllProduct(){
+	public List<ProductDto> getAllProduct(String cate_num){
 		List<ProductDto> list=new Vector<ProductDto>();
 		
 		Connection conn=db.getConnection();
 		PreparedStatement pstmt=null;
 		ResultSet rs=null;
 		
-		String sql="select * from product order by pro_num";
+		String sql="select * from product where cate_num=? order by pro_num";
 		
 		try {
 			pstmt=conn.prepareStatement(sql);
+			pstmt.setString(1, cate_num);
 			rs=pstmt.executeQuery();
 			
 			while(rs.next()) {
@@ -94,6 +99,34 @@ public class ProductDao {
 		}	
 		return list;
 	}
+	
+	// 위시리스트 개수 출력
+	public WishlistDto wishCount(String pro_num) {
+		WishlistDto dto=new WishlistDto();
+		
+		Connection conn=db.getConnection();
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		
+		String sql="select count(wish_num) from wishlist where pro_num=?";
+		
+		try {
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setString(1, pro_num);
+			rs=pstmt.executeQuery();
+			
+			if(rs.next()) {
+				dto.setWish_num(rs.getInt("wish_num"));
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return dto;
+	}
+	
+
 
 
 }
