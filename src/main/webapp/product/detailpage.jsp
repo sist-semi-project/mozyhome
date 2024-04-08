@@ -41,50 +41,60 @@
 }
 
 .btndiv{
-position: absolute;
-left: 1020px; 
-top: 613px; 
-width: 600px;
-height: 84px;
+	position: absolute;
+	left: 1020px; 
+	top: 613px; 
+	width: 600px;
+	height: 84px;
 
 }
 
 .btndiv .heart, .btndiv .cart{
-position: relative;
-box-sizing: border-box; 
-width: 84px; 
-height: 84px; 
-border: 1px solid #000000;
-background-color: #ffffff;
-margin-right: 24px;
+	position: relative;
+	box-sizing: border-box; 
+	width: 84px; 
+	height: 84px; 
+	border: 1px solid #000000;
+	background-color: #ffffff;
+	margin-right: 24px;
 }
 
 .btndiv .buynow{
-position: relative;
-box-sizing: border-box; 
-
-width: 336px; 
-height: 84px; 
-line-height: 84px;
-font-size: 20px;
-background-color: #FF5C00;
-color: #ffffff;
-margin-right: 24px;
-border: none;
+	position: relative;
+	box-sizing: border-box; 
+	
+	width: 336px; 
+	height: 84px; 
+	line-height: 84px;
+	font-size: 20px;
+	background-color: #FF5C00;
+	color: #ffffff;
+	margin-right: 24px;
+	border: none;
 }
 
 .infodiv{
-position: absolute;
-left: 1020px;
-top: 120px;
-width: 550px;
-height: 458px;
+	position: absolute;
+	left: 1020px;
+	top: 120px;
+	width: 550px;
+	height: 458px;
 }
 
 hr{
-height: 1px;
-background-color: #000000;
-border: none;
+	height: 1px;
+	background-color: #000000;
+	border: none;
+}
+
+.infobtn{
+ 	background: none;
+    border: none;
+    cursor: pointer;
+    font-size: inherit;
+    text-decoration: none;
+    padding: 0; 
+    margin: 0;
 }
 </style>
 <script type="text/javascript">
@@ -126,8 +136,8 @@ border: none;
 			<h4>Quantity<input type="number" min="1" max="99" value="1"
 			step="1" name="cnt" id="quantity" onchange="updateTotalPrice()">  </h4>
 			<h4>사이즈
-			 	<select style="width: 300px;">
-					<option value="option1"></option>
+			 	<select style="width: 300px;" >
+					<option value="option1" selected="selected">-[필수]옵션을 선택해 주세요-</option>
 					<option value="option2"></option>
 					<option value="option3"></option>			
 				</select>
@@ -143,7 +153,7 @@ border: none;
 				var quantity = parseInt(document.getElementById("quantity").value);
 				var unitPrice = <%=dto.getPro_price()%>;
 				var totalPrice = quantity * unitPrice;
-				document.getElementById("totalPrice").innerHTML = "총 상품금액(수량)"+totalPrice
+				document.getElementById("totalPrice").innerHTML = "총 상품금액(수량)"+totalPrice;
 			}
 		</script>
 			
@@ -153,15 +163,25 @@ border: none;
 		
 		<!-- 장바구니, 위시리스트, buynow 버튼 -->
 		<div class="btndiv">
+		
 			<button name="heart" class="heart">
 				<i class="bi bi-suit-heart-fill" style="font-size: 25px; color: #FF5C00;"></i>
 			</button>
+			
 			<button name="cart" class="cart">
 				<i class="bi bi-cart" style="font-size: 25px;"></i>
 			</button>
+			
 			<button name="buynow" class="buynow">
 				BUY NOW
 			</button>
+			
+			<button class="infobtn">DESCRIPTION</button> 
+			<div><%=dto.getPro_explain() %></div> <br>
+			<button class="infobtn">PRODUCT DETAIL</button> 
+			<div><%=dto.getPro_explain() %></div> <br>
+			<button class="infobtn">SHOPPING GUIDE</button>
+			<div><%=dto.getPro_explain() %></div> <br>
 		</div>
 	</form>
 	
@@ -197,6 +217,9 @@ border: none;
     			}
     		}
     	})
+    })
+    
+    $(".infobtn").click(function(){
     	
     	
     })
