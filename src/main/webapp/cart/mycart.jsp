@@ -16,10 +16,24 @@
 </head>
 <%
 String id=(String)session.getAttribute("myid");
-CartDao dao=new CartDao();
-List<HashMap<Integer,Integer>> list=dao.getCartList(id);
+CartDao cdao=new CartDao();
+List<HashMap<String,String>> list=cdao.getCartList(id);
 NumberFormat nf=NumberFormat.getInstance();
 %>
 <body>
+	<!-- 장바구니 header -->
+	<div>
+		<h5>장바구니</h5>
+		<hr width="500px">
+	</div>
+	
+	<label></label>
+	<!-- 장바구니 button -->
+	<div>
+		<button class="btn1" id="btn1">선택상품 구매</button>
+		<button class="btn2" id="btn2">전체상품 구매</button>
+		<button class="btn3" id="btn3">선택삭제</button>
+		<button class="btn4" id="btn4">전체삭제</button>
+	</div>
 </body>
 </html>

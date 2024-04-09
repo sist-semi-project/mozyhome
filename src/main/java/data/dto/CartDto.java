@@ -6,7 +6,21 @@ public class CartDto {
 	private int pro_num;
 	private int mem_num;
 	private int cart_su;
+	private String cart_size;
+	private String cart_color;
 	
+	public String getCart_size() {
+		return cart_size;
+	}
+	public void setCart_size(String cart_size) {
+		this.cart_size = cart_size;
+	}
+	public String getCart_color() {
+		return cart_color;
+	}
+	public void setCart_color(String cart_color) {
+		this.cart_color = cart_color;
+	}
 	public int getCart_num() {
 		return cart_num;
 	}
@@ -31,4 +45,6 @@ public class CartDto {
 	public void setCart_su(int cart_su) {
 		this.cart_su = cart_su;
 	}
+	
+	
 }
