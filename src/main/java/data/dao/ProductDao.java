@@ -54,15 +54,21 @@ public class ProductDao {
         }
     }
     
-	// 상품 전체 출력
+	// 카테고리별 상품 전체 출력 (좋아요 수, 리뷰 수 가져옴)
 	public List<ProductDto> getAllProduct(String cate_num){
 		List<ProductDto> list=new Vector<ProductDto>();
 		
 		Connection conn=db.getConnection();
 		PreparedStatement pstmt=null;
 		ResultSet rs=null;
-		
-		String sql="select * from product where cate_num=? order by pro_num";
+
+		String sql="SELECT p.*, count(distinct w.wish_num) as wishCount, count(distinct r.review_num) as reviewCount"
+				+ " FROM product p"
+				+ " LEFT JOIN wishlist w ON p.pro_num = w.pro_num"
+				+ " LEFT JOIN review r ON p.pro_num = r.pro_num"
+				+ " GROUP BY p.pro_num"
+				+ " having p.cate_num=?"
+				+ " order by pro_num";
 		
 		try {
 			pstmt=conn.prepareStatement(sql);
@@ -88,6 +94,8 @@ public class ProductDao {
 				dto.setPro_sub_img5(rs.getString("pro_sub_img5"));
 				dto.setPro_create_date(rs.getTimestamp("pro_create_date"));
 				dto.setPro_sale_status(rs.getString("pro_sale_status"));
+				dto.setWishCount(rs.getInt("wishCount"));
+				dto.setReviewCount(rs.getInt("reviewCount"));
 				
 				list.add(dto);
 			}
@@ -100,33 +108,7 @@ public class ProductDao {
 		return list;
 	}
 	
-	// 위시리스트 개수 출력
-	public WishlistDto wishCount(String pro_num) {
-		WishlistDto dto=new WishlistDto();
-		
-		Connection conn=db.getConnection();
-		PreparedStatement pstmt=null;
-		ResultSet rs=null;
-		
-		String sql="select count(wish_num) from wishlist where pro_num=?";
-		
-		try {
-			pstmt=conn.prepareStatement(sql);
-			pstmt.setString(1, pro_num);
-			rs=pstmt.executeQuery();
-			
-			if(rs.next()) {
-				dto.setWish_num(rs.getInt("wish_num"));
-			}
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-		return dto;
-	}
 	
-
 
 
 }

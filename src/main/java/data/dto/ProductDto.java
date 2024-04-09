@@ -19,6 +19,8 @@ public class ProductDto {
     private String pro_sub_img5;
     private Timestamp pro_create_date;
     private String pro_sale_status;
+    private int wishCount;
+    private int reviewCount;
 
     public String getPro_num() {
         return pro_num;
@@ -147,5 +149,22 @@ public class ProductDto {
 	public void setPro_color(String pro_color) {
 		this.pro_color = pro_color;
 	}
+
+	public int getWishCount() {
+		return wishCount;
+	}
+
+	public void setWishCount(int wishCount) {
+		this.wishCount = wishCount;
+	}
+
+	public int getReviewCount() {
+		return reviewCount;
+	}
+
+	public void setReviewCount(int reviewCount) {
+		this.reviewCount = reviewCount;
+	}
+	
     
 }
