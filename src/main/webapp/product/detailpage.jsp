@@ -30,7 +30,7 @@
 	 justify-content: space-between;
 }
 
-.subimgdiv{ 
+.subimgdiv .subimg{ 
 	width: 124px;
 	height: 124px;
 	background: #D9D9D9;
@@ -103,9 +103,13 @@ hr {
 </head>
 
 <%
-String pro_num = request.getParameter("pro_num");
+session.setAttribute("mem_id", "dragon");
+String pro_num="203";
+session.setAttribute("loginok", "yes");
+//String pro_num = request.getParameter("pro_num");
 String loginok = (String) session.getAttribute("loginok");
-String mem_id = (String) session.getAttribute("mem_id");
+String mem_id = (String) session.getAttribute("mem_id"); 
+
 
 //아이디에 해당하는 멤버 시퀀스
 MemberDao mdao = new MemberDao();
@@ -119,7 +123,7 @@ NumberFormat nf = NumberFormat.getCurrencyInstance();
 %>
 
 <body>
-	<form action="" id="form1">
+	<form action=""  id="form1">
 		<!-- cart 데이터에 넣을 mem_num, pro_num -->
 		<input type="hidden"  name="mem_num"  value="<%=mem_num%>">
 		<input type="hidden"  name="pro_num"  value="<%=pro_num%>">
@@ -130,7 +134,7 @@ NumberFormat nf = NumberFormat.getCurrencyInstance();
 		</div>
 		
 		<div class="subimgdiv">
-			<img class="subimg" alt="" src="<%=pdto.getPro_sub_img1() %>" onclick=""> 
+			<img class="subimg" alt="" src="<%=pdto.getPro_sub_img1() %>"> 
 			<img class="subimg" alt="" src="<%=pdto.getPro_sub_img2() %>"> 
 			<img class="subimg" alt="" src="<%=pdto.getPro_sub_img3() %>">
 			<img class="subimg" alt="" src="<%=pdto.getPro_sub_img4() %>">
@@ -162,10 +166,10 @@ NumberFormat nf = NumberFormat.getCurrencyInstance();
 					<%
 						String getSize = pdto.getPro_size();
 						String[] size = getSize.split(",");
-						for (int i = 0; i <= size.length; i++) 
+						for (int i = 0; i < size.length; i++) 
 						{
 					%>
-					<option value="option"><%=size[i]%></option>
+					<option value="<%=size[i]%>"><%=size[i]%></option>
 					<%
 						}
 					}
@@ -181,15 +185,15 @@ NumberFormat nf = NumberFormat.getCurrencyInstance();
 			%>
 			<h4>
 			<label>Size</label>
-			<select style="width: 300px;" name="size">
-					<option value="option1" selected="selected" >-[필수]옵션을 선택해 주세요-</option>
+			<select style="width: 300px;" name="color">
+					<option value="option2" selected="selected" >-[필수]옵션을 선택해 주세요-</option>
 					<%
 						String getColor = pdto.getPro_color();
 						String[] color = getColor.split(",");
-						for (int i = 0; i <= color.length; i++) 
+						for (int i = 0; i < color.length; i++) 
 						{
 					%>
-					<option value="option"><%=color[i]%></option>
+					<option value="<%=color[i] %>"><%=color[i]%></option>
 					<%
 						}
 					}
@@ -245,9 +249,8 @@ NumberFormat nf = NumberFormat.getCurrencyInstance();
 
 	<!-- 장바구니 버튼 함수-->
 	<script type="text/javascript">
-    $("#cart").click(function(){
-    	var login="<%=loginok%>
-		";
+    $(".cart").click(function(){
+    	var login="<%=loginok%>";
 
 			if (login == "null") {
 				alert("먼저 로그인을 해주세요");
@@ -256,14 +259,14 @@ NumberFormat nf = NumberFormat.getCurrencyInstance();
 
 			//form태그 가져오기
 			var cartdata = $("#form1").serialize();
-			//alert(cartdata);
+			alert(cartdata);
 
 			//insert
 			$.ajax({
 				type : "post",
 				dataType : "html",
 				data : cartdata,
-				url : "product/detailprocess.jsp",
+				url : "/mozyhome/product/detailprocess.jsp",
 				success : function() {
 
 					//alert("success");
@@ -271,7 +274,7 @@ NumberFormat nf = NumberFormat.getCurrencyInstance();
 					var a = confirm("장바구니에 저장하였습니다\n장바구니로 이동하려면 [확인]을 눌러주세요");
 
 					if (a) {
-						location.href = "index.jsp?main=product/mycart.jsp";
+						location.href = "/mozyhome/cart/mycart.jsp";
 					}
 				}
 			})

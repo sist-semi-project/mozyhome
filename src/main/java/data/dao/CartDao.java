@@ -30,9 +30,12 @@ public class CartDao {
 			pstmt.setInt(4, dto.getPro_num());
 			pstmt.setInt(5, dto.getCart_su());
 			
+			pstmt.execute();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		} finally {
+			db.dbClose(pstmt, conn);
 		}
 	}
 	
@@ -44,9 +47,9 @@ public class CartDao {
 		PreparedStatement pstmt=null;
 		ResultSet rs=null;
 		
-		String sql="select p.pro_price, p.pro_main_img,c.cart_su,c.cart_size,c.cart_color "
+		String sql="select p.pro_price, p.pro_main_img,c.cart_size,c.cart_color "
 				+ "from cart c, product p, member m "
-				+ "where c.mem_num=m.mem_num and c.pro_num=p.pro_num and m.id=?";
+				+ "where c.mem_num=m.mem_num and c.pro_num=p.pro_num and m.mem_id=?";
 		
 		try {
 			pstmt=conn.prepareStatement(sql);
@@ -59,7 +62,6 @@ public class CartDao {
 				
 				map.put("pro_price", rs.getString("pro_price"));
 				map.put("pro_main_img", rs.getString("pro_main_img"));
-				map.put("cart_su", rs.getString("cart_su"));
 				map.put("pro_size", rs.getString("pro_size"));
 				map.put("pro_color", rs.getString("pro_color"));
 				map.put("pro_name", rs.getString("pro_name"));

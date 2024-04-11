@@ -63,15 +63,15 @@ public class MemberDao {
 		PreparedStatement pstmt=null;
 		ResultSet rs=null;
 		
-		String sql="select mem_num from member where id=?";
+		String sql="select mem_num from member where mem_id=?";
 		
 		try {
 			pstmt=conn.prepareStatement(sql);
-			pstmt.setString(1, num);
+			pstmt.setString(1, id);
 			rs=pstmt.executeQuery();
 			
 			if(rs.next())
-				num=rs.getString("num");
+				num=rs.getString("mem_num");
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
