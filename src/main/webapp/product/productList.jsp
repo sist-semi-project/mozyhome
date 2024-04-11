@@ -70,7 +70,7 @@
 			var pCatenum=$(this).attr("pCateNum");
 			//alert(pCatenum);
 			
-			location.href="../product/productList.jsp?cate_num="+pCatenum;
+			location.href="../product/productList.jsp?pcate_num="+pCatenum
 		});
 		
 		$("a.cate").click(function(){
@@ -153,6 +153,9 @@
 <div style="margin:50px 100px; width:1400px">
 	<table>
 		<div style="margin:100px 0px 10px 15px; float:left;">
+			<a class="pCate" pCateNum="<%=pcdto.getCate_num() %>"><%=pcdto.getCate_name() %></a> 
+			<a class="cate" cateNum="<%=cate_num%>"><%=cdto.getCate_name().equals(pcdto.getCate_name())?"":" > "+cdto.getCate_name() %> </a>
+			
 			<div style="margin: -28px 0px 0px 1330px;">
 				<select name="sort" class="form-select form-select sort" style="width:98px;">
 					<option value="신상품">신상품</option>

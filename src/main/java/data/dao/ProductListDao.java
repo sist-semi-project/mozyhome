@@ -216,12 +216,14 @@ public class ProductListDao {
 		ResultSet rs = null;
 		
 		if(cate_num.length()==1) {
-			String sql = "select p.*, count(distinct w.wish_num) as wishCount, count(distinct r.review_num) as reviewCount from product p"
-					+ "left join wishlist w on p.pro_num = w.pro_num "
-					+ "left join review r on p.pro_num = r.pro_num "
-					+ "left join category c on p.cate_num = c.cate_num "
-					+ "where c.parent_cate_num = ? "
-					+ "group by p.pro_num order by pro_num desc limit ?,?";
+			String sql = "SELECT p.*, count(distinct w.wish_num) as wishCount, count(distinct r.review_num) as reviewCount"
+					+ "FROM product p LEFT JOIN wishlist w ON p.pro_num = w.pro_num LEFT JOIN review r ON p.pro_num = r.pro_num"
+					+ "GROUP BY p.pro_num"
+					+ "having p.cate_num in ("
+					+ "select cate_num"
+					+ "from category"
+					+ "where parent_cate_num=?)"
+					+ "order by pro_num desc limit ?,?";
 			
 			
 			try {
@@ -267,9 +269,7 @@ public class ProductListDao {
 		} else {
 			//String sql = "select * from product order by pro_num desc limit ?,?";
 			String sql = "SELECT p.*, count(distinct w.wish_num) as wishCount, count(distinct r.review_num) as reviewCount"
-					+ " FROM product p"
-					+ " LEFT JOIN wishlist w ON p.pro_num = w.pro_num"
-					+ " LEFT JOIN review r ON p.pro_num = r.pro_num" 
+					+ " FROM product p LEFT JOIN wishlist w ON p.pro_num = w.pro_num LEFT JOIN review r ON p.pro_num = r.pro_num" 
 					+ " GROUP BY p.pro_num" 
 					+ " having p.cate_num=?"
 					+ " order by pro_num desc limit ?,?";
