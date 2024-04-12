@@ -66,28 +66,31 @@ public class ProductListDao {
 		return list;
 	}
 
-	// 부모 카테고리별 상품 전체 출력 (좋아요 수, 리뷰 수 가져옴)
-	public List<ProductDto> getAllParentsProduct(String pcate_num) {
-		List<ProductDto> plist = new Vector<ProductDto>();
+	// <<사용안함>> 부모 카테고리별 상품 전체 출력 (좋아요 수, 리뷰 수 가져옴)
+	public List<ProductDto> getAllParentsProduct(String cate_num) {
+		List<ProductDto> list = new Vector<ProductDto>();
 
 		Connection conn = db.getConnection();
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 
+		
 		String sql = "SELECT p.*, count(distinct w.wish_num) as wishCount, count(distinct r.review_num) as reviewCount"
-				+ " FROM product p" + " LEFT JOIN wishlist w ON p.pro_num = w.pro_num"
+				+ " FROM product p"
+				+ " LEFT JOIN wishlist w ON p.pro_num = w.pro_num"
 				+ " LEFT JOIN review r ON p.pro_num = r.pro_num"
 				+ " GROUP BY p.pro_num"
 				+ " having p.cate_num in ("
-				+ " select cate_num"
-				+ " from category"
-				+ " where parent_cate_num=?)"
-				+ ")" + " order by pro_num";
+				+ " select cate_num from category where parent_cate_num=?"
+				+ ")";
+		
+		
+		//String sql="select * from product where cate_num in (select cate_num from category where parent_cate_num = ?)";
 
 
 		try {
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, pcate_num);
+			pstmt.setString(1, cate_num);
 			rs = pstmt.executeQuery();
 
 			while (rs.next()) {
@@ -111,8 +114,9 @@ public class ProductListDao {
 				dto.setPro_sale_status(rs.getString("pro_sale_status"));
 				dto.setWishCount(rs.getInt("wishCount"));
 				dto.setReviewCount(rs.getInt("reviewCount"));
+				
 
-				plist.add(dto);
+				list.add(dto);
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -120,7 +124,7 @@ public class ProductListDao {
 		} finally {
 			db.dbClose(rs, pstmt, conn);
 		}
-		return plist;
+		return list;
 	}
 
 	// 카테고리명 출력
@@ -214,110 +218,142 @@ public class ProductListDao {
 		Connection conn = db.getConnection();
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		
-		if(cate_num.length()==1) {
-			String sql = "SELECT p.*, count(distinct w.wish_num) as wishCount, count(distinct r.review_num) as reviewCount"
-					+ "FROM product p LEFT JOIN wishlist w ON p.pro_num = w.pro_num LEFT JOIN review r ON p.pro_num = r.pro_num"
-					+ "GROUP BY p.pro_num"
-					+ "having p.cate_num in ("
-					+ "select cate_num"
-					+ "from category"
-					+ "where parent_cate_num=?)"
-					+ "order by pro_num desc limit ?,?";
-			
-			
-			try {
-				pstmt = conn.prepareStatement(sql);
-				pstmt.setString(1, cate_num);
-				pstmt.setInt(2, startNum);
-				pstmt.setInt(3, perPage);
 
-				rs = pstmt.executeQuery();
+		//String sql = "select * from product order by pro_num desc limit ?,?";
+		String sql = "SELECT p.*, count(distinct w.wish_num) as wishCount, count(distinct r.review_num) as reviewCount"
+				+ " FROM product p"
+				+ " LEFT JOIN wishlist w ON p.pro_num = w.pro_num"
+				+ " LEFT JOIN review r ON p.pro_num = r.pro_num" 
+				+ " GROUP BY p.pro_num" 
+				+ " having p.cate_num=?"
+				+ " order by pro_num desc limit ?,?";
 
-				while (rs.next()) {
-					ProductDto dto = new ProductDto();
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, cate_num);
+			pstmt.setInt(2, startNum);
+			pstmt.setInt(3, perPage);
 
-					dto.setPro_num(rs.getString("pro_num"));
-					dto.setCate_num(rs.getString("cate_num"));
-					dto.setPro_name(rs.getString("pro_name"));
-					dto.setPro_explain(rs.getString("pro_explain"));
-					dto.setPro_stock(rs.getInt("pro_stock"));
-					dto.setPro_price(rs.getInt("pro_price"));
-					dto.setPro_size(rs.getString("pro_size"));
-					dto.setPro_color(rs.getString("pro_color"));
-					dto.setPro_main_img(rs.getString("pro_main_img"));
-					dto.setPro_sub_img1(rs.getString("pro_sub_img1"));
-					dto.setPro_sub_img2(rs.getString("pro_sub_img2"));
-					dto.setPro_sub_img3(rs.getString("pro_sub_img3"));
-					dto.setPro_sub_img4(rs.getString("pro_sub_img4"));
-					dto.setPro_sub_img5(rs.getString("pro_sub_img5"));
-					dto.setPro_create_date(rs.getTimestamp("pro_create_date"));
-					dto.setPro_sale_status(rs.getString("pro_sale_status"));
-					dto.setWishCount(rs.getInt("wishCount"));
-					dto.setReviewCount(rs.getInt("reviewCount"));
+			rs = pstmt.executeQuery();
 
-					list.add(dto);
-				}
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} finally {
-				db.dbClose(rs, pstmt, conn);
+			while (rs.next()) {
+				ProductDto dto = new ProductDto();
+
+				dto.setPro_num(rs.getString("pro_num"));
+				dto.setCate_num(rs.getString("cate_num"));
+				dto.setPro_name(rs.getString("pro_name"));
+				dto.setPro_explain(rs.getString("pro_explain"));
+				dto.setPro_stock(rs.getInt("pro_stock"));
+				dto.setPro_price(rs.getInt("pro_price"));
+				dto.setPro_size(rs.getString("pro_size"));
+				dto.setPro_color(rs.getString("pro_color"));
+				dto.setPro_main_img(rs.getString("pro_main_img"));
+				dto.setPro_sub_img1(rs.getString("pro_sub_img1"));
+				dto.setPro_sub_img2(rs.getString("pro_sub_img2"));
+				dto.setPro_sub_img3(rs.getString("pro_sub_img3"));
+				dto.setPro_sub_img4(rs.getString("pro_sub_img4"));
+				dto.setPro_sub_img5(rs.getString("pro_sub_img5"));
+				dto.setPro_create_date(rs.getTimestamp("pro_create_date"));
+				dto.setPro_sale_status(rs.getString("pro_sale_status"));
+				dto.setWishCount(rs.getInt("wishCount"));
+				dto.setReviewCount(rs.getInt("reviewCount"));
+
+				list.add(dto);
 			}
-			return list;
-
-		} else {
-			//String sql = "select * from product order by pro_num desc limit ?,?";
-			String sql = "SELECT p.*, count(distinct w.wish_num) as wishCount, count(distinct r.review_num) as reviewCount"
-					+ " FROM product p LEFT JOIN wishlist w ON p.pro_num = w.pro_num LEFT JOIN review r ON p.pro_num = r.pro_num" 
-					+ " GROUP BY p.pro_num" 
-					+ " having p.cate_num=?"
-					+ " order by pro_num desc limit ?,?";
-
-			try {
-				pstmt = conn.prepareStatement(sql);
-				pstmt.setString(1, cate_num);
-				pstmt.setInt(2, startNum);
-				pstmt.setInt(3, perPage);
-
-				rs = pstmt.executeQuery();
-
-				while (rs.next()) {
-					ProductDto dto = new ProductDto();
-
-					dto.setPro_num(rs.getString("pro_num"));
-					dto.setCate_num(rs.getString("cate_num"));
-					dto.setPro_name(rs.getString("pro_name"));
-					dto.setPro_explain(rs.getString("pro_explain"));
-					dto.setPro_stock(rs.getInt("pro_stock"));
-					dto.setPro_price(rs.getInt("pro_price"));
-					dto.setPro_size(rs.getString("pro_size"));
-					dto.setPro_color(rs.getString("pro_color"));
-					dto.setPro_main_img(rs.getString("pro_main_img"));
-					dto.setPro_sub_img1(rs.getString("pro_sub_img1"));
-					dto.setPro_sub_img2(rs.getString("pro_sub_img2"));
-					dto.setPro_sub_img3(rs.getString("pro_sub_img3"));
-					dto.setPro_sub_img4(rs.getString("pro_sub_img4"));
-					dto.setPro_sub_img5(rs.getString("pro_sub_img5"));
-					dto.setPro_create_date(rs.getTimestamp("pro_create_date"));
-					dto.setPro_sale_status(rs.getString("pro_sale_status"));
-					dto.setWishCount(rs.getInt("wishCount"));
-					dto.setReviewCount(rs.getInt("reviewCount"));
-
-					list.add(dto);
-				}
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} finally {
-				db.dbClose(rs, pstmt, conn);
-			}
-			return list;
-			
-			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			db.dbClose(rs, pstmt, conn);
 		}
+		return list;
+	}
+	// 3. 부모카테 부분조회
+	public List<ProductDto> getParentPagingList(String cate_num, String pcate_num, int startNum, int perPage) {
+		List<ProductDto> list = new ArrayList<ProductDto>();
 
+		Connection conn = db.getConnection();
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+
+		//String sql = "select * from product order by pro_num desc limit ?,?";
+		String sql = "SELECT p.*, count(distinct w.wish_num) as wishCount, count(distinct r.review_num) as reviewCount"
+				+ " FROM product p"
+				+ " LEFT JOIN wishlist w ON p.pro_num = w.pro_num"
+				+ " LEFT JOIN review r ON p.pro_num = r.pro_num"
+				+ " GROUP BY p.pro_num"
+				+ " having p.cate_num in ("
+				+ " select cate_num from category where parent_cate_num=?"
+				+ ")"
+				+ " order by pro_num desc limit ?,?";
+
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, cate_num);
+			pstmt.setInt(2, startNum);
+			pstmt.setInt(3, perPage);
+
+			rs = pstmt.executeQuery();
+
+			while (rs.next()) {
+				ProductDto dto = new ProductDto();
+
+				dto.setPro_num(rs.getString("pro_num"));
+				dto.setCate_num(rs.getString("cate_num"));
+				dto.setPro_name(rs.getString("pro_name"));
+				dto.setPro_explain(rs.getString("pro_explain"));
+				dto.setPro_stock(rs.getInt("pro_stock"));
+				dto.setPro_price(rs.getInt("pro_price"));
+				dto.setPro_size(rs.getString("pro_size"));
+				dto.setPro_color(rs.getString("pro_color"));
+				dto.setPro_main_img(rs.getString("pro_main_img"));
+				dto.setPro_sub_img1(rs.getString("pro_sub_img1"));
+				dto.setPro_sub_img2(rs.getString("pro_sub_img2"));
+				dto.setPro_sub_img3(rs.getString("pro_sub_img3"));
+				dto.setPro_sub_img4(rs.getString("pro_sub_img4"));
+				dto.setPro_sub_img5(rs.getString("pro_sub_img5"));
+				dto.setPro_create_date(rs.getTimestamp("pro_create_date"));
+				dto.setPro_sale_status(rs.getString("pro_sale_status"));
+				dto.setWishCount(rs.getInt("wishCount"));
+				dto.setReviewCount(rs.getInt("reviewCount"));
+
+				list.add(dto);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			db.dbClose(rs, pstmt, conn);
+		}
+		return list;
+	}
+	
+	
+	// 부모카테고리 유무 조회 true/false
+	public boolean isParentCateCheck(String cate_num) {
+		boolean flag=false;
 		
+		Connection conn=db.getConnection();
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		
+		String sql="select * from category where parent_cate_num=?";
+		
+		try {
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setString(1, cate_num);
+			rs=pstmt.executeQuery();
+			
+			if(rs.next()) {
+				flag=true;		
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			db.dbClose(rs, pstmt, conn);
+		}	
+		return flag;
 	}
 	
 	
