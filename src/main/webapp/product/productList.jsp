@@ -1,3 +1,4 @@
+<%@page import="java.util.ArrayList"%>
 <%@page import="data.dao.ProductListDao"%>
 <%@page import="data.dto.CategoryDto"%>
 <%@page import="java.text.DecimalFormat"%>
@@ -52,11 +53,11 @@
 		  background-color: #eee; 
 		  color:black;
 	}
-	
 </style>
 
 <script type="text/javascript">
 	$(function(){
+		// 상품 클릭 시 상품상세로 이동
 		$("a.goDetail").click(function(){
 			var pronum=$(this).attr("pronum");
 			alert(pronum);
@@ -65,13 +66,16 @@
 			//location.href="index.jsp?main=product/상품상세.jsp?pronum="+pronum;
 		});
 		
+		// 부모카테고리 클릭 시
 		$("a.pCate").click(function(){
 			var pCatenum=$(this).attr("pCateNum");
 			//alert(pCatenum);
 			
+			//location.href="index.jsp?main=product/productList.jsp?cate_num="+pCatenum;
 			location.href="../product/productList.jsp?cate_num="+pCatenum
 		});
 		
+		// 자식카테고리 클릭 시
 		$("a.cate").click(function(){
 			var cateNum=$(this).attr("cateNum");
 			//alert(cateNum);
@@ -80,44 +84,104 @@
 			location.href="../product/productList.jsp?cate_num="+cateNum;
 		});
 		
+		// 정렬 콤보박스 클릭 시
+		$("select[name=sort]").change(function(){
+			var selected=$(this).val();
+			alert(selected);
+		});
+		
+		
 	});
 </script>
 </head>
 <%
+	// 카테고리 번호 받아오기
 	String cate_num=request.getParameter("cate_num");
-	//String pcate_num=request.getParameter("pcate_num");
 	
+	// 상품리스트 dao 불러오기
 	ProductListDao pldao=new ProductListDao();
-	List<ProductDto> list=pldao.getAllProduct(cate_num); 
-	List<ProductDto> plist=pldao.getAllParentsProduct(cate_num);
 	
-	// 카테고리 이름 얻어오기
+	// 부모/자식카테고리 이름 얻어오기
 	CategoryDto cdto=pldao.getCategory(cate_num);
 	CategoryDto pcdto=pldao.getParentCategory(cate_num);
 	
+	// 화폐 단위 정의
 	NumberFormat nf=new DecimalFormat("#,###.##원");
 	
+	// 카테고리 번호가 부모카테고리번호일 시 true 반환
 	boolean flag=pldao.isParentCateCheck(cate_num);
-	System.out.println(flag+"====================================================");
-
+	System.out.println("======== 부모카테고리 여부: "+flag+" ========");
 	
+	// list 선언 (부모/자식)
+	List<ProductDto> plist = new ArrayList<ProductDto>();
+	List<ProductDto> list = new ArrayList<ProductDto>();
 	
+	// * 페이징 ----------------------------------------------------------------------
+	// 전체 개수
+	int totalCount;
+	if(flag){
+		// 부모카테고리 번호일 시
+		totalCount=pldao.getParentTotalCount(cate_num);
+	} else {
+		totalCount=pldao.getTotalCount(cate_num);
+	}
+			
+	int perPage=8; // 한페이지당 보여질 글의 개수
+	int perBlock=5; // 한블럭당 보여질 페이지 개수
+	int startNum; // db에서 가져올 글의 시작 번호(mysql은 첫글이 0번, oracle은 1번)
+	int startPage; // 각 블럭마다 보여질 시작페이지
+	int endPage; // 각 블럭마다 보여질 끝페이지
+	int currentPage; // 현재페이지
+	int totalPage; // 총 페이지 수.
+	int no; // 각 페이지당 출력할 시작번호 (필수 아님)
+				
+	// 현재 페이지를 읽는데 단, null일 경우는 1페이지로 준다.
+	if(request.getParameter("currentPage")==null){
+		currentPage=1;
+	} else{
+		currentPage=Integer.parseInt(request.getParameter("currentPage")); // 계산을 위해 형변환
+	}		
+				
+	// 총 페이지 수 구한다
+	totalPage=totalCount/perPage+(totalCount%perPage==0?0:1);
+				
+	// 각 블럭 당 보여질 시작페이지
+	startPage=(currentPage-1)/perBlock*perBlock+1;
+	endPage=startPage+perBlock-1;
+				
+	// 총 페이지가 23일 경우 마지막 블럭은 25가 아닌 23
+	if(endPage>totalPage){
+		endPage=totalPage;
+	}
+				
+	// 각 페이지에서 보여질 시작번호
+	startNum=(currentPage-1)*perPage;
+				
+	// 각 페이지당 출력할 시작 번호 구하기
+	no=totalCount-(currentPage-1)*perPage;
+				
+	// 페이지에서 보여질 글만 가져오기 부모/자식
+	if(flag){
+		plist=pldao.getParentPagingList(cate_num, startNum, perPage);
+	} else{
+		list=pldao.getPagingList(cate_num, startNum, perPage);
+	}
+	// --------------------------------------------------------------------------		
 %>
 <body>
-
 <div style="margin:50px 100px; width:1400px">
 	<table>
 		<div style="margin:100px 0px 10px 15px; float:left;">
 			<a class="pCate" pCateNum="<%=pcdto.getCate_num() %>"><%=pcdto.getCate_name() %></a> 
 			<a class="cate" cateNum="<%=cate_num%>"><%=cdto.getCate_name().equals(pcdto.getCate_name())?"":" > "+cdto.getCate_name() %> </a>
 			
-			<div style="margin: -28px 0px 0px 1330px;">
-				<select name="sort" class="form-select form-select sort" style="width:98px;">
-					<option value="신상품">신상품</option>
-					<option value="상품명">상품명</option>
-					<option value="낮은가격">낮은가격</option>
-					<option value="높은가격">높은가격</option>
-					<option value="리뷰순">리뷰순</option>
+			<div style="margin: -28px 0px 0px 1320px;">
+				<select name="sort" class="form-select form-select sort" style="width:100px;">
+					<option value="1">신상품</option>
+					<option value="2">상품명</option>
+					<option value="3">낮은가격</option>
+					<option value="4">높은가격</option>
+					<option value="5">리뷰순</option>
 				</select>
 			</div>	
 		</div> 
@@ -127,7 +191,8 @@
 		<%
 			if(flag){
 				int line=0;
-				for(int i=0; i<plist.size(); i++){
+				for(int i=0; i<plist.size(); i++)
+				{
 					ProductDto pdto=plist.get(i);
 				%>		
 				<td style="padding: 0px 10px 60px;">
@@ -140,8 +205,8 @@
 							<i class="bi bi-chat-left" style="margin-left:15px;"></i> <%=pdto.getReviewCount()%>
 						</div>	
 					</a>
-					
 				</td>
+				
 				<%
 					// 한 줄에 출력되는 상품 개수 설정
 					if((line+1)%4==0){%>
@@ -175,12 +240,42 @@
 					line++;
 				%>
 			<%}	
-				
-			}
-			
+			}	
 		%>
 		</tr>
 	</table>
+	
+	<!-- 페이지 번호 출력 -->
+	<ul class="pagination justify-content-center" style="margin-top: 90px;">
+		<%
+			// 이전
+			if(startPage>1){%>
+				<li class="page-item">
+					<a class="page-link" href="productList.jsp?cate_num=<%=cate_num %>&currentPage=<%=startPage-1%>" style="color:black;" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a>
+				</li>
+			<%}
+		
+			for(int pp=startPage; pp<=endPage; pp++){
+				if(pp==currentPage){%>
+					<li class="page-item active">
+						<a class="page-link" href="productList.jsp?cate_num=<%=cate_num %>&currentPage=<%=pp%>"><%=pp %></a>
+					</li>
+				<%} else{%>
+					<li class="page-item">
+						<a class="page-link" href="productList.jsp?cate_num=<%=cate_num %>&currentPage=<%=pp%>"><%=pp %></a>
+					</li>
+				<%}
+			}
+			
+			// 다음
+			if(endPage<totalPage){%>
+				<li class="page-item">
+					<a class="page-link" href="productList.jsp?cate_num=<%=cate_num %>&currentPage=<%=endPage+1%>" style="color:black" aria-label="Next"><span aria-hidden="true">&raquo;</span></a>
+				</li>			
+			<%}
+		%>
+	</ul>
+	<!-- 페이지 번호 출력 끝. -->
 	
 </div>
 
