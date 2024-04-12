@@ -8,6 +8,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import com.mysql.cj.x.protobuf.MysqlxPrepare.Execute;
+
 import data.dto.CartDto;
 import db.DbConnect;
 
@@ -47,9 +49,9 @@ public class CartDao {
 		PreparedStatement pstmt=null;
 		ResultSet rs=null;
 		
-		String sql="select p.pro_price, p.pro_main_img,c.cart_size,c.cart_color "
-				+ "from cart c, product p, member m "
-				+ "where c.mem_num=m.mem_num and c.pro_num=p.pro_num and m.mem_id=?";
+		String sql="select p.pro_name, p.pro_price, p.pro_main_img,c.cart_size,c.cart_color ,c.cart_su"
+				+ " from cart c, product p, member m"
+				+ " where c.mem_num=m.mem_num and c.pro_num=p.pro_num and m.mem_id=?";
 		
 		try {
 			pstmt=conn.prepareStatement(sql);
@@ -62,9 +64,10 @@ public class CartDao {
 				
 				map.put("pro_price", rs.getString("pro_price"));
 				map.put("pro_main_img", rs.getString("pro_main_img"));
-				map.put("pro_size", rs.getString("pro_size"));
-				map.put("pro_color", rs.getString("pro_color"));
+				map.put("cart_size", rs.getString("cart_size"));
+				map.put("cart_color", rs.getString("cart_color"));
 				map.put("pro_name", rs.getString("pro_name"));
+				map.put("cart_su", rs.getString("cart_su"));
 				
 				list.add(map);
 				
@@ -78,5 +81,49 @@ public class CartDao {
 		}
 		
 		return list;
+	}
+	
+	public void overlapProDel(String pro_num) {
+		
+		Connection conn=db.getConnection();
+		PreparedStatement pstmt=null;
+		
+		String sql="DELETE FROM CART"
+				+ "WHERE pro_num IN ("
+				+ " SELECT pro_num"
+				+ " FROM ("
+				+ " SELECT pro_num, ROW_NUMBER() OVER(PARTITION BY pro_num ORDER BY pro_num) AS rn"
+				+ " FROM CART"
+				+ " ) AS t"
+				+ " WHERE t.rn > 1"
+				+ ")";
+		
+		try {
+			pstmt=conn.prepareStatement(sql);
+			pstmt.execute();
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			db.dbClose(pstmt, conn);
+		}
+	}
+	
+	public void overlapProInsert() {
+		
+		Connection conn=db.getConnection();
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		
+		String sql="INSERT INTO CART (pro_num)"
+				+ " SELECT '?'"
+				+ " FROM dual"
+				+ "	 WHERE NOT EXISTS ("
+				+ "    SELECT 1"
+				+ "    FROM CART"
+				+ "    WHERE pro_num = '?'"
+				+ ");";
+		
 	}
 }

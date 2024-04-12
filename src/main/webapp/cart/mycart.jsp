@@ -30,14 +30,27 @@
 		border: 1px solid #000000;
 	}
 	
+	.cart_div{
+	
+	}
+	
+	.cart_img{
+	width: 124px;
+	}
+	
+	
 </style>
 </head>
 
 <%
-session.setAttribute("mem_id", "dragon");
+
 String id=(String)session.getAttribute("mem_id");
+System.out.println(id);
 CartDao cdao=new CartDao();
 List<HashMap<String,String>> list=cdao.getCartList(id);
+
+System.out.println(list);
+
 NumberFormat nf=NumberFormat.getInstance();
 %>
 
@@ -65,11 +78,12 @@ NumberFormat nf=NumberFormat.getInstance();
 		String pro_main_img=map.get("pro_main_img");
 	%>
 		<input type="checkbox" class="cart_select">
-		<img alt="" src="<%=pro_main_img%>">
+		<img class="cart_img" alt="" src="<%=pro_main_img%>">
 		<b><%=map.get("pro_name") %></b>
-		<b>[옵션:<%=map.get("pro_size") %>]</b>
-		<b>[옵션:<%=map.get("pro_color") %>]</b>
-		<b><%=map.get("pro_su") %></b>
+		<b>[옵션:<%=map.get("cart_size") %>]</b>
+		<b>[옵션:<%=map.get("cart_color") %>]</b>
+		<b><%=map.get("cart_su") %></b>
+		<b><%=map.get("pro_price") %></b>
 	<%}%>
 	
 	<span>
@@ -82,10 +96,10 @@ NumberFormat nf=NumberFormat.getInstance();
 	
 	<!-- 장바구니 button -->
 	<div>
-		<button class="btn1" id="btn1">선택상품 구매</button>
-		<button class="btn2" id="btn2">전체상품 구매</button>
-		<button class="btn3" id="btn3">선택삭제</button>
-		<button class="btn4" id="btn4">전체삭제</button>
+		<button class="buy_btn" id="buy_btn">선택상품 구매</button>
+		<button class="all_buy_btn" id="all_buy_btn">전체상품 구매</button>
+		<button class="del_btn" id="del_btn">선택삭제</button>
+		<button class="all_del_btn" id="all_del_btn">전체삭제</button>
 	</div>
 </body>
 </html>

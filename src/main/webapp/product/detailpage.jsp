@@ -1,3 +1,4 @@
+<%@page import="data.dao.CartDao"%>
 <%@page import="java.util.List"%>
 <%@page import="java.text.NumberFormat"%>
 <%@page import="data.dto.ProductDto"%>
@@ -257,6 +258,13 @@ NumberFormat nf = NumberFormat.getCurrencyInstance();
 				return;
 			}
 
+			<%
+			CartDao cdao=new CartDao();
+			cdao.overlapProDel(pro_num);
+			%>
+			
+			if(pro_num
+					
 			//form태그 가져오기
 			var cartdata = $("#form1").serialize();
 			alert(cartdata);
