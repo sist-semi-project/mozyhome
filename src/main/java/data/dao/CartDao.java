@@ -110,20 +110,5 @@ public class CartDao {
 		}
 	}
 	
-	public void overlapProInsert() {
-		
-		Connection conn=db.getConnection();
-		PreparedStatement pstmt=null;
-		ResultSet rs=null;
-		
-		String sql="INSERT INTO CART (pro_num)"
-				+ " SELECT '?'"
-				+ " FROM dual"
-				+ "	 WHERE NOT EXISTS ("
-				+ "    SELECT 1"
-				+ "    FROM CART"
-				+ "    WHERE pro_num = '?'"
-				+ ");";
-		
-	}
+
 }

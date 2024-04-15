@@ -104,10 +104,8 @@ hr {
 </head>
 
 <%
-session.setAttribute("mem_id", "dragon");
-String pro_num="203";
-session.setAttribute("loginok", "yes");
-//String pro_num = request.getParameter("pro_num");
+
+String pro_num = request.getParameter("pro_num");
 String loginok = (String) session.getAttribute("loginok");
 String mem_id = (String) session.getAttribute("mem_id"); 
 
@@ -247,6 +245,15 @@ NumberFormat nf = NumberFormat.getCurrencyInstance();
 	</form>
 
 
+	<!-- 리뷰 -->
+	<div>
+		<i class="bi bi-star-fill star"></i>
+		<i class="bi bi-star-fill star"></i>
+		<i class="bi bi-star-fill star"></i>
+		<i class="bi bi-star-fill star"></i>
+		<i class="bi bi-star-fill star"></i>
+	</div>
+
 
 	<!-- 장바구니 버튼 함수-->
 	<script type="text/javascript">
@@ -258,12 +265,14 @@ NumberFormat nf = NumberFormat.getCurrencyInstance();
 				return;
 			}
 
+			
+			<!--장바구니에 같은 옵션있으면 '장바구니에 이미 담겨져 있습니다' alert 띄우기-->
 			<%
 			CartDao cdao=new CartDao();
 			cdao.overlapProDel(pro_num);
 			%>
 			
-			if(pro_num
+			
 					
 			//form태그 가져오기
 			var cartdata = $("#form1").serialize();
@@ -290,7 +299,12 @@ NumberFormat nf = NumberFormat.getCurrencyInstance();
 
 		<!--위시리스트 버튼 함수-->
 		$("#heart").click(function() {
-
+			
+		})
+		
+		<!--BUY NOW 버튼 함수-->
+		$("#buynow").click(function(){
+			
 		})
 	</script>
 
