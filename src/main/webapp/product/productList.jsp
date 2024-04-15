@@ -60,10 +60,10 @@
 		// 상품 클릭 시 상품상세로 이동
 		$("a.goDetail").click(function(){
 			var pronum=$(this).attr("pronum");
-			alert(pronum);
+			//alert(pronum);
 			
 			// 디테일 페이지로 이동 #review
-			location.href="index.jsp?main=product/상품상세.jsp?pronum="+pronum;
+			location.href="../product/detailpage.jsp?pro_num="+pronum;
 		});
 		
 		// 부모카테고리 클릭 시
