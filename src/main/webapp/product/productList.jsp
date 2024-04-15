@@ -1,3 +1,5 @@
+<%@page import="data.dao.MemberDao"%>
+<%@page import="data.dto.MemberDto"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="data.dao.ProductListDao"%>
 <%@page import="data.dto.CategoryDto"%>
@@ -60,10 +62,10 @@
 		// 상품 클릭 시 상품상세로 이동
 		$("a.goDetail").click(function(){
 			var pronum=$(this).attr("pronum");
-			alert(pronum);
+			//alert(pronum);
 			
 			// 디테일 페이지로 이동 #review
-			location.href="index.jsp?main=product/상품상세.jsp?pronum="+pronum;
+			location.href="../product/detailpage.jsp?pro_num="+pronum;
 		});
 		
 		// 부모카테고리 클릭 시
@@ -94,6 +96,13 @@
 </script>
 </head>
 <%
+	// 0415 로그인 세션
+	session.setAttribute("mem_id","dragon");
+	session.setAttribute("loginok","yes");	
+	String loginok=(String)session.getAttribute("loginok");
+	String myid=(String)session.getAttribute("mem_id");
+	//System.out.println(myid);
+
 	// 카테고리 번호 받아오기
 	String cate_num=request.getParameter("cate_num");
 
@@ -116,7 +125,7 @@
 	//System.out.println("======== 부모카테고리 여부: "+flag+" ========");
 	
 	// list 선언
-	List<ProductDto> list = new ArrayList<ProductDto>();
+	List<ProductDto> list = new ArrayList<ProductDto>();	
 	
 	// * 페이징 ----------------------------------------------------------------------
 	// 전체 개수
@@ -163,7 +172,7 @@
 	// 각 페이지당 출력할 시작 번호 구하기
 	no=totalCount-(currentPage-1)*perPage;
 	
-	// 페이지에서 보여질 글만 가져오기
+	// 페이지에서 보여질 글만 가져오기 (정렬 적용)
 	if ("1".equals(sort)){
 		if(flag){
 			list=pldao.NEWgetParentPagingList(cate_num, startNum, perPage);
@@ -228,15 +237,26 @@
 		<%
 				int line=0;
 		
-				for(ProductDto pdto:list){%>
+				for(ProductDto pdto:list){
+				%>
 					<td style="padding: 0px 10px 60px;">
 						<a pronum="<%=pdto.getPro_num()%>" class="goDetail">
 							<img src="<%=pdto.getPro_main_img()%>" style="width:340px; padding-bottom: 8px;"> <br>
 							<span style="padding-bottom:50px; font-weight: bold;"><%=pdto.getPro_name() %></span> <br>
 							<span class="proPrice"><%=nf.format(pdto.getPro_price()) %></span> <br>
 							<div style="color:#aaa; padding-top: 3px;">
-								<i class="bi bi-heart"></i> <%=pdto.getWishCount() %>
-								<i class="bi bi-chat-left" style="margin-left:15px;"></i> <%=pdto.getReviewCount()%>
+							<%
+								// 위시리스트 하트 아이콘 출력 - 해당 아이디로 위시리스트 등록되어있으면 하트아이콘 채우기
+								// 0415 'pdto.getMem_id()!=null' 추후 삭제 예정
+								if(loginok!=null && pdto.getMem_id()!=null && pdto.getMem_id().equals(myid)){%>	
+									<i class="bi bi-suit-heart-fill" style="color: #FF5C00;"></i> <%=pdto.getWishCount() %>
+								<%} else{%>
+									<i class="bi bi-suit-heart"></i> <%=pdto.getWishCount() %>
+								<%}
+							
+							%>
+							<i class="bi bi-chat-left" style="margin-left:15px;"></i> <%=pdto.getReviewCount()%>
+								
 							</div>	
 						</a>
 					</td>
