@@ -12,7 +12,7 @@ import db.DbConnect;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.Vector;
-
+import data.dto.WishlistDto;
 
 
 public class ProductDao {
@@ -145,7 +145,6 @@ public class ProductDao {
 		
 		return dto;
 	}
-
 
 
 }
