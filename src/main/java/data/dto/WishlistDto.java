@@ -4,6 +4,7 @@ public class WishlistDto {
 	private int wish_num;
 	private String mem_num;
 	private String pro_num;
+	private String mem_id;
 
 	public int getWish_num() {
 		return wish_num;
@@ -22,6 +23,12 @@ public class WishlistDto {
 	}
 	public void setPro_num(String pro_num) {
 		this.pro_num = pro_num;
+	}
+	public String getMem_id() {
+		return mem_id;
+	}
+	public void setMem_id(String mem_id) {
+		this.mem_id = mem_id;
 	}
 	
 	
