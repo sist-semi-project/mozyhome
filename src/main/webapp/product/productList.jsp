@@ -243,7 +243,16 @@
 						<a pronum="<%=pdto.getPro_num()%>" class="goDetail">
 							<img src="<%=pdto.getPro_main_img()%>" style="width:340px; padding-bottom: 8px;"> <br>
 							<span style="padding-bottom:50px; font-weight: bold;"><%=pdto.getPro_name() %></span> <br>
-							<span class="proPrice"><%=nf.format(pdto.getPro_price()) %></span> <br>
+							<%
+								// 품절 표시
+								if(pdto.getPro_sale_status().equals("품절")){%>
+									<span class="proPrice" style="color: #aaa;"><%=nf.format(pdto.getPro_price()) %></span><span style="background: black; color: white; font-size:13px; margin-left: 8px; text-align: center;">&nbsp;&nbsp;SOLD OUT&nbsp;&nbsp;</span></div> <br>
+								<%} else{%>
+									<span class="proPrice"><%=nf.format(pdto.getPro_price()) %></span> <br>
+								<%}
+							
+							%>
+
 							<div style="color:#aaa; padding-top: 3px;">
 							<%
 								// 위시리스트 하트 아이콘 출력 - 해당 아이디로 위시리스트 등록되어있으면 하트아이콘 채우기
@@ -309,7 +318,7 @@
 				// 이전
 				if(startPage>1){%>
 					<li class="page-item">
-						<a class="page-link" href="productList.jsp?cate_num=<%=cate_num %>&currentPage=<%=startPage-1%>" style="color:black;" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a>
+						<a class="page-link" href="productList.jsp?cate_num=<%=cate_num %>&currentPage=<%=startPage-1%>" style="color:black;" aria-label="Previous"><span aria-hidden="true">&#10094;</span></a>
 					</li>
 				<%}
 			
@@ -328,7 +337,7 @@
 				// 다음
 				if(endPage<totalPage){%>
 					<li class="page-item">
-						<a class="page-link" href="productList.jsp?cate_num=<%=cate_num %>&currentPage=<%=endPage+1%>" style="color:black" aria-label="Next"><span aria-hidden="true">&raquo;</span></a>
+						<a class="page-link" href="productList.jsp?cate_num=<%=cate_num %>&currentPage=<%=endPage+1%>" style="color:black" aria-label="Next"><span aria-hidden="true">&#10095;</span></a>
 					</li>			
 				<%}
 			}

@@ -19,7 +19,7 @@
 <style type="text/css">
 	body{
 	 	font-family: "Noto Sans KR";
-	 	font-size: 13px;
+	 	font-size: 14px;
 	}
 	
 	a, .goDetail{
@@ -37,7 +37,7 @@
 		/*accent-color:#FF5C00;*/
 		accent-color:black;
 	}
-	
+		
 	/* 페이징 디자인 */
 	.page-link {
 	  color: black; 
@@ -189,7 +189,7 @@
 								
 							<div>
 								<td width="10px" align="center" >
-									<input type="checkbox" class="allDel" value="<%=map.get("wish_num")%>">
+									<input type="checkbox" class="form-check allDel" value="<%=map.get("wish_num")%>">
 								</td>
 													
 								<td width="150px" style="text-align: center;">			
@@ -223,7 +223,7 @@
 				if (startPage > 1) {
 				%>
 				<li class="page-item"><a class="page-link"
-					href="wishlist.jsp?&currentPage=<%=startPage - 1%>"style="color: black;" aria-label="Previous"><spanaria-hidden="true">&laquo;</span></a></li>
+					href="wishlist.jsp?&currentPage=<%=startPage - 1%>"style="color: black;" aria-label="Previous"><spanaria-hidden="true">&#10094;</span></a></li>
 				<%
 				}
 	
@@ -231,7 +231,7 @@
 				if (endPage < totalPage) {
 				%>
 					<li class="page-item"><a class="page-link"
-						href="wishlist.jsp?currentPage=<%=endPage + 1%>"style="color: black" aria-label="Next"><span aria-hidden="true">&raquo;</span></a>
+						href="wishlist.jsp?currentPage=<%=endPage + 1%>"style="color: black" aria-label="Next"><span aria-hidden="true">&#10095;</span></a>
 					</li>
 				<%
 				}
