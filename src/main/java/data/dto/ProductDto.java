@@ -177,7 +177,6 @@ public class ProductDto {
     public void setTotalCount(int totalCount) {
         this.totalCount = totalCount;
     }
-}
 
 	public int getWishCount() {
 		return wishCount;

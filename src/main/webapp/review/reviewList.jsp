@@ -90,7 +90,7 @@
 	</div>
 	<div>
 	 <ul>
-	 	<li><a class="page_next" href="index.jsp></a></li>
+	 	<li><a class="page_next" href="index.jsp"></a></li>
 	 	<li></li>
 	 	<li></li>
 	 	<li></li>
