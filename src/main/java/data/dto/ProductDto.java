@@ -19,6 +19,12 @@ public class ProductDto {
     private String pro_sub_img5;
     private Timestamp pro_create_date;
     private String pro_sale_status;
+    private int pro_sale_volume;
+    private String parent_cate_num;
+    private int totalCount;
+    private int wishCount;
+    private int reviewCount;
+    private String mem_id; // 상품리스트 안에 위시리스트 id (0415 추가)
 
     public String getPro_num() {
         return pro_num;
@@ -147,6 +153,57 @@ public class ProductDto {
 	public void setPro_color(String pro_color) {
 		this.pro_color = pro_color;
 	}
+
+    public int getPro_sale_volume() {
+        return pro_sale_volume;
+    }
+
+    public void setPro_sale_volume(int pro_sale_volume) {
+        this.pro_sale_volume = pro_sale_volume;
+    }
+
+    public String getParent_cate_num() {
+        return parent_cate_num;
+    }
+
+    public void setParent_cate_num(String parent_cate_num) {
+        this.parent_cate_num = parent_cate_num;
+    }
+
+    public int getTotalCount() {
+        return totalCount;
+    }
+
+    public void setTotalCount(int totalCount) {
+        this.totalCount = totalCount;
+    }
+
+
+	public int getWishCount() {
+		return wishCount;
+	}
+
+	public void setWishCount(int wishCount) {
+		this.wishCount = wishCount;
+	}
+
+	public int getReviewCount() {
+		return reviewCount;
+	}
+
+	public void setReviewCount(int reviewCount) {
+		this.reviewCount = reviewCount;
+	}
+
+	public String getMem_id() {
+		return mem_id;
+	}
+
+	public void setMem_id(String mem_id) {
+		this.mem_id = mem_id;
+	}
+	
+
     
 }
 

@@ -110,6 +110,7 @@ public class CartDao {
 		}
 	}
 	
+<<<<<<< HEAD
 	public void overlapProInsert() {
 		
 		Connection conn=db.getConnection();
@@ -126,4 +127,7 @@ public class CartDao {
 				+ ")";
 		
 	}
+=======
+
+>>>>>>> branch 'bumsu' of https://github.com/sist-semi-project/mozyhome.git
 }
