@@ -12,11 +12,19 @@
 <title>Insert title here</title>
 <script type="text/javascript">
 	$(function(){
-		$(".search").click(function(){
+		$("#search").click(function(){
 			var keyword=$("#keyword").val();
 			//alert(keyword);
 			location.href="../product/searchList.jsp?search="+keyword;
 		});
+		
+		document.getElementById('keyword').addEventListener('keypress', function(event) {
+            // 엔터 키가 눌렸는지 확인
+            if (event.keyCode === 13) {
+                event.preventDefault(); // 폼 제출을 방지
+                document.getElementById('search').click(); // '사이즈 추가' 버튼 클릭 이벤트 발생
+            }
+        });
 	});
 
 </script>
@@ -25,7 +33,7 @@
 <body>
 <form action="searchList.jsp" method="post">
 	<input type="text" id="keyword">
-	<button type="button" class="search">검색</button>
+	<button type="button" id="search">검색</button>
 </form>
 </body>
 </html>
