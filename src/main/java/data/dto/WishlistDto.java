@@ -30,6 +30,5 @@ public class WishlistDto {
 	public void setMem_id(String mem_id) {
 		this.mem_id = mem_id;
 	}
-	
-	
+
 }

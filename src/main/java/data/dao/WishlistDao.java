@@ -10,10 +10,10 @@ import java.util.List;
 
 import db.DbConnect;
 
-public class wishlistDao {
+public class WishlistDao {
 	DbConnect db=new DbConnect();
 	
-	// 위시리스트 상품 조회
+	// 위시리스트 상품 전체조회
 	public List<HashMap<String, String>> getWishlist(String myid){
 		List<HashMap<String, String>> list=new ArrayList<HashMap<String,String>>();
 		
@@ -49,7 +49,6 @@ public class wishlistDao {
 		} finally {
 			db.dbClose(rs, pstmt, conn);
 		}
-		
 		return list;
 	}
 	

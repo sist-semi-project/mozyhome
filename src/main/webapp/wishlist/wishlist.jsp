@@ -3,7 +3,7 @@
 <%@page import="data.dto.WishlistDto"%>
 <%@page import="java.util.HashMap"%>
 <%@page import="java.util.List"%>
-<%@page import="data.dao.wishlistDao"%>
+<%@page import="data.dao.WishlistDao"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -75,8 +75,9 @@
 					
 					ditem=ditem.substring(0,ditem.length-1);
 					//console.log(ditem);
-					//location.href="smartBoard/allDelete.jsp?nums="+n;
+					location.href="../wishlist/deleteWishlist.jsp?ditems="+ditem;
 					
+					/*
 					$.ajax({
 						type:"get",
 						url:"wishlist/deleteWishlist.jsp",
@@ -86,10 +87,8 @@
 						success:function(){
 							alert("관심상품이 삭제되었습니다.");
 							location.reload();
-						}
-						
-					});
-					
+						}						
+					});	*/
 				}	
 			}
 			
@@ -108,7 +107,7 @@
 	String myid=(String)session.getAttribute("mem_id");
 	//System.out.println(myid);
 	
-	wishlistDao wdao=new wishlistDao();
+	WishlistDao wdao=new WishlistDao();
 	List<HashMap<String, String>> list=wdao.getWishlist(myid);
 	
 	// 화폐 단위 정의
@@ -165,9 +164,10 @@
 		
 		<%
 
-	} else {%>
-		<h4>로그인 페이지로 전달</h4>
-	<%}
+	} else {
+		// 로그인 페이지로 전달
+		//response.sendRedirect("../로그인페이지로 전달");
+	}
 
 
 
