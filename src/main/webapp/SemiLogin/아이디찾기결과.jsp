@@ -1,4 +1,4 @@
-<%@page import="data.dao.memberDao"%>
+<%@page import="data.dao.MemberDao"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -12,7 +12,7 @@
      String name = request.getParameter("mem_name");
      String email = request.getParameter("mem_email");
      
- memberDao dao = new memberDao();
+     MemberDao dao = new MemberDao();
  String mem_id = dao.findId(name, email); //아이디를 디비에서 가져옴..실패시 널
  
 %>

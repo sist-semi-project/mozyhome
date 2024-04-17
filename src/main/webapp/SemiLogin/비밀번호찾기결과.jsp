@@ -1,4 +1,4 @@
-<%@page import="data.dao.memberDao"%>
+<%@page import="data.dao.MemberDao"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -14,7 +14,7 @@
     String id = request.getParameter("mem_id");     
     String email = request.getParameter("mem_email");
      
-memberDao dao = new memberDao();
+    MemberDao dao = new MemberDao();
  String pass = dao.findPw(name,id,email); //비밀번호를 디비에서 가져옴..실패시 널
  
 %>

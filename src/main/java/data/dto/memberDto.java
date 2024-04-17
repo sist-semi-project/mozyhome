@@ -1,9 +1,8 @@
 package data.dto;
 
-import java.sql.Date;
 import java.sql.Timestamp;
 
-public class memberDto {
+public class MemberDto {
 
 	private String mem_num;
 	private String mem_id;
@@ -19,31 +18,6 @@ public class memberDto {
 	private String mem_gender;
 	private Timestamp mem_gaipday;
 	private String mem_is_active;
-
-	
-	public memberDto(String mem_num, String mem_id, String mem_password, String mem_name, String mem_nickname,
-			String mem_hp, String mem_zipcode, String mem_address, String mem_address_detail, String mem_email,
-			String mem_birth, String mem_gender, Timestamp mem_gaipday, String mem_is_active) {
-		super();
-		this.mem_num = mem_num;
-		this.mem_id = mem_id;
-		this.mem_password = mem_password;
-		this.mem_name = mem_name;
-		this.mem_nickname = mem_nickname;
-		this.mem_hp = mem_hp;
-		this.mem_zipcode = mem_zipcode;
-		this.mem_address = mem_address;
-		this.mem_address_detail = mem_address_detail;
-		this.mem_email = mem_email;
-		this.mem_birth = mem_birth;
-		this.mem_gender = mem_gender;
-		this.mem_gaipday = mem_gaipday;
-		this.mem_is_active = mem_is_active;
-	}
-	public memberDto() {
-
-		
-	}
 
 	public String getMem_num() {
 		return mem_num;

@@ -1,7 +1,7 @@
 <%@page import="java.text.SimpleDateFormat"%>
-<%@page import="data.dao.memberDao"%>
+<%@page import="data.dao.MemberDao"%>
 <%@page import="java.sql.Date"%>
-<%@page import="data.dto.memberDto"%>
+<%@page import="data.dto.MemberDto"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
@@ -20,7 +20,7 @@ String birthday = request.getParameter("mem_birth");
 String gender = request.getParameter("mem_gender");
 String is_active = request.getParameter("mem_is_active");
 
-memberDto dto = new memberDto();
+MemberDto dto = new MemberDto();
 
 dto.setMem_id(id);
 dto.setMem_password(pass);
@@ -35,7 +35,7 @@ dto.setMem_birth(birthday);
 dto.setMem_gender(gender);
 dto.setMem_is_active(is_active);
 
-memberDao dao = new memberDao();
+MemberDao dao = new MemberDao();
 
 dao.insertMember(dto);
 
