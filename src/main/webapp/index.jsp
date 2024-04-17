@@ -12,22 +12,12 @@
 	rel="stylesheet">
 <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
 <title>Insert title here</title>
-<<<<<<< HEAD
-<style type="text/css">
-.main {
-	
-}
-</style>
-=======
+
 </head>
 <body>
-hihi
 
->>>>>>> refs/heads/master
-
-</head>
 <%
-String main = "layout/main.jsp";
+String main = "/layout/main.jsp";
 
 if (request.getParameter("main") != null) {
 	main = request.getParameter("main");

@@ -5,6 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
 	rel="stylesheet">
@@ -57,11 +58,12 @@
 }
 </style>
 <script type="text/javascript">
- $(function(){
-	 $("i.camera").click(function(){
-		 $("#photo").trigger("click");
-	 })
- });
+
+$(function(){
+    $("i.camera").click(function(){
+        $("#photo").trigger("click");
+    });
+});
 
  function readURL(input) {
 	    if (input.files && input.files[0]) {
@@ -74,11 +76,16 @@
 	}
 </script>
 </head>
+<%
+	String pro_num = request.getParameter("pro_num");
+	String loginok = (String) session.getAttribute("loginok");
+	String mem_id = (String) session.getAttribute("mem_id"); 
+%>
 
 <body>
 	<div>
 		<!-- ReviewForm -->
-		<form action="member" method="post" enctype="multipart/form-data">
+		<form action="review/reviewPage.jsp" method="post" enctype="multipart/form-data">
 
 			<!-- 별점 -->
 			<div class="rating_box">
@@ -141,10 +148,6 @@
 		<img id="showimg" style="max-width: 200px;">
 	</div>
 
-
-
-
-
 	<script type="text/javascript">
 document.addEventListener('DOMContentLoaded', function() {
     console.log("페이지 로드 완료");
@@ -155,12 +158,12 @@ document.addEventListener('DOMContentLoaded', function() {
   
     if (!stars || !rating_input) {
         console.error("요소를 찾을 수 없음");
-        return; // 요소를 찾지 못한 경우 코드 실행 중단
+        return; <!--요소를 찾지 못한 경우 코드 실행 중단-->
     }
   
     console.log("요소 참조 완료");
   
-    // 별점 클릭할 때
+    <!--별점 클릭할 때-->
     stars.forEach(star => {
         star.addEventListener('click', () => {
             console.log("별점 클릭 이벤트 발생");
@@ -175,9 +178,9 @@ document.addEventListener('DOMContentLoaded', function() {
         stars.forEach(star => {
             const starValue = parseInt(star.getAttribute('data-value'));
             if (starValue <= value) {
-                star.style.color = '#FF5C00'; // 클릭된 별보다 작거나 같은 별에 대해 색상 변경
+                star.style.color = '#FF5C00'; <!--클릭된 별보다 작거나 같은 별에 대해 색상 변경-->
             } else {
-                star.style.color = '#ddd'; // 클릭된 별보다 큰 별에 대해 색상 변경
+                star.style.color = '#ddd'; <!--클릭된 별보다 큰 별에 대해 색상 변경-->
             }
         });
     }
