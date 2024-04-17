@@ -79,8 +79,25 @@
 				%>
 			<tr>
 				<td><%= i+1 %></td>
+				<td>
+				<%
+				String review_Pyung_str = map.get("review_pyung");
+			    int review_Pyung = 0;
+			    try {
+			        review_Pyung = Integer.parseInt(review_Pyung_str);
+			    } catch (NumberFormatException e) {
+			        // 변환에 실패한 경우 기본값인 0으로 설정
+			    }
+			    
+			    int starCount = review_Pyung;
+
+			    // 별 출력
+			    for (int j = 0; j < starCount; j++) {
+			        out.print("★");
+			    }
+				%>
+				</td>
 				<td><%=map.get("review_subject") %></td>
-				<td><%=map.get("review_pyung") %></td>
 				<td><%=map.get("mem_id") %></td>
 				<td><%=map.get("review_writeday") %></td>
 			</tr>
@@ -90,7 +107,7 @@
 	</div>
 	<div>
 	 <ul>
-	 	<li><a class="page_next" href="index.jsp></a></li>
+	 	<li></li>
 	 	<li></li>
 	 	<li></li>
 	 	<li></li>
