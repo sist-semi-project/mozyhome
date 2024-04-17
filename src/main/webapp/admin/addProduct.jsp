@@ -60,6 +60,8 @@
                 // 조명
                 subCategory.options.add(new Option("단스탠드", "41"));
                 subCategory.options.add(new Option("장스탠드", "42"));
+            } else if (mainCategory == "5") {
+                subCategory.options.add(new Option("기타","51"));
             }
         }
         // 파일 선택 후 미리보기 함수
@@ -84,6 +86,92 @@
         }
 
         document.addEventListener('DOMContentLoaded', function() {
+
+            var productForm = document.getElementById('productForm');
+            var colorTagsContainer = document.getElementById('colorTags');
+            var sizeTagsContainer = document.getElementById('sizeTags');
+            var colorsTagInput = document.getElementById('colors');
+            var sizesTagInput = document.getElementById('sizes');
+
+            // 색상 추가 함수
+            document.getElementById('addColor').addEventListener('click', function() {
+                var colorInput = document.getElementById('colorInput');
+                if (colorInput.value.trim() !== '') {
+                    var tag = createTag(colorInput.value, colorTagsContainer);
+                    colorInput.value = ''; // 입력 필드 초기화
+                }
+            });
+
+            // 사이즈 추가 함수
+            document.getElementById('addSize').addEventListener('click', function() {
+                var sizeInput = document.getElementById('sizeInput');
+                if (sizeInput.value.trim() !== '') {
+                    var tag = createTag(sizeInput.value, sizeTagsContainer);
+                    sizeInput.value = ''; // 입력 필드 초기화
+                }
+            });
+
+            // 태그 생성 함수
+            function createTag(text, container) {
+                var tag = document.createElement('div');
+                tag.textContent = text;
+                tag.style.display = 'inline-block';
+                tag.style.margin = '2px';
+                tag.style.padding = '2px 5px';
+                tag.style.border = '1px solid #ddd';
+                tag.style.borderRadius = '5px';
+
+                var closeBtn = document.createElement('span');
+                closeBtn.textContent = 'x';
+                closeBtn.style.marginLeft = '5px';
+                closeBtn.style.cursor = 'pointer';
+                closeBtn.onclick = function() {
+                    tag.remove();
+                };
+
+                tag.appendChild(closeBtn);
+                container.appendChild(tag);
+            }
+            // 색상 입력 필드에 keypress 이벤트 리스너 추가(엔터 입력시 태그 추가)
+            document.getElementById('colorInput').addEventListener('keypress', function(event) {
+                // 엔터 키가 눌렸는지 확인 (엔터 키의 keyCode는 13)
+                if (event.keyCode === 13) {
+                    event.preventDefault(); // 폼 제출을 방지
+                    document.getElementById('addColor').click(); // '색상 추가' 버튼 클릭 이벤트 발생
+                }
+            });
+
+            // 사이즈 입력 필드에 keypress 이벤트 리스너 추가(엔터 입력시 태그 추가)
+            document.getElementById('sizeInput').addEventListener('keypress', function(event) {
+                // 엔터 키가 눌렸는지 확인
+                if (event.keyCode === 13) {
+                    event.preventDefault(); // 폼 제출을 방지
+                    document.getElementById('addSize').click(); // '사이즈 추가' 버튼 클릭 이벤트 발생
+                }
+            });
+
+
+            // 폼 제출 이벤트
+            productForm.addEventListener('submit', function(e) {
+                e.preventDefault(); // 폼의 기본 제출 이벤트를 방지
+
+                // 색상 태그들을 문자열로 변환
+                var colorTags = Array.from(colorTagsContainer.children).map(function(tag) {
+                    return tag.textContent.slice(0, -1); // 'x' 제거
+                });
+                colorsTagInput.value = colorTags.join(',');
+
+
+                // 사이즈 태그들을 문자열로 변환
+                var sizeTags = Array.from(sizeTagsContainer.children).map(function(tag) {
+                    return tag.textContent.slice(0, -1); // 'x' 제거
+                });
+                sizesTagInput.value = sizeTags.join(',');
+
+                // 이제 폼을 제출할 수 있음
+                this.submit(); // 폼 제출
+            });
+
             // 가격 입력 필드에 대한 이벤트 리스너 추가
             document.getElementById('priceInput').addEventListener('input', function() {
                 var inputVal = this.value;
@@ -119,7 +207,7 @@
 
 <h2>상품 등록</h2>
 
-<form action="./addProductAction.jsp" method="post" enctype="multipart/form-data">
+<form action="./addProductAction.jsp" method="post" enctype="multipart/form-data" id="productForm">
     <div>
         <label>대분류 카테고리:</label>
         <select id="mainCategory" name="mainCategory" onchange="updateSubCategories()">
@@ -127,6 +215,7 @@
             <option value="2">주방</option>
             <option value="3">침실</option>
             <option value="4">조명</option>
+            <option value="5">기타</option>
         </select>
     </div>
     <div>
@@ -145,6 +234,24 @@
         <label>상품 설명:</label>
         <textarea name="product_description" rows="4" cols="50"></textarea>
     </div>
+    <!-- 색상 옵션 입력 -->
+    <div>
+        <label>색상 옵션:</label>
+        <input type="text" id="colorInput" name="colorOption">
+        <button type="button" id="addColor">색상 추가</button>
+        <!-- 색상 태그를 표시할 컨테이너 -->
+        <div id="colorTags"></div>
+    </div>
+    <!-- 사이즈 옵션 입력 -->
+    <div>
+        <label>사이즈 옵션:</label>
+        <input type="text" id="sizeInput" name="sizeOption">
+        <button type="button" id="addSize">사이즈 추가</button>
+        <!-- 사이즈 태그를 표시할 컨테이너 -->
+        <div id="sizeTags"></div>
+    </div>
+
+
     <div>
         <label>재고:</label>
         <input type="number" name="stock" value="0" min="0">
@@ -171,12 +278,16 @@
         <input type="file" id="sub_image4" name="sub_image4" accept="image/*" class="fileInput">
         <div id="icon6" class="imageIcon" onclick="previewImage('sub_image5', 'icon6')" style="background-image: url('../image/staticImage/icon_subimage.png');"></div>
         <input type="file" id="sub_image5" name="sub_image5" accept="image/*" class="fileInput">
+
+        <!-- 태그값 전송을 위한 히든필드 -->
+        <input type="hidden" name="colors" id="colors">
+        <input type="hidden" name="sizes" id="sizes">
     </div>
     <div>
         <label>판매 상태:</label>
         <select name="sale_status">
-            <option value="on_sale" selected>판매 중</option>
-            <option value="out_of_stock">재고 없음</option>
+            <option value="on_sale" selected>판매중</option>
+            <option value="out_of_stock">품절</option>
             <option value="discontinued">단종</option>
         </select>
     </div>
