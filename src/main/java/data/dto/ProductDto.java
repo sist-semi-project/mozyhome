@@ -22,6 +22,9 @@ public class ProductDto {
     private int pro_sale_volume;
     private String parent_cate_num;
     private int totalCount;
+    private int wishCount;
+    private int reviewCount;
+    private String mem_id; // 상품리스트 안에 위시리스트 id (0415 추가)
 
     public String getPro_num() {
         return pro_num;
@@ -175,3 +178,32 @@ public class ProductDto {
         this.totalCount = totalCount;
     }
 }
+
+	public int getWishCount() {
+		return wishCount;
+	}
+
+	public void setWishCount(int wishCount) {
+		this.wishCount = wishCount;
+	}
+
+	public int getReviewCount() {
+		return reviewCount;
+	}
+
+	public void setReviewCount(int reviewCount) {
+		this.reviewCount = reviewCount;
+	}
+
+	public String getMem_id() {
+		return mem_id;
+	}
+
+	public void setMem_id(String mem_id) {
+		this.mem_id = mem_id;
+	}
+	
+
+    
+}
+
