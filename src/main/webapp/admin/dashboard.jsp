@@ -94,8 +94,8 @@
         <li class="menu-item">
             <a href="#">상품관리 <span class="toggle-icon">+</span></a>
             <ul class="submenu">
-                <li><a href="#">상품 목록</a></li>
-                <li><a href="#">상품 추가</a></li>
+                <li><a href="./productList.jsp">상품 목록</a></li>
+                <li><a href="./addProduct.jsp">상품 추가</a></li>
                 <li><a href="#">상품 수정</a></li>
                 <li><a href="#">상품 삭제</a></li>
             </ul>
