@@ -123,7 +123,7 @@ public class CartDao {
 				+ "    SELECT 1"
 				+ "    FROM CART"
 				+ "    WHERE pro_num = '?'"
-				+ ");";
+				+ ")";
 		
 	}
 }

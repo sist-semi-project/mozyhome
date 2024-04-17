@@ -277,7 +277,7 @@ NumberFormat nf = NumberFormat.getCurrencyInstance();
 				url : "/mozyhome/product/detailprocess.jsp",
 				success : function() {
 
-					//alert("success");
+					alert("success");
 
 					var a = confirm("장바구니에 저장하였습니다\n장바구니로 이동하려면 [확인]을 눌러주세요");
 
