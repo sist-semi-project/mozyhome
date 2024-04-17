@@ -99,26 +99,26 @@ $(function(){
 			</div>
 
 			<!-- 선택 리뷰 작성 폼 -->
-			<dl class="review-satisfaction-form">
-				<dt class="review-satisfaction-form__title satisfactionTitle">사용성</dt>
-				<dd class="review-satisfaction-form__input">
-					<div class="review-satisfaction-form__input__wrap">
-						<input type="radio" class="review-satisfaction-form__radio"
-							id="choice0_42" name="satisfactionAnswer[2734]" value="42"
-							data-category="2734" checked="checked"> <label
-							class="review-satisfaction-form__label" for="choice0_42">쉬워요</label>
+			<dl class="">
+				<dt class="">사용성</dt>
+				<dd class="">
+					<div class="">
+						<input type="radio" class=""
+							id="choice1" name="" value=""
+							data-category="" checked="checked"> <label
+							class="" for="choice1">쉬워요</label>
 					</div>
-					<div class="review-satisfaction-form__input__wrap">
-						<input type="radio" class="review-satisfaction-form__radio"
-							id="choice0_11" name="satisfactionAnswer[2734]" value="11"
-							data-category="2734"> <label
-							class="review-satisfaction-form__label" for="choice0_11">보통이에요</label>
+					<div class="">
+						<input type="radio" class=""
+							id="choice2" name="" value=""
+							data-category=""> <label
+							class="" for="choice2">보통이에요</label>
 					</div>
-					<div class="review-satisfaction-form__input__wrap">
-						<input type="radio" class="review-satisfaction-form__radio"
-							id="choice0_43" name="satisfactionAnswer[2734]" value="43"
-							data-category="2734"> <label
-							class="review-satisfaction-form__label" for="choice0_43">다소
+					<div class="">
+						<input type="radio" class=""
+							id="choice3" name="" value=""
+							data-category=""> <label
+							class="" for="choice3">다소
 							어려워요</label>
 					</div>
 				</dd>
@@ -128,7 +128,7 @@ $(function(){
 			<table>
 				<tr>
 					<td><textarea style="width: 500px; height: 100px;"
-							name="content" class="from-control" required="required"></textarea>
+							name="content" class="form-control" required="required"></textarea>
 					</td>
 					<td>
 						<button type="submit" class="submit"
@@ -152,18 +152,18 @@ $(function(){
 document.addEventListener('DOMContentLoaded', function() {
     console.log("페이지 로드 완료");
     
-    <!--별점 메서드-->
+    //별점 메서드
     const stars = document.querySelectorAll('.star');
     const rating_input = document.querySelector('input[name="rating"]');
   
     if (!stars || !rating_input) {
         console.error("요소를 찾을 수 없음");
-        return; <!--요소를 찾지 못한 경우 코드 실행 중단-->
+        return; //요소를 찾지 못한 경우 코드 실행 중단
     }
   
     console.log("요소 참조 완료");
   
-    <!--별점 클릭할 때-->
+    //별점 클릭할 때
     stars.forEach(star => {
         star.addEventListener('click', () => {
             console.log("별점 클릭 이벤트 발생");
