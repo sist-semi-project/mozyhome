@@ -21,6 +21,7 @@ public class ProductDto {
     private String pro_sale_status;
     private int wishCount;
     private int reviewCount;
+    private String mem_id; // 상품리스트 안에 위시리스트 id (0415 추가)
 
     public String getPro_num() {
         return pro_num;
@@ -165,7 +166,16 @@ public class ProductDto {
 	public void setReviewCount(int reviewCount) {
 		this.reviewCount = reviewCount;
 	}
+
+	public String getMem_id() {
+		return mem_id;
+	}
+
+	public void setMem_id(String mem_id) {
+		this.mem_id = mem_id;
+	}
 	
+
     
 }
 
