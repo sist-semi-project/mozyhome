@@ -37,6 +37,23 @@
 		/*accent-color:#FF5C00;*/
 		accent-color:black;
 	}
+	
+	/* 페이징 디자인 */
+	.page-link {
+	  color: black; 
+	  background-color: white;
+	  
+	}
+	.page-item.active .page-link {
+		 z-index: 1;
+		 color: white;
+		 background-color: #FF5C00;
+		 border-color: #FF5C00;
+	}
+	.page-link:focus, .page-link:hover {
+		  background-color: #FF5C00; 
+		  color:white;
+	}
 </style>
 <script type="text/javascript">
 	$(function(){
@@ -75,26 +92,23 @@
 					
 					ditem=ditem.substring(0,ditem.length-1);
 					//console.log(ditem);
-					location.href="../wishlist/deleteWishlist.jsp?ditems="+ditem;
-					
-					/*
+					//location.href="../wishlist/deleteWishlist.jsp?ditems="+ditem;
+
 					$.ajax({
 						type:"get",
-						url:"wishlist/deleteWishlist.jsp",
-						traditional:true,
+						url:"../wishlist/deleteWishlist.jsp",
+						traditional: true,
 						dataType:"html",
-						data:{"ditem":ditem},
+						data:{"ditems":ditem},
 						success:function(){
 							alert("관심상품이 삭제되었습니다.");
 							location.reload();
 						}						
-					});	*/
+					});	
 				}	
 			}
 			
-		});
-		
-		
+		});		
 	});
 
 </script>
@@ -104,61 +118,126 @@
 	session.setAttribute("mem_id","dragon");
 	session.setAttribute("loginok","");	
 	String loginok=(String)session.getAttribute("loginok");
-	String myid=(String)session.getAttribute("mem_id");
-	//System.out.println(myid);
+	String mem_id=(String)session.getAttribute("mem_id");
 	
 	WishlistDao wdao=new WishlistDao();
-	List<HashMap<String, String>> list=wdao.getWishlist(myid);
-	
+
 	// 화폐 단위 정의
 	NumberFormat nf=new DecimalFormat("#,###.##원");
+	
+	// * 페이징 ----------------------------------------------------------------------
+	// 전체 개수
+	int totalCount = wdao.getWishCount(mem_id);
+
+	int perPage = 6; // 한페이지당 보여질 글의 개수
+	int perBlock = 1; // 한블럭당 보여질 페이지 개수
+	int startNum; // db에서 가져올 글의 시작 번호(mysql은 첫글이 0번, oracle은 1번)
+	int startPage; // 각 블럭마다 보여질 시작페이지
+	int endPage; // 각 블럭마다 보여질 끝페이지
+	int currentPage; // 현재페이지
+	int totalPage; // 총 페이지 수.
+	int no; // 각 페이지당 출력할 시작번호 (필수 아님)
+
+	// 현재 페이지를 읽는데 단, null일 경우는 1페이지로 준다.
+	if (request.getParameter("currentPage") == null) {
+		currentPage = 1;
+	} else {
+		currentPage = Integer.parseInt(request.getParameter("currentPage")); // 계산을 위해 형변환
+	}
+
+	// 총 페이지 수 구한다
+	totalPage = totalCount / perPage + (totalCount % perPage == 0 ? 0 : 1);
+
+	// 각 블럭 당 보여질 시작페이지
+	startPage = (currentPage - 1) / perBlock * perBlock + 1;
+	endPage = startPage + perBlock - 1;
+
+	// 총 페이지가 23일 경우 마지막 블럭은 25가 아닌 23
+	if (endPage > totalPage) {
+		endPage = totalPage;
+	}
+
+	// 각 페이지에서 보여질 시작번호
+	startNum = (currentPage - 1) * perPage;
+
+	// 각 페이지당 출력할 시작 번호 구하기
+	no = totalCount - (currentPage - 1) * perPage;
+
+	// 페이지에서 보여질 글만 가져오기
+	List<HashMap<String, String>> list=wdao.getPagingWishlist(mem_id, startNum, perPage);
+	// --------------------------------------------------------------------------
 %>
 <body>
 <%
 	// 로그인이 되어있을 때 위시리스트 접근 가능
 	if(loginok!=null){%>
+
 		<div style="margin:50px 300px; width:600px">
 			<h3 style="padding: 75px;" align="center">WISH LIST</h3>
 			<table align="center" class="table">
 			<div style="padding: 8px;">
 				<label><input type="checkbox" class="form-check allCheck" style="margin-right:5px; float: left;"> 전체선택</label>
 			</div>
-					<%
-						for(int i=0; i<list.size(); i++){
-							HashMap<String, String> map=list.get(i);
-							int pro_price=Integer.parseInt(map.get("pro_price")); // 가격이 String으로 넘어왔으므로 형변환
+				
+				<%
+				for(int i=0; i<list.size(); i++){
+					HashMap<String, String> map=list.get(i);
+					int pro_price=Integer.parseInt(map.get("pro_price")); // 가격이 String으로 넘어왔으므로 형변환
 							
-							%>
-								<tr style="vertical-align: middle;">
-								
-									<div>
-										<td width="10px" align="center" >
-											<input type="checkbox" class="allDel" value="<%=map.get("wish_num")%>">
-										</td>
-													
-										<td width="150px" style="text-align: center;">			
-											<a pronum="<%=map.get("pro_num")%>" class="goDetail">
-												<img alt="" src="<%=map.get("pro_main_img")%>" style="width:125px"> 
-											</a>								
-										</td>
-										
-										<td>
-											<a pronum="<%=map.get("pro_num")%>" class="goDetail">
-												<div>
-													<b><%=map.get("pro_name") %></b> <br>
-													<%=nf.format(pro_price) %>
-												</div>
-											</a>
-										</td>
-									</div>					
-								</tr>					
-						<%}	
 					%>
+						<tr style="vertical-align: middle;">
+								
+							<div>
+								<td width="10px" align="center" >
+									<input type="checkbox" class="allDel" value="<%=map.get("wish_num")%>">
+								</td>
+													
+								<td width="150px" style="text-align: center;">			
+									<a pronum="<%=map.get("pro_num")%>" class="goDetail">
+										<img alt="" src="<%=map.get("pro_main_img")%>" style="width:125px"> 
+									</a>								
+								</td>
+										
+								<td>
+									<a pronum="<%=map.get("pro_num")%>" class="goDetail">
+										<div>
+											<b><%=map.get("pro_name") %></b> <br>
+											<%=nf.format(pro_price) %>
+										</div>
+									</a>
+								</td>
+							</div>					
+						</tr>					
+					<%}	
+				%>
 		
 			</table>
 			<div id="del">
 				선택상품삭제
 			</div>
+			
+			<!-- 페이지 번호 출력 -->
+			<ul class="pagination justify-content-center" style="margin-top: 90px;">
+			<%
+				// 이전
+				if (startPage > 1) {
+				%>
+				<li class="page-item"><a class="page-link"
+					href="wishlist.jsp?&currentPage=<%=startPage - 1%>"style="color: black;" aria-label="Previous"><spanaria-hidden="true">&laquo;</span></a></li>
+				<%
+				}
+	
+				// 다음
+				if (endPage < totalPage) {
+				%>
+					<li class="page-item"><a class="page-link"
+						href="wishlist.jsp?currentPage=<%=endPage + 1%>"style="color: black" aria-label="Next"><span aria-hidden="true">&raquo;</span></a>
+					</li>
+				<%
+				}
+			%>
+		</ul>
+		<!-- 페이지 번호 출력 끝. -->
 
 		</div>
 		

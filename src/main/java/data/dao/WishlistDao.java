@@ -13,8 +13,36 @@ import db.DbConnect;
 public class WishlistDao {
 	DbConnect db=new DbConnect();
 	
-	// 위시리스트 상품 전체조회
-	public List<HashMap<String, String>> getWishlist(String myid){
+	// 페이징
+	// (1) 위시리스트 상품 전체 개수 반환
+	public int getWishCount(String mem_id) {
+		int total=0;
+		Connection conn=db.getConnection();
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		
+		String sql="select count(*)"
+				+ " from member m, wishlist w"
+				+ " where w.mem_num=m.mem_num and m.mem_id=?";
+		
+		try {
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setString(1, mem_id);
+			rs=pstmt.executeQuery();
+			
+			if(rs.next()) {
+				total=rs.getInt(1);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			db.dbClose(rs, pstmt, conn);
+		}	
+		return total;
+	}
+	// (2) 위시리스트 상품 부분조회
+	public List<HashMap<String, String>> getPagingWishlist(String mem_id, int startNum, int perPage){
 		List<HashMap<String, String>> list=new ArrayList<HashMap<String,String>>();
 		
 		Connection conn=db.getConnection();
@@ -24,11 +52,14 @@ public class WishlistDao {
 		String sql="SELECT w.wish_num AS wish_num, p.pro_num, p.pro_name, p.pro_price, p.pro_main_img, m.mem_id"
 				+ " FROM product p, wishlist w, member m"
 				+ " where w.pro_num=p.pro_num and w.mem_num=m.mem_num and m.mem_id=?"
-				+ " GROUP BY p.pro_num";
+				+ " GROUP BY p.pro_num"
+				+ " order by pro_num desc limit ?,?";
 		
 		try {
 			pstmt=conn.prepareStatement(sql);
-			pstmt.setString(1, myid);
+			pstmt.setString(1, mem_id);
+			pstmt.setInt(2, startNum);
+			pstmt.setInt(3, perPage);
 			rs=pstmt.executeQuery();
 			
 			while(rs.next()) {
