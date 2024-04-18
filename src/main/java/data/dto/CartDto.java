@@ -8,6 +8,23 @@ public class CartDto {
 	private int cart_su;
 	private String cart_size;
 	private String cart_color;
+
+	//2024-04-18 추가
+	private String pro_name;
+	private String pro_main_img;
+	
+	public String getPro_name() {
+		return pro_name;
+	}
+	public void setPro_name(String pro_name) {
+		this.pro_name = pro_name;
+	}
+	public String getPro_main_img() {
+		return pro_main_img;
+	}
+	public void setPro_main_img(String pro_main_img) {
+		this.pro_main_img = pro_main_img;
+	}
 	
 	public String getCart_size() {
 		return cart_size;
@@ -48,3 +65,4 @@ public class CartDto {
 	
 	
 }
+
