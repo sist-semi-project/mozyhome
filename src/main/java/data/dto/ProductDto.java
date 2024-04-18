@@ -138,21 +138,21 @@ public class ProductDto {
         this.pro_sale_status = pro_sale_status;
     }
 
-	public String getPro_size() {
-		return pro_size;
-	}
+    public String getPro_size() {
+      return pro_size;
+    }
 
-	public void setPro_size(String pro_size) {
-		this.pro_size = pro_size;
-	}
+    public void setPro_size(String pro_size) {
+      this.pro_size = pro_size;
+    }
 
-	public String getPro_color() {
-		return pro_color;
-	}
+    public String getPro_color() {
+      return pro_color;
+    }
 
-	public void setPro_color(String pro_color) {
-		this.pro_color = pro_color;
-	}
+    public void setPro_color(String pro_color) {
+      this.pro_color = pro_color;
+    }
 
     public int getPro_sale_volume() {
         return pro_sale_volume;
@@ -178,30 +178,30 @@ public class ProductDto {
         this.totalCount = totalCount;
     }
 
-	public int getWishCount() {
-		return wishCount;
-	}
+    public int getWishCount() {
+      return wishCount;
+    }
 
-	public void setWishCount(int wishCount) {
-		this.wishCount = wishCount;
-	}
+    public void setWishCount(int wishCount) {
+      this.wishCount = wishCount;
+    }
 
-	public int getReviewCount() {
-		return reviewCount;
-	}
+    public int getReviewCount() {
+      return reviewCount;
+    }
 
-	public void setReviewCount(int reviewCount) {
-		this.reviewCount = reviewCount;
-	}
+    public void setReviewCount(int reviewCount) {
+      this.reviewCount = reviewCount;
+    }
 
-	public String getMem_id() {
-		return mem_id;
-	}
+    public String getMem_id() {
+      return mem_id;
+    }
 
-	public void setMem_id(String mem_id) {
-		this.mem_id = mem_id;
-	}
+    public void setMem_id(String mem_id) {
+      this.mem_id = mem_id;
+    }
 	
 
-    
 }
+
