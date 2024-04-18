@@ -26,8 +26,8 @@
 	//페이지 번호 버튼
 	int totalCount=rdao.getTotalCount(pro_num);
 	int perPage=5;
-	int perBlock=5;
-	int startNum;
+	int perBtn=5;
+	int startPageNum=1+perPage;
 	int startPage;
 	int endPage;
 	int currentPage;
@@ -40,23 +40,7 @@
 	else
 		currentPage=Integer.parseInt(request.getParameter("currentPage"));
 	
-	//총페이지수 구하기
-	totalPage=totalCount/perPage+(totalCount%perPage==0?0:1);
 	
-	//각블럭당 보여질 시작페이지
-	startPage=(currentPage-1)/perBlock*perBlock+1;
-	endPage=startPage+perBlock-1;
-	
-	//마지막 페이지
-	if(endPage>totalPage)
-		endPage=totalPage;
-	
-	//각페이지에서 보여질 시작번호
-	startNum=(currentPage-1)*perPage;
-	
-	//각페이지당 출력할 시작번호
-	startNum=(currentPage-1)*perPage;
-		
 %>
 <body>
 
@@ -107,11 +91,11 @@
 	</div>
 	<div>
 	 <ul>
-	 	<li></li>
-	 	<li></li>
-	 	<li></li>
-	 	<li></li>
-	 	<li></li>
+	 	<li><a></a></li>
+	 	<li><a></a></li>
+	 	<li><a></a></li>
+	 	<li><a></a></li>
+	 	<li><a></a></li>
 	 </ul>
 	</div>
 </body>
