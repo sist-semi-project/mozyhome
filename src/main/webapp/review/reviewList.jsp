@@ -20,25 +20,28 @@
 	//String pro_num=(String)session.getAttribute("pro_num");
 	String pro_num="210";
 
-	ReviewDao rdao=new ReviewDao();
-	List<HashMap<String,String>> list= rdao.getReview(pro_num);
+	ReviewDao dao=new ReviewDao();
+	//List<HashMap<String,String>> list= dao.getReview(pro_num);
 	
 	//페이지 번호 버튼
-	int totalCount=rdao.getTotalCount(pro_num);
+	int totalCount=dao.getTotalCount(pro_num);
 	int perPage=5;
 	int perBtn=5;
-	int startPageNum=1+perPage;
-	int startPage;
-	int endPage;
-	int currentPage;
-	int totalPage;
-	int no;
 	
-	//현재페이지 읽는데 단 null일경우는 1페이지로 준다
+	int startBtnNum=totalCount/perPage+(totalCount%perPage==0?0:1); //총 페이지 나누기 perpage에 나머지가 있을때 btn 1+
+	int currentPage;
+	
+	//currentPage에 값 미리 할당해놓기
 	if(request.getParameter("currentPage")==null)
 		currentPage=1;
 	else
 		currentPage=Integer.parseInt(request.getParameter("currentPage"));
+	
+	int startPageNum=perPage*currentPage+1;
+
+	List<HashMap<String,String>>list=dao.getReview(pro_num, startPageNum, perPage);
+	
+	
 	
 	
 %>
@@ -89,14 +92,19 @@
 				%>
 		</table>
 	</div>
+	
 	<div>
+	<form action="">
 	 <ul>
-	 	<li><a></a></li>
-	 	<li><a></a></li>
-	 	<li><a></a></li>
-	 	<li><a></a></li>
-	 	<li><a></a></li>
+
+	 	<li><a>1</a></li>
+	 	<li><a>2</a></li>
+	 	<li><a>3</a></li>
+	 	<li><a>4</a></li>
+	 	<li><a>5</a></li>
+
 	 </ul>
+	 </form>
 	</div>
 </body>
 </html>
