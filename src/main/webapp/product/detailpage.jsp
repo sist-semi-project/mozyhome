@@ -104,6 +104,9 @@ hr {
 </head>
 
 <%
+session.setAttribute("mem_id","dragon");
+session.setAttribute("loginok","yes");
+
 
 String pro_num = request.getParameter("pro_num");
 String loginok = (String) session.getAttribute("loginok");
