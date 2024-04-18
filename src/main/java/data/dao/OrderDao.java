@@ -9,6 +9,7 @@ import java.util.List;
 
 import data.dto.CartDto;
 import data.dto.OrderDto;
+import data.dto.ProductDto;
 import db.DbConnect;
 
 public class OrderDao {
@@ -146,7 +147,7 @@ public class OrderDao {
 
         try {
             conn = db.getConnection();
-            String query = "SELECT pro.pro_name, cart.cart_size, cart.cart_color, cart.cart_su " +
+            String query = "SELECT pro.pro_name, pro.pro_main_img, cart.cart_size, cart.cart_color, cart.cart_su " +
                            "FROM cart " +
                            "JOIN product AS pro ON cart.pro_num = pro.pro_num " +
                            "WHERE cart.mem_num = ?";
@@ -155,14 +156,16 @@ public class OrderDao {
             rs = pstmt.executeQuery();
 
             while (rs.next()) {
-                String productName = rs.getString("pro_name");
-                String size = rs.getString("cart_size");
-                String color = rs.getString("cart_color");
-                int quantity = rs.getInt("cart_su");
+            	CartDto cart = new CartDto();
+            	cart.setCart_num(rs.getInt("cart_num"));
+            	cart.setPro_num(rs.getInt("pro_num"));
+            	cart.setMem_num(rs.getInt("mem_num"));
+            	cart.setCart_su(rs.getInt("cart_su"));
+            	cart.setCart_size(rs.getString("cart_size"));
+            	cart.setCart_color(rs.getString("cart_color"));
+            	cart.setPro_name(rs.getString("pro_name"));
+            	cart.setPro_main_img(rs.getString("pro_main_img"));
 
-                CartDto cartItem = new CartDto(0, 0, 0, size, color, quantity);
-                cartItem.setProName(productName);
-                cartItems.add(cartItem);
             }
         } catch (SQLException e) {
             e.printStackTrace();

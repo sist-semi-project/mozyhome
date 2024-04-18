@@ -78,10 +78,10 @@
         for (CartDto cartItem : cartItems) {
     %>
         <div>
-            상품명: <%= cartItem.getProName() %><br>
-            사이즈: <%= cartItem.getCartSize() %><br>
-            색상: <%= cartItem.getCartColor() %><br>
-            수량: <%= cartItem.getCartSu() %><br><br>
+            상품명: <%= cartItem.getPro_name() %><br>
+            사이즈: <%= cartItem.getCart_size() %><br>
+            색상: <%= cartItem.getCart_color() %><br>
+            수량: <%= cartItem.getCart_su() %><br><br>
         </div>
     <%
         }

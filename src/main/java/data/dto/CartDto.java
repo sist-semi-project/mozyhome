@@ -1,77 +1,67 @@
 package data.dto;
 
 public class CartDto {
-    private int cartNum;
-    private int proNum;
-    private int memNum;
-    private String cartSize;
-    private String cartColor;
-    private int cartSu;
-    private String proName;
+	
+	private int cart_num;
+	private int pro_num;
+	private int mem_num;
+	private int cart_su;
+	private String cart_size;
+	private String cart_color;
 
-    public String getProName() {
-		return proName;
+	//2024-04-18 추가
+	private String pro_name;
+	private String pro_main_img;
+	
+	public String getPro_name() {
+		return pro_name;
 	}
-
-	public void setProName(String proName) {
-		this.proName = proName;
+	public void setPro_name(String pro_name) {
+		this.pro_name = pro_name;
 	}
-
-	// 생성자
-    public CartDto(int cartNum, int proNum, int memNum, String cartSize, String cartColor, int cartSu) {
-        this.cartNum = cartNum;
-        this.proNum = proNum;
-        this.memNum = memNum;
-        this.cartSize = cartSize;
-        this.cartColor = cartColor;
-        this.cartSu = cartSu;
-    }
-
-    public int getCartNum() {
-        return cartNum;
-    }
-
-    public void setCartNum(int cartNum) {
-        this.cartNum = cartNum;
-    }
-
-    public int getProNum() {
-        return proNum;
-    }
-
-    public void setProNum(int proNum) {
-        this.proNum = proNum;
-    }
-
-    public int getMemNum() {
-        return memNum;
-    }
-
-    public void setMemNum(int memNum) {
-        this.memNum = memNum;
-    }
-
-    public String getCartSize() {
-        return cartSize;
-    }
-
-    public void setCartSize(String cartSize) {
-        this.cartSize = cartSize;
-    }
-
-    public String getCartColor() {
-        return cartColor;
-    }
-
-    public void setCartColor(String cartColor) {
-        this.cartColor = cartColor;
-    }
-
-    public int getCartSu() {
-        return cartSu;
-    }
-
-    public void setCartSu(int cartSu) {
-        this.cartSu = cartSu;
-    }
+	public String getPro_main_img() {
+		return pro_main_img;
+	}
+	public void setPro_main_img(String pro_main_img) {
+		this.pro_main_img = pro_main_img;
+	}
+	
+	public String getCart_size() {
+		return cart_size;
+	}
+	public void setCart_size(String cart_size) {
+		this.cart_size = cart_size;
+	}
+	public String getCart_color() {
+		return cart_color;
+	}
+	public void setCart_color(String cart_color) {
+		this.cart_color = cart_color;
+	}
+	public int getCart_num() {
+		return cart_num;
+	}
+	public void setCart_num(int cart_num) {
+		this.cart_num = cart_num;
+	}
+	public int getPro_num() {
+		return pro_num;
+	}
+	public void setPro_num(int pro_num) {
+		this.pro_num = pro_num;
+	}
+	public int getMem_num() {
+		return mem_num;
+	}
+	public void setMem_num(int mem_num) {
+		this.mem_num = mem_num;
+	}
+	public int getCart_su() {
+		return cart_su;
+	}
+	public void setCart_su(int cart_su) {
+		this.cart_su = cart_su;
+	}
+	
+	
 }
