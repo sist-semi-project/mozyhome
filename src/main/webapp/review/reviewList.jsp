@@ -107,7 +107,11 @@
 	</div>
 	<div>
 	 <ul>
+<<<<<<< HEAD
 	 	<li></li>
+=======
+	 	<li><a class="page_next" href="index.jsp"></a></li>
+>>>>>>> refs/heads/master
 	 	<li></li>
 	 	<li></li>
 	 	<li></li>
