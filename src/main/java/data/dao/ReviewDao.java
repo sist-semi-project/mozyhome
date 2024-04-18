@@ -74,8 +74,8 @@ public class ReviewDao {
 		
 		try {
 			pstmt=conn.prepareStatement(sql);
-			rs=pstmt.executeQuery();
 			pstmt.setString(1, pro_num);
+			rs=pstmt.executeQuery();
 			
 			if(rs.next())
 				n=rs.getInt(1);

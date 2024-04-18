@@ -223,7 +223,7 @@
 				if (startPage > 1) {
 				%>
 				<li class="page-item"><a class="page-link"
-					href="wishlist.jsp?&currentPage=<%=startPage - 1%>"style="color: black;" aria-label="Previous"><spanaria-hidden="true">&#10094;</span></a></li>
+					href="wishlist.jsp?&currentPage=<%=startPage - 1%>"style="color: black;" aria-label="Previous"><span aria-hidden="true">&#10094;</span></a></li>
 				<%
 				}
 	
