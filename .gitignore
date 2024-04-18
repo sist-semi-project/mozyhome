@@ -27,3 +27,4 @@ local.properties
 .classpath
 .project
 build/
+src/main/java/db/db.properties
