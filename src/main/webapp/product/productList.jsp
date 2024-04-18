@@ -97,10 +97,10 @@
 </head>
 <%
 	// 0415 로그인 세션
-	session.setAttribute("mem_id","dragon");
-	session.setAttribute("loginok","yes");	
+	//session.setAttribute("mem_id","dragon");
+	//session.setAttribute("loginok","yes");	
 	String loginok=(String)session.getAttribute("loginok");
-	String myid=(String)session.getAttribute("mem_id");
+	String myid=(String)session.getAttribute("myid");
 	//System.out.println(myid);
 
 	// 카테고리 번호 받아오기
