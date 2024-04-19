@@ -296,7 +296,7 @@ page-title {
 				                                    <p class="product_option">[5-6주 제작 기간이 소요됩니다. 확인 후 구매 부탁드립니다. : 1]</p>
 				                                    <div class="price">
 				                                        <p>&#8361;<%= order.getOrder_total_payment() %></p>
-				                                        <p>1개</p>
+				                                        <p><%= orderDetailDto.getOrder_detail_su()%>개</p>
 				                                    </div>
 				                                </div>
 				                            </div>
