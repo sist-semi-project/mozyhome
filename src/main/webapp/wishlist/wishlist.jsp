@@ -244,7 +244,7 @@
 		<%
 
 	} else if(loginok==null) {
-		// 로그인 페이지로 전달
+		%><h4>로그인페이지로 전달</h4><%
 		//response.sendRedirect("../로그인페이지로 전달");
 	} else {%>
 		<div style="margin:50px 300px; width:600px">

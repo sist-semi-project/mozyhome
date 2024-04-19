@@ -169,11 +169,11 @@
 			<div style="margin: -28px 0px 0px 1320px;">
 				
 				<select name="sort" class="form-select form-select sort" style="width:100px;" onchange="window.open(value,'_self');">
-					<option value="../product/searchList.jsp?search=<%=search%>&sort=1" <%="1".equals(sort)?"selected='selected'":""%>>신상품</option>
-					<option value="../product/searchList.jsp?search=<%=search%>&sort=2" <%="2".equals(sort)?"selected='selected'":""%>>상품명</option>
-					<option value="../product/searchList.jsp?search=<%=search%>&sort=3" <%="3".equals(sort)?"selected='selected'":""%>>낮은가격</option>
-					<option value="../product/searchList.jsp?search=<%=search%>&sort=4" <%="4".equals(sort)?"selected='selected'":""%>>높은가격</option>
-					<option value="../product/searchList.jsp?search=<%=search%>&sort=5" <%="5".equals(sort)?"selected='selected'":""%>>리뷰순</option>
+					<option value="../search/searchList.jsp?search=<%=search%>&sort=1" <%="1".equals(sort)?"selected='selected'":""%>>신상품</option>
+					<option value="../search/searchList.jsp?search=<%=search%>&sort=2" <%="2".equals(sort)?"selected='selected'":""%>>상품명</option>
+					<option value="../search/searchList.jsp?search=<%=search%>&sort=3" <%="3".equals(sort)?"selected='selected'":""%>>낮은가격</option>
+					<option value="../search/searchList.jsp?search=<%=search%>&sort=4" <%="4".equals(sort)?"selected='selected'":""%>>높은가격</option>
+					<option value="../search/searchList.jsp?search=<%=search%>&sort=5" <%="5".equals(sort)?"selected='selected'":""%>>리뷰순</option>
 				</select>
 				
 			</div>	
