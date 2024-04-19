@@ -1,3 +1,4 @@
+<%@page import="data.dao.WishlistDao"%>
 <%@page import="data.dao.CartDao"%>
 <%@page import="java.util.List"%>
 <%@page import="java.text.NumberFormat"%>
@@ -122,6 +123,10 @@ ProductDao pdao = new ProductDao();
 ProductDto pdto = pdao.getProduct(pro_num);
 
 NumberFormat nf = NumberFormat.getCurrencyInstance();
+
+//위시리스트 표시
+WishlistDao wdao=new WishlistDao();
+boolean existwish = wdao.checkWishlist(mem_num, pro_num);
 %>
 
 <body>
@@ -224,9 +229,19 @@ NumberFormat nf = NumberFormat.getCurrencyInstance();
 		<!-- 장바구니, 위시리스트, buy now 버튼 -->
 		<div class="btndiv">
 
+			
 			<button name="heart" class="heart">
+			<%
+			if(existwish==true)
+			{
+			%>
 				<i class="bi bi-suit-heart-fill"
 					style="font-size: 25px; color: #FF5C00;"></i>
+			<%}
+			else{%>
+				<i class="bi bi-suit-heart"
+					style="font-size: 25px; color: #FF5C00;"></i>
+			<%}%>
 			</button>
 
 			<button name="cart" class="cart">
@@ -301,7 +316,34 @@ NumberFormat nf = NumberFormat.getCurrencyInstance();
 		})
 
 		<!--위시리스트 버튼 함수-->
-		$("#heart").click(function() {
+		$(".heart").click(function() {
+			var login="<%=loginok%>";
+
+			if (login == "null") {
+				alert("먼저 로그인을 해주세요");
+				return;
+			}
+			
+			var existwish = <%= existwish %>;
+			
+			var pro_num=<%=pro_num%>;
+			var mem_num= "<%=mem_num%>";
+			
+			
+			$.ajax({
+				type:"post",
+				dataType: "html",
+				data: {existwish:existwish, pro_num:pro_num, mem_num:mem_num},
+				url: "/mozyhome/product/wishProccess.jsp",
+				success: function(){
+					
+					alert("success");
+				},
+				 error: function(xhr, status, error) {
+				        console.error("AJAX 오류: ", error);
+				        alert("AJAX 오류 발생. 콘솔을 확인하세요.");
+				    }
+			})
 			
 		})
 		

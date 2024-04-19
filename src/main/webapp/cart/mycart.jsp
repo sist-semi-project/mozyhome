@@ -68,24 +68,24 @@ NumberFormat nf=NumberFormat.getInstance();
 	<div>
 		<input class="cart_select_all"  id="cart_select_all"  type="checkbox">
 		<hr class="cart_header_hr">
-			
-	<%
-	int totalmoney=0;
-	for(int i=0; i<list.size(); i++ )
-	{
-		HashMap<String,String> map=list.get(i);
-		//사진얻기
-		String pro_main_img=map.get("pro_main_img");
-	%>
-		<input type="checkbox" class="cart_select">
-		<img class="cart_img" alt="" src="<%=pro_main_img%>">
-		<b><%=map.get("pro_name") %></b>
-		<b>[옵션:<%=map.get("cart_size") %>]</b>
-		<b>[옵션:<%=map.get("cart_color") %>]</b>
-		<b><%=map.get("cart_su") %></b>
-		<b><%=map.get("pro_price") %></b>
-	<%}%>
-	
+			<form action="cartProcess.jsp">
+			<%
+			int totalmoney=0;
+			for(int i=0; i<list.size(); i++ )
+			{
+				HashMap<String,String> map=list.get(i);
+				//사진얻기
+				String pro_main_img=map.get("pro_main_img");
+			%>
+				<input type="checkbox" class="cart_select" value=<%=map.get("mem_num") %>>
+				<img class="cart_img" alt="" src="<%=pro_main_img%>">
+				<b><%=map.get("pro_name") %></b>
+				<b>[옵션:<%=map.get("cart_size") %>]</b>
+				<b>[옵션:<%=map.get("cart_color") %>]</b>
+				<b><%=map.get("cart_su") %></b>
+				<b><%=map.get("pro_price") %></b>
+			<%}%>
+			</form>
 	<span>
 		상품금액<span></span>
 	</span>
