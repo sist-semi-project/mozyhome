@@ -177,10 +177,6 @@ public class ProductDto {
     public void setTotalCount(int totalCount) {
         this.totalCount = totalCount;
     }
-<<<<<<< HEAD
-
-=======
->>>>>>> refs/heads/master
 
     public int getWishCount() {
       return wishCount;
@@ -195,9 +191,9 @@ public class ProductDto {
     }
 
     public void setReviewCount(int reviewCount) {
-      this.reviewCount = reviewCount;
+    	this.reviewCount = reviewCount;
     }
-
+		    
     public String getMem_id() {
       return mem_id;
     }
@@ -205,7 +201,6 @@ public class ProductDto {
     public void setMem_id(String mem_id) {
       this.mem_id = mem_id;
     }
-	
+    
 
 }
-
