@@ -92,7 +92,7 @@ input[type="text"], input[type="password"] {
 		}
 
 		frm.method = "post";
-		frm.action = "아이디찾기결과.jsp"; // 넘어간 화면
+		frm.action = "IdFindResult.jsp"; // 넘어간 화면
 		frm.submit();
 	}
 </script>
@@ -116,7 +116,7 @@ input[type="text"], input[type="password"] {
 		<div align="center">
 			<input type="button" id="btnSearch" name="enter" value="찾기"
 				onClick="id_search()"> <input type="button" id="btnCancel"
-				name="cancle" value="취소" onClick="location.href='로그인.jsp'">
+				name="cancle" value="취소" onClick="location.href='Login.jsp'">
 
 		</div>
 	</form>
