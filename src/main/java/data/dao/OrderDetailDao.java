@@ -2,9 +2,13 @@ package data.dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import data.dto.OrderDetailDto;
+import data.dto.OrderDto;
 import db.DbConnect;
 
 public class OrderDetailDao {
@@ -14,15 +18,15 @@ public class OrderDetailDao {
 		Connection conn = db.getConnection();
 		PreparedStatement pstmt = null;
 
-		String sql = "INSERT INTO order_detail (mem_num, order_num, pro_num, order_detail_su) VALUES (?, ?, ?, ?)";
+		String sql = "INSERT INTO order_detail (mem_num, pro_num, order_num, order_detail_su) VALUES (?, ?, ?, ?)";
 
 		try {
 			pstmt = conn.prepareStatement(sql);
 
-			pstmt.setString(1, dto.getMemNum());
-			pstmt.setString(2, dto.getOrderNum());
-			pstmt.setString(3, dto.getProNum());
-			pstmt.setInt(4, dto.getOrderDetailSu());
+			pstmt.setString(1, dto.getMem_num());
+			pstmt.setString(2, dto.getPro_num());
+			pstmt.setString(3, dto.getOrder_num());	
+			pstmt.setInt(4, dto.getOrder_detail_su());
 
 			pstmt.execute();
 		} catch (SQLException e) {
@@ -31,4 +35,35 @@ public class OrderDetailDao {
 			db.dbClose(pstmt, conn);
 		}
 	}
+	
+	// 특정 주문번호의 정보를 가져오는 메서드
+	public OrderDetailDto getOrderDetailsByMember(String order_num) {
+		OrderDetailDto order = null;
+		
+        Connection conn = db.getConnection();
+        PreparedStatement pstmt = null;
+        ResultSet rs = null;
+
+        String sql = "SELECT * FROM order_detail WHERE order_num = ?";
+
+        try {
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setString(1, order_num);
+            rs = pstmt.executeQuery();
+
+            if (rs.next()) {
+            	order = new OrderDetailDto();
+                order.setOrder_num(rs.getString("order_num"));
+				order.setMem_num(rs.getString("mem_num"));
+				order.setPro_num(rs.getString("pro_num"));
+				order.setOrder_detail_su(rs.getInt("order_detail_su"));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            db.dbClose(rs, pstmt, conn);
+        }
+
+        return order;
+    }
 }

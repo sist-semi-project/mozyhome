@@ -49,7 +49,7 @@ public class CartDao {
 		PreparedStatement pstmt=null;
 		ResultSet rs=null;
 		
-		String sql="select p.pro_name, p.pro_price, p.pro_main_img,c.cart_size,c.cart_color ,c.cart_su"
+		String sql="select p.pro_name, p.pro_price, p.pro_main_img,c.cart_size,c.cart_color ,p.pro_num ,c.cart_su"
 				+ " from cart c, product p, member m"
 				+ " where c.mem_num=m.mem_num and c.pro_num=p.pro_num and m.mem_id=?";
 		
@@ -68,7 +68,7 @@ public class CartDao {
 				map.put("cart_color", rs.getString("cart_color"));
 				map.put("pro_name", rs.getString("pro_name"));
 				map.put("cart_su", rs.getString("cart_su"));
-				
+				map.put("pro_num", rs.getString("pro_num")); // 2024-04-19 추가
 				list.add(map);
 				
 			}

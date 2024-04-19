@@ -310,7 +310,41 @@ public class MemberDao {
         
     }
     
-    	
+    // 2024-04-18 추가
+    // 구매자 정보 가져오기 (mem_id를 이용하여)
+    public MemberDto getMemberInfo(String mem_id) {
+        MemberDto memberDto = null;
+        
+        Connection conn = db.getConnection();
+        PreparedStatement pstmt = null;
+        ResultSet rs = null;
+        
+        String sql = "SELECT * FROM member WHERE mem_id = ?";
+        
+        try {
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setString(1, mem_id);
+            rs = pstmt.executeQuery();
+            
+            if (rs.next()) {
+                memberDto = new MemberDto();
+                memberDto.setMem_num(rs.getString("mem_num"));
+                memberDto.setMem_id(rs.getString("mem_id"));
+                memberDto.setMem_name(rs.getString("mem_name"));
+                memberDto.setMem_hp(rs.getString("mem_hp"));
+                memberDto.setMem_zipcode(rs.getString("mem_zipcode"));
+                memberDto.setMem_address(rs.getString("mem_address"));
+                memberDto.setMem_address_detail(rs.getString("mem_address_detail"));
+                memberDto.setMem_email(rs.getString("mem_email"));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            db.dbClose(rs, pstmt, conn);
+        }
+        
+        return memberDto;
+    }	
 	
 	
 }

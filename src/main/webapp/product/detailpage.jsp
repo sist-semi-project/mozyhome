@@ -107,6 +107,8 @@ hr {
 session.setAttribute("mem_id","dragon");
 session.setAttribute("loginok","yes");
 
+//2024-04-19 추가 
+session.setAttribute("directPurchase", true);
 
 String pro_num = request.getParameter("pro_num");
 String loginok = (String) session.getAttribute("loginok");
@@ -125,7 +127,7 @@ NumberFormat nf = NumberFormat.getCurrencyInstance();
 %>
 
 <body>
-	<form action=""  id="form1">
+	<form action="../order/orderForm.jsp"  id="form1">
 		<!-- cart 데이터에 넣을 mem_num, pro_num -->
 		<input type="hidden"  name="mem_num"  value="<%=mem_num%>">
 		<input type="hidden"  name="pro_num"  value="<%=pro_num%>">
@@ -233,7 +235,7 @@ NumberFormat nf = NumberFormat.getCurrencyInstance();
 				<i class="bi bi-cart" style="font-size: 25px;"></i>
 			</button>
 
-			<button name="buynow" class="buynow">BUY NOW</button>
+			<button type="submit" name="buynow" class="buynow">BUY NOW</button>
 
 			<button class="infobtn">DESCRIPTION</button>
 			<div><%=pdto.getPro_explain()%></div>

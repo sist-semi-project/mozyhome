@@ -1,34 +1,34 @@
 package data.dto;
 
 public class OrderDetailDto {
-	private String memNum;
-    private String proNum;
-    private String orderNum;
-    private int orderDetailSu;
+	private String mem_num ;
+	private String order_num;
+    private String pro_num;
+    private int order_detail_su;
     
-	public String getMemNum() {
-		return memNum;
+	public String getMem_num() {
+		return mem_num;
 	}
-	public void setMemNum(String memNum) {
-		this.memNum = memNum;
+	public void setMem_num(String mem_num) {
+		this.mem_num = mem_num;
 	}
-	public String getProNum() {
-		return proNum;
+	public String getOrder_num() {
+		return order_num;
 	}
-	public void setProNum(String proNum) {
-		this.proNum = proNum;
+	public void setOrder_num(String order_num) {
+		this.order_num = order_num;
 	}
-	public String getOrderNum() {
-		return orderNum;
+	public String getPro_num() {
+		return pro_num;
 	}
-	public void setOrderNum(String orderNum) {
-		this.orderNum = orderNum;
+	public void setPro_num(String pro_num) {
+		this.pro_num = pro_num;
 	}
-	public int getOrderDetailSu() {
-		return orderDetailSu;
+	public int getOrder_detail_su() {
+		return order_detail_su;
 	}
-	public void setOrderDetailSu(int orderDetailSu) {
-		this.orderDetailSu = orderDetailSu;
+	public void setOrder_detail_su(int order_detail_su) {
+		this.order_detail_su = order_detail_su;
 	}
     
 }

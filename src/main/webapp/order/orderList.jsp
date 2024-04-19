@@ -1,3 +1,7 @@
+<%@page import="data.dto.OrderDetailDto"%>
+<%@page import="data.dao.OrderDetailDao"%>
+<%@page import="data.dto.MemberDto"%>
+<%@page import="data.dao.MemberDao"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="data.dto.OrderDto"%>
 <%@page import="java.util.List"%>
@@ -251,47 +255,61 @@ page-title {
 					       	</thead>
 					       	<tbody class="center order_tbody ">
 					       		<% 
-							       	// mem_num 파라미터로부터 회원 번호를 가져옴
-						            String memNum = request.getParameter("mem_num");
+						            String mem_id = (String) session.getAttribute("mem_id"); 
 					       			
-					                // 주문 목록을 가져오는 부분 (실제 데이터베이스에서 가져와야 함)
+						       		MemberDao memberDao = new MemberDao();
+						       		MemberDto memberDto = memberDao.getMemberInfo(mem_id);
+					       			
+						       		String mem_num = memberDto.getMem_num();
+						       		
+					                // 주문 목록을 가져오는 부분
 					                OrderDao orderDao = new OrderDao();
-					                List<OrderDto> orderList = orderDao.getOrdersByMember(memNum);
+					                List<OrderDto> orderList = orderDao.getOrdersByMember(mem_num);
+					                
+					                
 					                
 					                // 각 주문을 테이블에 표시
 					                for (OrderDto order : orderList) {
+					                	
+					                	String order_num = order.getOrder_num();
+					                	
+					                	OrderDetailDao orderDetailDao = new OrderDetailDao();
+					                	OrderDetailDto orderDetailDto = orderDetailDao.getOrderDetailsByMember(order_num);
+					                	System.out.println("주문번호"+order_num);
+					                	System.out.println(orderDetailDto.getMem_num());
+					                	
 					            %>
 					       		<tr class="order_tr xans-record-">
 									<td class="order_td">
 				                    	<div class="order_top">
-				                                    <p class="order_date"><%= new SimpleDateFormat("yyyy-MM-dd").format(order.getOrderDate()) %></p>
+				                                    <p class="order_date"><%= new SimpleDateFormat("yyyy-MM-dd").format(order.getOrder_date()) %></p>
 				                                    <a href="#" class="order_detail">
 				                                        <span>상세보기</span>
 				                                        <svg width="18" height="18" viewbox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M7.05002 12.95L6.52502 12.425L9.97502 8.975L6.52502 5.525L7.05002 5L11.025 8.975L7.05002 12.95Z" fill="black"></path></svg></a>
 				                        </div>
 				                        <div class="order_body">
-				                            <a href="#" class="order_id">주문번호 : <%= order.getOrderNum() %></a>
+				                            <a href="#" class="order_id">주문번호 : <%= order_num %></a>
 				                            <div class="body_main">
 				                                <a href="/product/detail.html?product_no=14801&cate_no=1"><img src="https://via.placeholder.com/150" onerror="this.src='//img.echosting.cafe24.com/thumb/img_product_small.gif';" alt=""></a>
 				                                <div class="info">
 				                                    <p class="product_name">미니 손잡이 와인쿨러</p>
 				                                    <p class="product_option">[5-6주 제작 기간이 소요됩니다. 확인 후 구매 부탁드립니다. : 1]</p>
 				                                    <div class="price">
-				                                        <p>&#8361;<%= order.getOrderTotalPayment() %></p>
+				                                        <p>&#8361;<%= order.getOrder_total_payment() %></p>
 				                                        <p>1개</p>
 				                                    </div>
 				                                </div>
 				                            </div>
 				                            <div class="order_foot">
-				                                <p class="order_status"><%= order.getOrderStatus() %></p>
+				                                <p class="order_status"><%= order.getOrder_status() %></p>
 				                                <div class="order_update ">
 				                                	<% 
-					                                    if (order.getOrderStatus().equals("입금대기")) { 
+					                                    if (order.getOrder_status().equals("입금대기")) { 
 					                                %>
 				                                		<a href="#" class="btnNormal">취소신청</a>
-				                                	<% } else if (order.getOrderStatus().equals("배송중")) { %>	
+				                                	<% } else if (order.getOrder_status().equals("배송중")) { %>	
 				                                		<a href="#" class="btnNormal">배송조회</a>
-				                                	<% } else if (order.getOrderStatus().equals("배송완료")) { %>
+				                                	<% } else if (order.getOrder_status().equals("배송완료")) { %>
 					                                	<a href="#" class="btnNormal">구매후기</a>
 	                                				<% } %>
 				                                </div>
