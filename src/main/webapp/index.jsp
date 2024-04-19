@@ -12,25 +12,48 @@
 	rel="stylesheet">
 <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
 <title>Insert title here</title>
+<style type="text/css">
+	div.menu{
+		width:100%;
+		height:80px;
+		line-height:80px;
+		font-size: 20px;
+		font-family: 'Noto Sans KR';
+		text-align: center;
+		top:90px;
+	}
+	
+	div.main{
+		height:2000px;
+		font-size: 14pt;
+		font-family: 'Noto Sans KR';
+		border: 0px groove purple;
+	}
+	
+	div.footer{
+	
+	}
+
+</style>
 
 </head>
 <body>
 
 <%
-String main = "/layout/main.jsp";
-
-if (request.getParameter("main") != null) {
-	main = request.getParameter("main");
-}
+	String main = "/layout/main.jsp";
+	
+	if (request.getParameter("main") != null) {
+		main = request.getParameter("main");
+	}
 %>
 <body>
-	<div class="menu">
-		<jsp:include page="layout/header.jsp"></jsp:include>
+	<div class="layout title">
+		<jsp:include page="layout/header2.jsp"></jsp:include>
 	</div>
-	<div class="main">
+	<div class="layout main">
 		<jsp:include page="<%=main%>"></jsp:include>
 	</div>
-	<div class="menu">
+	<div class="layout footer">
 		<jsp:include page="layout/footer.jsp"></jsp:include>
 	</div>
 </body>
