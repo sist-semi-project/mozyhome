@@ -337,14 +337,13 @@ boolean existwish = wdao.checkWishlist(mem_num, pro_num);
 				url: "/mozyhome/product/wishProccess.jsp",
 				success: function(){
 					
-					alert("success");
+					//alert("success");
 				},
 				 error: function(xhr, status, error) {
 				        console.error("AJAX 오류: ", error);
 				        alert("AJAX 오류 발생. 콘솔을 확인하세요.");
 				    }
 			})
-			
 		})
 		
 		<!--BUY NOW 버튼 함수-->

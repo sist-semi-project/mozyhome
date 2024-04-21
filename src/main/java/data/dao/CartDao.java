@@ -49,9 +49,9 @@ public class CartDao {
 		PreparedStatement pstmt=null;
 		ResultSet rs=null;
 		
-		String sql="select p.pro_name, p.pro_price, p.pro_main_img,c.cart_size,c.cart_color ,c.cart_su,m.mem_num"
-				+ " from cart c, product p, member m"
-				+ " where c.mem_num=m.mem_num and c.pro_num=p.pro_num and m.mem_id=?";
+		String sql="select p.pro_name, p.pro_price, p.pro_main_img, c.cart_size, c.cart_color, c.cart_su, m.mem_num, p.pro_num "
+				+ " from cart c, product p, member m "
+				+ " where c.mem_num=m.mem_num and c.pro_num=p.pro_num and m.mem_id=? ";
 		
 		try {
 			pstmt=conn.prepareStatement(sql);
@@ -62,6 +62,7 @@ public class CartDao {
 			{
 				HashMap<String, String> map=new HashMap<String, String>();
 				
+				map.put("pro_num" , rs.getString("pro_num"));
 				map.put("pro_price", rs.getString("pro_price"));
 				map.put("pro_main_img", rs.getString("pro_main_img"));
 				map.put("cart_size", rs.getString("cart_size"));
@@ -90,14 +91,14 @@ public class CartDao {
 		PreparedStatement pstmt=null;
 		
 		String sql="DELETE FROM CART"
-				+ "WHERE pro_num IN ("
+				+ " WHERE pro_num IN ("
 				+ " SELECT pro_num"
 				+ " FROM ("
 				+ " SELECT pro_num, ROW_NUMBER() OVER(PARTITION BY pro_num ORDER BY pro_num) AS rn"
 				+ " FROM CART"
 				+ " ) AS t"
 				+ " WHERE t.rn > 1"
-				+ ")";
+				+ " )";
 		
 		try {
 			pstmt=conn.prepareStatement(sql);

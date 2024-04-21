@@ -44,7 +44,8 @@
 
 <%
 
-String id=(String)session.getAttribute("mem_id");
+//String id=(String)session.getAttribute("mem_id");
+String id="dragon";
 System.out.println(id);
 CartDao cdao=new CartDao();
 List<HashMap<String,String>> list=cdao.getCartList(id);
@@ -68,7 +69,7 @@ NumberFormat nf=NumberFormat.getInstance();
 	<div>
 		<input class="cart_select_all"  id="cart_select_all"  type="checkbox">
 		<hr class="cart_header_hr">
-			<form action="cartProcess.jsp">
+		<form action="cartProcess.jsp">
 			<%
 			int totalmoney=0;
 			for(int i=0; i<list.size(); i++ )
@@ -77,7 +78,8 @@ NumberFormat nf=NumberFormat.getInstance();
 				//사진얻기
 				String pro_main_img=map.get("pro_main_img");
 			%>
-				<input type="checkbox" class="cart_select" value=<%=map.get("mem_num") %>>
+				<input type="checkbox" class="cart_select" name=<%=map.get("pro_num") %> value=<%=map.get("pro_num")%>>
+				
 				<img class="cart_img" alt="" src="<%=pro_main_img%>">
 				<b><%=map.get("pro_name") %></b>
 				<b>[옵션:<%=map.get("cart_size") %>]</b>
@@ -85,21 +87,35 @@ NumberFormat nf=NumberFormat.getInstance();
 				<b><%=map.get("cart_su") %></b>
 				<b><%=map.get("pro_price") %></b>
 			<%}%>
-			</form>
-	<span>
-		상품금액<span></span>
-	</span>
-	<span>할인금액</span>
-	<span>배송비</span>
-	<span>Total</span>
-	</div>
+			<span>
+			상품금액<span></span>
+			</span>
+			<span>할인금액</span>
+			<span>배송비</span>
+			<span>Total</span>
+			</div>
+			<!-- 장바구니 button -->
+			<div>
+				<button class="buy_btn"  onclick="buyBtn()" id="buy_btn" name="buy_btn">선택상품 구매</button>
+				<button class="all_buy_btn"  onclick="allBuyBtn()" id="all_buy_btn">전체상품 구매</button>
+				<button class="del_btn"  onclick="delBtn()" id="del_btn">선택삭제</button>
+				<button class="all_del_btn"  onclick="allDelBtn()" id="all_del_btn">전체삭제</button>
+			</div>
+		</form>
 	
-	<!-- 장바구니 button -->
-	<div>
-		<button class="buy_btn" id="buy_btn">선택상품 구매</button>
-		<button class="all_buy_btn" id="all_buy_btn">전체상품 구매</button>
-		<button class="del_btn" id="del_btn">선택삭제</button>
-		<button class="all_del_btn" id="all_del_btn">전체삭제</button>
-	</div>
+	
+
+	
+	<script type="text/javascript">
+	
+	function buyBtn() {
+		var checkboxes = document.querySelectorAll('input[type="checkbox"]:checked');
+		var formData= new FormData();
+		 checkboxes.forEach(function(checkbox) {
+			    formData.append(buy_btn, checkbox.value);
+			  });
+	}
+	
+	</script>
 </body>
 </html>
