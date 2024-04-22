@@ -9,6 +9,7 @@ import java.util.List;
 
 import data.dto.ProductDto;
 import db.DbConnect;
+import oracle.jdbc.proxy.annotation.Pre;
 
 import java.util.*;
 import com.amazonaws.AmazonServiceException;
@@ -653,7 +654,7 @@ public class ProductDao {
 	{
 		Connection conn=db.getConnection();
 		PreparedStatement pstmt=null;
-
+    
 		StringBuilder sql = new StringBuilder("UPDATE product SET ");
 		ArrayList<Object> params = new ArrayList<>(); //파라미터 값을 담을 리스트
 
@@ -717,4 +718,5 @@ public class ProductDao {
 			db.dbClose(pstmt, conn);
 		}
 	}
+
 }
