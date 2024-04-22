@@ -4,9 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<link
-	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
-	rel="stylesheet">
+
 <link
 	href="https://fonts.googleapis.com/css2?family=Dongle&family=Gaegu&family=Nanum+Pen+Script&family=Noto+Sans+KR:wght@100..900&family=Noto+Serif+KR&display=swap"
 	rel="stylesheet">
@@ -31,7 +29,7 @@ if (request.getParameter("main") != null) {
 	<div class="main">
 		<jsp:include page="<%=main%>"></jsp:include>
 	</div>
-	<div class="menu">
+	<div class="">
 		<jsp:include page="layout/footer.jsp"></jsp:include>
 	</div>
 </body>
