@@ -109,15 +109,87 @@ h1.page-title {
 }
 
 .btn-orange {
-    background-color: #FF5C00;
-    border-color: #FF5C00;
-    color: white;
+	background-color: #FF5C00;
+	border-color: #FF5C00;
+	color: white;
 }
 
 .btn-orange:hover {
-    background-color: #fff;
-    border-color: #FF5C00;
-    color: #FF5C00;
+	background-color: #fff;
+	border-color: #FF5C00;
+	color: #FF5C00;
+}
+
+.password_info {
+	flex: none;
+	padding: 0 5px;
+}
+
+.how_secure {
+	display: none;
+	padding: 4px 6px 3px 6px;
+	border-radius: 10px;
+	background: rgba(255, 168, 0, .12);
+	font-size: 11px;
+	font-weight: 700;
+	line-height: 13px;
+	letter-spacing: -.4px;
+	color: #ffa41c;
+	vertical-align: middle;
+}
+
+em {
+	font-style: normal;
+}
+
+.btn_show {
+	margin-left: 4px;
+	vertical-align: middle;
+}
+
+button {
+	border-radius: 0;
+	border: none;
+	background: 0 0;
+	-webkit-appearance: none;
+	appearance: none;
+	outline: 0;
+	text-decoration: none;
+	cursor: pointer;
+	-webkit-text-size-adjust: none;
+}
+
+.blind {
+	position: absolute;
+	clip: rect(0, 0, 0, 0);
+	width: 1px;
+	height: 1px;
+	margin: -1px;
+	overflow: hidden;
+}
+
+.btn_show.hide::before {
+	background-position: -256px -264px;
+	background-repeat: no-repeat;
+	width: 30px;
+	height: 30px;
+}
+
+.btn_show::before {
+	background-position: -256px -296px;
+	background-repeat: no-repeat;
+	width: 30px;
+	height: 30px;
+	display: inline-block;
+	vertical-align: top;
+	content: '';
+}
+
+.btn_show.hide::before, .btn_show::before {
+	background-image:
+		url(https://ssl.pstatic.net/static/nid/join/m_sp_06_realname_48b1e603.png);
+	background-size: 372px 326px;
+	background-repeat: no-repeat;
 }
 </style>
 
@@ -234,13 +306,17 @@ h1.page-title {
 								<input type="password" name="mem_password" id="mem_password"
 									class="form-control" onblur="validatePass()">
 								<div class="input-group-append">
-									<span class="input-group-text" id="togglePassword"> <i
-										class="bi bi-eye-slash" onclick="togglePassword()"></i>
-									</span>
+									<button type="button" class="btn_show">
+										<span class="blind">비밀번호 숨기기</span>
+									</button>
 								</div>
+							</div>
+							<div class="password_info">
+								<em class="how_secure" id="secureLevel"></em>
 							</div>
 						</div>
 					</div>
+
 
 					<div class="form-group row">
 						<label for="pass2" class="col-sm-2 col-form-label">비밀번호 확인<span
@@ -363,8 +439,8 @@ h1.page-title {
 						class="required">*</span></label>
 					<div class="col-sm-5">
 						<div class="input-group">
-							<input type="text" name="mem_hp" id="mem_hp"
-								class="form-control" onblur="validateHp()">
+							<input type="text" name="mem_hp" id="mem_hp" class="form-control"
+								onblur="validateHp()">
 						</div>
 					</div>
 				</div>
@@ -400,8 +476,9 @@ h1.page-title {
 						</div>
 					</div>
 				</div>
-				<input type="hidden" id="mem_is_active" name="mem_is_active" value="N">
-				 
+				<input type="hidden" id="mem_is_active" name="mem_is_active"
+					value="N">
+
 			</div>
 
 			<div class="form-group">
@@ -421,11 +498,11 @@ h1.page-title {
 					<span id="emailError" style="color: red;"></span>
 				</div>
 			</div>
-			<br><br>
+			<br> <br>
 			<!-- } 주소지 입력사항 -->
 			<div class="form-group" align="center">
-				<button type="submit" class="btn btn-outline-info btn-orange" 
-				style="width: 150px; height:50px;" value="가입">가입하기</button>
+				<button type="submit" class="btn btn-outline-info btn-orange"
+					style="width: 150px; height: 50px;" value="가입">가입하기</button>
 			</div>
 		</form>
 	</div>

@@ -13,23 +13,7 @@
 <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
 <title>Insert title here</title>
 <script type="text/javascript">
-//components/Auth
-/* const Auth = () => {
-  const naverState = Math.random(); // 고유한 state값
-  const ClientID = process.env.NEXT_PUBLIC_CLIENT_ID;
-  const RedirectUrl = process.env.NEXT_PUBLIC_REDIRECT_URL;
-  
-  return (
-    <div>
-      <NaverLogin onClick={() => {
-         window.location.href = `https://nid.naver.com/oauth2.0/authorize?response_type=code&client_id=${ClientID}&state=${naverState}&redirect_uri=${RedirectUrl}`
-      }}>
-        <NaverSvg />
-      </NaverLogin>
-    </div>
-  )
 
-} */
 
 </script>
 </head>

@@ -98,24 +98,9 @@ input[type="text"], input[type="password"] {
 		frm.method = "post";
 		frm.action = "pwFindResult.jsp"; // 넘어간 화면
 		frm.submit();
-
-/* 		// 서버로 데이터 전송
-		$.ajax({
-			type : "POST",
-			url : "sendVerificationEmail.jsp", // 이메일 인증을 보낼 JSP 파일 경로
-			data : {
-				name : name,
-				id : id,
-				email : email
-			},
-			success : function(response) {
-				alert("이메일로 인증 링크가 전송되었습니다. 이메일을 확인해주세요.");
-			},
-			error : function(xhr, status, error) {
-				alert("이메일 전송 중 오류가 발생했습니다. 다시 시도해주세요.");
-			}
-		}); */
 	}
+	
+	
 </script>
 </head>
 <body>
