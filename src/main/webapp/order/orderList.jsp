@@ -232,6 +232,12 @@ page-title {
     padding-top: 75px;
     padding-bottom: 60px;
 }
+.sub_container {
+    max-width: 800px;
+    padding: 0 20px;
+    margin: 0 auto;
+    box-sizing: border-box;
+}
 </style>
 </head>
 <body>

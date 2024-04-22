@@ -15,7 +15,189 @@
 <head>
 <meta charset="UTF-8">
 <title>주문 양식</title>
+<style type="text/css">
+#body {
+    background-color: #fff;
+}
 
+#body-begin {
+    clear: both;
+    height: 1px;
+}
+
+#body-end {
+    clear: both;
+    height: 200px;
+}
+.sub_container {
+    max-width: 800px;
+    padding: 0 20px;
+    margin: 0 auto;
+    box-sizing: border-box;
+}
+h1.page-title {
+    text-align: center;
+    font-size: 24px;
+    font-weight: 700;
+    letter-spacing: 5px;
+    color: #222;
+    line-height: 27px;
+    padding-top: 75px;
+    padding-bottom: 60px;
+}
+#userStyle {
+    padding: 40px 0 0;
+}
+.ec-base-fold {
+    position: relative;
+    margin: 0 0 24px;
+    padding: 0;
+    border-top: 1px solid #D8D8D8;
+    border-bottom: 1px solid #D8D8D8;
+    background: #fff;
+}
+
+.ec-base-fold > .title {
+    position: relative;
+    border-bottom: 1px solid #ececec;
+    padding: 14.5px 16px;
+    box-sizing: border-box;
+}
+
+.title h2 {
+    font-size: 16px;
+    font-weight: 700;
+    color: #333;
+    line-height: 19px;
+}
+
+.ec-base-fold.selected > .contents {
+    overflow: visible;
+    opacity: 1;
+    height: auto;
+    border-top-width: 1px;
+}
+.ec-base-table tr {
+    border-bottom: 1px solid #F5F5F5;
+    padding: 12.5px 16px;
+    box-sizing: border-box;
+    width: 100%;
+    display: flex;
+    column-gap: 10px;
+}
+
+tr {
+    display: table-row;
+    vertical-align: inherit;
+    unicode-bidi: isolate;
+    border-color: inherit;
+}
+table {
+    width: 100%;
+    border: 0;
+    border-spacing: 0;
+    border-collapse: collapse;
+}
+
+input[type="text"], input[type="tel"] {
+    width: 100%;
+    border-radius: 8px;
+    background: #F5F5F5;
+    color: #616161;
+    border: 0;
+    box-sizing: border-box;
+    padding: 8px 16px;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 18px;
+}
+input[type="text"] {
+    height: auto;
+    line-height: 20px;
+    padding: 2px 4px;
+    color: #333;
+    font-size: 12px;
+}
+
+.address_content td .address_box {
+    display: flex;
+    gap: 5px;
+}
+
+.address_content td > input {
+    margin-top: 5px;
+}
+
+.inputTypeText {
+    vertical-align: top;
+    color: #141414;
+    text-align: left;
+    font-size: 1.4rem;
+    font-weight: 400;
+}
+
+#btn_search_rzipcode {
+    border: 1px solid #d8d8d8;
+    border-radius: 8px;
+    padding: 8px 20px;
+    color: #616161;
+    background: #d8d8d8;
+    height: auto;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 17px;
+    width: max-content;
+    white-space: nowrap;
+    margin: 0;
+}
+.ec-base-table tbody th {
+    font-size: 1.2rem;
+    font-weight: 400;
+    color: #616161;
+    width: 57px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    column-gap: 2px;
+}
+.ec-base-table tbody tr#ec-orderer-address th,#mCafe24Order .ec-base-table tbody tr#ec-receiver-address th {
+    height: 36px;
+}
+
+.ec-base-table td {
+    font-size: 12px;
+    color: var(--gray-6-color);
+    flex: 1 1 0%;
+    text-align: right;
+    border: 0;
+}
+
+.ec-base-table td .ec-base-mail {
+    display: flex;
+    align-items: center;
+}
+
+#mCafe24Order .ec-base-table td select {
+    flex: 1;
+}
+
+.ec-base-table tr {
+    border-bottom: 1px solid #F5F5F5;
+    padding: 12.5px 16px;
+    box-sizing: border-box;
+    width: 100%;
+    display: flex;
+    column-gap: 10px;
+}
+
+.ec-base-table p.info {
+    border-bottom: 1px solid #e8e5e4;
+    color: #757575;
+    line-height: 1.5;
+    font-size: 14px;
+    background: url(//img.echosting.cafe24.com/skin/base/common/ico_info.gif) no-repeat 9px 4px;
+}
+</style>
 <!-- 다음 우편번호 서비스 API 스크립트 로드 -->
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script>
@@ -56,7 +238,6 @@
 </script>
 </head>
 <body>
-<h2>주문/결제</h2>
 <% 
 String mem_id = (String) session.getAttribute("mem_id");  
 
@@ -70,6 +251,11 @@ NumberFormat nf = NumberFormat.getInstance();
 	
 %>
 <!-- 주문 정보를 입력받는 폼 -->
+<div id="body">
+<div id="body-begin"></div>
+<div class="sub_container">
+<h1 class="page-title">주문서</h1>
+<div id="userStyle" style="width: auto">
 <form action="orderAction.jsp" method="post">  
 
 	<h3>주문상품</h3>
@@ -161,16 +347,77 @@ NumberFormat nf = NumberFormat.getInstance();
 	<input type="hidden" name="pro_num" value="<%= pro_num %>">
 	<input type="hidden" name="pro_size" value="<%= pro_size %>">
 	<input type="hidden" name="pro_color" value="<%= pro_color %>">
+	
+	
+	
+	
+	
+	<!-- 수령자 정보   -->
+    <div class="ec-base-fold">
+    
+    <div class="title">
+    	<h2>배송지</h2>
+    </div>
+    
+    
+	    <div class="contents">
+	    	<div class="ec-base-table typeWrite">
+		    <table>
+		    <colgroup>
+			<col style="width: 102px">
+			<col style="width: auto">
+			</colgroup>
+			<tbody>
+				<tr>
+				<th scope="row">
+				        받는사람 <img src="http://img.echosting.cafe24.com/skin/base_ko_KR/order/ico_required.gif" alt="필수">
+				</th>
+				    <td><input name="receiver_name" class="inputTypeText" size="15" type="text"/></td>
+				</tr>
+				
+				<tr>
+				<th scope="row">
+				        휴대폰 <img src="http://img.echosting.cafe24.com/skin/base_ko_KR/order/ico_required.gif" alt="필수">
+				</th>
+				    <td><input name="receiver_hp" class="inputTypeText" size="15" type="text"/></td>
+				</tr>
+				
+				<tr id="ec-receiver-address" class="address_content">
+				<th scope="row">주소 <img src="http://img.echosting.cafe24.com/skin/base_ko_KR/order/ico_required.gif" alt="필수"></th>
+				    <td>
+				        <div class="address_box">
+				            <input id="postcode" name="receiver_zipcode" class="inputTypeText" size="6" maxlength="6" readonly type="text"  />                                                        
+				            <a href="#none" id="btn_search_rzipcode" onclick="execDaumPostcode()">주소검색</a>
+				        </div>
+				        <input id="address" name="receiver_addr" class="inputTypeText" size="40" readonly="1" type="text" /> 
+				        
+				        <input id="detailAddress" name="receiver_address_detail" class="inputTypeText" size="40" type="text" /> 
+						
+				    </td>
+				</tr>
+				<tr>
+					<th scope="row">
+					배송메세지
+					</th>
+					<td><input name="order_delivery_request" class="inputTypeText" size="15" type="text"/></td>
+				</tr>
+				
+				
+		    </tbody>
+		    </table>
+		    </div>
+	    </div>
+    
+    
+	</div>
 
-    <h3>배송지</h3>
-    받는 사람: <input type="text" name="receiver_name" required><br>
-    휴대폰: <input type="text" name="receiver_hp" required><br>
-    <!-- 우편번호 찾기 기능 -->
-    <input type="text" id="postcode" name="receiver_zipcode" placeholder="우편번호" readonly required>
-    <input type="button" onclick="execDaumPostcode()" value="우편번호 찾기"><br>
-    <input type="text" id="address" name="receiver_addr" placeholder="주소" readonly required><br>
-    <input type="text" id="detailAddress" name="receiver_address_detail" placeholder="상세주소" required><br>
-    배송메세지: <textarea name="order_delivery_request"></textarea><br>
+
+
+
+
+
+
+
 
     <h3>결제 정보</h3>
 	
@@ -214,6 +461,8 @@ NumberFormat nf = NumberFormat.getInstance();
     <button type="submit">주문하기</button>
     
 </form>
-
+</div>
+</div>
+</div>
 </body>
 </html>
