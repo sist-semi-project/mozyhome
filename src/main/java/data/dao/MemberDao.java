@@ -309,6 +309,62 @@ public class MemberDao {
         return memail;
         
     }
+
+    public static void main(String[] args) {
+        MemberDao dao = new MemberDao();
+        MemberDto dto = new MemberDto();
+
+        String id = "test";
+        String pw = "pw1234";
+        String name = "김테일";
+        String nickname = "드래곤1";
+        String hp = "010-1234-5678";
+        String zipcode = "1234";
+        String address = "서울특별시 강남구 테헤란로 127 그레이스타워";
+        String address_detail = "123동 456호";
+        String email = "test";
+        String birth = "2024-04-22";
+        String[] gender = {"남자","여자","선택안함"};
+        String[] is_active = {"Y","N"};
+
+        String sql = "insert into member values (null,?,?,?,?,?,?,?,?,?,?,?,?,now())";
+
+        DbConnect db= new DbConnect();
+        Connection conn = db.getConnection();
+        PreparedStatement pstmt = null;
+
+
+
+        for (int i = 1; i < 100; i++) {
+            try {
+                pstmt = conn.prepareStatement(sql);
+
+                pstmt.setString(1, id+(i+1));
+                pstmt.setString(2, pw);
+                pstmt.setString(3, name+(i+1));
+                pstmt.setString(4, nickname+(i+1));
+                pstmt.setString(5, hp);
+                pstmt.setString(6, zipcode+(i%10));
+                pstmt.setString(7, address);
+                pstmt.setString(8, address_detail);
+                pstmt.setString(9, email+(i+1)+"@naver.com");
+                pstmt.setString(10, birth);
+                pstmt.setString(11, gender[i%3]);
+                pstmt.setString(12, is_active[i%2]);
+
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }finally {
+                db.dbClose(pstmt, conn);
+            }
+
+        }
+
+        }
+
+
+
+
     
     	
 	
