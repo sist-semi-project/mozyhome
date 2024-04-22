@@ -134,14 +134,12 @@
             }
             // 색상 입력 필드에 keypress 이벤트 리스너 추가(엔터 입력시 태그 추가)
             document.getElementById('colorInput').addEventListener('keypress', function(event) {
-                // 엔터 키가 눌렸는지 확인 (엔터 키의 keyCode는 13)
                 if (event.keyCode === 13) {
                     event.preventDefault(); // 폼 제출을 방지
                     document.getElementById('addColor').click(); // '색상 추가' 버튼 클릭 이벤트 발생
                 }
             });
 
-            // 사이즈 입력 필드에 keypress 이벤트 리스너 추가(엔터 입력시 태그 추가)
             document.getElementById('sizeInput').addEventListener('keypress', function(event) {
                 // 엔터 키가 눌렸는지 확인
                 if (event.keyCode === 13) {
@@ -186,13 +184,15 @@
             function formatPriceToKRW(price) {
                 if (!price) return '';
 
-                // 숫자를 만 단위와 그 이하로 나누기
-                var units = Math.floor(price / 10000);
-                var rest = price % 10000;
+                // 억 단위, 만 단위, 그 이하로 나누기
+                var billions = Math.floor(price / 100000000); // 억 단위
+                var millions = Math.floor((price % 100000000) / 10000); // 만 단위
+                var rest = price % 10000; // 그 이하
 
                 // 결과 문자열 포맷팅
                 var result = '';
-                if (units > 0) result += units + '만 ';
+                if (billions > 0) result += billions + '억 ';
+                if (millions > 0) result += millions + '만 ';
                 if (rest > 0) result += rest;
                 result += '원';
 
