@@ -16,7 +16,7 @@ public class ReviewDao {
 	DbConnect db = new DbConnect(); 
 	
 	//리뷰 리스트 데이터 출력
-	public List<HashMap<String, String>> getReview(String pro_num) {
+	public List<HashMap<String, String>> getReview(String pro_num,int start,int perPage) {
 		
 		List<HashMap<String, String>> list = new ArrayList<HashMap<String,String>>();
 		
@@ -27,11 +27,15 @@ public class ReviewDao {
 		String sql = "select r.review_subject, r.review_image, r.review_pyung, r.review_content, r.review_writeday, m.mem_id "
 	            + "from review r "
 	            + "join member m on r.mem_num = m.mem_num "
-	            + "where r.pro_num=?";
+	            + "where r.pro_num=?"
+	            + "ORDER BY r.review_num DESC "
+	            + "LIMIT ?, ?";
 			
 		try {
 			pstmt=conn.prepareStatement(sql);
 			pstmt.setString(1, pro_num);
+			pstmt.setInt(2, start); // start 위치
+			pstmt.setInt(3, perPage); // 페이지당 출력할 항목 수
 			rs=pstmt.executeQuery();
 			
 			while(rs.next())
@@ -57,6 +61,7 @@ public class ReviewDao {
 	return list;
 	}
 	
+	//상품 리뷰 갯수 출력
 	public int getTotalCount(String pro_num)
 	{
 		int n=0;
@@ -69,8 +74,8 @@ public class ReviewDao {
 		
 		try {
 			pstmt=conn.prepareStatement(sql);
-			rs=pstmt.executeQuery();
 			pstmt.setString(1, pro_num);
+			rs=pstmt.executeQuery();
 			
 			if(rs.next())
 				n=rs.getInt(1);
@@ -83,4 +88,5 @@ public class ReviewDao {
 		return n;
 	}
 	
+
 }
