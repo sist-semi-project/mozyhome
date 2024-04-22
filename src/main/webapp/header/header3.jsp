@@ -27,42 +27,14 @@
 									<div class="header-nav__column"></div>
 									<div class="header-nav__column">
 
-										<p>Living</p>
-
 										<a class="header-nav__sub-nav-link"
-											href="https://maidenhome.com/pages/sofas">Sofas</a> <a
+											href="https://maidenhome.com/pages/sofas">소파</a> 
+											<a
 											class="header-nav__sub-nav-link"
-											href="https://maidenhome.com/pages/sectionals">Sectionals</a>
-										<a class="header-nav__sub-nav-link"
-											href="https://maidenhome.com/pages/modular">Modular</a> <a
-											class="header-nav__sub-nav-link"
-											href="https://maidenhome.com/pages/chairs">Chairs</a> <a
-											class="header-nav__sub-nav-link"
-											href="https://maidenhome.com/pages/benches-and-ottomans">Benches
-											&amp; Ottomans</a> <a class="header-nav__sub-nav-link"
-											href="https://maidenhome.com/pages/daybeds">Daybeds</a> <a
-											class="header-nav__sub-nav-link header-nav__sub-nav-link--mobile-only"
-											href="https://maidenhome.com/pages/shop-all-living">Shop
-											All Seating </a>
+											href="https://maidenhome.com/pages/sectionals">테이블</a> 
+											
 									</div>
-									<div class="header-nav__column">
 
-										<p>Tables</p>
-
-										<a class="header-nav__sub-nav-link"
-											href="https://maidenhome.com/pages/coffee-tables">Coffee
-											Tables</a> <a class="header-nav__sub-nav-link"
-											href="https://maidenhome.com/pages/side-tables">Side
-											Tables</a> <a class="header-nav__sub-nav-link"
-											href="https://maidenhome.com/pages/console-tables">Console
-											Tables</a> <a class="header-nav__sub-nav-link"
-											href="https://maidenhome.com/pages/plinths">Plinths</a> <a
-											class="header-nav__sub-nav-link"
-											href="https://maidenhome.com/pages/desks">Desks</a> <a
-											class="header-nav__sub-nav-link header-nav__sub-nav-link--mobile-only"
-											href="https://maidenhome.com/pages/shop-all-living#mobile-tables">Shop
-											All Tables </a>
-									</div>
 								</div>
 								<div class="header-nav__sub-nav-images">
 									<a href="https://maidenhome.com/pages/shop-all-living"> <img
@@ -95,15 +67,9 @@
 								<div class="header-nav__sub-nav-links">
 									<div class="header-nav__column">
 										<a class="header-nav__sub-nav-link"
-											href="https://maidenhome.com/pages/dining-tables">Dining
-											Tables</a> <a class="header-nav__sub-nav-link"
-											href="https://maidenhome.com/pages/dining-chairs-and-benches">Dining
-											Chairs &amp; Benches</a> <a class="header-nav__sub-nav-link"
-											href="https://maidenhome.com/pages/bar-and-counter-stools">Bar
-											&amp; Counter Stools</a> <a
-											class="header-nav__sub-nav-link header-nav__sub-nav-link--mobile-only"
-											href="https://maidenhome.com/pages/shop-all-dining">Shop
-											All Dining </a>
+											href="https://maidenhome.com/pages/dining-tables">식탁</a> 
+											<a class="header-nav__sub-nav-link"
+											href="https://maidenhome.com/pages/dining-chairs-and-benches">의자</a> 
 									</div>
 								</div>
 								<div class="header-nav__sub-nav-images">
@@ -139,18 +105,11 @@
 								<div class="header-nav__sub-nav-links">
 									<div class="header-nav__column">
 										<a class="header-nav__sub-nav-link"
-											href="https://maidenhome.com/pages/beds">Beds</a> <a
+											href="https://maidenhome.com/pages/beds">침대</a> 
+											<a
 											class="header-nav__sub-nav-link"
-											href="https://maidenhome.com/pages/nightstands">Nightstands</a>
+											href="https://maidenhome.com/pages/nightstands">수납</a>
 
-										<a class="header-nav__sub-nav-link"
-											href="https://maidenhome.com/pages/dressers">Dressers</a> <a
-											class="header-nav__sub-nav-link"
-											href="https://maidenhome.com/pages/benches-and-ottomans">Benches
-											&amp; Ottomans</a> <a
-											class="header-nav__sub-nav-link header-nav__sub-nav-link--mobile-only"
-											href="https://maidenhome.com/pages/shop-all-bedroom">Shop
-											All Bedroom </a>
 									</div>
 								</div>
 								<div class="header-nav__sub-nav-images">
@@ -183,17 +142,9 @@
 								<div class="header-nav__sub-nav-links">
 									<div class="header-nav__column">
 										<a class="header-nav__sub-nav-link"
-											href="https://maidenhome.com/pages/spring-summer-2024">Ode
-											to Duality</a> <a class="header-nav__sub-nav-link"
-											href="https://maidenhome.com/pages/fall-2023-collection">Soft
-											Brutalism</a> <a class="header-nav__sub-nav-link"
-											href="https://maidenhome.com/pages/in-soft-sculpture">In
-											Soft Sculpture</a> <a class="header-nav__sub-nav-link"
-											href="https://maidenhome.com/pages/in-good-company-collection">In
-											Good Company</a> <a class="header-nav__sub-nav-link"
-											href="https://maidenhome.com/pages/the-mohair-collection">The
-											Mohair Collection</a> <a class="header-nav__sub-nav-link"
-											href="https://maidenhome.com/pages/lookbooks">Lookbooks</a>
+											href="https://maidenhome.com/pages/spring-summer-2024">장스탠드</a> 
+											<a class="header-nav__sub-nav-link"
+											href="https://maidenhome.com/pages/fall-2023-collection">단스탠드</a>
 									</div>
 								</div>
 								<div class="header-nav__sub-nav-images">
@@ -223,10 +174,8 @@
 								<div class="header-nav__sub-nav-links">
 									<div class="header-nav__column">
 										<a class="header-nav__sub-nav-link"
-											href="https://maidenhome.com/collections/swatches">Fabric
-											&amp; Leather</a> <a class="header-nav__sub-nav-link"
-											href="https://maidenhome.com/pages/wood-lacquer-and-shearling-swatches">Wood,
-											Lacquer &amp; Shearling</a>
+											href="https://maidenhome.com/collections/swatches">ETC</a> 
+
 									</div>
 								</div>
 								<div class="header-nav__sub-nav-images">
