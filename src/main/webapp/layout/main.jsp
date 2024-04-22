@@ -75,7 +75,7 @@
 			<div class="swiper mySwiper">
 				<div class="swiper-wrapper" style="width: 1200px;">
 					<div class="swiper-slide">
-						<img src="../image/productSave/floorlampA.png" alt="광고 1" style="width: 100%;">
+						<img src="./image/productSave/floorlampA.png" alt="광고 1" style="width: 100%;">
 					</div>
 					<div class="swiper-slide">
 						<img src="./image/staticImage/mainBanner.png" alt="광고 2" style="width: 100%;">

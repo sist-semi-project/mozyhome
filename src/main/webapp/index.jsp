@@ -11,11 +11,12 @@
 	href="https://fonts.googleapis.com/css2?family=Dongle&family=Gaegu&family=Nanum+Pen+Script&family=Noto+Sans+KR:wght@100..900&family=Noto+Serif+KR&display=swap"
 	rel="stylesheet">
 <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
-<title>Insert title here</title>
+<link rel="stylesheet" href="../header/header.css"/>
+<title>mozyhome</title>
 <style type="text/css">
-	div.menu{
+	div.title{
 		width:100%;
-		height:80px;
+		height:50px;
 		line-height:80px;
 		font-size: 20px;
 		font-family: 'Noto Sans KR';
