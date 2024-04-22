@@ -166,7 +166,7 @@
 
 			<div class="header__logo">
 				<h1 class="site-header__logo" itemscope="" itemtype="http://schema.org/Organization">
-					<a href="/" itemprop="url" class="site-header__logo-link"> <img width="216" height="36" class="text-logo" src="../image/staticImage/logo.png" alt="Maiden Home" itemprop="logo">
+					<a href="/" itemprop="url" class="site-header__logo-link"> <img width="216" height="36" class="text-logo" src="./image/staticImage/logo.png" alt="Maiden Home" itemprop="logo">
 					</a>
 				</h1>
 			</div>
@@ -181,7 +181,7 @@
 		<ul class="header__nav">
 			<li class="header__nav-top-level header__nav-top-level--has-children">
 				<a href="https://maidenhome.com/pages/shop-all-living" class="header__nav-top-level-link" data-name=" "></a>
-				<img src="../image/staticImage/searchicon_bs.png">
+				<img src="./image/staticImage/searchicon_bs.png">
 			</li>
 			
 			<li class="header__nav-top-level header__nav-top-level--has-children">
@@ -193,7 +193,7 @@
 
 			<li class="header__nav-top-level header__nav-top-level--has-children">
 				<a href="https://maidenhome.com/pages/shop-all-bedroom" class="header__nav-top-level-link" data-name=""></a>
-				<img src="../image/staticImage/hearticon_bs.png">
+				<img src="./image/staticImage/hearticon_bs.png">
 			</li>
 
 
@@ -201,7 +201,7 @@
 
 			<li class="header__nav-top-level header__nav-top-level--has-children">
 				<a href="https://maidenhome.com/pages/spring-summer-2024" class="header__nav-top-level-link" data-name=""></a>
-				<img src="../image/staticImage/shoppingbag_bs.png">
+				<img src="./image/staticImage/shoppingbag_bs.png">
 			</li>
 
 
@@ -219,7 +219,7 @@
 
 	</header>
 </div>
-<script src="header.js"></script>
+<script src="./header/header.js"></script>
 
 
 </body>

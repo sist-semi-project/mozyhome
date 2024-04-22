@@ -98,9 +98,10 @@ input[type="text"], input[type="password"] {
 		frm.method = "post";
 		frm.action = "pwFindResult.jsp"; // 넘어간 화면
 		frm.submit();
+		
+	
+		
 	}
-	
-	
 </script>
 </head>
 <body>

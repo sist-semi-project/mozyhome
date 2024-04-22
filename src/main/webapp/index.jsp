@@ -12,6 +12,7 @@
 	rel="stylesheet">
 <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
 <title>Insert title here</title>
+<link rel="stylesheet" href="./header/header.css"/>
 
 </head>
 <body>
@@ -25,7 +26,7 @@ if (request.getParameter("main") != null) {
 %>
 <body>
 	<div class="menu">
-		<jsp:include page="layout/header.jsp"></jsp:include>
+		<jsp:include page="header/header3.jsp"></jsp:include>
 	</div>
 	<div class="main">
 		<jsp:include page="<%=main%>"></jsp:include>
