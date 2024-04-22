@@ -15,9 +15,9 @@
   String loginok=(String)session.getAttribute("loginok");
   if(loginok==null) //로그아웃상태
   {%>
-	  <jsp:include page="로그인.jsp"/>
+	  <jsp:include page="Login.jsp"/>
   <%}else{%>
-	  <jsp:include page="로그아웃.jsp"/>
+	  <jsp:include page="Logout.jsp"/>
   <%}
 %>
 </body>

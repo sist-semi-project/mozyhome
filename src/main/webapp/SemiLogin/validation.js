@@ -32,21 +32,25 @@
 	    }).open();
 	}
 	
-	//비밀번호 숨기기/보여주기 아이콘
-	function togglePassword() {
-    const passwordField = document.getElementById('mem_password');
-    const toggleIcon = document.querySelector('#togglePassword i');
+	
+	
+	// 비밀번호 표시 기능
 
-    if (passwordField.type === 'password') {
-        passwordField.type = 'text';
-        toggleIcon.classList.remove('bi-eye-slash');
-        toggleIcon.classList.add('bi-eye');
-    } else {
-        passwordField.type = 'password';
-        toggleIcon.classList.remove('bi-eye');
-        toggleIcon.classList.add('bi-eye-slash');
-    }
-}
+    const btnShow = document.querySelector('.btn_show');
+    const passwordInput = document.querySelector('input[type="password"]');
+
+    btnShow.addEventListener('click', function() {
+        if (passwordInput.type === 'password') {
+            passwordInput.type = 'text';
+            btnShow.classList.add('hide');
+            btnShow.querySelector('.blind').textContent = '비밀번호 숨기기';
+        } else {
+            passwordInput.type = 'password';
+            btnShow.classList.remove('hide');
+            btnShow.querySelector('.blind').textContent = '비밀번호 보기';
+        }
+    });
+	
 	
 	// 아이디 유효성 검사
 function validateId() {

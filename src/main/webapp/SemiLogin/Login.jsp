@@ -125,10 +125,10 @@ input[type="text"], input[type="password"] {
 		</div>
 		<br>
 		<div class="links text-dark" style="text-align: center;">
-			<a href="아이디찾기.jsp" class="text-decoration-none"
-				style="color: black;">아이디 찾기</a> | <a href="비밀번호찾기.jsp"
+			<a href="IdFind.jsp" class="text-decoration-none"
+				style="color: black;">아이디 찾기</a> | <a href="pwFind.jsp"
 				class="text-decoration-none" style="color: black;">비밀번호 찾기</a> | <a
-				href="회원가입창.jsp" class="text-decoration-none" style="color: black;">회원가입</a>
+				href="RegisterMain.jsp" class="text-decoration-none" style="color: black;">회원가입</a>
 		</div>
 
 	</form>

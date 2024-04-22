@@ -77,11 +77,12 @@
 </script>
 </head>
 <%
+	request.setCharacterEncoding("utf-8");
 	//0415 로그인 세션
-	session.setAttribute("mem_id","dragon");
-	session.setAttribute("loginok","yes");	
+	//session.setAttribute("mem_id","dragon");
+	//session.setAttribute("loginok","yes");	
 	String loginok=(String)session.getAttribute("loginok");
-	String myid=(String)session.getAttribute("mem_id");
+	String myid=(String)session.getAttribute("myid");
 	//System.out.println(myid);
 	
 	// 검색한 단어 받아오기
@@ -161,7 +162,7 @@
 	// --------------------------------------------------------------------------
 %>
 <body>
-<div style="margin:50px 100px; width:1400px">
+<div style="margin:0 auto; width:1400px">
 	<table>
 		<div style="margin:100px 0px 10px 15px; float:left;">
 		총 <b><%=totalCount %></b>개의 상품
@@ -169,11 +170,11 @@
 			<div style="margin: -28px 0px 0px 1320px;">
 				
 				<select name="sort" class="form-select form-select sort" style="width:100px;" onchange="window.open(value,'_self');">
-					<option value="../product/searchList.jsp?search=<%=search%>&sort=1" <%="1".equals(sort)?"selected='selected'":""%>>신상품</option>
-					<option value="../product/searchList.jsp?search=<%=search%>&sort=2" <%="2".equals(sort)?"selected='selected'":""%>>상품명</option>
-					<option value="../product/searchList.jsp?search=<%=search%>&sort=3" <%="3".equals(sort)?"selected='selected'":""%>>낮은가격</option>
-					<option value="../product/searchList.jsp?search=<%=search%>&sort=4" <%="4".equals(sort)?"selected='selected'":""%>>높은가격</option>
-					<option value="../product/searchList.jsp?search=<%=search%>&sort=5" <%="5".equals(sort)?"selected='selected'":""%>>리뷰순</option>
+					<option value="../search/searchList.jsp?search=<%=search%>&sort=1" <%="1".equals(sort)?"selected='selected'":""%>>신상품</option>
+					<option value="../search/searchList.jsp?search=<%=search%>&sort=2" <%="2".equals(sort)?"selected='selected'":""%>>상품명</option>
+					<option value="../search/searchList.jsp?search=<%=search%>&sort=3" <%="3".equals(sort)?"selected='selected'":""%>>낮은가격</option>
+					<option value="../search/searchList.jsp?search=<%=search%>&sort=4" <%="4".equals(sort)?"selected='selected'":""%>>높은가격</option>
+					<option value="../search/searchList.jsp?search=<%=search%>&sort=5" <%="5".equals(sort)?"selected='selected'":""%>>리뷰순</option>
 				</select>
 				
 			</div>	

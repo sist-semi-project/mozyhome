@@ -233,7 +233,7 @@ NumberFormat nf = NumberFormat.getCurrencyInstance();
 				<i class="bi bi-cart" style="font-size: 25px;"></i>
 			</button>
 
-			<button name="buynow" class="buynow">BUY NOW</button>
+			<button name="buynow" class="buynow" disabled="disabled">BUY NOW</button>
 
 			<button class="infobtn">DESCRIPTION</button>
 			<div><%=pdto.getPro_explain()%></div>
