@@ -13,10 +13,10 @@
 <title>메인페이지</title>
 
 <style type="text/css">
-
+	
 	.swiper-button-prev, .swiper-button-next{
 		background-color: #fff;
-  		opacity: 0.5;
+  		opacity: 1;
   		padding: 15px 23px;
   		border-radius: 100px;
   		color: black !important;
@@ -41,7 +41,7 @@
 		background: #FF5C00 !important;
 	}
 
-	.mdpick{
+	.mdpick, .new, .category, .review{
 		width: 1200px;
     	margin: 0 auto;
 	}
@@ -67,7 +67,7 @@
     <div class="swiper-button-next"></div>
 </div>
 
-<div style="width: 1500px;" align="center;">
+<div style="width: 1500px; margin: 0 auto;" align="center;">
 	<div class="mdpick" style="margin-top: 100px;">
 		<span style="font-size: 32px;">MD PICK</span>
 		<img alt="" src="./image/staticImage/Vector.png">
@@ -96,10 +96,88 @@
 				<div class="swiper-button-prev"></div>
 				<div class="swiper-button-next"></div>
 			</div>
-
-
-
 		</div>
+		
+		<div class="new" style="margin-top: 100px;">
+		<span style="font-size: 32px;">NEW</span>
+		<img alt="" src="./image/staticImage/Vector.png">
+
+			<div class="swiper mySwiper">
+				<div class="swiper-wrapper" style="width: 1200px;">
+					<div class="swiper-slide">
+						<img src="./image/productSave/floorlampA.png" alt="광고 1" style="width: 100%;">
+					</div>
+					<div class="swiper-slide">
+						<img src="./image/staticImage/mainBanner.png" alt="광고 2" style="width: 100%;">
+					</div>
+					<div class="swiper-slide">
+						<img src="./image/staticImage/mainBanner.png" alt="광고 3" style="width: 100%;">
+					</div>
+					<div class="swiper-slide">
+						<img src="./image/staticImage/mainBanner.png" alt="광고 4" style="width: 100%;">
+					</div>
+					<div class="swiper-slide">
+						<img src="./image/staticImage/mainBanner.png" alt="광고 5" style="width: 100%;">
+					</div>
+				</div> 
+				<!-- Add Pagination -->
+				<div class="swiper-pagination"></div>
+				<!-- Add Navigation -->
+				<div class="swiper-button-prev"></div>
+				<div class="swiper-button-next"></div>
+			</div>
+		</div>
+		
+		<div class="category" style="margin-top: 200px;">
+			<table class="table-bordered" style="width: 1200px;">
+				<tr>
+					<td><a href="index.jsp?main=product/productList.jsp?cate_num=11"><img src="./image/staticImage/cate_sofa.png"></a></td>
+					<td><a href="index.jsp?main=product/productList.jsp?cate_num=12"><img src="./image/staticImage/cate_table.png"></a></td>
+				</tr>
+				
+				<tr>
+					<td><a href="index.jsp?main=product/productList.jsp?cate_num=22"><img src="./image/staticImage/cate_chair.png"></a></td>
+					<td><a href="index.jsp?main=product/productList.jsp?cate_num=4"><img src="./image/staticImage/cate_lamp.png"></a></td>
+				</tr>
+				
+				<tr>
+					<td colspan="2" align="center"><a href="index.jsp?main=product/productList.jsp?cate_num=5"><img src="./image/staticImage/cate_etc.png"></a></td>
+				</tr>
+		
+			</table>
+		</div>
+		
+		<div class="review" style="margin-top: 100px;">
+		<span style="font-size: 32px;">REVIEW</span>
+		<img alt="" src="./image/staticImage/Vector.png">
+
+			<div class="swiper mySwiper">
+				<div class="swiper-wrapper" style="width: 1200px;">
+					<div class="swiper-slide">
+						<img src="./image/productSave/floorlampA.png" alt="광고 1" style="width: 100%;">
+					</div>
+					<div class="swiper-slide">
+						<img src="./image/staticImage/mainBanner.png" alt="광고 2" style="width: 100%;">
+					</div>
+					<div class="swiper-slide">
+						<img src="./image/staticImage/mainBanner.png" alt="광고 3" style="width: 100%;">
+					</div>
+					<div class="swiper-slide">
+						<img src="./image/staticImage/mainBanner.png" alt="광고 4" style="width: 100%;">
+					</div>
+					<div class="swiper-slide">
+						<img src="./image/staticImage/mainBanner.png" alt="광고 5" style="width: 100%;">
+					</div>
+				</div> 
+				<!-- Add Pagination -->
+				<div class="swiper-pagination"></div>
+				<!-- Add Navigation -->
+				<div class="swiper-button-prev"></div>
+				<div class="swiper-button-next"></div>
+			</div>
+		</div>
+		
+		
 </div>
 
 

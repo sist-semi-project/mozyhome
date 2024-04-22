@@ -9,6 +9,7 @@
 <link rel="stylesheet" href="./header/header.css" />
 
 <style type="text/css">
+	
 /* 검색 토글창 디자인 시작 */
 	body {
 		font-family: 'Noto Sans KR';

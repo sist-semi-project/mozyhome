@@ -64,7 +64,7 @@
 			//alert(pronum);
 			
 			// 디테일 페이지로 이동 #review
-			location.href="../product/detailpage.jsp?pro_num="+pronum;
+			location.href="index.jsp?main=product/detailpage.jsp?pro_num="+pronum;
 		});
 		
 		// 정렬 콤보박스 클릭 시
@@ -170,11 +170,11 @@
 			<div style="margin: -28px 0px 0px 1320px;">
 				
 				<select name="sort" class="form-select form-select sort" style="width:100px;" onchange="window.open(value,'_self');">
-					<option value="../search/searchList.jsp?search=<%=search%>&sort=1" <%="1".equals(sort)?"selected='selected'":""%>>신상품</option>
-					<option value="../search/searchList.jsp?search=<%=search%>&sort=2" <%="2".equals(sort)?"selected='selected'":""%>>상품명</option>
-					<option value="../search/searchList.jsp?search=<%=search%>&sort=3" <%="3".equals(sort)?"selected='selected'":""%>>낮은가격</option>
-					<option value="../search/searchList.jsp?search=<%=search%>&sort=4" <%="4".equals(sort)?"selected='selected'":""%>>높은가격</option>
-					<option value="../search/searchList.jsp?search=<%=search%>&sort=5" <%="5".equals(sort)?"selected='selected'":""%>>리뷰순</option>
+					<option value="index.jsp?main=search/searchList.jsp?search=<%=search%>&sort=1" <%="1".equals(sort)?"selected='selected'":""%>>신상품</option>
+					<option value="index.jsp?main=search/searchList.jsp?search=<%=search%>&sort=2" <%="2".equals(sort)?"selected='selected'":""%>>상품명</option>
+					<option value="index.jsp?main=search/searchList.jsp?search=<%=search%>&sort=3" <%="3".equals(sort)?"selected='selected'":""%>>낮은가격</option>
+					<option value="index.jsp?main=search/searchList.jsp?search=<%=search%>&sort=4" <%="4".equals(sort)?"selected='selected'":""%>>높은가격</option>
+					<option value="index.jsp?main=search/searchList.jsp?search=<%=search%>&sort=5" <%="5".equals(sort)?"selected='selected'":""%>>리뷰순</option>
 				</select>
 				
 			</div>	
@@ -236,18 +236,18 @@
 				// 이전
 				if(startPage>1){%>
 					<li class="page-item">
-						<a class="page-link" href="searchList.jsp?search=<%=search %>&currentPage=<%=startPage-1%>&sort=<%=sort %>" style="color:black;" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a>
+						<a class="page-link" href="index.jsp?main=search/searchList.jsp?search=<%=search %>&currentPage=<%=startPage-1%>&sort=<%=sort %>" style="color:black;" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a>
 					</li>
 				<%}
 			
 				for(int pp=startPage; pp<=endPage; pp++){
 					if(pp==currentPage){%>
 						<li class="page-item active">
-							<a class="page-link" href="searchList.jsp?search=<%=search %>&currentPage=<%=pp%>&sort=<%=sort %>"><%=pp %></a>
+							<a class="page-link" href="index.jsp?main=search/searchList.jsp?search=<%=search %>&currentPage=<%=pp%>&sort=<%=sort %>"><%=pp %></a>
 						</li>
 					<%} else{%>
 						<li class="page-item">
-							<a class="page-link" href="searchList.jsp?search=<%=search %>&currentPage=<%=pp%>&sort=<%=sort %>"><%=pp %></a>
+							<a class="page-link" href="index.jsp?main=search/searchList.jsp?search=<%=search %>&currentPage=<%=pp%>&sort=<%=sort %>"><%=pp %></a>
 						</li>
 					<%}
 				}
@@ -255,25 +255,25 @@
 				// 다음
 				if(endPage<totalPage){%>
 					<li class="page-item">
-						<a class="page-link" href="searchList.jsp?search=<%=search %>&currentPage=<%=endPage+1%>&sort=<%=sort %>" style="color:black" aria-label="Next"><span aria-hidden="true">&raquo;</span></a>
+						<a class="page-link" href="index.jsp?main=search/searchList.jsp?search=<%=search %>&currentPage=<%=endPage+1%>&sort=<%=sort %>" style="color:black" aria-label="Next"><span aria-hidden="true">&raquo;</span></a>
 					</li>			
 				<%}
 			} else {
 				// 이전
 				if(startPage>1){%>
 					<li class="page-item">
-						<a class="page-link" href="searchList.jsp?search=<%=search %>&currentPage=<%=startPage-1%>" style="color:black;" aria-label="Previous"><span aria-hidden="true">&#10094;</span></a>
+						<a class="page-link" href="index.jsp?main=search/searchList.jsp?search=<%=search %>&currentPage=<%=startPage-1%>" style="color:black;" aria-label="Previous"><span aria-hidden="true">&#10094;</span></a>
 					</li>
 				<%}
 			
 				for(int pp=startPage; pp<=endPage; pp++){
 					if(pp==currentPage){%>
 						<li class="page-item active">
-							<a class="page-link" href="searchList.jsp?search=<%=search %>currentPage=<%=pp%>"><%=pp %></a>
+							<a class="page-link" href="index.jsp?main=search/searchList.jsp?search=<%=search %>currentPage=<%=pp%>"><%=pp %></a>
 						</li>
 					<%} else{%>
 						<li class="page-item">
-							<a class="page-link" href="searchList.jsp?search=<%=search %>&currentPage=<%=pp%>"><%=pp %></a>
+							<a class="page-link" href="index.jsp?main=search/searchList.jsp?search=<%=search %>&currentPage=<%=pp%>"><%=pp %></a>
 						</li>
 					<%}
 				}
@@ -281,7 +281,7 @@
 				// 다음
 				if(endPage<totalPage){%>	
 					<li class="page-item">
-						<a class="page-link" href="searchList.jsp?search=<%=search %>&currentPage=<%=endPage+1%>" style="color:black" aria-label="Next"><span aria-hidden="true">&#10095;</span></a>
+						<a class="page-link" href="index.jsp?main=search/searchList.jsp?search=<%=search %>&currentPage=<%=endPage+1%>" style="color:black" aria-label="Next"><span aria-hidden="true">&#10095;</span></a>
 					</li>			
 				<%}
 			}

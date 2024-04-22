@@ -63,7 +63,7 @@
 			//alert(pronum);
 			
 			// 디테일 페이지로 이동 #review
-			location.href="../product/detailpage.jsp?pro_num="+pronum;
+			location.href="index.jsp?main=product/detailpage.jsp?pro_num="+pronum;
 		});
 		
 		// 전체선택 클릭 시 모든 체크값 전달
@@ -223,7 +223,7 @@
 				if (startPage > 1) {
 				%>
 				<li class="page-item"><a class="page-link"
-					href="wishlist.jsp?&currentPage=<%=startPage - 1%>"style="color: black;" aria-label="Previous"><span aria-hidden="true">&#10094;</span></a></li>
+					href="index.jsp?main=wishlist/wishlist.jsp?&currentPage=<%=startPage - 1%>"style="color: black;" aria-label="Previous"><span aria-hidden="true">&#10094;</span></a></li>
 				<%
 				}
 	
@@ -231,7 +231,7 @@
 				if (endPage < totalPage) {
 				%>
 					<li class="page-item"><a class="page-link"
-						href="wishlist.jsp?currentPage=<%=endPage + 1%>"style="color: black" aria-label="Next"><span aria-hidden="true">&#10095;</span></a>
+						href="index.jsp?main=wishlistwishlist.jsp?currentPage=<%=endPage + 1%>"style="color: black" aria-label="Next"><span aria-hidden="true">&#10095;</span></a>
 					</li>
 				<%
 				}
@@ -251,7 +251,7 @@
 			<h3 style="padding: 75px;" align="center">WISH LIST</h3>
 			<div style="padding: 90px; font-size: 16px;" align="center">
 				<span style="font-size: 14px; color: #616161;">관심상품이 없습니다.</span> <br>
-				<div style="margin-top: 20px;"><a href="../product/productList.jsp?cate_num=1" style="color: white; background: #FF5C00; padding: 4px 35px; border-radius: 5px;">쇼핑하러가기</a></div>
+				<div style="margin-top: 20px;"><a href="index.jsp" style="color: white; background: #FF5C00; padding: 4px 35px; border-radius: 5px;">쇼핑하러가기</a></div>
 			</div>
 		</div>
 	<%}
