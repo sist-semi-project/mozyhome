@@ -48,7 +48,7 @@
 %>
 <body>
 	<div class="layout title">
-		<jsp:include page="layout/header2.jsp"></jsp:include>
+		<jsp:include page="header/header3.jsp"></jsp:include>
 	</div>
 	<div class="layout main">
 		<jsp:include page="<%=main%>"></jsp:include>
