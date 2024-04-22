@@ -3,105 +3,76 @@ package data.dto;
 import java.sql.Timestamp;
 
 public class OrderDto {
-	private String orderNum;
-    private String memNum;
-    private Timestamp orderDate;
-    private String orderStatus;
-    private String orderDeliveryRequest;
-    private String orderAddr;
-    private String orderName;
-    private String orderHp;
-    private int orderDeliveryFee;
-    private int orderTotalPayment;
+	private String order_num;
+    private String mem_num;
+    private Timestamp order_date;
+    private String order_status;
+    private String order_delivery_request;
+    private String order_addr;
+    private String order_name;
+    private String order_hp;
+    private int order_delivery_fee;
+    private int order_total_payment;
     
-    //상품 추가
-    private String productName;
-    private String productSize;
-    private String productColor;
-    private int productSu;
-    
-	public String getProductName() {
-		return productName;
+	public String getOrder_num() {
+		return order_num;
 	}
-	public void setProductName(String productName) {
-		this.productName = productName;
+	public void setOrder_num(String order_num) {
+		this.order_num = order_num;
 	}
-	public String getProductSize() {
-		return productSize;
+	public String getMem_num() {
+		return mem_num;
 	}
-	public void setProductSize(String productSize) {
-		this.productSize = productSize;
+	public void setMem_num(String mem_num) {
+		this.mem_num = mem_num;
 	}
-	public String getProductColor() {
-		return productColor;
+	public Timestamp getOrder_date() {
+		return order_date;
 	}
-	public void setProductColor(String productColor) {
-		this.productColor = productColor;
+	public void setOrder_date(Timestamp order_date) {
+		this.order_date = order_date;
 	}
-	public int getProductSu() {
-		return productSu;
+	public String getOrder_status() {
+		return order_status;
 	}
-	public void setProductSu(int productSu) {
-		this.productSu = productSu;
+	public void setOrder_status(String order_status) {
+		this.order_status = order_status;
 	}
-	public String getOrderNum() {
-		return orderNum;
+	public String getOrder_delivery_request() {
+		return order_delivery_request;
 	}
-	public void setOrderNum(String orderNum) {
-		this.orderNum = orderNum;
+	public void setOrder_delivery_request(String order_delivery_request) {
+		this.order_delivery_request = order_delivery_request;
 	}
-	public String getMemNum() {
-		return memNum;
+	public String getOrder_addr() {
+		return order_addr;
 	}
-	public void setMemNum(String memNum) {
-		this.memNum = memNum;
+	public void setOrder_addr(String order_addr) {
+		this.order_addr = order_addr;
 	}
-	public Timestamp getOrderDate() {
-		return orderDate;
+	public String getOrder_name() {
+		return order_name;
 	}
-	public void setOrderDate(Timestamp orderDate) {
-		this.orderDate = orderDate;
+	public void setOrder_name(String order_name) {
+		this.order_name = order_name;
 	}
-	public String getOrderStatus() {
-		return orderStatus;
+	public String getOrder_hp() {
+		return order_hp;
 	}
-	public void setOrderStatus(String orderStatus) {
-		this.orderStatus = orderStatus;
+	public void setOrder_hp(String order_hp) {
+		this.order_hp = order_hp;
 	}
-	public String getOrderDeliveryRequest() {
-		return orderDeliveryRequest;
+	public int getOrder_delivery_fee() {
+		return order_delivery_fee;
 	}
-	public void setOrderDeliveryRequest(String orderDeliveryRequest) {
-		this.orderDeliveryRequest = orderDeliveryRequest;
+	public void setOrder_delivery_fee(int order_delivery_fee) {
+		this.order_delivery_fee = order_delivery_fee;
 	}
-	public String getOrderAddr() {
-		return orderAddr;
+	public int getOrder_total_payment() {
+		return order_total_payment;
 	}
-	public void setOrderAddr(String orderAddr) {
-		this.orderAddr = orderAddr;
+	public void setOrder_total_payment(int order_total_payment) {
+		this.order_total_payment = order_total_payment;
 	}
-	public String getOrderName() {
-		return orderName;
-	}
-	public void setOrderName(String orderName) {
-		this.orderName = orderName;
-	}
-	public String getOrderHp() {
-		return orderHp;
-	}
-	public void setOrderHp(String orderHp) {
-		this.orderHp = orderHp;
-	}
-	public int getOrderDeliveryFee() {
-		return orderDeliveryFee;
-	}
-	public void setOrderDeliveryFee(int orderDeliveryFee) {
-		this.orderDeliveryFee = orderDeliveryFee;
-	}
-	public int getOrderTotalPayment() {
-		return orderTotalPayment;
-	}
-	public void setOrderTotalPayment(int orderTotalPayment) {
-		this.orderTotalPayment = orderTotalPayment;
-	}  
+   
 }

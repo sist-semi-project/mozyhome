@@ -1,3 +1,6 @@
+<%@page import="data.dto.ProductDto"%>
+<%@page import="data.dao.ProductDao"%>
+<%@page import="data.dao.MemberDao"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@page import="data.dao.OrderDetailDao"%>
@@ -8,23 +11,54 @@
 <%@page import="java.text.SimpleDateFormat"%>
 
 <%
+//문자 인코딩 설정
 request.setCharacterEncoding("utf-8");
 
-String orderStatus = ""; // 주문상태 변수 선언
-	
-// 주문 정보 파라미터 받기
-String memNum = request.getParameter("mem_num"); // 회원번호
-String orderName = request.getParameter("order_name"); // 받는 분 이름
-String orderHp = request.getParameter("order_hp");  // 받는 분 연락처 
-String orderDeliveryRequest = request.getParameter("order_delivery_request"); // 배송요청사항
-String orderAddress = request.getParameter("order_zipcode") + " " + request.getParameter("order_addr") + " " +request.getParameter("order_address_detail"); // 받는 분 주소
-String paymentMethod = request.getParameter("payment_method"); // 결제수단
+//회원 아이디
+String mem_id=(String)session.getAttribute("mem_id");
 
-//임시 설정
-int orderDeliveryFee = 0; // 배송비
-int orderTotalPayment = 100; // 총 결제 금액
-int orderDetailSu = 3; // 수량
-String proNum = "2"; // 상품번호
+//회원 번호
+MemberDao memberDao = new MemberDao();
+String memNum = memberDao.getNum(mem_id);
+
+// 주문 정보 파라미터 받기
+String orderName = request.getParameter("receiver_name"); // 받는 분 이름
+String orderHp = request.getParameter("receiver_hp");  // 받는 분 연락처 
+String orderDeliveryRequest = request.getParameter("order_delivery_request"); // 배송요청사항
+String orderAddress = request.getParameter("receiver_zipcode") + " " + request.getParameter("receiver_addr") + " " +request.getParameter("receiver_address_detail"); // 받는 분 주소
+String paymentMethod = request.getParameter("payment_method"); // 결제수단
+int deliveryFee = Integer.parseInt(request.getParameter("deliveryFee")); // 배송비
+int finalPayment = Integer.parseInt(request.getParameter("finalPayment")); // 최종 결제 금액
+String proNum = request.getParameter("pro_num"); // 상품 번호
+int proSu = Integer.parseInt(request.getParameter("pro_su")); // 상품 수
+String proColor = request.getParameter("pro_color"); // 상품 색
+String proSize = request.getParameter("pro_size"); // 상품 사이즈
+String orderStatus = ""; // 주문상태 변수 선언
+
+
+
+//주문 가능 여부
+ProductDao productDao = new ProductDao();
+ProductDto productDto = productDao.getProduct(proNum);
+int stockQuantity = productDto.getPro_stock(); // 재고량
+
+
+
+if (proSu <= stockQuantity) {
+ 	// 주문 가능한 경우: 재고량이 충분한 경우
+	productDao.updateStockQuantity(proNum, proSu);
+ 
+} else {
+ 	// 주문 불가능한 경우: 재고량이 부족한 경우
+	out.println("<script>");
+    out.println("alert('재고량이 부족하여 주문할 수 없습니다.');");
+    out.println("location.href='orderList.jsp';");
+    out.println("</script>");
+    return;
+}
+
+
+
 
 // 주문 번호 생성(날짜+순번)
 SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
@@ -46,7 +80,7 @@ if (paymentMethod.equals("credit_card")) {
 		pay_method : "card", // 결제 수단
 		merchant_uid : "<%=newOrderNumber%>", // 주문번호
 		name : "주문명:결제테스트", // 주문명
-		amount : <%=orderTotalPayment%>, // 결제 금액
+		amount : <%=finalPayment%>, // 결제 금액
 		//구매자 정보 ↓
 		buyer_email : "gildong@gmail.com",
 		buyer_name : "홍길동",
@@ -60,25 +94,27 @@ if (paymentMethod.equals("credit_card")) {
             orderStatus = "결제완료";
             //OrderDto 객체 생성 및 데이터 설정
             OrderDto orderDto = new OrderDto();
-            orderDto.setOrderNum(newOrderNumber);
-            orderDto.setMemNum(memNum);
-            orderDto.setOrderStatus(orderStatus);
-            orderDto.setOrderDeliveryRequest(orderDeliveryRequest);
-            orderDto.setOrderAddr(orderAddress);
-            orderDto.setOrderName(orderName);
-            orderDto.setOrderHp(orderHp);
-            orderDto.setOrderDeliveryFee(orderDeliveryFee);
-            orderDto.setOrderTotalPayment(orderTotalPayment);
+            orderDto.setOrder_num(newOrderNumber);
+            orderDto.setMem_num(memNum);
+            orderDto.setOrder_status(orderStatus);
+            orderDto.setOrder_delivery_request(orderDeliveryRequest);
+            orderDto.setOrder_addr(orderAddress);
+            orderDto.setOrder_name(orderName);
+            orderDto.setOrder_hp(orderHp);
+            orderDto.setOrder_delivery_fee(deliveryFee);
+            orderDto.setOrder_total_payment(finalPayment);
 
             //DAO를 이용한 데이터베이스 저장
             Orderdao.insertOrder(orderDto);
             
             //주문 상세(OrderDetailDto) 정보 저장
             OrderDetailDto orderDetailDto = new OrderDetailDto();
-            orderDetailDto.setMemNum(memNum);
-            orderDetailDto.setProNum(proNum);
-            orderDetailDto.setOrderNum(newOrderNumber);
-            orderDetailDto.setOrderDetailSu(orderDetailSu);
+            orderDetailDto.setMem_num(memNum);
+            orderDetailDto.setPro_num(proNum);
+            orderDetailDto.setOrder_num(newOrderNumber);
+            orderDetailDto.setOrder_size(proSize);
+            orderDetailDto.setOrder_color(proColor);
+            orderDetailDto.setOrder_detail_su(proSu);
 
             OrderDetailDao orderDetailDao = new OrderDetailDao();
             orderDetailDao.insertOrder(orderDetailDto);
@@ -99,24 +135,26 @@ if (paymentMethod.equals("credit_card")) {
 	
 	// 주문 정보 저장
 	OrderDto orderDto = new OrderDto();
-	orderDto.setOrderNum(newOrderNumber);
-	orderDto.setMemNum(memNum);
-	orderDto.setOrderStatus(orderStatus);
-	orderDto.setOrderDeliveryRequest(orderDeliveryRequest);
-	orderDto.setOrderAddr(orderAddress);
-	orderDto.setOrderName(orderName);
-	orderDto.setOrderHp(orderHp);
-	orderDto.setOrderDeliveryFee(orderDeliveryFee);
-	orderDto.setOrderTotalPayment(orderTotalPayment);
+    orderDto.setOrder_num(newOrderNumber);
+    orderDto.setMem_num(memNum);
+    orderDto.setOrder_status(orderStatus);
+    orderDto.setOrder_delivery_request(orderDeliveryRequest);
+    orderDto.setOrder_addr(orderAddress);
+    orderDto.setOrder_name(orderName);
+    orderDto.setOrder_hp(orderHp);
+    orderDto.setOrder_delivery_fee(deliveryFee);
+    orderDto.setOrder_total_payment(finalPayment);
 	
 	Orderdao.insertOrder(orderDto);
 	
 	// 주문 상세 정보 저장
 	OrderDetailDto orderDetailDto = new OrderDetailDto();
-	orderDetailDto.setMemNum(memNum);
-	orderDetailDto.setProNum(proNum);
-	orderDetailDto.setOrderNum(newOrderNumber);
-	orderDetailDto.setOrderDetailSu(orderDetailSu);
+	orderDetailDto.setMem_num(memNum);
+    orderDetailDto.setPro_num(proNum);
+    orderDetailDto.setOrder_num(newOrderNumber);
+    orderDetailDto.setOrder_size(proSize);
+    orderDetailDto.setOrder_color(proColor);
+    orderDetailDto.setOrder_detail_su(proSu);
 	
 	OrderDetailDao orderDetailDao = new OrderDetailDao();
 	orderDetailDao.insertOrder(orderDetailDto);

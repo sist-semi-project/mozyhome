@@ -43,6 +43,8 @@
 </head>
 
 <%
+//2024-04-19 추가 
+session.setAttribute("directPurchase", false);
 
 String id=(String)session.getAttribute("mem_id");
 System.out.println(id);
