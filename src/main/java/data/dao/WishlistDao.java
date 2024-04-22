@@ -102,5 +102,69 @@ public class WishlistDao {
 		}
 	}
 	
-
+	// 위시리스트 삭제 2
+		public void deleteWishlist2(String pro_num, String mem_num) {
+			Connection conn=db.getConnection();
+			PreparedStatement pstmt=null;
+			
+			String sql="delete from wishlist where pro_num=? and mem_num=?";
+			
+			try {
+				pstmt=conn.prepareStatement(sql);
+				pstmt.setString(1, pro_num);
+				pstmt.setString(2, mem_num);
+				pstmt.execute();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} finally {
+				db.dbClose(pstmt, conn);
+			}
+		}
+	
+	//위시리스트 체크 확인
+	public boolean checkWishlist(String mem_num, String pro_num) {
+		boolean b = false;
+		Connection conn=db.getConnection();
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		
+		String sql="select  wish_num from wishlist where mem_num=? and pro_num=?";
+		
+		try {
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setString(1, mem_num);
+			pstmt.setString(2, pro_num);
+			rs=pstmt.executeQuery();
+			
+			if(rs.next())
+				b=true;
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			db.dbClose(rs, pstmt, conn);
+		}
+		return b;
+	}
+	
+	public void insertWishlist(String mem_num, String pro_num) {
+		Connection conn=db.getConnection();
+		PreparedStatement pstmt=null;
+		
+		String sql="insert into wishlist values(null,?,?)";
+		
+		try {
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setString(1, mem_num);
+			pstmt.setString(2, pro_num);
+			pstmt.execute();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			db.dbClose(pstmt, conn);
+		} 
+	}
 }

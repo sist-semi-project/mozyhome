@@ -49,9 +49,9 @@ public class CartDao {
 		PreparedStatement pstmt=null;
 		ResultSet rs=null;
 		
-		String sql="select p.pro_name, p.pro_price, p.pro_main_img,c.cart_size,c.cart_color ,c.cart_su"
-				+ " from cart c, product p, member m"
-				+ " where c.mem_num=m.mem_num and c.pro_num=p.pro_num and m.mem_id=?";
+		String sql="select p.pro_name, p.pro_price, p.pro_main_img, c.cart_size, c.cart_color, c.cart_su, m.mem_num, p.pro_num "
+				+ " from cart c, product p, member m "
+				+ " where c.mem_num=m.mem_num and c.pro_num=p.pro_num and m.mem_id=? ";
 		
 		try {
 			pstmt=conn.prepareStatement(sql);
@@ -62,13 +62,16 @@ public class CartDao {
 			{
 				HashMap<String, String> map=new HashMap<String, String>();
 				
+				map.put("pro_num" , rs.getString("pro_num"));
 				map.put("pro_price", rs.getString("pro_price"));
 				map.put("pro_main_img", rs.getString("pro_main_img"));
 				map.put("cart_size", rs.getString("cart_size"));
 				map.put("cart_color", rs.getString("cart_color"));
 				map.put("pro_name", rs.getString("pro_name"));
 				map.put("cart_su", rs.getString("cart_su"));
-				
+				map.put("mem_num", rs.getString("mem_num"));
+				map.put("pro_num", rs.getString("pro_num")); // 2024-04-19 추가
+
 				list.add(map);
 				
 			}
@@ -89,14 +92,14 @@ public class CartDao {
 		PreparedStatement pstmt=null;
 		
 		String sql="DELETE FROM CART"
-				+ "WHERE pro_num IN ("
+				+ " WHERE pro_num IN ("
 				+ " SELECT pro_num"
 				+ " FROM ("
 				+ " SELECT pro_num, ROW_NUMBER() OVER(PARTITION BY pro_num ORDER BY pro_num) AS rn"
 				+ " FROM CART"
 				+ " ) AS t"
 				+ " WHERE t.rn > 1"
-				+ ")";
+				+ " )";
 		
 		try {
 			pstmt=conn.prepareStatement(sql);
@@ -110,5 +113,24 @@ public class CartDao {
 		}
 	}
 	
+
+	public void overlapProInsert() {
+		
+		Connection conn=db.getConnection();
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		
+		String sql="INSERT INTO CART (pro_num)"
+				+ " SELECT '?'"
+				+ " FROM dual"
+				+ "	 WHERE NOT EXISTS ("
+				+ "    SELECT 1"
+				+ "    FROM CART"
+				+ "    WHERE pro_num = '?'"
+				+ ")";
+		
+	}
+
+
 
 }

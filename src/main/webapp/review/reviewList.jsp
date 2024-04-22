@@ -20,47 +20,38 @@
 	//String pro_num=(String)session.getAttribute("pro_num");
 	String pro_num="210";
 
-	ReviewDao rdao=new ReviewDao();
-	List<HashMap<String,String>> list= rdao.getReview(pro_num);
+	ReviewDao dao=new ReviewDao();
 	
 	//페이지 번호 버튼
-	int totalCount=rdao.getTotalCount(pro_num);
-	int perPage=5;
-	int perBlock=5;
-	int startNum;
-	int startPage;
-	int endPage;
-	int currentPage;
-	int totalPage;
-	int no;
+	int totalCount=dao.getTotalCount(pro_num); //리스트 숫자
+	System.out.println(totalCount);
+	int perPage=5; //한 페이지의 리스트 숫자
+	int perBlock=5; //버튼 한줄의 숫자
 	
-	//현재페이지 읽는데 단 null일경우는 1페이지로 준다
+	int totalPage=totalCount/perPage+(totalCount%perPage==0?0:1); //총 페이지 나누기 perpage에 나머지가 있을때 btn 1+
+	int currentPage;
+	
+	//currentPage에 값 미리 할당해놓기
 	if(request.getParameter("currentPage")==null)
 		currentPage=1;
 	else
-		currentPage=Integer.parseInt(request.getParameter("currentPage"));
+		currentPage=Integer.parseInt(request.getParameter("currentPage")); 
 	
-	//총페이지수 구하기
-	totalPage=totalCount/perPage+(totalCount%perPage==0?0:1);
+	int startPage=(currentPage-1)/perBlock*perBlock+1; // 버튼 한줄의 시작 숫자
 	
-	//각블럭당 보여질 시작페이지
-	startPage=(currentPage-1)/perBlock*perBlock+1;
-	endPage=startPage+perBlock-1;
+	int startList=(currentPage-1)*perPage;
 	
-	//마지막 페이지
-	if(endPage>totalPage)
-		endPage=totalPage;
+	List<HashMap<String,String>>list=dao.getReview(pro_num, startList, perPage); //버튼 한줄의 시작숫자부터 5개의 리스트 목록
 	
-	//각페이지에서 보여질 시작번호
-	startNum=(currentPage-1)*perPage;
+	int endPage=startPage+perBlock-1; //버튼 한줄의 마지막 숫자
 	
-	//각페이지당 출력할 시작번호
-	startNum=(currentPage-1)*perPage;
-		
+
+	
+	
 %>
 <body>
 
-<!-- 리뷰 리스트 목차 -->
+<!-- 리뷰 리스트 목차 ------------------------------------------>
 <h4>REVIEW</h4>
 	<div>
 		<table>
@@ -72,15 +63,32 @@
 				<th>SCORE</th>
 			</tr>
 			
-			<!-- 리뷰 리스트 출력 -->
+<!--리뷰 리스트 출력 ------------------------------------------->
 				<%for(int i=0; i<list.size();i++)
 				{
 					HashMap<String,String> map=list.get(i);
 				%>
 			<tr>
 				<td><%= i+1 %></td>
+				<td>
+				<%
+				String review_Pyung_str = map.get("review_pyung");
+			    int review_Pyung = 0;
+			    try {
+			        review_Pyung = Integer.parseInt(review_Pyung_str);
+			    } catch (NumberFormatException e) {
+			        // 변환에 실패한 경우 기본값인 0으로 설정
+			    }
+			    
+			    int starCount = review_Pyung;
+
+			    // 별 출력
+			    for (int j = 0; j < starCount; j++) {
+			        out.print("★");
+			    }
+				%>
+				</td>
 				<td><%=map.get("review_subject") %></td>
-				<td><%=map.get("review_pyung") %></td>
 				<td><%=map.get("mem_id") %></td>
 				<td><%=map.get("review_writeday") %></td>
 			</tr>
@@ -88,14 +96,50 @@
 				%>
 		</table>
 	</div>
-	<div>
-	 <ul>
-	 	<li><a class="page_next" href="index.jsp"></a></li>
-	 	<li></li>
-	 	<li></li>
-	 	<li></li>
-	 	<li></li>
-	 </ul>
-	</div>
+
+	
+<!-- 페이지 번호 출력 ---------------------------------------------------------------->
+<div style="margin: 50px 100px; width: 800px;">
+<h6><b><%=totalCount %>개의 게시글이 있습니다</b></h6>
+<ul class="pagination justify-content-center">
+<%
+// 이전 페이지로 이동 링크
+if (startPage > 1) {
+%>
+    <li class="">
+        <a class="" href="reviewList.jsp?currentPage=<%=startPage-1%>" style="color: black;">
+            <i class="bi bi-arrow-left"></i>
+        </a>
+    </li>
+<%
+}
+
+// 페이지 번호 출력
+for (int pp = startPage; pp <= endPage; pp++) {
+%>
+    <li class="">
+        <a class="<%= (pp == currentPage) ? "active" : "" %>" href="reviewList.jsp?currentPage=<%=pp%>">
+            <%=pp %>
+        </a>
+    </li>
+<%
+}
+
+// 다음 페이지로 이동 링크
+if (endPage < totalPage) {
+%>
+    <li class="">
+        <a class="" href="reviewList.jsp?currentPage=<%=endPage+1%>" style="color: black;">
+            <i class="bi bi-arrow-right"></i>
+        </a>
+    </li>
+<%
+}
+%>
+</ul>
+  
+  
+</div>
+>>>>>>> branch 'bumsu' of https://github.com/sist-semi-project/mozyhome.git
 </body>
 </html>

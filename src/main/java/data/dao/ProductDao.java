@@ -9,6 +9,7 @@ import java.util.List;
 
 import data.dto.ProductDto;
 import db.DbConnect;
+import oracle.jdbc.proxy.annotation.Pre;
 
 import java.util.*;
 import com.amazonaws.AmazonServiceException;
@@ -473,6 +474,32 @@ public class ProductDao {
 		}
 		return delCount;
 	}
+	
+	// 2024-04-22 추가
+	// 상품의 재고량 업데이트
+    public boolean updateStockQuantity(String proNum, int quantity) {
+    	Connection conn = db.getConnection();
+        PreparedStatement pstmt = null;
+        boolean success = false;
+        
+        try {
+            String sql = "UPDATE product SET pro_stock = pro_stock - ? WHERE pro_num = ?";
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setInt(1, quantity);
+            pstmt.setString(2, proNum);
+            
+            int rowsAffected = pstmt.executeUpdate();
+            if (rowsAffected > 0) {
+                success = true;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+        	db.dbClose(pstmt, conn);
+        }
+        
+        return success;
+    }
 
 	public ProductDto getOneProduct(String num) {
 		ProductDto dto=new ProductDto();
@@ -627,7 +654,7 @@ public class ProductDao {
 	{
 		Connection conn=db.getConnection();
 		PreparedStatement pstmt=null;
-
+    
 		StringBuilder sql = new StringBuilder("UPDATE product SET ");
 		ArrayList<Object> params = new ArrayList<>(); //파라미터 값을 담을 리스트
 
@@ -691,4 +718,5 @@ public class ProductDao {
 			db.dbClose(pstmt, conn);
 		}
 	}
+
 }

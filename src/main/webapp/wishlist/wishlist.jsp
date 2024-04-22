@@ -115,10 +115,10 @@
 </head>
 <%
 	//0415 로그인 세션
-	session.setAttribute("mem_id","dragon");
-	session.setAttribute("loginok","");	
+	//session.setAttribute("myid","dragon");
+	//session.setAttribute("loginok","");	
 	String loginok=(String)session.getAttribute("loginok");
-	String mem_id=(String)session.getAttribute("mem_id");
+	String mem_id=(String)session.getAttribute("myid");
 	
 	WishlistDao wdao=new WishlistDao();
 
@@ -170,9 +170,9 @@
 <body>
 <%
 	// 로그인이 되어있을 때 위시리스트 접근 가능
-	if(loginok!=null){%>
+	if(loginok!=null && totalCount>0){%>
 
-		<div style="margin:50px 300px; width:600px">
+		<div style="margin:0 auto; width:600px">
 			<h3 style="padding: 75px;" align="center">WISH LIST</h3>
 			<table align="center" class="table">
 			<div style="padding: 8px;">
@@ -223,7 +223,7 @@
 				if (startPage > 1) {
 				%>
 				<li class="page-item"><a class="page-link"
-					href="wishlist.jsp?&currentPage=<%=startPage - 1%>"style="color: black;" aria-label="Previous"><spanaria-hidden="true">&#10094;</span></a></li>
+					href="wishlist.jsp?&currentPage=<%=startPage - 1%>"style="color: black;" aria-label="Previous"><span aria-hidden="true">&#10094;</span></a></li>
 				<%
 				}
 	
@@ -243,10 +243,18 @@
 		
 		<%
 
-	} else {
-		// 로그인 페이지로 전달
+	} else if(loginok==null) {
+		%><h4>로그인페이지로 전달</h4><%
 		//response.sendRedirect("../로그인페이지로 전달");
-	}
+	} else {%>
+		<div style="margin:0 auto; width:600px">
+			<h3 style="padding: 75px;" align="center">WISH LIST</h3>
+			<div style="padding: 90px; font-size: 16px;" align="center">
+				<span style="font-size: 14px; color: #616161;">관심상품이 없습니다.</span> <br>
+				<div style="margin-top: 20px;"><a href="../product/productList.jsp?cate_num=1" style="color: white; background: #FF5C00; padding: 4px 35px; border-radius: 5px;">쇼핑하러가기</a></div>
+			</div>
+		</div>
+	<%}
 
 
 
