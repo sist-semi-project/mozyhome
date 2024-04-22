@@ -13,8 +13,6 @@
 <style type="text/css">
 	div.title{
 		width:100%;
-		padding-top: 30px;
-		padding-bottom: 30px;
 		font-size: 20px;
 		font-family: 'Noto Sans KR';
 		text-align: center;
@@ -23,10 +21,11 @@
 	}
 	
 	div.main{
-		height:2000px;
 		font-size: 14pt;
 		font-family: 'Noto Sans KR';
 		border: 0px groove purple;
+		text-decoration: none;
+		color:black;
 	}
 	
 	div.footer{
@@ -36,7 +35,6 @@
 </style>
 
 </head>
-<body>
 
 <%
 	String main = "/layout/main.jsp";
@@ -50,7 +48,7 @@
 		<jsp:include page="header/header3.jsp"></jsp:include>
 	</div>
 	<div class="layout main">
-		<jsp:include page="<%=main%>"></jsp:include>
+		<jsp:include page="<%=main %>"></jsp:include>
 	</div>
 	<div class="layout footer">
 		<jsp:include page="layout/footer.jsp"></jsp:include>

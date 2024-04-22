@@ -65,7 +65,7 @@
 			//alert(pronum);
 			
 			// 디테일 페이지로 이동 #review
-			location.href="../product/detailpage.jsp?pro_num="+pronum;
+			location.href="index.jsp?main=product/detailpage.jsp?pro_num="+pronum;
 		});
 		
 		// 부모카테고리 클릭 시
@@ -73,8 +73,8 @@
 			var pCatenum=$(this).attr("pCateNum");
 			//alert(pCatenum);
 			
-			//location.href="index.jsp?main=product/productList.jsp?cate_num="+pCatenum;
-			location.href="../product/productList.jsp?cate_num="+pCatenum;
+			location.href="index.jsp?main=product/productList.jsp?cate_num="+pCatenum;
+			//location.href="../product/productList.jsp?cate_num="+pCatenum;
 		});
 		
 		// 자식카테고리 클릭 시
@@ -82,8 +82,8 @@
 			var cateNum=$(this).attr("cateNum");
 			//alert(cateNum);
 			
-			//location.href="index.jsp?main=product/productList.jsp?cate_num="+cateNum;
-			location.href="../product/productList.jsp?cate_num="+cateNum;
+			location.href="index.jsp?main=product/productList.jsp?cate_num="+cateNum;
+			//location.href="../product/productList.jsp?cate_num="+cateNum;
 		});
 		
 		// 정렬 콤보박스 클릭 시
@@ -215,7 +215,7 @@
 	// --------------------------------------------------------------------------		
 %>
 <body>
-<div style="margin:50px 100px; width:1400px">
+<div style="margin:0 auto; width:1400px">
 	<table>
 		<div style="margin:100px 0px 10px 15px; float:left;">
 			<a class="pCate" pCateNum="<%=pcdto.getCate_num() %>"><%=pcdto.getCate_name() %></a> 

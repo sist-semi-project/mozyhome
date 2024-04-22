@@ -24,7 +24,7 @@
 	    position: absolute;
 	    display: none;
 	    background-color: #F9F8F6;
-	    z-index: 1;
+	    z-index: 100;
 	    justify-content: center; /* 수평 가운데 정렬 */
 	    align-items: center; /* 수직 가운데 정렬 */
 	    display: flex; /* 부모 요소를 플렉스 박스로 설정합니다. */    

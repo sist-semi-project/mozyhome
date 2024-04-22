@@ -77,6 +77,7 @@
 </script>
 </head>
 <%
+	request.setCharacterEncoding("utf-8");
 	//0415 로그인 세션
 	//session.setAttribute("mem_id","dragon");
 	//session.setAttribute("loginok","yes");	
@@ -161,7 +162,7 @@
 	// --------------------------------------------------------------------------
 %>
 <body>
-<div style="margin:50px 100px; width:1400px">
+<div style="margin:0 auto; width:1400px">
 	<table>
 		<div style="margin:100px 0px 10px 15px; float:left;">
 		총 <b><%=totalCount %></b>개의 상품

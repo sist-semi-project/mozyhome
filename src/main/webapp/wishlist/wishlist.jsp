@@ -172,7 +172,7 @@
 	// 로그인이 되어있을 때 위시리스트 접근 가능
 	if(loginok!=null && totalCount>0){%>
 
-		<div style="margin:50px 300px; width:600px">
+		<div style="margin:0 auto; width:600px">
 			<h3 style="padding: 75px;" align="center">WISH LIST</h3>
 			<table align="center" class="table">
 			<div style="padding: 8px;">
@@ -247,7 +247,7 @@
 		%><h4>로그인페이지로 전달</h4><%
 		//response.sendRedirect("../로그인페이지로 전달");
 	} else {%>
-		<div style="margin:50px 300px; width:600px">
+		<div style="margin:0 auto; width:600px">
 			<h3 style="padding: 75px;" align="center">WISH LIST</h3>
 			<div style="padding: 90px; font-size: 16px;" align="center">
 				<span style="font-size: 14px; color: #616161;">관심상품이 없습니다.</span> <br>
