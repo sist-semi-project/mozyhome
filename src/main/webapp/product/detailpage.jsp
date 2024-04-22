@@ -141,9 +141,8 @@ session.setAttribute("loginok","yes");
 //2024-04-19 추가 
 session.setAttribute("directPurchase", true);
 
-//String pro_num = request.getParameter("pro_num");
+String pro_num = request.getParameter("pro_num");
 
-String pro_num = "322";
 String loginok = (String) session.getAttribute("loginok");
 String mem_id = (String) session.getAttribute("mem_id");
 
@@ -163,7 +162,7 @@ boolean existwish = wdao.checkWishlist(mem_num, pro_num);
 %>
 
 <body>
-	<form action="../order/orderForm.jsp"  id="form1">
+	<form action=""  id="form1">
 
 		<!-- cart 데이터에 넣을 mem_num, pro_num -->
 		<input type="hidden" name="mem_num" value="<%=mem_num%>"> <input
@@ -259,7 +258,7 @@ boolean existwish = wdao.checkWishlist(mem_num, pro_num);
 
 		<div class="btndiv">
 
-			<button name="heart" class="heart"  >
+			<button name="heart" class="heart"  id="heart" type="button">
 				<%
 				if (existwish == true) {
 				%>
@@ -275,7 +274,7 @@ boolean existwish = wdao.checkWishlist(mem_num, pro_num);
 				%>
 			</button>
 
-			<button name="cart" class="cart" type="button">
+			<button name="cart" class="cart" type="button" >
 				<i class="bi bi-cart" style="font-size: 25px;"></i>
 			</button>
 
@@ -284,7 +283,7 @@ boolean existwish = wdao.checkWishlist(mem_num, pro_num);
 			String pro_status = pdto.getPro_sale_status();
 			if (pro_status.equals("판매중")) {
 			%>
-			<button name="buynow" class="buynow">BUY NOW</button>
+			<button name="buynow" class="buynow"  >BUY NOW</button>
 			<%
 			} else if (pro_status.equals("품절")) {
 			%>
@@ -296,13 +295,13 @@ boolean existwish = wdao.checkWishlist(mem_num, pro_num);
 			<%
 			}
 			%>
-			<button class="infobtn"  >DESCRIPTION</button>
+			<button class="infobtn" type="button">DESCRIPTION</button>
 			<div class="description" style="display: none;"><%=pdto.getPro_explain()%></div>
 			<br>
-			<button class="infobtn">PRODUCT DETAIL</button>
+			<button class="infobtn" type="button">PRODUCT DETAIL</button>
 			<div  class="description" style="display: none;"><%=pdto.getPro_explain()%></div>
 			<br>
-			<button class="infobtn">SHOPPING GUIDE</button>
+			<button class="infobtn" type="button">SHOPPING GUIDE</button>
 			<div class="description" style="display: none;"><%=pdto.getPro_explain()%></div>
 			<br>
 		</div>
@@ -314,6 +313,7 @@ boolean existwish = wdao.checkWishlist(mem_num, pro_num);
 	<!-- 장바구니 버튼 함수-->
 	<script type="text/javascript">
 	$(document).ready(function() {
+		
 		
 		//상품 상세설명 버튼 3개
 		
@@ -356,20 +356,20 @@ boolean existwish = wdao.checkWishlist(mem_num, pro_num);
 				type : "post",
 				dataType : "html",
 				data : cartdata,
-				url : "/mozyhome/product/detailprocess.jsp",
+				url : "product/detailprocess.jsp",
 				success : function() {
 
 					var a = confirm("장바구니에 저장하였습니다\n장바구니로 이동하려면 [확인]을 눌러주세요");
 
 					if (a) {
-						location.href = "/mozyhome/cart/mycart.jsp";
+						location.href = "index.jsp?main=cart/mycart.jsp";
 					}
 				}
 			})
 		})
 
 		//위시리스트 버튼 함수
-		$(".heart").click(function() {
+		$("#heart").click(function() {
 			var login="<%=loginok%>";
 
 			if (login == "null") {
@@ -386,11 +386,19 @@ boolean existwish = wdao.checkWishlist(mem_num, pro_num);
 			
 			$.ajax({
 				type:"post",
-				dataType: "html",
-				data: {existwish:existwish, pro_num:pro_num, mem_num:mem_num},
-				url: "/mozyhome/product/wishProccess.jsp",
-				success: function(){
-					alert("sucess");
+				dataType: "json",
+				data: { pro_num:pro_num, mem_num:mem_num},
+				url: "product/wishProccess.jsp",
+				success: function(res){
+					console.log({res});
+					
+					if (res.status) {
+		                $("#heart").html('<i class="bi bi-suit-heart-fill" style="font-size: 25px; color: #FF5C00;"></i>');
+		            } else {
+		                $("#heart").html('<i class="bi bi-suit-heart" style="font-size: 25px; color: #FF5C00;"></i>');
+		            }
+					
+					
 				},
 				 error: function(xhr, status, error) {
 				        console.error("AJAX 오류: ", error);
@@ -400,7 +408,8 @@ boolean existwish = wdao.checkWishlist(mem_num, pro_num);
 		})
 		
 		//BUY NOW 버튼 함수
-		$(".buynow").click(function(){
+		$(".buynow").click(function(e){
+			e.preventDefault();
 			var login="<%=loginok%>";
 
 						if (login == "null") {
@@ -425,12 +434,13 @@ boolean existwish = wdao.checkWishlist(mem_num, pro_num);
 
 						$.ajax({
 							type:"post",
-							dataType: "html",
+							dataType: "json",
 							data: {pro_num:pro_num, pro_su:pro_su, pro_color:pro_color, pro_size:pro_size},
-							url: "/mozyhome/order/orderForm.jsp",
-							success: function(){
+							url: "index.jsp?main=order/orderForm.jsp",
+							success: function(res){
+								alert("hi");
+								location.href = "mozyhome/index.jsp?main=/order/orderForm.jsp";
 								
-								location.href = "/mozyhome/order/orderForm.jsp";
 							},
 							 error: function(xhr, status, error) {
 							        console.error("AJAX 오류: ", error);
