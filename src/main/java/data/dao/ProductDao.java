@@ -16,6 +16,7 @@ import com.amazonaws.AmazonServiceException;
 import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.model.PutObjectRequest;
 import com.oreilly.servlet.MultipartRequest;
+import oracle.jdbc.proxy.annotation.Pre;
 import org.apache.commons.lang3.StringUtils;
 import java.sql.SQLException;
 import java.util.Vector;
@@ -29,6 +30,7 @@ public class ProductDao {
 	private static final Map<String, String> CATEGORY_MAP = new HashMap<>();
 	private static final Map<String, String> R_CATEGORY_MAP = new HashMap<>();
 	private static final Map<String, String> SALE_STATUS_MAP = new HashMap<>();
+	private static final Map<String, String> R_SALE_STATUS_MAP = new HashMap<>();
 
 	static {
 		CATEGORY_MAP.put("1", "거실");
@@ -63,6 +65,10 @@ public class ProductDao {
 		SALE_STATUS_MAP.put("on_sale","판매중");
 		SALE_STATUS_MAP.put("out_of_stock","품절");
 		SALE_STATUS_MAP.put("discontinued","단종");
+
+		R_SALE_STATUS_MAP.put("판매중","on_sale");
+		R_SALE_STATUS_MAP.put("품절","out_of_stock");
+		R_SALE_STATUS_MAP.put("단종","discontinued");
 	}
 
 
@@ -330,6 +336,10 @@ public class ProductDao {
 		return SALE_STATUS_MAP.getOrDefault(saleStatus, "판매중");
 	}
 
+	public static String getSalesCodes(String saleStatus) {
+		return R_SALE_STATUS_MAP.getOrDefault(saleStatus, "on_sale");
+	}
+
 
 	public List<ProductDto> getFilteredProducts(Map<String, Object> sqlParams) {
 		List<ProductDto> list = new ArrayList<>();
@@ -464,6 +474,249 @@ public class ProductDao {
 		}
 		return delCount;
 	}
-
 	
+	// 2024-04-22 추가
+	// 상품의 재고량 업데이트
+    public boolean updateStockQuantity(String proNum, int quantity) {
+    	Connection conn = db.getConnection();
+        PreparedStatement pstmt = null;
+        boolean success = false;
+        
+        try {
+            String sql = "UPDATE product SET pro_stock = pro_stock - ? WHERE pro_num = ?";
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setInt(1, quantity);
+            pstmt.setString(2, proNum);
+            
+            int rowsAffected = pstmt.executeUpdate();
+            if (rowsAffected > 0) {
+                success = true;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+        	db.dbClose(pstmt, conn);
+        }
+        
+        return success;
+    }
+
+	public ProductDto getOneProduct(String num) {
+		ProductDto dto=new ProductDto();
+
+		Connection conn = db.getConnection();
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+
+		String sql = "select p.pro_num,c.parent_cate_num parent_cate_num, p.cate_num, p.pro_name, p.pro_explain, p.pro_stock, p.pro_price, p.pro_size,\n" +
+				" p.pro_color, p.pro_main_img, p.pro_sub_img1, p.pro_sub_img2, p.pro_sub_img3, p.pro_sub_img4, p.pro_sub_img5, p.pro_sale_status\n" +
+				" from product p \n" +
+				" join category c on p.cate_num = c.cate_num \n" +
+				"where p.pro_num = ?;";
+
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, num);
+
+			rs = pstmt.executeQuery();
+
+			while(rs.next()) {
+				dto.setPro_num(rs.getString("p.pro_num"));
+				dto.setParent_cate_num(rs.getString("parent_cate_num"));
+				dto.setCate_num(rs.getString("p.cate_num"));
+				dto.setPro_name(rs.getString("p.pro_name"));
+				dto.setPro_explain(rs.getString("p.pro_explain"));
+				dto.setPro_stock(rs.getInt("p.pro_stock"));
+				dto.setPro_price(rs.getInt("p.pro_price"));
+				dto.setPro_size(rs.getString("p.pro_size"));
+				dto.setPro_color(rs.getString("p.pro_color"));
+				dto.setPro_main_img(rs.getString("p.pro_main_img"));
+				dto.setPro_sub_img1(rs.getString("p.pro_sub_img1"));
+				dto.setPro_sub_img2(rs.getString("p.pro_sub_img2"));
+				dto.setPro_sub_img3(rs.getString("p.pro_sub_img3"));
+				dto.setPro_sub_img4(rs.getString("p.pro_sub_img4"));
+				dto.setPro_sub_img5(rs.getString("p.pro_sub_img5"));
+				dto.setPro_sale_status(rs.getString("p.pro_sale_status"));
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			db.dbClose(rs, pstmt, conn);
+		}
+		return dto;
+	}
+
+	public ProductDto getOneProductDetail(String num) {
+		ProductDto dto=new ProductDto();
+
+		Connection conn = db.getConnection();
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+
+		String sql = "select p.pro_num,c.parent_cate_num parent_cate_num, p.cate_num, p.pro_name, p.pro_explain, p.pro_stock, p.pro_price, p.pro_size,\n" +
+				"p.pro_color, p.pro_main_img, p.pro_sub_img1, p.pro_sub_img2, p.pro_sub_img3, p.pro_sub_img4, p.pro_sub_img5, p.pro_sale_status,\n" +
+				"p.pro_create_date, IFNULL(SUM(o.order_detail_su), 0) AS sale_volume,\n" +
+				"count(distinct w.wish_num) as wishcount, count(distinct r.review_num) as reviewcount\n" +
+				"from product p\n" +
+				"join category c on p.cate_num = c.cate_num\n" +
+				"left join order_detail AS o ON p.pro_num = o.pro_num\n" +
+				"LEFT JOIN review r ON p.pro_num = r.pro_num\n" +
+				"LEFT JOIN wishlist w ON p.pro_num = w.pro_num\n" +
+				"group by p.pro_num\n" +
+				"having p.pro_num = ?;";
+
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, num);
+
+			rs = pstmt.executeQuery();
+
+			while(rs.next()) {
+				dto.setPro_num(rs.getString("p.pro_num"));
+				dto.setParent_cate_num(rs.getString("parent_cate_num"));
+				dto.setCate_num(rs.getString("p.cate_num"));
+				dto.setPro_name(rs.getString("p.pro_name"));
+				dto.setPro_explain(rs.getString("p.pro_explain"));
+				dto.setPro_stock(rs.getInt("p.pro_stock"));
+				dto.setPro_price(rs.getInt("p.pro_price"));
+				dto.setPro_size(rs.getString("p.pro_size"));
+				dto.setPro_color(rs.getString("p.pro_color"));
+				dto.setPro_main_img(rs.getString("p.pro_main_img"));
+				dto.setPro_sub_img1(rs.getString("p.pro_sub_img1"));
+				dto.setPro_sub_img2(rs.getString("p.pro_sub_img2"));
+				dto.setPro_sub_img3(rs.getString("p.pro_sub_img3"));
+				dto.setPro_sub_img4(rs.getString("p.pro_sub_img4"));
+				dto.setPro_sub_img5(rs.getString("p.pro_sub_img5"));
+				dto.setPro_sale_status(rs.getString("p.pro_sale_status"));
+				dto.setPro_create_date(rs.getTimestamp("p.pro_create_date"));
+				dto.setPro_sale_volume(rs.getInt("sale_volume"));
+				dto.setWishCount(rs.getInt("wishcount"));
+				dto.setReviewCount(rs.getInt("reviewcount"));
+
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			db.dbClose(rs, pstmt, conn);
+		}
+		return dto;
+	}
+
+	public String getMainImage(String num) {
+		String mainImageUrl = "";
+
+		Connection conn = db.getConnection();
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+
+		String sql = "select pro_main_img from product where pro_num = ?;";
+
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, num);
+
+			rs = pstmt.executeQuery();
+
+			while(rs.next()) {
+				mainImageUrl =  rs.getString(1);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			db.dbClose(rs, pstmt, conn);
+		}
+		return mainImageUrl;
+	}
+
+	// 업데이트용 파일 업로드 및 URL 반환 함수 시작
+	public String updateFileToS3(File file, AmazonS3 s3Client, String bucketName) {
+		if (file != null) {
+			String fileKey = "product/" + file.getName(); // S3에서의 파일 경로 및 이름 설정
+
+			try {
+				// 파일을 S3 버킷에 업로드
+				s3Client.putObject(new PutObjectRequest(bucketName, fileKey, file));
+
+				// 업로드된 파일의 URL 반환
+				return s3Client.getUrl(bucketName, fileKey).toString();
+			} catch (AmazonServiceException e) {
+				System.err.println(e.getErrorMessage());
+				return null;
+			}
+		}
+		return null;
+	}
+
+	//상품 수정
+	public void updateProduct(ProductDto dto)
+	{
+		Connection conn=db.getConnection();
+		PreparedStatement pstmt=null;
+    
+		StringBuilder sql = new StringBuilder("UPDATE product SET ");
+		ArrayList<Object> params = new ArrayList<>(); //파라미터 값을 담을 리스트
+
+		sql.append("cate_num = ?, ");
+		params.add(dto.getCate_num());
+		sql.append("pro_name = ?, ");
+		params.add(dto.getPro_name());
+		sql.append("pro_explain = ?, ");
+		params.add(dto.getPro_explain());
+		sql.append("pro_stock = ?, ");
+		params.add(dto.getPro_stock());
+		sql.append("pro_price = ?, ");
+		params.add(dto.getPro_price());
+		sql.append("pro_size = ?, ");
+		params.add(dto.getPro_size());
+		sql.append("pro_color = ?, ");
+		params.add(dto.getPro_color());
+		sql.append("pro_sale_status = ?");
+		params.add(dto.getPro_sale_status());
+
+
+		if (dto.getPro_main_img() != null) {
+			sql.append(",pro_main_img = ?");
+			params.add(dto.getPro_main_img());
+		}
+		if (dto.getPro_sub_img1() != null) {
+			sql.append(",pro_sub_img1 = ?");
+			params.add(dto.getPro_sub_img1());
+		}
+		if (dto.getPro_sub_img2() != null) {
+			sql.append(",pro_sub_img2 = ?");
+			params.add(dto.getPro_sub_img2());
+		}
+		if (dto.getPro_sub_img3() != null) {
+			sql.append(",pro_sub_img3 = ?");
+			params.add(dto.getPro_sub_img3());
+		}
+		if (dto.getPro_sub_img4() != null) {
+			sql.append(",pro_sub_img4 = ?");
+			params.add(dto.getPro_sub_img4());
+		}
+		if (dto.getPro_sub_img5() != null) {
+			sql.append(",pro_sub_img5 = ?");
+			params.add(dto.getPro_sub_img5());
+		}
+
+		// 마지막 WHERE 조건 추가
+		sql.append(" WHERE pro_num = ?");
+		params.add(dto.getPro_num());
+
+		try {
+			pstmt = conn.prepareStatement(sql.toString());
+			for (int i = 0; i < params.size(); i++) {
+				pstmt.setObject(i + 1, params.get(i));
+			}
+			pstmt.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			db.dbClose(pstmt, conn);
+		}
+	}
+
 }

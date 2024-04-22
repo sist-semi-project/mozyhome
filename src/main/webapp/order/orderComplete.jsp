@@ -1,3 +1,4 @@
+<%@page import="data.dao.MemberDao"%>
 <%@page import="data.dto.OrderDto"%>
 <%@page import="data.dao.OrderDao"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -13,17 +14,25 @@
 </head>
 <body>
 <%
+String mem_id = (String) session.getAttribute("mem_id"); 
+
+//MemberDao 인스턴스 생성
+MemberDao memberDao = new MemberDao();
+
+String memName = memberDao.getName(mem_id);
+System.out.println(memName);
+
 String orderNumber = request.getParameter("orderNumber");
 OrderDao dao=new OrderDao();
 OrderDto dto=dao.getOneData(orderNumber);
 %>
-<h2>주문이 완료되었습니다.</h2>
+<h2><%=memName %>님의 주문이 완료되었습니다.</h2>
 
-<p>주문 번호: <%=dto.getOrderNum() %></p>
-<p>결제금액: <%=dto.getOrderTotalPayment() %></p>
-<p>받는 사람: <%=dto.getOrderName() %></p>
-<p>주소: <%=dto.getOrderAddr() %></p>
-<p>연락처: <%=dto.getOrderHp() %></p>
-<p>배송요청: <%=dto.getOrderDeliveryRequest() %></p>
+<p>주문 번호: <%=dto.getOrder_num() %></p>
+<p>결제금액: <%=dto.getOrder_total_payment() %></p>
+<p>받는 사람: <%=dto.getOrder_name() %></p>
+<p>주소: <%=dto.getOrder_addr() %></p>
+<p>연락처: <%=dto.getOrder_hp() %></p>
+<p>배송요청: <%=dto.getOrder_delivery_request() %></p>
 </body>
 </html>

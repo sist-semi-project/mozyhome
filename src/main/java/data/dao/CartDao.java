@@ -70,7 +70,8 @@ public class CartDao {
 				map.put("pro_name", rs.getString("pro_name"));
 				map.put("cart_su", rs.getString("cart_su"));
 				map.put("mem_num", rs.getString("mem_num"));
-				
+				map.put("pro_num", rs.getString("pro_num")); // 2024-04-19 추가
+
 				list.add(map);
 				
 			}

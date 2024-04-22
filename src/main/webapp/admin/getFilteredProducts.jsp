@@ -58,8 +58,6 @@
     sqlParams.put("endDate", endDate);
     sqlParams.put("productName", productName);
 
- /*   System.out.println("params:"+sqlParams);
-    dao.testjson(sqlParams);*/
 
     List<ProductDto> list = new ArrayList<ProductDto>();
     list = dao.getFilteredProducts(sqlParams);

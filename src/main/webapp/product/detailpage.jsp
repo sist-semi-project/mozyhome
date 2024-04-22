@@ -131,10 +131,15 @@ hr {
 </head>
 
 <%
-session.setAttribute("directPurchase", true);
-
+  
 session.setAttribute("mem_id", "dragon");
 session.setAttribute("loginok", "yes");
+
+session.setAttribute("mem_id","must12");
+session.setAttribute("loginok","yes");
+
+//2024-04-19 추가 
+session.setAttribute("directPurchase", true);
 
 //String pro_num = request.getParameter("pro_num");
 
@@ -158,7 +163,8 @@ boolean existwish = wdao.checkWishlist(mem_num, pro_num);
 %>
 
 <body>
-	<form id="form1" >
+	<form action="../order/orderForm.jsp"  id="form1">
+
 		<!-- cart 데이터에 넣을 mem_num, pro_num -->
 		<input type="hidden" name="mem_num" value="<%=mem_num%>"> <input
 			type="hidden" name="pro_num" value="<%=pro_num%>">
