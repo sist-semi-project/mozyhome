@@ -30,9 +30,20 @@
 	}
 	
 	.swiper-pagination-bullet {
-  		background: black !important;
+		opacity: 0.7;
+  		background: white !important;
   		padding: 1px 50px;
   		border-radius: 0px;
+	}
+	
+	.swiper-pagination-bullet-active {
+		opacity: 0.7;
+		background: #FF5C00 !important;
+	}
+
+	.mdpick{
+		width: 1200px;
+    	margin: 0 auto;
 	}
 
 	
@@ -56,11 +67,39 @@
     <div class="swiper-button-next"></div>
 </div>
 
-<div style="width: 1500px;">
-	<div style="width: 1200px; margin-top: 100px;" align="center">
+<div style="width: 1500px;" align="center;">
+	<div class="mdpick" style="margin-top: 100px;">
 		<span style="font-size: 32px;">MD PICK</span>
-		<img alt="" src="./image/staticImage/Vector.png"">
-	</div>
+		<img alt="" src="./image/staticImage/Vector.png">
+
+			<div class="swiper mySwiper">
+				<div class="swiper-wrapper" style="width: 1200px;">
+					<div class="swiper-slide">
+						<img src="../image/productSave/floorlampA.png" alt="광고 1" style="width: 100%;">
+					</div>
+					<div class="swiper-slide">
+						<img src="./image/staticImage/mainBanner.png" alt="광고 2" style="width: 100%;">
+					</div>
+					<div class="swiper-slide">
+						<img src="./image/staticImage/mainBanner.png" alt="광고 3" style="width: 100%;">
+					</div>
+					<div class="swiper-slide">
+						<img src="./image/staticImage/mainBanner.png" alt="광고 4" style="width: 100%;">
+					</div>
+					<div class="swiper-slide">
+						<img src="./image/staticImage/mainBanner.png" alt="광고 5" style="width: 100%;">
+					</div>
+				</div> 
+				<!-- Add Pagination -->
+				<div class="swiper-pagination"></div>
+				<!-- Add Navigation -->
+				<div class="swiper-button-prev"></div>
+				<div class="swiper-button-next"></div>
+			</div>
+
+
+
+		</div>
 </div>
 
 
