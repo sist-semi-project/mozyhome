@@ -96,7 +96,7 @@ input[type="text"], input[type="password"] {
 		}
 		
 		frm.method = "post";
-		frm.action = "비밀번호찾기결과.jsp"; // 넘어간 화면
+		frm.action = "pwFindResult.jsp"; // 넘어간 화면
 		frm.submit();
 
 /* 		// 서버로 데이터 전송
@@ -141,7 +141,7 @@ input[type="text"], input[type="password"] {
 		<div align="center">
 			<input type="button" id="btnSearch" name="enter" value="찾기"
 				onClick="pw_search()"> <input type="button" id="btnCancel"
-				name="cancle" value="취소" onClick="location.href='로그인.jsp'">
+				name="cancle" value="취소" onClick="location.href='Login.jsp'">
 
 		</div>
 	</form>
