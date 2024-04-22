@@ -115,12 +115,7 @@ input[type="text"], input[type="password"] {
 				class="text-decoration-none" style="color: black;">비밀번호 찾기</a> | <a
 				href="RegisterMain.jsp" class="text-decoration-none" style="color: black;">회원가입</a>
 		</div>
-		<div class="button-login" align ="center" >
-                <a id="kakao-login-btn" >
-    <img src="//k.kakaocdn.net/14/dn/btqbjxsO6vP/KPiGpdnsubSq3a0PHEGUK1/o.jpg" width="%" height ="50px" />
-    </a>
-            </div>
-
+		
 	</form>
 	
 </body>
