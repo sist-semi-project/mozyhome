@@ -1,3 +1,5 @@
+<%@page import="data.dto.ProductDto"%>
+<%@page import="data.dao.ProductDao"%>
 <%@page import="data.dao.MemberDao"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -12,16 +14,12 @@
 //문자 인코딩 설정
 request.setCharacterEncoding("utf-8");
 
-//세션에서 회원 아이디 가져오기
+//회원 아이디
 String mem_id=(String)session.getAttribute("mem_id");
 
-// MemberDao 인스턴스 생성
+//회원 번호
 MemberDao memberDao = new MemberDao();
-
-// 회원 번호 가져오기
-String memNum = memberDao.getNum(mem_id); // dragon으로 id 임시 설정
-
-String orderStatus = ""; // 주문상태 변수 선언
+String memNum = memberDao.getNum(mem_id);
 
 // 주문 정보 파라미터 받기
 String orderName = request.getParameter("receiver_name"); // 받는 분 이름
@@ -33,6 +31,34 @@ int deliveryFee = Integer.parseInt(request.getParameter("deliveryFee")); // 배�
 int finalPayment = Integer.parseInt(request.getParameter("finalPayment")); // 최종 결제 금액
 String proNum = request.getParameter("pro_num"); // 상품 번호
 int proSu = Integer.parseInt(request.getParameter("pro_su")); // 상품 수
+String proColor = request.getParameter("pro_color"); // 상품 색
+String proSize = request.getParameter("pro_size"); // 상품 사이즈
+String orderStatus = ""; // 주문상태 변수 선언
+
+
+
+//주문 가능 여부
+ProductDao productDao = new ProductDao();
+ProductDto productDto = productDao.getProduct(proNum);
+int stockQuantity = productDto.getPro_stock(); // 재고량
+
+
+
+if (proSu <= stockQuantity) {
+ 	// 주문 가능한 경우: 재고량이 충분한 경우
+	productDao.updateStockQuantity(proNum, proSu);
+ 
+} else {
+ 	// 주문 불가능한 경우: 재고량이 부족한 경우
+	out.println("<script>");
+    out.println("alert('재고량이 부족하여 주문할 수 없습니다.');");
+    out.println("location.href='orderList.jsp';");
+    out.println("</script>");
+    return;
+}
+
+
+
 
 // 주문 번호 생성(날짜+순번)
 SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
@@ -86,6 +112,8 @@ if (paymentMethod.equals("credit_card")) {
             orderDetailDto.setMem_num(memNum);
             orderDetailDto.setPro_num(proNum);
             orderDetailDto.setOrder_num(newOrderNumber);
+            orderDetailDto.setOrder_size(proSize);
+            orderDetailDto.setOrder_color(proColor);
             orderDetailDto.setOrder_detail_su(proSu);
 
             OrderDetailDao orderDetailDao = new OrderDetailDao();
@@ -124,6 +152,8 @@ if (paymentMethod.equals("credit_card")) {
 	orderDetailDto.setMem_num(memNum);
     orderDetailDto.setPro_num(proNum);
     orderDetailDto.setOrder_num(newOrderNumber);
+    orderDetailDto.setOrder_size(proSize);
+    orderDetailDto.setOrder_color(proColor);
     orderDetailDto.setOrder_detail_su(proSu);
 	
 	OrderDetailDao orderDetailDao = new OrderDetailDao();

@@ -12,13 +12,15 @@ import data.dto.OrderDto;
 import db.DbConnect;
 
 public class OrderDetailDao {
+	
 	DbConnect db = new DbConnect();
 
+	// 주문 상세 생성
 	public void insertOrder(OrderDetailDto dto) {
 		Connection conn = db.getConnection();
 		PreparedStatement pstmt = null;
 
-		String sql = "INSERT INTO order_detail (mem_num, pro_num, order_num, order_detail_su) VALUES (?, ?, ?, ?)";
+		String sql = "INSERT INTO order_detail (mem_num, pro_num, order_num, order_size, order_color ,order_detail_su) VALUES (?, ?, ?, ?,?,?)";
 
 		try {
 			pstmt = conn.prepareStatement(sql);
@@ -26,7 +28,9 @@ public class OrderDetailDao {
 			pstmt.setString(1, dto.getMem_num());
 			pstmt.setString(2, dto.getPro_num());
 			pstmt.setString(3, dto.getOrder_num());	
-			pstmt.setInt(4, dto.getOrder_detail_su());
+			pstmt.setString(4, dto.getOrder_size());	
+			pstmt.setString(5, dto.getOrder_color());	
+			pstmt.setInt(6, dto.getOrder_detail_su());
 
 			pstmt.execute();
 		} catch (SQLException e) {
@@ -56,6 +60,8 @@ public class OrderDetailDao {
                 order.setOrder_num(rs.getString("order_num"));
 				order.setMem_num(rs.getString("mem_num"));
 				order.setPro_num(rs.getString("pro_num"));
+				order.setOrder_color(rs.getString("order_size"));	
+				order.setOrder_size(rs.getString("order_color"));
 				order.setOrder_detail_su(rs.getInt("order_detail_su"));
             }
         } catch (SQLException e) {
@@ -66,4 +72,5 @@ public class OrderDetailDao {
 
         return order;
     }
+
 }

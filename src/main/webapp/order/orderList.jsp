@@ -1,3 +1,5 @@
+<%@page import="data.dto.ProductDto"%>
+<%@page import="data.dao.ProductDao"%>
 <%@page import="data.dto.OrderDetailDto"%>
 <%@page import="data.dao.OrderDetailDao"%>
 <%@page import="data.dto.MemberDto"%>
@@ -256,10 +258,8 @@ page-title {
 					       	<tbody class="center order_tbody ">
 					       		<% 
 						            String mem_id = (String) session.getAttribute("mem_id"); 
-					       			
 						       		MemberDao memberDao = new MemberDao();
-						       		MemberDto memberDto = memberDao.getMemberInfo(mem_id);
-					       			
+						       		MemberDto memberDto = memberDao.getMemberInfo(mem_id);				       			
 						       		String mem_num = memberDto.getMem_num();
 						       		
 					                // 주문 목록을 가져오는 부분
@@ -269,31 +269,32 @@ page-title {
 					                
 					                
 					                // 각 주문을 테이블에 표시
-					                for (OrderDto order : orderList) {
-					                	
+					                for (OrderDto order : orderList) {					               	
 					                	String order_num = order.getOrder_num();
 					                	
 					                	OrderDetailDao orderDetailDao = new OrderDetailDao();
 					                	OrderDetailDto orderDetailDto = orderDetailDao.getOrderDetailsByMember(order_num);
-					                	System.out.println("주문번호"+order_num);
-					                	System.out.println(orderDetailDto.getMem_num());
+					                	String pro_num = orderDetailDto.getPro_num();
+	
+					                	ProductDao pDao = new ProductDao();
+					                	ProductDto pDto = pDao.getProduct(pro_num);
 					                	
 					            %>
-					       		<tr class="order_tr xans-record-">
+					       		<tr class="order_tr xans-record-" data-order-num="<%= order_num %>">
 									<td class="order_td">
 				                    	<div class="order_top">
 				                                    <p class="order_date"><%= new SimpleDateFormat("yyyy-MM-dd").format(order.getOrder_date()) %></p>
-				                                    <a href="#" class="order_detail">
+				                                    <a href="orderComplete.jsp?orderNumber=<%=order_num %>" class="order_detail">
 				                                        <span>상세보기</span>
 				                                        <svg width="18" height="18" viewbox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M7.05002 12.95L6.52502 12.425L9.97502 8.975L6.52502 5.525L7.05002 5L11.025 8.975L7.05002 12.95Z" fill="black"></path></svg></a>
 				                        </div>
 				                        <div class="order_body">
 				                            <a href="#" class="order_id">주문번호 : <%= order_num %></a>
 				                            <div class="body_main">
-				                                <a href="/product/detail.html?product_no=14801&cate_no=1"><img src="https://via.placeholder.com/150" onerror="this.src='//img.echosting.cafe24.com/thumb/img_product_small.gif';" alt=""></a>
+				                                <a href="../product/detailpage.jsp?pro_num=<%=pro_num %>"><img src="<%=pDto.getPro_main_img()%>" onerror="this.src='//img.echosting.cafe24.com/thumb/img_product_small.gif';"></a>
 				                                <div class="info">
-				                                    <p class="product_name">미니 손잡이 와인쿨러</p>
-				                                    <p class="product_option">[5-6주 제작 기간이 소요됩니다. 확인 후 구매 부탁드립니다. : 1]</p>
+				                                    <p class="product_name"><%= pDto.getPro_name() %></p>
+				                                    <p class="product_option">[<%= orderDetailDto.getOrder_color() %> : <%= orderDetailDto.getOrder_detail_su() %>개]</p>
 				                                    <div class="price">
 				                                        <p>&#8361;<%= order.getOrder_total_payment() %></p>
 				                                        <p><%= orderDetailDto.getOrder_detail_su()%>개</p>
@@ -306,7 +307,7 @@ page-title {
 				                                	<% 
 					                                    if (order.getOrder_status().equals("입금대기")) { 
 					                                %>
-				                                		<a href="#" class="btnNormal">취소신청</a>
+				                                		<a href="#" class="btnNormal cancelOrderBtn">취소신청</a>
 				                                	<% } else if (order.getOrder_status().equals("배송중")) { %>	
 				                                		<a href="#" class="btnNormal">배송조회</a>
 				                                	<% } else if (order.getOrder_status().equals("배송완료")) { %>
@@ -330,7 +331,34 @@ page-title {
 
 
 
+<script>
+    $(document).ready(function() {
+    	$(".cancelOrderBtn").on("click", function(e) {
+    	    e.preventDefault(); // 링크 클릭 기본 이벤트 제거
+    	    var orderNumber = $(this).closest("tr").data("order-num"); // 주문번호 가져오기
+    	    var confirmation = confirm("주문을 취소하시겠습니까?");
+    	    if (confirmation) {
+    	        cancelOrder(orderNumber);
+    	    }
+    	});
 
+        function cancelOrder(orderNumber) {
+            $.ajax({
+                type: "POST",
+                url: "cancelOrder.jsp",
+                data: { orderNumber: orderNumber },
+                success: function(response) {
+                    alert("주문이 취소되었습니다.");
+                    location.reload();
+                },
+                error: function(xhr, status, error) {
+                    alert("주문 취소에 실패했습니다. 다시 시도해주세요.");
+                    console.error(xhr.responseText);
+                }
+            });
+        }
+    });
+</script>
 
 </body>
 </html>

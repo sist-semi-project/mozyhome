@@ -58,16 +58,15 @@
 <body>
 <h2>주문/결제</h2>
 <% 
-	String mem_id = (String) session.getAttribute("mem_id"); 
-	System.out.println(mem_id);
+String mem_id = (String) session.getAttribute("mem_id");  
 
-	NumberFormat nf = NumberFormat.getInstance();
-	
-	MemberDao memberDao = new MemberDao();
-	MemberDto memberDto = memberDao.getMemberInfo(mem_id);
-	
-	// 세션에서 구매방법 여부 플래그를 읽어옴
-	Boolean directPurchase = (Boolean) session.getAttribute("directPurchase"); //바로구매 ture, 장바구니 false
+MemberDao memberDao = new MemberDao();
+MemberDto memberDto = memberDao.getMemberInfo(mem_id);
+
+// 구매방법 여부
+Boolean directPurchase = (Boolean) session.getAttribute("directPurchase"); //바로구매 ture, 장바구니 false
+
+NumberFormat nf = NumberFormat.getInstance();
 	
 %>
 <!-- 주문 정보를 입력받는 폼 -->
@@ -99,7 +98,6 @@
     		ProductDao pdao = new ProductDao();
     		ProductDto pdto = pdao.getProduct(pro_num);
     		pro_main_img = pdto.getPro_main_img(); 
-    		
     		pro_name = pdto.getPro_name(); 
     		int price = pdto.getPro_price(); 
 
@@ -161,6 +159,8 @@
 		
 	<input type="hidden" name="pro_su" value="<%= pro_su %>">
 	<input type="hidden" name="pro_num" value="<%= pro_num %>">
+	<input type="hidden" name="pro_size" value="<%= pro_size %>">
+	<input type="hidden" name="pro_color" value="<%= pro_color %>">
 
     <h3>배송지</h3>
     받는 사람: <input type="text" name="receiver_name" required><br>

@@ -138,6 +138,31 @@ public class OrderDao {
 
         return orderList;
     }
+    
+    // 주문 상태 업데이트
+    public boolean updateOrderStatus(String orderNumber, String newStatus) {
+        Connection conn = db.getConnection();
+        PreparedStatement pstmt = null;
+
+        String sql = "UPDATE order_info SET order_status = ? WHERE order_num = ?";
+
+        try {
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setString(1, newStatus);
+            pstmt.setString(2, orderNumber);
+            int rowsAffected = pstmt.executeUpdate();
+
+            // 업데이트가 성공하면 true 반환
+            return rowsAffected > 0;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            db.dbClose(pstmt, conn);
+        }
+
+        // 업데이트가 실패하면 false 반환
+        return false;
+    }
 
 
 }

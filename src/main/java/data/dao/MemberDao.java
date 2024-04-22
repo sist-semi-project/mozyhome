@@ -91,7 +91,7 @@ public class MemberDao {
 			rs=pstmt.executeQuery();
 			
 			if(rs.next())
-				name=rs.getString("name");
+				name=rs.getString("mem_name");
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

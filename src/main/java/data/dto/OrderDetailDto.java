@@ -4,8 +4,23 @@ public class OrderDetailDto {
 	private String mem_num ;
 	private String order_num;
     private String pro_num;
+    private String order_size;
+    private String order_color;
     private int order_detail_su;
     
+    
+	public String getOrder_size() {
+		return order_size;
+	}
+	public void setOrder_size(String order_size) {
+		this.order_size = order_size;
+	}
+	public String getOrder_color() {
+		return order_color;
+	}
+	public void setOrder_color(String order_color) {
+		this.order_color = order_color;
+	}
 	public String getMem_num() {
 		return mem_num;
 	}

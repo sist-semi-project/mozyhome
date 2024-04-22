@@ -104,7 +104,7 @@ hr {
 </head>
 
 <%
-session.setAttribute("mem_id","dragon");
+session.setAttribute("mem_id","must12");
 session.setAttribute("loginok","yes");
 
 //2024-04-19 추가 
