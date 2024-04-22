@@ -26,6 +26,7 @@ public class ProductDto {
     private int reviewCount;
     private String mem_id; // 상품리스트 안에 위시리스트 id (0415 추가)
 
+
     public String getPro_num() {
         return pro_num;
     }
