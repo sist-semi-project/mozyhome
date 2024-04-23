@@ -132,11 +132,8 @@ hr {
 
 <%
   
-session.setAttribute("mem_id", "dragon");
+session.setAttribute("mem_id", "test0418");
 session.setAttribute("loginok", "yes");
-
-session.setAttribute("mem_id","must12");
-session.setAttribute("loginok","yes");
 
 //2024-04-19 추가 
 session.setAttribute("directPurchase", true);
@@ -162,7 +159,7 @@ boolean existwish = wdao.checkWishlist(mem_num, pro_num);
 %>
 
 <body>
-	<form action="../order/orderForm.jsp"  id="form1">
+	<form action="index.jsp?main=order/orderForm.jsp"  id="form1">
 
 		<!-- cart 데이터에 넣을 mem_num, pro_num -->
 		<input type="hidden" name="mem_num" value="<%=mem_num%>"> <input
@@ -402,40 +399,28 @@ boolean existwish = wdao.checkWishlist(mem_num, pro_num);
 		$(".buynow").click(function(){
 			var login="<%=loginok%>";
 
-						if (login == "null") {
-							alert("먼저 로그인을 해주세요");
-							window.location.href = "loginMain.jsp";
-							return;
-						}
-						
-						var pro_num = <%=pro_num%>;
+			if (login == "null") {
+				alert("먼저 로그인을 해주세요");
+				window.location.href = "loginMain.jsp";
+				return;
+			}
+			
+			var pro_num = <%=pro_num%>;
 
-						var pro_su = $('#quantity').serialize();
+			var pro_su = $('#quantity').serialize();
 
-						var pro_color = $('select[name="color"]').val();
-						    
-						var pro_size = $('select[name="size"]').val();
-						
-						if(pro_size=="option1"||pro_color=="option2")
-							{
-							alert("옵션을 선택해주세요");
-							return;
-							}
+			var pro_color = $('select[name="color"]').val();
+			    
+			var pro_size = $('select[name="size"]').val();
+			
+			if(pro_size=="option1"||pro_color=="option2"){
+				alert("옵션을 선택해주세요");
+				return;
+			}
 
-						$.ajax({
-							type:"post",
-							dataType: "html",
-							data: {pro_num:pro_num, pro_su:pro_su, pro_color:pro_color, pro_size:pro_size},
-							url: "/mozyhome/order/orderForm.jsp",
-							success: function(){
-								
-								location.href = "/mozyhome/order/orderForm.jsp";
-							},
-							 error: function(xhr, status, error) {
-							        console.error("AJAX 오류: ", error);
-							        alert("AJAX 오류 발생. 콘솔을 확인하세요.");
-							    }
-						})
+			 // BUY NOW 버튼을 클릭했을 때 orderForm.jsp로 이동
+		    window.location.href = "index.jsp?main=order/orderForm.jsp&pro_num=" + pro_num + "&pro_su=" + pro_su + "&pro_color=" + pro_color + "&pro_size=" + pro_size;
+
 		})
 	</script>
 
