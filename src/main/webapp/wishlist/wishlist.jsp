@@ -14,12 +14,14 @@
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+<link rel="stylesheet" href="../header/header.css"/>
 
 <title>위시리스트</title>
 <style type="text/css">
 	body{
-	 	font-family: "Noto Sans KR";
+	 	font-family: 'Noto Sans KR';
 	 	font-size: 14px;
+	 	color: black;
 	}
 	
 	a, .goDetail{
@@ -35,7 +37,7 @@
 	
 	input{
 		/*accent-color:#FF5C00;*/
-		accent-color:black;
+		accent-color:black !important;
 	}
 		
 	/* 페이징 디자인 */
@@ -63,13 +65,13 @@
 			//alert(pronum);
 			
 			// 디테일 페이지로 이동 #review
-			location.href="../product/detailpage.jsp?pro_num="+pronum;
+			location.href="index.jsp?main=product/detailpage.jsp?pro_num="+pronum;
 		});
 		
 		// 전체선택 클릭 시 모든 체크값 전달
 		$(".allCheck").click(function(){
 			var chk=$(this).is(":checked");
-			//console.log(chk);
+			console.log(chk);
 			
 			$(".allDel").prop("checked", chk);	
 		});
@@ -96,7 +98,7 @@
 
 					$.ajax({
 						type:"get",
-						url:"../wishlist/deleteWishlist.jsp",
+						url:"./wishlist/deleteWishlist.jsp",
 						traditional: true,
 						dataType:"html",
 						data:{"ditems":ditem},
@@ -168,11 +170,12 @@
 	// --------------------------------------------------------------------------
 %>
 <body>
+
 <%
 	// 로그인이 되어있을 때 위시리스트 접근 가능
 	if(loginok!=null && totalCount>0){%>
 
-		<div style="margin:0 auto; width:600px">
+		<div style="margin:0 auto; width:800px">
 			<h3 style="padding: 75px;" align="center">WISH LIST</h3>
 			<table align="center" class="table">
 			<div style="padding: 8px;">
@@ -199,7 +202,7 @@
 								</td>
 										
 								<td>
-									<a pronum="<%=map.get("pro_num")%>" class="goDetail">
+									<a pronum="<%=map.get("pro_num")%>" class="goDetail" style="color: black;">
 										<div>
 											<b><%=map.get("pro_name") %></b> <br>
 											<%=nf.format(pro_price) %>
@@ -223,7 +226,7 @@
 				if (startPage > 1) {
 				%>
 				<li class="page-item"><a class="page-link"
-					href="wishlist.jsp?&currentPage=<%=startPage - 1%>"style="color: black;" aria-label="Previous"><span aria-hidden="true">&#10094;</span></a></li>
+					href="index.jsp?main=wishlist/wishlist.jsp?&currentPage=<%=startPage - 1%>"style="color: black;" aria-label="Previous"><span aria-hidden="true">&#10094;</span></a></li>
 				<%
 				}
 	
@@ -231,7 +234,7 @@
 				if (endPage < totalPage) {
 				%>
 					<li class="page-item"><a class="page-link"
-						href="wishlist.jsp?currentPage=<%=endPage + 1%>"style="color: black" aria-label="Next"><span aria-hidden="true">&#10095;</span></a>
+						href="index.jsp?main=wishlist/wishlist.jsp?currentPage=<%=endPage + 1%>"style="color: black" aria-label="Next"><span aria-hidden="true">&#10095;</span></a>
 					</li>
 				<%
 				}
@@ -245,20 +248,17 @@
 
 	} else if(loginok==null) {
 		%><h4>로그인페이지로 전달</h4><%
-		//response.sendRedirect("../로그인페이지로 전달");
+		response.sendRedirect("../index.jsp?main=SemiLogin/Login.jsp");
 	} else {%>
 		<div style="margin:0 auto; width:600px">
 			<h3 style="padding: 75px;" align="center">WISH LIST</h3>
 			<div style="padding: 90px; font-size: 16px;" align="center">
 				<span style="font-size: 14px; color: #616161;">관심상품이 없습니다.</span> <br>
-				<div style="margin-top: 20px;"><a href="../product/productList.jsp?cate_num=1" style="color: white; background: #FF5C00; padding: 4px 35px; border-radius: 5px;">쇼핑하러가기</a></div>
+				<div style="margin-top: 20px;"><a href="index.jsp" style="color: white; background: #FF5C00; padding: 4px 35px; border-radius: 5px;">쇼핑하러가기</a></div>
 			</div>
 		</div>
 	<%}
 
-
-
-	
 %>
 </body>
 </html>

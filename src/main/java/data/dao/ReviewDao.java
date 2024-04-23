@@ -88,5 +88,55 @@ public class ReviewDao {
 		return n;
 	}
 	
+	public void insertReview(ReviewDto dto) {
+		Connection conn=db.getConnection();
+		PreparedStatement pstmt=null;
+		
+		String sql="insert into review (mem_num, pro_num, review_pyung, review_subject, review_content, review_image) values (?,?,?,?,?,?)";
+		
+		try {
+			pstmt=conn.prepareStatement(sql);
+			
+			pstmt.setInt(1, dto.getMem_num());
+			pstmt.setInt(2, dto.getPro_num());
+			pstmt.setInt(3, dto.getReview_pyung());
+			pstmt.setString(4, dto.getReview_subject());
+			pstmt.setString(5, dto.getReview_content());
+			pstmt.setString(6, dto.getReview_image());
+			pstmt.execute();
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			db.dbClose(pstmt, conn);
+		}	
+	}
 
+	
+	public int getNum(String id)
+	{
+		int num=0;
+		
+		Connection conn=db.getConnection();
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		
+		String sql="select mem_num from member where mem_id=?";
+		
+		try {
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setString(1, id);
+			rs=pstmt.executeQuery();
+			
+			if(rs.next())
+				num=rs.getInt("mem_num");
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			db.dbClose(rs, pstmt, conn);
+		}
+		return num;
+	}
 }

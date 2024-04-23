@@ -8,6 +8,7 @@ public class ReviewDto {
 		private int mem_num;
 		private int pro_num;
 		private int review_pyung;
+		private String review_subject;
 		private String review_content;
 		private String review_image;
 		private Timestamp review_writeday;
@@ -35,6 +36,12 @@ public class ReviewDto {
 		}
 		public void setReview_pyung(int review_pyung) {
 			this.review_pyung = review_pyung;
+		}
+		public String getReview_subject() {
+			return review_subject;
+		}
+		public void setReview_subject(String review_subject) {
+			this.review_subject = review_subject;
 		}
 		public String getReview_content() {
 			return review_content;

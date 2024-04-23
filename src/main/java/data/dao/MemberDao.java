@@ -41,6 +41,8 @@ public class MemberDao {
 		return num;
 	}
 	
+
+	
 	public void insertMember(MemberDto dto) {
 		Connection conn=db.getConnection();
 		PreparedStatement pstmt=null;
@@ -331,6 +333,7 @@ public class MemberDao {
                 memberDto.setMem_num(rs.getString("mem_num"));
                 memberDto.setMem_id(rs.getString("mem_id"));
                 memberDto.setMem_name(rs.getString("mem_name"));
+                memberDto.setMem_nickname(rs.getString("mem_nickname"));
                 memberDto.setMem_hp(rs.getString("mem_hp"));
                 memberDto.setMem_zipcode(rs.getString("mem_zipcode"));
                 memberDto.setMem_address(rs.getString("mem_address"));
@@ -346,5 +349,65 @@ public class MemberDao {
         return memberDto;
     }	
 	
-	
+	// 2024-04-23 추가
+    // 회원정보수정
+    
+    public boolean updateMember(MemberDto member) {
+    	Connection conn = db.getConnection();
+        PreparedStatement pstmt = null;
+        boolean success = false;
+        
+        try {
+            String sql = "UPDATE member SET mem_password=?, mem_name=?, mem_nickname=?, mem_zipcode=?, mem_address=?, mem_address_detail=?, mem_hp=? WHERE mem_id=?";
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setString(1, member.getMem_password());
+            pstmt.setString(2, member.getMem_name());
+            pstmt.setString(3, member.getMem_nickname());
+            pstmt.setString(4, member.getMem_zipcode());
+            pstmt.setString(5, member.getMem_address());
+            pstmt.setString(6, member.getMem_address_detail());
+            pstmt.setString(7, member.getMem_hp());
+            pstmt.setString(8, member.getMem_id());
+            
+            int rowsAffected = pstmt.executeUpdate();
+            
+            // 업데이트 성공 여부 확인
+            if(rowsAffected > 0) {
+                success = true;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+        	db.dbClose(pstmt, conn);
+        }
+        
+        return success;
+    }
+    
+    // 회원 삭제 메서드
+    public boolean deleteMember(String mem_id) {
+    	
+        Connection conn = db.getConnection();
+        PreparedStatement pstmt = null;
+        boolean success = false;
+        
+        try {
+            String sql = "DELETE FROM member WHERE mem_id = ?"; 
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setString(1, mem_id);
+            int rowsAffected = pstmt.executeUpdate();
+            
+            // 삭제가 성공적으로 이루어졌는지 확인
+            if(rowsAffected > 0) {
+                success = true;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            db.dbClose(pstmt, conn);
+        }
+        
+        return success;
+    }
+    
 }
