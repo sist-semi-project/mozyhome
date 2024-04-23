@@ -97,7 +97,7 @@ input[type="text"], input[type="password"] {
 
 
 
-	<form action="loginAction.jsp" name="form_log" method="post"
+	<form action="SemiLogin/loginAction.jsp" name="form_log" method="post"
 		class="align">
 		<h2>MOZYHOME</h2>
 		<br>

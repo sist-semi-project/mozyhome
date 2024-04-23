@@ -153,7 +153,7 @@ public class WishlistDao {
 		Connection conn=db.getConnection();
 		PreparedStatement pstmt=null;
 		
-		String sql="insert into wishlist values(null,?,?)";
+		String sql="insert into wishlist values(null,?,?,now())";
 		
 		try {
 			pstmt=conn.prepareStatement(sql);

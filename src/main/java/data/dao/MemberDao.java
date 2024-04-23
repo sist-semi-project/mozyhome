@@ -41,6 +41,8 @@ public class MemberDao {
 		return num;
 	}
 	
+
+	
 	public void insertMember(MemberDto dto) {
 		Connection conn=db.getConnection();
 		PreparedStatement pstmt=null;
