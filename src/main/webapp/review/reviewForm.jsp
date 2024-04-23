@@ -56,16 +56,31 @@
 	color: white;
 	border: 0px;
 }
+
+#review{
+	font-family: "Noto Sans KR";
+	font-size: 24px; 
+}
+
+.review_div{
+	width: 1920 px;
+	
+}
+
+#showimg{
+	width: 100px;
+	height: 100px;
+	
+}
+
+.camera {
+	font-size: 100px;
+}
 </style>
+
 <script type="text/javascript">
-
-$(function(){
-    $("i.camera").click(function(){
-        $("#photo").trigger("click");
-    });
-});
-
- function readURL(input) {
+//사진 출력 함수
+	function readURL(input) {
 	    if (input.files && input.files[0]) {
 	        var reader = new FileReader();
 	        reader.onload = function (e) {
@@ -78,27 +93,41 @@ $(function(){
 </head>
 <%
 	String pro_num = request.getParameter("pro_num");
-	String loginok = (String) session.getAttribute("loginok");
-	String mem_id = (String) session.getAttribute("mem_id"); 
+	
+	String loginok = "yes";
+	String mem_id= "dragon";
+
+	//String loginok = (String) session.getAttribute("loginok");
+	//String mem_id = (String) session.getAttribute("mem_id"); 
 %>
 
 <body>
-	<div>
+	<div class="review_div">
+	
 		<!-- ReviewForm -->
-		<form action="review/reviewPage.jsp" method="post" enctype="multipart/form-data">
-
+		<form action="reviewProcess.jsp" method="post" enctype="multipart/form-data">
+		
+	
+		<input type="hidden" name="pro_num" value="<%=pro_num%>">
+		
+		
+		<div id="review">REVIEW</div>
+		
+		<p>최근 구매한 제품이 마음에 드시나요? 다른 사람들과 구매 경험을 공유해보세요!</p>
+		
 			<!-- 별점 -->
 			<div class="rating_box">
 				<div class="rating">
-					<span class="star" data-value="1">★</span> <span class="star"
-						data-value="2">★</span> <span class="star" data-value="3">★</span>
-					<span class="star" data-value="4">★</span> <span class="star"
-						data-value="5">★</span> <input type="hidden" name="rating"
-						value="0">
+					<span class="star" data-value="1">★</span> 
+					<span class="star" data-value="2">★</span> 
+					<span class="star" data-value="3">★</span>
+					<span class="star" data-value="4">★</span> 
+					<span class="star" data-value="5">★</span> 
+					<input type="hidden" name="rating" value="0">
 				</div>
 			</div>
 
-			<!-- 선택 리뷰 작성 폼 -->
+			<!-- 선택 리뷰 작성 폼 
 			<dl class="">
 				<dt class="">사용성</dt>
 				<dd class="">
@@ -123,29 +152,35 @@ $(function(){
 					</div>
 				</dd>
 			</dl>
+-->
+
+			<p></p>
 
 			<!-- 리뷰 작성 -->
-			<table>
-				<tr>
-					<td><textarea style="width: 500px; height: 100px;"
-							name="content" class="form-control" required="required"></textarea>
-					</td>
-					<td>
-						<button type="submit" class="submit"
-							style="width: 100px; height: 100px;">등록</button>
-					</td>
-				</tr>
-			</table>
-
-			<!-- 사진 파일 선택 -->
+			<h4>상품평 제목*</h4>
+			<textarea style="width: 500px; height: 100px;"
+				name="content_subject" class="form-control" required="required"></textarea>
+		
+			<h4>상품평*</h4>
+			<textarea style="width: 500px; height: 100px;"
+				name="content" class="form-control" required="required"></textarea>
+		
+		<!-- 사진 파일 선택 -->
 			<i class="bi bi-image-alt camera" ></i> 
 			<input type="file" name="photo" id="photo"
 				style="visibility: hidden;" onchange="readURL(this)">
-
+				
+			<img id="showimg" >
+				
+			<button type="submit" class="submit"
+			>등록</button>
+			<button onclick="reviewList.jsp" type="submit" class="submit"
+			>취소</button>
+			
+			
 		</form>
 
 		<!-- 이미지미리보기 -->
-		<img id="showimg" style="max-width: 200px;">
 	</div>
 
 	<script type="text/javascript">
@@ -184,6 +219,32 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     }
+    
+    //리뷰 등록(submit) 버튼 함수
+    $(function(){
+    	$(".submit").click(function(){
+    		var pro_num=$(this).attr
+    	})
+    })
+    
+    //사진 아이콘 클릭 함수
+    $(function(){
+        $("i.camera").click(function(){
+            $("#photo").trigger("click");
+        });
+    });
+
+  //사진 출력 함수
+	function readURL(input) {
+	    if (input.files && input.files[0]) {
+	        var reader = new FileReader();
+	        reader.onload = function (e) {
+	            $("#showimg").attr('src', e.target.result);
+	        }
+	        reader.readAsDataURL(input.files[0]);
+	    }
+	}
+   
 });
 </script>
 </body>

@@ -153,9 +153,9 @@ public class WishlistDao {
 	public void insertWishlist(String mem_num, String pro_num) {
 		Connection conn=db.getConnection();
 		PreparedStatement pstmt=null;
-		
-		String sql="insert into wishlist values(null,?,?, now())";
-		
+
+		String sql="insert into wishlist values(null,?,?,now())";
+
 		try {
 			pstmt=conn.prepareStatement(sql);
 			pstmt.setString(1, mem_num);
