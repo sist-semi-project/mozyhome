@@ -108,8 +108,8 @@ int endPage = startPage + perBlock - 1; //버튼 한줄의 마지막 숫자
 	</div>
 
 		<div>
-			<button onclick="">WRITE</button>
-			<button onclick="reviewPage.jsp">LIST</button>
+			<button onclick="location.href='reviewForm.jsp?pro_num=<%=pro_num %>'" class="write">WRITE</button>
+			<button onclick="location.href='reviewPage.jsp'">LIST</button>
 		</div>
 
 		<div>
@@ -150,5 +150,17 @@ int endPage = startPage + perBlock - 1; //버튼 한줄의 마지막 숫자
 
 	
 
+<script type="text/javascript">
+
+	/* // 상품 클릭 시 상품상세로 이동
+	$(".write").click(function(){
+		var pro_num = $(this).attr("pro_num");
+		
+		// 디테일 페이지로 이동 #review
+		location.href = "index.jsp?main=review/reviewForm.jsp&pro_num=" + pro_num;
+	});
+}); */
+
+</script>
 </body>
 </html>

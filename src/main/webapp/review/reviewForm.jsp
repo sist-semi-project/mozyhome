@@ -92,7 +92,8 @@
 </script>
 </head>
 <%
-	String pro_num = request.getParameter("pro_num");
+	String pro_num="210";
+	//String pro_num = request.getParameter("pro_num");
 	
 	String loginok = "yes";
 	String mem_id= "dragon";
@@ -104,12 +105,8 @@
 <body>
 	<div class="review_div">
 	
-		<!-- ReviewForm -->
+		<!-- ReviewForm --> 
 		<form action="reviewProcess.jsp" method="post" enctype="multipart/form-data">
-		
-	
-		<input type="hidden" name="pro_num" value="<%=pro_num%>">
-		
 		
 		<div id="review">REVIEW</div>
 		
@@ -223,9 +220,10 @@ document.addEventListener('DOMContentLoaded', function() {
     //리뷰 등록(submit) 버튼 함수
     $(function(){
     	$(".submit").click(function(){
-    		var pro_num=$(this).attr
+    		var pro_num=<%=pro_num%>
+    		location.href = "review/reviewForm.jsp&pro_num=" + pro_num;
     	})
-    })
+    }) 
     
     //사진 아이콘 클릭 함수
     $(function(){

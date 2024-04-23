@@ -17,29 +17,29 @@
 </head>
 <body>
 <%
+request.setCharacterEncoding("utf-8");
+
 String loginok = (String) session.getAttribute("loginok");
 String mem_id = (String) session.getAttribute("mem_id"); 
+int pro_num=Integer.parseInt( request.getParameter("pro_num"));
 
 ReviewDao rdao=new ReviewDao();
 
 int mem_num= rdao.getNum(mem_id);
 
 
-String realPath=getServletContext().getRealPath("/image/reviewSave");
-System.out.println(realPath);
+String realPath=getServletContext().getRealPath("image/reviewSave");
 
-int uploadSize=1024*1024*3;
+int uploadSize=1024*1024*10;
 
 MultipartRequest multi=null;
-try{
+
 multi=new MultipartRequest(request,realPath,uploadSize,"utf-8",new DefaultFileRenamePolicy());
 
 int rating=Integer.parseInt(multi.getParameter("rating"));
 String content=multi.getParameter("content");
 String content_subject=multi.getParameter("content_subject");
 String photoname=multi.getFilesystemName("photo"); 
-int pro_num=Integer.parseInt(multi.getFilesystemName("pro_num"));
-
 
 
 //dto에 저장
@@ -60,11 +60,8 @@ rdao.insertReview(rdto);
 
 
 //방명록 목록으로 이동(수정했던 페이지로 이동)
-response.sendRedirect("");
+response.sendRedirect("index.jsp?main=reviewForm.jsp&pro_num="+pro_num);
 
-}catch(Exception e){
-
-}
 %>
 </body>
 </html>
