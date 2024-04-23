@@ -265,14 +265,12 @@ page-title {
 					       		<% 
 						            String mem_id = (String) session.getAttribute("mem_id"); 
 						       		MemberDao memberDao = new MemberDao();
-						       		MemberDto memberDto = memberDao.getMemberInfo(mem_id);				       			
+						       		MemberDto memberDto = memberDao.getMemberInfo("must12");//임시설정				       			
 						       		String mem_num = memberDto.getMem_num();
 						       		
 					                // 주문 목록을 가져오는 부분
 					                OrderDao orderDao = new OrderDao();
-					                List<OrderDto> orderList = orderDao.getOrdersByMember(mem_num);
-					                
-					                
+					                List<OrderDto> orderList = orderDao.getOrdersByMember(mem_num);					                
 					                
 					                // 각 주문을 테이블에 표시
 					                for (OrderDto order : orderList) {					               	
@@ -290,14 +288,14 @@ page-title {
 									<td class="order_td">
 				                    	<div class="order_top">
 				                                    <p class="order_date"><%= new SimpleDateFormat("yyyy-MM-dd").format(order.getOrder_date()) %></p>
-				                                    <a href="orderComplete.jsp?orderNumber=<%=order_num %>" class="order_detail">
+				                                    <a href="index.jsp?main=order/orderComplete.jsp?orderNumber=<%=order_num %>" class="order_detail">
 				                                        <span>상세보기</span>
 				                                        <svg width="18" height="18" viewbox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M7.05002 12.95L6.52502 12.425L9.97502 8.975L6.52502 5.525L7.05002 5L11.025 8.975L7.05002 12.95Z" fill="black"></path></svg></a>
 				                        </div>
 				                        <div class="order_body">
-				                            <a href="#" class="order_id">주문번호 : <%= order_num %></a>
+				                            <a href="index.jsp?main=order/orderComplete.jsp?orderNumber=<%=order_num %>" class="order_id">주문번호 : <%= order_num %></a>
 				                            <div class="body_main">
-				                                <a href="../product/detailpage.jsp?pro_num=<%=pro_num %>"><img src="<%=pDto.getPro_main_img()%>" onerror="this.src='//img.echosting.cafe24.com/thumb/img_product_small.gif';"></a>
+				                                <a href="index.jsp?main=product/detailpage.jsp?pro_num=<%=pro_num %>"><img src="<%=pDto.getPro_main_img()%>" onerror="this.src='//img.echosting.cafe24.com/thumb/img_product_small.gif';"></a>
 				                                <div class="info">
 				                                    <p class="product_name"><%= pDto.getPro_name() %></p>
 				                                    <p class="product_option">[<%= orderDetailDto.getOrder_color() %> : <%= orderDetailDto.getOrder_detail_su() %>개]</p>
@@ -351,7 +349,7 @@ page-title {
         function cancelOrder(orderNumber) {
             $.ajax({
                 type: "POST",
-                url: "cancelOrder.jsp",
+                url: "index.jsp?main=order/cancelOrder.jsp",
                 data: { orderNumber: orderNumber },
                 success: function(response) {
                     alert("주문이 취소되었습니다.");
