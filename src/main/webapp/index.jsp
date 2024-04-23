@@ -40,7 +40,7 @@
 <%
 	String main = "/layout/main.jsp";
 	
-	if (request.getParameter("main") != null) {
+ 	if (request.getParameter("main") != null) {
 		main = request.getParameter("main");
 	}
 %>

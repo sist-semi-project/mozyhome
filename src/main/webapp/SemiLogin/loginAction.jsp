@@ -14,7 +14,6 @@
 <%
   String id=request.getParameter("mem_id");
   String pass=request.getParameter("mem_password");
-  String cbsave=request.getParameter("cbsave");  //체크안하면 null
   
   MemberDao dao=new MemberDao();
   boolean b=dao.isIdPass(id, pass);
@@ -25,8 +24,30 @@
 	  
 	  session.setAttribute("loginok", "yes");
 	  session.setAttribute("myid", id);
-	  session.setAttribute("saveok", cbsave==null?null:"yes");
 	  
+	  String userName = (String) session.getAttribute("myid");
+	  
+	  %>
+	  <script type="text/javascript">
+	// 페이지가 로드될 때 실행되는 함수
+	window.onload = function() {
+	    var loginLink = document.querySelector('.header__nav-top-level-link[data-name="Login"]');
+	    if (loginLink) {
+	        loginLink.textContent = 'Logout';
+	        // 클래스를 변경합니다.
+	        loginLink.classList.remove('layout-statelogoff');
+	        loginLink.classList.add('layout-statelogon');
+	        // 로그인 페이지 링크를 로그아웃 처리할 수 있도록 변경합니다.
+	        loginLink.setAttribute('data-name', 'Logout');
+	        loginLink.href = 'index.jsp?main=SemiLogin/Logout.jsp';
+	        
+	        alert("<%= userName %>님 환영합니다!");
+            // 사용자를 index.jsp 페이지로 리다이렉트합니다.
+            window.location.href = './index.jsp';
+	    }
+	};
+	</script>
+	  <%
 	  response.sendRedirect("../index.jsp?main=SemiLogin/loginMain.jsp");
   }else{
 	  %>

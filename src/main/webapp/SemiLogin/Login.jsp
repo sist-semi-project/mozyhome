@@ -12,26 +12,7 @@
 	rel="stylesheet">
 <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
 <title>Insert title here</title>
-<script type="text/javascript">
-//components/Auth
-/* const Auth = () => {
-  const naverState = Math.random(); // 고유한 state값
-  const ClientID = process.env.NEXT_PUBLIC_CLIENT_ID;
-  const RedirectUrl = process.env.NEXT_PUBLIC_REDIRECT_URL;
-  
-  return (
-    <div>
-      <NaverLogin onClick={() => {
-         window.location.href = `https://nid.naver.com/oauth2.0/authorize?response_type=code&client_id=${ClientID}&state=${naverState}&redirect_uri=${RedirectUrl}`
-      }}>
-        <NaverSvg />
-      </NaverLogin>
-    </div>
-  )
 
-} */
-
-</script>
 </head>
 <style>
 body {
@@ -41,22 +22,13 @@ body {
 
 .align {
 	max-width: 500px;
-	height: 400px;
+	height: 450px;
 	margin: 0 auto;
 	padding: 40px;
-	background-color: #fff;
-	border-radius: 8px;
-	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+	margin-top: 200px;
 }
 
-h2 {
-	text-align: center;
-	font-size: 24px;
-	font-weight: 700;
-	letter-spacing: 5px;
-	color: #222;
 
-}
 
 input[type="text"], input[type="password"] {
 	background-color: rgb(255, 255, 255);
@@ -95,9 +67,8 @@ input[type="text"], input[type="password"] {
 </style>
 <body>
 
-	<form action="SemiLogin/loginAction.jsp" name="form_log" method="post"
+	<form action="index.jsp?main=SemiLogin/loginAction.jsp" name="form_log" method="post"
 		class="align">
-		<h2>MOZYHOME</h2>
 		<br>
 		<!-- 아이디 입력 -->
 		<div class="d-inline-flex align-items-center">
@@ -122,15 +93,16 @@ input[type="text"], input[type="password"] {
 			<input type="submit" id="btnLogin" value="로그인">
 		</div>
 		<br>
-		<div class="links text-dark" style="text-align: center;">
-			<a href="IdFind.jsp" class="text-decoration-none"
-				style="color: black;">아이디 찾기</a> | <a href="pwFind.jsp"
+		<br>
+		<br>
+		<div class="links text-dark" style="text-align: center; font-size:12px;">
+			<a href="index.jsp?main=SemiLogin/IdFind.jsp" class="text-decoration-none"
+				style="color: black;">아이디 찾기</a> | <a href="index.jsp?main=SemiLogin/pwFind.jsp"
 				class="text-decoration-none" style="color: black;">비밀번호 찾기</a> | <a
-				href="RegisterMain.jsp" class="text-decoration-none" style="color: black;">회원가입</a>
+				href="index.jsp?main=SemiLogin/RegisterMain.jsp" class="text-decoration-none" style="color: black;">회원가입</a>
 		</div>
-
+		
 	</form>
-
-
+	
 </body>
 </html>
