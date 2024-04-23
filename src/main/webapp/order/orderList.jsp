@@ -288,7 +288,7 @@ page-title {
 									<td class="order_td">
 				                    	<div class="order_top">
 				                                    <p class="order_date"><%= new SimpleDateFormat("yyyy-MM-dd").format(order.getOrder_date()) %></p>
-				                                    <a href="index.jsp?main=order/orderComplete.jsp?orderNumber=<%=order_num %>" class="order_detail">
+				                                    <a href="index.jsp?main=order/orderDetail.jsp?order_num=<%=order_num %>" class="order_detail">
 				                                        <span>상세보기</span>
 				                                        <svg width="18" height="18" viewbox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M7.05002 12.95L6.52502 12.425L9.97502 8.975L6.52502 5.525L7.05002 5L11.025 8.975L7.05002 12.95Z" fill="black"></path></svg></a>
 				                        </div>
