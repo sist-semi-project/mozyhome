@@ -45,6 +45,14 @@
 		width: 1200px;
     	margin: 0 auto;
 	}
+	
+	::webkit-scrollbar-thumb{
+		background: #FF5C00 !important;
+	}
+	
+	::webkit-scrollbar-track{
+		background: white !important;
+	}
 
 	
 	
@@ -65,6 +73,7 @@
     <!-- Add Navigation -->
     <div class="swiper-button-prev"></div>
     <div class="swiper-button-next"></div>
+    <div class="swiper-scrollbar"></div>
 </div>
 
 <div style="width: 1500px; margin: 0 auto;" align="center;">
@@ -95,6 +104,7 @@
 				<!-- Add Navigation -->
 				<div class="swiper-button-prev"></div>
 				<div class="swiper-button-next"></div>
+				<div class="swiper-scrollbar"></div>
 			</div>
 		</div>
 		
@@ -125,13 +135,14 @@
 				<!-- Add Navigation -->
 				<div class="swiper-button-prev"></div>
 				<div class="swiper-button-next"></div>
+				<div class="swiper-scrollbar"></div>
 			</div>
 		</div>
 		
 		<div class="category" style="margin-top: 200px;">
 			<table class="table-bordered" style="width: 1200px;">
 				<tr>
-					<td><a href="index.jsp?main=product/productList.jsp?cate_num=11"><img src="./image/staticImage/cate_sofa.png"></a></td>
+					<td><span style="align-content: bottom;">sofa</span><a href="index.jsp?main=product/productList.jsp?cate_num=11"><img src="./image/staticImage/cate_sofa.png"></a></td>
 					<td><a href="index.jsp?main=product/productList.jsp?cate_num=12"><img src="./image/staticImage/cate_table.png"></a></td>
 				</tr>
 				
@@ -141,7 +152,7 @@
 				</tr>
 				
 				<tr>
-					<td colspan="2" align="center"><a href="index.jsp?main=product/productList.jsp?cate_num=5"><img src="./image/staticImage/cate_etc.png"></a></td>
+					<td colspan="2" align="center"><a href="index.jsp?main=product/productList.jsp?cate_num=5"><img src="./image/staticImage/cate_etc2.png" style="height: 400px;"></a></td>
 				</tr>
 		
 			</table>
@@ -154,19 +165,19 @@
 			<div class="swiper mySwiper">
 				<div class="swiper-wrapper" style="width: 1200px;">
 					<div class="swiper-slide">
-						<img src="./image/productSave/floorlampA.png" alt="광고 1" style="width: 100%;">
+						<img src="./image/productSave/floorlampA.png" alt="리뷰 1" style="width: 100%;">
 					</div>
 					<div class="swiper-slide">
-						<img src="./image/staticImage/mainBanner.png" alt="광고 2" style="width: 100%;">
+						<img src="./image/staticImage/mainBanner.png" alt="리뷰 2" style="width: 100%;">
 					</div>
 					<div class="swiper-slide">
-						<img src="./image/staticImage/mainBanner.png" alt="광고 3" style="width: 100%;">
+						<img src="./image/staticImage/mainBanner.png" alt="리뷰 3" style="width: 100%;">
 					</div>
 					<div class="swiper-slide">
-						<img src="./image/staticImage/mainBanner.png" alt="광고 4" style="width: 100%;">
+						<img src="./image/staticImage/mainBanner.png" alt="리뷰 4" style="width: 100%;">
 					</div>
 					<div class="swiper-slide">
-						<img src="./image/staticImage/mainBanner.png" alt="광고 5" style="width: 100%;">
+						<img src="./image/staticImage/mainBanner.png" alt="리뷰 5" style="width: 100%;">
 					</div>
 				</div> 
 				<!-- Add Pagination -->
@@ -174,6 +185,7 @@
 				<!-- Add Navigation -->
 				<div class="swiper-button-prev"></div>
 				<div class="swiper-button-next"></div>
+				<div class="swiper-scrollbar"></div>
 			</div>
 		</div>
 		
@@ -200,6 +212,9 @@
             prevEl: '.swiper-button-prev',
         },
         effect: 'slide', // 'slide', 'fade', 'cube', 'coverflow' 또는 'flip' 중 선택
+        scrollbar: {
+            el: '.swiper-scrollbar',
+         }
     });
 </script>
 </html>

@@ -12,7 +12,7 @@
 
 .site-header__logo img {
 	margin: 0 auto;
-	width: 216px;
+	width: 200px;
 	/*  height: 16px; */
 }
 
@@ -29,7 +29,7 @@ h1 a, .h1 a, h2 a, .h2 a, h3 a, .h3 a, h4 a, .h4 a, h5 a, .h5 a, h6 a,
 	font-weight: 300;
 	-webkit-font-smoothing: antialiased;
 	-webkit-text-size-adjust: 100%;
-}
+} 
 
 .site-header__logo a, .site-header__logo a:hover, .site-header__logo a:focus
 	{
@@ -58,7 +58,7 @@ img, iframe {
 
 *, input, :before, :after {
 	box-sizing: border-box;
-}
+} 
 
 a:hover, a:focus {
 	color: #b89365;
@@ -154,10 +154,10 @@ a, .text-link {
 	grid-gap: 20px 0;
 }
 
-*:focus, *:active {
+/* *:focus, *:active {
 	-webkit-appearance: none;
 	outline: none !important;
-}
+} */
 
 .header-nav__sub-nav-links p {
 	text-transform: uppercase;
@@ -319,7 +319,7 @@ a, .text-link {
 }
 
 .header__nav-top-level--open .header__nav-top-level-link:after {
-	background-color: #947044;
+	background-color: #FF5C00;
 }
 
 /* --------------------------media open------------------------- */
@@ -374,10 +374,10 @@ a, .text-link {
 		position: absolute;
 		left: 0;
 		top: 0;
-		font-weight: 500;
-		color: #4a4a4a;
+		/* font-weight: 500; */
+		color: #FF5C00; /*헤더 호버 시 글씨 색 변경*/
 		white-space: nowrap;
-	}
+	} 
 	.header__nav-top-level--open .header__nav-top-level-link:after {
 		content: "";
 		position: absolute;

@@ -15,7 +15,6 @@
 		font-family: 'Noto Sans KR';
 		text-decoration: none;
 		font-size: 14px;
-
 	}
 	#shopify-section-header > header > div > ul > li > a, 
 	#shopify-section-header > header > div > ul > li > a,

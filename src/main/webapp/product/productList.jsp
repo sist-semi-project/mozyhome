@@ -23,31 +23,35 @@
 <title>상품리스트</title>
 <style type="text/css">
 	body{
-	 	font-family: "Noto Sans KR";
-	 	font-size: 14px;
+	 	text-decoration: none !important;
+		color:black !important;
 	}
 	
 	a, .goDetail{
-		text-decoration: none;
-		color:black;
+		text-decoration: none !important;
+		color:black !important;
 		cursor: pointer;
 	}
 	
 	.sort{
-		color:#aaa;
-		border-color: white;
-		font-size: 14px;
+		font-size: 14px !important;
+		color:#aaa !important;
+		border-color: white !important;
 	}
 	
 	/* 페이징 디자인 */
+	body > div.layout.main > div > ul > li > a{
+		color: black !important;
+	}
+	
 	.page-link {
-	  color: black; 
+	  color: black !important;
 	  background-color: white;
 	  
 	}
 	.page-item.active .page-link {
-		 z-index: 1;
-		 color: white;
+		 z-index: 1 !important;
+		 color: white !important;
 		 background-color: #FF5C00;
 		 border-color: #FF5C00;
 	}
@@ -215,7 +219,7 @@
 	// --------------------------------------------------------------------------		
 %>
 <body>
-<div style="margin:0 auto; width:1400px;">
+<div style="margin:0 auto; width:1500px;">
 	<table>
 		<div style="margin:100px 0px 10px 15px; float:left;">
 			<a class="pCate" pCateNum="<%=pcdto.getCate_num() %>"><%=pcdto.getCate_name() %></a> 
