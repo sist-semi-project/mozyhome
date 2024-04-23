@@ -17,181 +17,7 @@
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 <title>사용자 등록</title>
-<style type="text/css">
-.container {
-	margin-left: auto;
-	margin-right: auto;
-}
-
-.container {
-	position: relative;
-	padding-left: 15px;
-	padding-right: 15px;
-}
-
-.hr-join {
-	margin: 10px 0 40px;
-	height: 2px;
-	background-color: #cecece;
-	border: 0 none;
-	color: #cecece;
-}
-
-.ttl-join h3 {
-	margin: 0;
-	font-size: 1.17em;
-	font-weight: bold;
-}
-
-body, body * {
-	box-sizing: border-box;
-}
-
-body {
-	font-family: Pretendard, 'Noto Sans KR', 'Apple SD Gothic Neo',
-		'Malgun Gothic', sans-serif;
-}
-
-h3 {
-	font-size: 1.17em;
-	margin-block-start: 1em;
-	margin-block-end: 1em;
-	margin-inline-start: 0px;
-	margin-inline-end: 0px;
-	font-weight: bold;
-	unicode-bidi: isolate;
-}
-
-.ttl-join {
-	display: flex;
-	align-items: center;
-}
-
-.ttl-join .required-span {
-	float: right;
-}
-
-.required-span {
-	margin-left: auto;
-}
-
-.section:first-child {
-	margin: 80px 0 100px;
-}
-
-.required {
-	color: #c00;
-	vertical-align: middle;
-}
-
-.buttons .btn-primary {
-	min-width: 150px;
-}
-
-h1.page-title {
-	text-align: center;
-	font-size: 24px;
-	font-weight: 700;
-	letter-spacing: 5px;
-	color: #222;
-	line-height: 27px;
-	padding-top: 75px;
-}
-
-.page-title {
-	padding-bottom: 35px !important;
-}
-
-.page-title-sub {
-	display: block;
-	margin-bottom: 35px;
-	text-align: center;
-}
-
-.btn-orange {
-	background-color: #FF5C00;
-	border-color: #FF5C00;
-	color: white;
-}
-
-.btn-orange:hover {
-	background-color: #fff;
-	border-color: #FF5C00;
-	color: #FF5C00;
-}
-
-.password_info {
-	flex: none;
-	padding: 0 5px;
-}
-
-.how_secure {
-	display: none;
-	padding: 4px 6px 3px 6px;
-	border-radius: 10px;
-	background: rgba(255, 168, 0, .12);
-	font-size: 11px;
-	font-weight: 700;
-	line-height: 13px;
-	letter-spacing: -.4px;
-	color: #ffa41c;
-	vertical-align: middle;
-}
-
-em {
-	font-style: normal;
-}
-
-.btn_show {
-	margin-left: 4px;
-	vertical-align: middle;
-}
-
-button {
-	border-radius: 0;
-	border: none;
-	background: 0 0;
-	-webkit-appearance: none;
-	appearance: none;
-	outline: 0;
-	text-decoration: none;
-	cursor: pointer;
-	-webkit-text-size-adjust: none;
-}
-
-.blind {
-	position: absolute;
-	clip: rect(0, 0, 0, 0);
-	width: 1px;
-	height: 1px;
-	margin: -1px;
-	overflow: hidden;
-}
-
-.btn_show.hide::before {
-	background-position: -256px -264px;
-	background-repeat: no-repeat;
-	width: 30px;
-	height: 30px;
-}
-
-.btn_show::before {
-	background-position: -256px -296px;
-	background-repeat: no-repeat;
-	width: 30px;
-	height: 30px;
-	display: inline-block;
-	vertical-align: top;
-	content: '';
-}
-
-.btn_show.hide::before, .btn_show::before {
-	background-image:
-		url(https://ssl.pstatic.net/static/nid/join/m_sp_06_realname_48b1e603.png);
-	background-size: 372px 326px;
-	background-repeat: no-repeat;
-}
-</style>
+<link rel="stylesheet" href="./SemiLogin/Register.css" >
 
 <script type="text/javascript">
 	$(function() {
@@ -202,7 +28,7 @@ button {
 
 			$.ajax({
 				type : "get",
-				url : "idCheck.jsp",
+				url : "./SemiLogin/idCheck.jsp",
 				dataType : "json",
 				data : {
 					"mem_id" : mem_id
@@ -226,7 +52,7 @@ button {
 
 			$.ajax({
 				type : "get",
-				url : "nicknameCheck.jsp",
+				url : "./SemiLogin/nicknameCheck.jsp",
 				dataType : "json",
 				data : {
 					"mem_nickname" : mem_nickname
@@ -234,10 +60,9 @@ button {
 				success : function(res) {
 					if (res.count == 1) {
 						alert("이미 사용중인 닉네임입니다.\n");
-						$("span.nicknamesuccess").text("not ok!!");
+						$("#mem_nickname").val("");
 					} else {
 						alert("사용 가능한 닉네임입니다.");
-						$("span.nicknamesuccess").text("ok!!");
 					}
 				}
 			});
@@ -253,16 +78,7 @@ button {
 		});
 	})
 
-	function check(f) {
-		if (f.pass.value != f.pass2.value) {
-			alert("비밀번호가 일치하지 않습니다.");
-			//초기화
-			f.pass.value = "";
-			f.pass2.value = "";
-			pass.focus();
-			return false; //action 호출하지 않음.
-		}
-	}
+	
 </script>
 </head>
 <h1 class="page-title">mozyhome</h1>
@@ -272,7 +88,7 @@ button {
 
 <body>
 	<div class="container">
-		<form id="signupForm" action="MainAction.jsp" method="post"
+		<form id="signupForm" action="./SemiLogin/MainAction.jsp" method="post"
 			onsubmit="return validateForm(event)">
 			<div class="row">
 
@@ -507,7 +323,7 @@ button {
 		</form>
 	</div>
 
-	<script src="validation.js"></script>
+	<script src="./SemiLogin/validation.js"></script>
 </body>
 
 </html>

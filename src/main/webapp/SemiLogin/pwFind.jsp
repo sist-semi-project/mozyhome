@@ -96,7 +96,7 @@ input[type="text"], input[type="password"] {
 		}
 		
 		frm.method = "post";
-		frm.action = "pwFindResult.jsp"; // 넘어간 화면
+		frm.action = "index.jsp?main=pwFindResult.jsp"; // 넘어간 화면
 		frm.submit();
 		
 	
@@ -127,7 +127,7 @@ input[type="text"], input[type="password"] {
 		<div align="center">
 			<input type="button" id="btnSearch" name="enter" value="찾기"
 				onClick="pw_search()"> <input type="button" id="btnCancel"
-				name="cancle" value="취소" onClick="location.href='Login.jsp'">
+				name="cancle" value="취소" onClick="history.back()">
 
 		</div>
 	</form>
