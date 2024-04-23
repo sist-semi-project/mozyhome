@@ -48,6 +48,7 @@
 	};
 	</script>
 	  <%
+	  response.sendRedirect("../index.jsp?main=SemiLogin/loginMain.jsp");
   }else{
 	  %>
 	  <script type="text/javascript">

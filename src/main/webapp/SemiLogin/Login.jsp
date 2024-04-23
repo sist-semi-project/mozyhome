@@ -67,7 +67,6 @@ input[type="text"], input[type="password"] {
 </style>
 <body>
 
-
 	<form action="index.jsp?main=SemiLogin/loginAction.jsp" name="form_log" method="post"
 		class="align">
 		<br>
