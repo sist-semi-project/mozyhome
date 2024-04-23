@@ -293,7 +293,7 @@
 					</div>
 				</div>
 				<input type="hidden" id="mem_is_active" name="mem_is_active"
-					value="N">
+					value="Y">
 
 			</div>
 
