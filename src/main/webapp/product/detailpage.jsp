@@ -141,9 +141,8 @@ session.setAttribute("loginok","yes");
 //2024-04-19 추가 
 session.setAttribute("directPurchase", true);
 
-//String pro_num = request.getParameter("pro_num");
+String pro_num = request.getParameter("pro_num");
 
-String pro_num = "322";
 String loginok = (String) session.getAttribute("loginok");
 String mem_id = (String) session.getAttribute("mem_id");
 
