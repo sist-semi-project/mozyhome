@@ -133,10 +133,6 @@
 <th scope="row">도시</th>
                             <td></td>
                         </tr>
-<tr class="displaynone">
-<th scope="row">주/지방</th>
-                            <td></td>
-                        </tr>
 
 <tr>
 <th scope="row">휴대전화</th>
