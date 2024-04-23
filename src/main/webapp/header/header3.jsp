@@ -9,12 +9,12 @@
 <link rel="stylesheet" href="./header/header.css" />
 
 <style type="text/css">
+	
 /* 검색 토글창 디자인 시작 */
 	body {
 		font-family: 'Noto Sans KR';
 		text-decoration: none;
 		font-size: 14px;
-
 	}
 	#shopify-section-header > header > div > ul > li > a, 
 	#shopify-section-header > header > div > ul > li > a,
@@ -318,11 +318,35 @@
 						src="./image/staticImage/searchicon_bs.png"></a>
 					</li>
 
+					<%
+					// 세션에 로그인 정보가 있는지 확인
+					String loginStatus = (String) session.getAttribute("loginok");
+					String myid = (String) session.getAttribute("myid");
+
+					// 로그인 상태 확인
+					boolean isLoggedIn = "yes".equals(loginStatus);
+
+					if (isLoggedIn) {
+						// 로그인 상태인 경우 처리
+					%>
+					<li
+						class="header__nav-top-level header__nav-top-level--has-children">
+						<a href="SemiLogin/logoutAction.jsp"
+						class="header__nav-top-level-link" data-name="Logout">Logout</a>
+					</li>
+					<%
+					} else {
+					// 로그인 상태가 아닌 경우 처리
+					%>
 					<li
 						class="header__nav-top-level header__nav-top-level--has-children">
 						<a href="index.jsp?main=SemiLogin/Login.jsp"
 						class="header__nav-top-level-link" data-name="Login">Login</a>
 					</li>
+					<%
+					}
+					%>
+
 
 
 
