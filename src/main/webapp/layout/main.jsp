@@ -1,3 +1,7 @@
+<%@page import="java.util.ArrayList"%>
+<%@page import="java.util.List"%>
+<%@page import="data.dto.ProductDto"%>
+<%@page import="data.dao.mainDao"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -30,14 +34,14 @@
 	}
 	
 	.swiper-pagination-bullet {
-		opacity: 0.7;
+		opacity: 0;
   		background: white !important;
   		padding: 1px 50px;
   		border-radius: 0px;
 	}
 	
 	.swiper-pagination-bullet-active {
-		opacity: 0.7;
+		opacity: 0;
 		background: #FF5C00 !important;
 	}
 
@@ -46,18 +50,24 @@
     	margin: 0 auto;
 	}
 	
-	::webkit-scrollbar-thumb{
-		background: #FF5C00 !important;
+	::-webkit-scrollbar-thumb{
+		background: #FF5C00;
 	}
 	
-	::webkit-scrollbar-track{
-		background: white !important;
+	::-webkit-scrollbar-track{
+		background: white;
 	}
 
 	
 	
 </style>
 </head>
+<%
+	// 0423 17:47 작업중
+	mainDao mdao=new mainDao();
+	List<ProductDto> list = new ArrayList<ProductDto>();
+	list=mdao.getNewProducts();
+%>
 <body>
 
 <div class="swiper mySwiper">
@@ -77,10 +87,11 @@
 </div>
 
 <div style="width: 1500px; margin: 0 auto;" align="center;">
+	<!-- md pick -->
 	<div class="mdpick" style="margin-top: 100px;">
 		<span style="font-size: 32px;">MD PICK</span>
 		<img alt="" src="./image/staticImage/Vector.png">
-
+	
 			<div class="swiper mySwiper">
 				<div class="swiper-wrapper" style="width: 1200px;">
 					<div class="swiper-slide">
@@ -108,37 +119,14 @@
 			</div>
 		</div>
 		
+		<!-- new 
+		https://jongs-story.tistory.com/m/17 더보기버튼
+		-->
 		<div class="new" style="margin-top: 100px;">
-		<span style="font-size: 32px;">NEW</span>
-		<img alt="" src="./image/staticImage/Vector.png">
-
-			<div class="swiper mySwiper">
-				<div class="swiper-wrapper" style="width: 1200px;">
-					<div class="swiper-slide">
-						<img src="./image/productSave/floorlampA.png" alt="광고 1" style="width: 100%;">
-					</div>
-					<div class="swiper-slide">
-						<img src="./image/staticImage/mainBanner.png" alt="광고 2" style="width: 100%;">
-					</div>
-					<div class="swiper-slide">
-						<img src="./image/staticImage/mainBanner.png" alt="광고 3" style="width: 100%;">
-					</div>
-					<div class="swiper-slide">
-						<img src="./image/staticImage/mainBanner.png" alt="광고 4" style="width: 100%;">
-					</div>
-					<div class="swiper-slide">
-						<img src="./image/staticImage/mainBanner.png" alt="광고 5" style="width: 100%;">
-					</div>
-				</div> 
-				<!-- Add Pagination -->
-				<div class="swiper-pagination"></div>
-				<!-- Add Navigation -->
-				<div class="swiper-button-prev"></div>
-				<div class="swiper-button-next"></div>
-				<div class="swiper-scrollbar"></div>
-			</div>
+			
 		</div>
 		
+		<!-- category -->
 		<div class="category" style="margin-top: 200px;">
 			<table class="table-bordered" style="width: 1200px;">
 				<tr>
@@ -158,35 +146,9 @@
 			</table>
 		</div>
 		
+		<!-- review -->
 		<div class="review" style="margin-top: 100px;">
-		<span style="font-size: 32px;">REVIEW</span>
-		<img alt="" src="./image/staticImage/Vector.png">
-
-			<div class="swiper mySwiper">
-				<div class="swiper-wrapper" style="width: 1200px;">
-					<div class="swiper-slide">
-						<img src="./image/productSave/floorlampA.png" alt="리뷰 1" style="width: 100%;">
-					</div>
-					<div class="swiper-slide">
-						<img src="./image/staticImage/mainBanner.png" alt="리뷰 2" style="width: 100%;">
-					</div>
-					<div class="swiper-slide">
-						<img src="./image/staticImage/mainBanner.png" alt="리뷰 3" style="width: 100%;">
-					</div>
-					<div class="swiper-slide">
-						<img src="./image/staticImage/mainBanner.png" alt="리뷰 4" style="width: 100%;">
-					</div>
-					<div class="swiper-slide">
-						<img src="./image/staticImage/mainBanner.png" alt="리뷰 5" style="width: 100%;">
-					</div>
-				</div> 
-				<!-- Add Pagination -->
-				<div class="swiper-pagination"></div>
-				<!-- Add Navigation -->
-				<div class="swiper-button-prev"></div>
-				<div class="swiper-button-next"></div>
-				<div class="swiper-scrollbar"></div>
-			</div>
+		
 		</div>
 		
 		
