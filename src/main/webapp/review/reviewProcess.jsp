@@ -1,3 +1,4 @@
+<%@page import="java.io.File"%>
 <%@page import="data.dao.MemberDao"%>
 <%@page import="data.dto.MemberDto"%>
 <%@page import="data.dto.ReviewDto"%>
@@ -19,15 +20,6 @@
 <%
 request.setCharacterEncoding("utf-8");
 
-String loginok = (String) session.getAttribute("loginok");
-String mem_id = (String) session.getAttribute("mem_id"); 
-int pro_num=Integer.parseInt( request.getParameter("pro_num"));
-
-ReviewDao rdao=new ReviewDao();
-
-int mem_num= rdao.getNum(mem_id);
-
-
 String realPath=getServletContext().getRealPath("image/reviewSave");
 
 int uploadSize=1024*1024*10;
@@ -40,8 +32,24 @@ int rating=Integer.parseInt(multi.getParameter("rating"));
 String content=multi.getParameter("content");
 String content_subject=multi.getParameter("content_subject");
 String photoname=multi.getFilesystemName("photo"); 
+String pro_numStr= multi.getParameter("pro_num");
+String mem_numStr= multi.getParameter("mem_num");
+
+int pro_num=Integer.parseInt(pro_numStr);
+int mem_num=Integer.parseInt(mem_numStr);
 
 
+String loginok = (String) session.getAttribute("loginok");
+String mem_id = (String) session.getAttribute("mem_id"); 
+
+ReviewDao rdao=new ReviewDao();
+
+System.out.println(rating);
+System.out.println(content);
+System.out.println(content_subject);
+System.out.println(photoname);
+System.out.println(pro_num);
+System.out.println(mem_num);
 //dto에 저장
 ReviewDto rdto=new ReviewDto();
 
@@ -53,14 +61,10 @@ rdto.setReview_subject(content_subject);
 rdto.setReview_image(photoname);
 
 //사진선택을 안하면 기존의 사진으로 저장
-
-
 rdao.insertReview(rdto);
 
-
-
 //방명록 목록으로 이동(수정했던 페이지로 이동)
-response.sendRedirect("index.jsp?main=reviewForm.jsp&pro_num="+pro_num);
+response.sendRedirect("reviewForm.jsp?pro_num="+pro_num);
 
 %>
 </body>
