@@ -184,7 +184,7 @@
 		</div> 
 		
 		<!-- 상품 출력 -->
-		<tr class="list" align="center">
+		<tr class="list">
 		<%
 				int line=0;
 				

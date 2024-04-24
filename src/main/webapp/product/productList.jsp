@@ -230,8 +230,8 @@
 					<option value="index.jsp?main=product/productList.jsp?cate_num=<%=cate_num%>&sort=1" <%="1".equals(sort)?"selected='selected'":""%>>신상품</option>
 					<option value="index.jsp?main=product/productList.jsp?cate_num=<%=cate_num%>&sort=2" <%="2".equals(sort)?"selected='selected'":""%>>상품명</option>
 					<option value="index.jsp?main=product/productList.jsp?cate_num=<%=cate_num%>&sort=3" <%="3".equals(sort)?"selected='selected'":""%>>낮은가격</option>
-					<option value="index.jsp?main=product/product/productList.jsp?cate_num=<%=cate_num%>&sort=4" <%="4".equals(sort)?"selected='selected'":""%>>높은가격</option>
-					<option value="index.jsp?main=product/product/productList.jsp?cate_num=<%=cate_num%>&sort=5" <%="5".equals(sort)?"selected='selected'":""%>>리뷰순</option>
+					<option value="index.jsp?main=product/productList.jsp?cate_num=<%=cate_num%>&sort=4" <%="4".equals(sort)?"selected='selected'":""%>>높은가격</option>
+					<option value="index.jsp?main=product/productList.jsp?cate_num=<%=cate_num%>&sort=5" <%="5".equals(sort)?"selected='selected'":""%>>리뷰순</option>
 				</select>
 			</div>	
 		</div> 
