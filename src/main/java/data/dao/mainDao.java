@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import data.dto.ProductDto;
+import data.dto.ReviewDto;
 import db.DbConnect;
 
 public class mainDao {
@@ -15,7 +16,7 @@ public class mainDao {
 	
 	// new 상품 조회
 	public List<ProductDto> getNewProducts() {
-		List<ProductDto> list = new ArrayList<ProductDto>();
+		List<ProductDto> nlist = new ArrayList<ProductDto>();
 
 		Connection conn = db.getConnection();
 		PreparedStatement pstmt = null;
@@ -50,7 +51,7 @@ public class mainDao {
 				dto.setPro_create_date(rs.getTimestamp("pro_create_date"));
 				dto.setPro_sale_status(rs.getString("pro_sale_status"));
 
-				list.add(dto);
+				nlist.add(dto);
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -58,9 +59,43 @@ public class mainDao {
 		} finally {
 			db.dbClose(rs, pstmt, conn);
 		}
-		return list;
+		return nlist;
 	}
 	
 	// 리뷰 출력
+	public List<ReviewDto> getReview() {
+		List<ReviewDto> rlist = new ArrayList<ReviewDto>();
 
+		Connection conn = db.getConnection();
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+
+		String sql = "select * from review order by review_writeday desc";
+
+		try {
+			pstmt = conn.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+
+			while (rs.next()) {
+				ReviewDto dto=new ReviewDto();
+				
+				dto.setReview_num(rs.getInt("review_num"));
+				dto.setMem_num(rs.getInt("mem_num"));
+				dto.setPro_num(rs.getInt("pro_num"));
+				dto.setReview_pyung(rs.getInt("review_pyung"));
+				dto.setReview_subject(rs.getString("review_subject"));
+				dto.setReview_content(rs.getString("review_content"));
+				dto.setReview_image(rs.getString("review_image"));
+				dto.setReview_writeday(rs.getTimestamp("review_writeday"));
+
+				rlist.add(dto);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			db.dbClose(rs, pstmt, conn);
+		}
+		return rlist;
+	}
 }

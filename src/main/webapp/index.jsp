@@ -24,8 +24,6 @@
 		font-size: 14px;
 		font-family: 'Noto Sans KR';
 		border: 0px groove purple;
-		text-decoration: none;
-		color:black;
 	}
 	
 	div.footer{
