@@ -131,7 +131,6 @@ hr {
 </head>
 
 <%
-  
 session.setAttribute("mem_id", "test0418");
 session.setAttribute("loginok", "yes");
 
@@ -140,8 +139,10 @@ session.setAttribute("directPurchase", true);
 
 String pro_num = request.getParameter("pro_num");
 
-String loginok = (String) session.getAttribute("loginok");
-String mem_id = (String) session.getAttribute("mem_id");
+/* String loginok = (String) session.getAttribute("loginok");
+String mem_id = (String) session.getAttribute("mem_id"); */
+String loginok = "yes";
+String mem_id = "dragon";
 
 //아이디에 해당하는 멤버 시퀀스
 MemberDao mdao = new MemberDao();
@@ -160,7 +161,7 @@ boolean existwish = wdao.checkWishlist(mem_num, pro_num);
 
 <body>
 
-	<form action="index.jsp?main=order/orderForm.jsp"  id="form1">
+	<form action="../order/orderForm.jsp" id="form1">
 
 		<!-- cart 데이터에 넣을 mem_num, pro_num -->
 		<input type="hidden" name="mem_num" value="<%=mem_num%>"> <input
@@ -172,10 +173,10 @@ boolean existwish = wdao.checkWishlist(mem_num, pro_num);
 		</div>
 
 		<div class="subimgdiv">
-			<img class="subimg" alt="" src="<%=pdto.getPro_sub_img1()%>">
-			<img class="subimg" alt="" src="<%=pdto.getPro_sub_img2()%>">
-			<img class="subimg" alt="" src="<%=pdto.getPro_sub_img3()%>">
-			<img class="subimg" alt="" src="<%=pdto.getPro_sub_img4()%>">
+			<img class="subimg" alt="" src="<%=pdto.getPro_sub_img1()%>"> <img
+				class="subimg" alt="" src="<%=pdto.getPro_sub_img2()%>"> <img
+				class="subimg" alt="" src="<%=pdto.getPro_sub_img3()%>"> <img
+				class="subimg" alt="" src="<%=pdto.getPro_sub_img4()%>">
 		</div>
 
 		<!-- 상품정보 -->
@@ -197,8 +198,8 @@ boolean existwish = wdao.checkWishlist(mem_num, pro_num);
 			%>
 			<h4>
 				<label>Color</label> <select style="width: 300px;" name="size">
-					<option value="option1" selected="selected" value="1">-[필수]옵션을 선택해
-						주세요-</option>
+					<option value="option1" selected="selected" value="1">-[필수]옵션을
+						선택해 주세요-</option>
 					<%
 					String getSize = pdto.getPro_size();
 					String[] size = getSize.split(",");
@@ -219,8 +220,8 @@ boolean existwish = wdao.checkWishlist(mem_num, pro_num);
 			%>
 			<h4>
 				<label>Size</label> <select style="width: 300px;" name="color">
-					<option value="option2" selected="selected" value="1">-[필수]옵션을 선택해
-						주세요-</option>
+					<option value="option2" selected="selected" value="1">-[필수]옵션을
+						선택해 주세요-</option>
 					<%
 					String getColor = pdto.getPro_color();
 					String[] color = getColor.split(",");
@@ -256,7 +257,7 @@ boolean existwish = wdao.checkWishlist(mem_num, pro_num);
 
 		<div class="btndiv">
 
-			<button name="heart" class="heart"  id="heart" type="button">
+			<button name="heart" class="heart" id="heart" type="button">
 				<%
 				if (existwish == true) {
 				%>
@@ -265,14 +266,13 @@ boolean existwish = wdao.checkWishlist(mem_num, pro_num);
 				<%
 				} else {
 				%>
-				<i class="bi bi-suit-heart" 
-				style="font-size: 25px; color: #FF5C00;"></i>
+				<i class="bi bi-suit-heart" style="font-size: 25px; color: #FF5C00;"></i>
 				<%
 				}
 				%>
 			</button>
 
-			<button name="cart" class="cart" type="button" >
+			<button name="cart" class="cart" type="button">
 				<i class="bi bi-cart" style="font-size: 25px;"></i>
 			</button>
 
@@ -281,15 +281,16 @@ boolean existwish = wdao.checkWishlist(mem_num, pro_num);
 			String pro_status = pdto.getPro_sale_status();
 			if (pro_status.equals("판매중")) {
 			%>
-			<button name="buynow" class="buynow"  >BUY NOW</button>
+			<button type="submit" name="buynow" class="buynow">BUY NOW</button>
 			<%
 			} else if (pro_status.equals("품절")) {
 			%>
-			<button name="no_buynow" class="no_buynow"  disabled>품절</button>
+			<button name="no_buynow" class="no_buynow" disabled>품절</button>
 			<%
 			} else if (pro_status.equals("단종")) {
 			%>
-			<button name="soldout" class="soldout" disabled>판매가 중지된 제품입니다</button>
+			<button name="soldout" class="soldout" disabled>판매가 중지된
+				제품입니다</button>
 			<%
 			}
 			%>
@@ -297,7 +298,7 @@ boolean existwish = wdao.checkWishlist(mem_num, pro_num);
 			<div class="description" style="display: none;"><%=pdto.getPro_explain()%></div>
 			<br>
 			<button class="infobtn" type="button">PRODUCT DETAIL</button>
-			<div  class="description" style="display: none;"><%=pdto.getPro_explain()%></div>
+			<div class="description" style="display: none;"><%=pdto.getPro_explain()%></div>
 			<br>
 			<button class="infobtn" type="button">SHOPPING GUIDE</button>
 			<div class="description" style="display: none;"><%=pdto.getPro_explain()%></div>
@@ -312,15 +313,6 @@ boolean existwish = wdao.checkWishlist(mem_num, pro_num);
 	<script type="text/javascript">
 	$(document).ready(function() {
 		
-		
-		//상품 상세설명 버튼 3개
-		
-	    $(".infobtn").click(function() {
-	        // 버튼이 속한 부모 요소에서 다음에 오는 div를 찾아서 토글
-	        $(this).next("div.description").slideToggle();
-	    });
-	});
-		
     $(".cart").click(function(){
     	var login="<%=loginok%>";
 
@@ -332,7 +324,7 @@ boolean existwish = wdao.checkWishlist(mem_num, pro_num);
 			
 			//장바구니에 같은 옵션있으면 '장바구니에 이미 담겨져 있습니다' alert 띄우기
 			<%CartDao cdao = new CartDao();
-				cdao.overlapProDel(pro_num);%>
+cdao.overlapProDel(pro_num);%>
 			
 				//옵션 선택 안하고 장바구니 넣을때
 				var pro_color = $('select[name="color"]').val();
@@ -354,17 +346,47 @@ boolean existwish = wdao.checkWishlist(mem_num, pro_num);
 				type : "post",
 				dataType : "html",
 				data : cartdata,
-				url : "product/detailprocess.jsp",
+				url : "detailprocess.jsp",
 				success : function() {
 
 					var a = confirm("장바구니에 저장하였습니다\n장바구니로 이동하려면 [확인]을 눌러주세요");
 
 					if (a) {
-						location.href = "index.jsp?main=cart/mycart.jsp";
+						location.href = "../cart/mycart.jsp";
 					}
 				}
-			})
-		})
+			});
+		});
+    
+    
+		//BUY NOW 버튼 함수
+	  $(".buynow").click(function(){
+    	var login="<%=loginok%>";
+
+			if (login == "null") {
+				alert("먼저 로그인을 해주세요");
+				return;
+			}
+			
+			//옵션 선택 안하고 장바구니 넣을때
+			var pro_color = $('select[name="color"]').val();
+			    
+			var pro_size = $('select[name="size"]').val();
+			
+			if(pro_size=="option1"||pro_color=="option2")
+				{
+				alert("옵션을 선택해주세요");
+				return false;
+				}
+		return true;
+	});
+			
+		//상품 상세설명 버튼 3개
+	    $(".infobtn").click(function() {
+	        // 버튼이 속한 부모 요소에서 다음에 오는 div를 찾아서 토글
+	        $(this).next("div.description").slideToggle();
+	    });
+		
 
 		//위시리스트 버튼 함수
 		$("#heart").click(function() {
@@ -386,7 +408,7 @@ boolean existwish = wdao.checkWishlist(mem_num, pro_num);
 				type:"post",
 				dataType: "json",
 				data: { pro_num:pro_num, mem_num:mem_num},
-				url: "product/wishProccess.jsp",
+				url: "wishProccess.jsp",
 				success: function(res){
 					console.log({res});
 					
@@ -405,47 +427,7 @@ boolean existwish = wdao.checkWishlist(mem_num, pro_num);
 			})
 		})
 		
-		//BUY NOW 버튼 함수
-		$(".buynow").click(function(e){
-			e.preventDefault();
-			var login="<%=loginok%>";
-
-						if (login == "null") {
-							alert("먼저 로그인을 해주세요");
-							window.location.href = "loginMain.jsp";
-							return;
-						}
-						
-						var pro_num = <%=pro_num%>;
-
-						var pro_su = $('#quantity').serialize();
-
-						var pro_color = $('select[name="color"]').val();
-						    
-						var pro_size = $('select[name="size"]').val();
-						
-						if(pro_size=="option1"||pro_color=="option2")
-							{
-							alert("옵션을 선택해주세요");
-							return;
-							}
-
-						$.ajax({
-							type:"post",
-							dataType: "json",
-							data: {pro_num:pro_num, pro_su:pro_su, pro_color:pro_color, pro_size:pro_size},
-							url: "index.jsp?main=order/orderForm.jsp",
-							success: function(res){
-								alert("hi");
-								location.href = "mozyhome/index.jsp?main=/order/orderForm.jsp";
-								
-							},
-							 error: function(xhr, status, error) {
-							        console.error("AJAX 오류: ", error);
-							        alert("AJAX 오류 발생. 콘솔을 확인하세요.");
-							    }
-						})
-		})
+	})
 	</script>
 
 </body>

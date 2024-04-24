@@ -719,4 +719,33 @@ public class ProductDao {
 		}
 	}
 
+	
+	public int getProPrice(String pro_num)
+	{
+		int pro_price = 0;
+		
+		Connection conn=db.getConnection();
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		
+		String sql="select pro_price from product where pro_num=?";
+		
+		try {
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setString(1, pro_num);
+			rs=pstmt.executeQuery();
+			
+			if(rs.next())
+			{
+				pro_price=rs.getInt(1);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			db.dbClose(rs, pstmt, conn);
+		}
+		
+		return pro_price;
+	}
 }
