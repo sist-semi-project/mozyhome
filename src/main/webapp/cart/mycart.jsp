@@ -80,32 +80,37 @@ NumberFormat nf = NumberFormat.getInstance();
 				//사진얻기
 				String pro_main_img = map.get("pro_main_img");
 				int cart_su = Integer.parseInt(map.get("cart_su"));
-			    int pro_price = Integer.parseInt(map.get("pro_price"));
-			    int total_price = cart_su * pro_price;
-			    String pro_num=map.get("pro_num");
-			    ProductDao pdao=new ProductDao();
-			    int real_pro_price=pdao.getProPrice(pro_num);
-			
+				int pro_price = Integer.parseInt(map.get("pro_price"));
+				int total_price = cart_su * pro_price;
+				String pro_num = map.get("pro_num");
+				ProductDao pdao = new ProductDao();
+				int real_pro_price = pdao.getProPrice(pro_num);
 			%>
-			 <input type="hidden" id="realProPrice<%=i%>" value="<%=real_pro_price%>">
+			<input type="hidden" id="realProPrice<%=i%>" value="<%=real_pro_price%>">
+				
+			<input type="checkbox" class="cart_select" name=<%=map.get("cart_num")%> value=<%=map.get("cart_num")%>> 
 			
-			<input type="checkbox" class="cart_select" name=<%=map.get("cart_num")%> value=<%=map.get("cart_num")%>>
-
-			<img class="cart_img" alt="" src="<%=pro_main_img%>"> <b><%=map.get("pro_name")%></b>
+			<img class="cart_img" alt="" src="<%=pro_main_img%>"> 
+				
+			<b><%=map.get("pro_name")%></b>
 			
 			<b>[옵션:<%=map.get("cart_size")%>]</b> 
+			
+			<b>[옵션:<%=map.get("cart_color")%>]</b> 
+			
+			<input type="number" min="1" max="99"
+				value="<%=map.get("cart_su")%>" step="1" name="cnt"
+				id="quantity<%=i%>" onchange="updateTotalPrice(<%=i%>)">
 
-			<b>[옵션:<%=map.get("cart_color")%>]</b>
-							
-			<input type="number" min="1" max="99" value="<%=map.get("cart_su") %>" step="1" name="cnt" id="quantity<%=i %>" onchange="updateTotalPrice(<%= i %>)">
 
-			
-			<%String pro_priceStr=map.get("pro_price");
-			
-					pro_price=Integer.parseInt(pro_priceStr);%>
-			
-			<b id="totalPrice<%=i %>" value="<%=total_price%>">₩<%=nf.format(total_price) %></b>
-				
+			<%
+			String pro_priceStr = map.get("pro_price");
+
+			pro_price = Integer.parseInt(pro_priceStr);
+			%>
+
+			<b id="totalPrice<%=i%>" value="<%=total_price%>">₩<%=nf.format(total_price)%></b>
+
 
 			<%
 			}
@@ -129,26 +134,37 @@ NumberFormat nf = NumberFormat.getInstance();
 
 	<script type="text/javascript">
 	
-		
+	$(document).ready(function(){
+  
 		//수량 맞춰서 가격 변경
-	 function updateTotalPrice(index) {
-        var quantity = parseInt(document.getElementById("quantity" + index).value);
-        var real_pro_price = parseInt(document.getElementById("realProPrice" + index).value);
-        
-        console.log("Real Unit Price:", real_pro_price);
-        
-        var totalPrice = quantity * real_pro_price;
-        document.getElementById("totalPrice" + index).innerHTML = "₩" + totalPrice.toLocaleString(); // 쉼표 추가하여 가격 표시
-    }
+		 function updateTotalPrice(index) {
+	        var quantity = parseInt(document.getElementById("quantity" + index).value);
+	        var real_pro_price = parseInt(document.getElementById("realProPrice" + index).value);
+	        
+	        console.log("Real Unit Price:", real_pro_price);
+	        
+	        var totalPrice = quantity * real_pro_price;
+	        document.getElementById("totalPrice" + index).innerHTML = "₩" + totalPrice.toLocaleString(); // 쉼표 추가하여 가격 표시
+	    }
+		
+		//전체 선택 체크박스
+		$(".cart_select_all").click(function(){
+			  
+			  var chk=$(this).is(":checked");
+			  
+			  $(".cart_select").prop("checked",chk);
+		  });
 		
 		//선택상품 구매 버튼
-		
+		$("buy_btn")
+	  
 		//전체상품 구매 버튼
 		
 		//선택삭제 버튼
 		
 		//전체삭제 버튼
 		
+	});
 	</script>
 </body>
 </html>
