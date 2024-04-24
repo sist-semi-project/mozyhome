@@ -246,7 +246,6 @@
 		<%
 
 	} else if(loginok==null) {
-		%><h4>로그인페이지로 전달</h4><%
 		response.sendRedirect("../index.jsp?main=SemiLogin/Login.jsp");
 	} else {%>
 		<div style="margin:0 auto; width:600px">

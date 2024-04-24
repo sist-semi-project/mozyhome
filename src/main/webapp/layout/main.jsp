@@ -146,9 +146,7 @@
 			</div>
 		</div>
 		
-		<!-- new 
-		https://jongs-story.tistory.com/m/17 더보기버튼
-		-->
+		<!-- new -->
 		<div class="new" style="margin-top: 180px;">
 			<span style="font-size: 32px;">NEW</span>
 			<img alt="" src="./image/staticImage/Vector.png">
@@ -162,7 +160,7 @@
 						for(int i=0; i<4; i++){
 							ProductDto pdto=nlist.get(i);
 						%>		
-							<td width="330px" align="center" style="padding: 40px 10px 50px;">
+							<td width="330px" align="center" style="padding: 20px 10px 50px;">
 								<a pronum="<%=pdto.getPro_num()%>" class="goDetail">
 								<img src="<%=pdto.getPro_main_img()%>" style="padding-bottom: 8px;">
 								<span><%=pdto.getPro_name() %></span> <br>
@@ -190,7 +188,7 @@
 		</div>
 		
 		<!-- category -->
-		<div class="category" style="margin-top: 180px;">
+		<div class="category" style="margin-top: 170px;">
 			<table class="table-bordered" style="width: 1200px;">
 				<tr>
 					<td><a href="index.jsp?main=product/productList.jsp?cate_num=11"><img src="./image/staticImage/cate_sofa.png"></a></td>
@@ -203,7 +201,7 @@
 				</tr>
 				
 				<tr>
-					<td colspan="2" align="center" style="height: 350px;"><a href="index.jsp?main=product/productList.jsp?cate_num=5"><img src="./image/staticImage/cate_etc2.png" style="height:400px;"></a></td>
+					<td colspan="2" align="center" style="height: 300px;"><a href="index.jsp?main=product/productList.jsp?cate_num=5"><img src="./image/staticImage/cate_etc.png"></a></td>
 				</tr>
 		
 			</table>
@@ -219,51 +217,53 @@
 						int rline = 0;
 
 						// 반복문을 사용하여 이미지 출력
-						for (int i = 0; i < 12; i++) {
+						for (int i = 0; i < 8; i++) {
 							ReviewDto rdto = rlist.get(i);
 						%>
-						<!-- 각 행의 시작 -->
-						<%
-						if (rline % 4 == 0) {
-						%>
-						<tr>
+							<!-- 각 행의 시작 -->
 							<%
-							}
+							if (rline % 4 == 0) {
 							%>
-
-							<td width="330px" align="center" style="padding: 20px 10px 0px;">
-								<a pronum="<%=rdto.getPro_num()%>" class="goDetail"> 
-								<img src="./image/reviewSave/etcB.jpg" style="padding-bottom: 8px;">
-								<%-- <img src="<%=rdto.getReview_image() %>" style="padding-bottom: 8px;"> --%>
-							</a>
-							</td>
-
-							<!-- 각 행의 끝 -->
-							<%
-							if ((rline + 1) % 4 == 0) {
-							%>
-						</tr>
+							<tr>
+								<%}%>
+	
+								<td width="330px" align="center" style="padding: 20px 10px 0px;">
+									<a pronum="<%=rdto.getPro_num()%>" class="goDetail"> 
+									<img src="./image/reviewSave/etcB.jpg" style="padding-bottom: 8px;">
+									<%-- <img src="<%=rdto.getReview_image() %>" style="padding-bottom: 8px;"> --%>
+									</a>
+								</td>
+								<!-- 각 행의 끝 -->
+								<%
+								if ((rline + 1) % 4 == 0) {
+								%>
+							</tr>
 						<%}%>
 
 						<%
-						rline++;
+							rline++;
 						%>
 						<%}%>
 
 						<!-- 마지막 행이 모자랄 경우 빈 셀로 채워주기 -->
 						<%
-						if (rline % 4 != 0) {
-						%>
-						<%
-						int emptyCells = 4 - (rline % 4);
-						%>
-						<%
-						for (int j = 0; j < emptyCells; j++) {
-						%>
-						<td></td>
-						<%}%>
+						if (rline % 4 != 0) {%>
+							<%
+							int emptyCells = 4 - (rline % 4);
+							%>
+							<%
+							for (int j = 0; j < emptyCells; j++) {
+							%>
+							<td></td>
+							<%}%>
 						</tr>
 						<%}%>
+						
+						<tr>
+						<td colspan="4" align="center">
+							<a id="newMore" href="index.jsp?main=review/reviewList.jsp"><img alt="" src="./image/staticImage/more_bs.png" style="margin-top: 50px;"></a>
+						</td>
+					</tr>
 				</table>
 			</div>
 		</div>
