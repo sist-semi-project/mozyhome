@@ -9,6 +9,10 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style type="text/css">
+a {
+    text-decoration: none !important;
+    color: #000;
+}
 form {
     margin: 0;
     padding: 0;
@@ -61,9 +65,9 @@ h1.page-title {
     border: 1px solid #C7C7C7;
     box-sizing: border-box;
     flex: 1 1 0%;
-    padding: 12px 23px;
+    padding: 3px 13px;
     text-align: center;
-    font-size: 1.4rem;
+    font-size: 1.0rem;
     font-weight: 500;
     line-height: 2rem;
 }
@@ -103,7 +107,7 @@ h1.page-title {
     width: 100%;
 }
 .member_edit .edit_row .label {
-    font-size: 1.4rem;
+
     color: #141414;
     font-weight: 600;
 }
@@ -112,7 +116,7 @@ h1.page-title {
     border-bottom: 1px solid #D8D8D8;
     width: 100%;
     box-sizing: border-box;
-    font-size: 1.4rem;
+
     padding: 0.8rem 0.4rem;
 }
 inputTypeText {
@@ -123,7 +127,7 @@ inputTypeText {
 .member_edit .edit_row.call select,.member_edit .edit_row.call input {
     text-align: center;
     flex: 1;
-    font-size: 1.6rem;
+    font-size: 1.1rem;
     color: #141414;
 }
 .member_edit .edit_row.call dd {
@@ -147,7 +151,7 @@ inputTypeText {
     height: auto;
     font-size: 14px;
     font-weight: 500;
-    line-height: 17px;
+    line-height: 27	px;
     width: max-content;
     white-space: nowrap;
     margin: 0;
@@ -273,7 +277,7 @@ MemberDto dto = dao.getMemberInfo(mem_id);
 <div id="body">
 <div id="body-begin"></div>
 	<div class="sub_container">
-    <h1 class="page-title">MEMBER MODIFY</h1>
+    <h1 class="page-title">회원 정보 수정</h1>
     <form id="editForm" name="editForm" action="#" method="post">
     	<div class="member_edit">
     	

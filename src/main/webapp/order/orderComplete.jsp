@@ -111,7 +111,7 @@ h1.page-title {
     border-bottom: 1px solid #929292;
 }
 #mCafe24Order .ec-base-table tbody th {
-    font-size: 1.2rem;
+
     font-weight: 400;
     color: #616161;
     width: 57px;

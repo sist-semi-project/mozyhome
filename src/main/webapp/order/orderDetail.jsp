@@ -43,7 +43,7 @@ h1.page-title {
     padding-top: 75px;
     padding-bottom: 60px;
 }
-.orderArea:first-child .title {
+.xans-myshop-orderhistorydetail .orderArea:first-child .title {
     margin-top: 0;
 }
 
@@ -64,7 +64,7 @@ h1.page-title {
 .boardView th {
     display: flex;
     align-items: center;
-    font-size: 1.4rem;
+
     color: #616161;
     width: 97px;
     padding: 12px 0 12px 10px;
@@ -75,8 +75,8 @@ h1.page-title {
 }
 
 .boardView td {
-    font-size: 1.4rem;
-    color: var(--gray-6-color);
+
+    color: #616161;
     flex: 1;
     padding: 12px;
     border-top: 1px solid #e9e9e9;
@@ -188,6 +188,38 @@ h1.page-title {
 .boardList .thumb {
     width: 92px;
 }
+.xans-myshop-orderhistorydetail {
+    padding: 0 16px;
+}
+
+.xans-myshop-orderhistorydetail .title {
+    margin: 28px 0 12px;
+}
+
+.xans-myshop-orderhistorydetail .title h3 {
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: #141414;
+}
+html,body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,code,form,fieldset,legend,input,textarea,p,blockquote,th,td,img {
+    margin: 0;
+    padding: 0;
+    color: #353535;
+}
+div {
+    display: block;
+    unicode-bidi: isolate;
+}
+h3 {
+    display: block;
+    font-size: 1.17em;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    font-weight: bold;
+    unicode-bidi: isolate;
+}
 </style>
 <% 
 	String mem_id = (String) session.getAttribute("myid");
@@ -209,12 +241,13 @@ h1.page-title {
 <div id="body">
 <div id="body-begin"></div>
 <div class="sub_container">
-	<h1 class="page-title">ORDER INFO</h1>
+	<h1 class="page-title">주문정보</h1>
 	<form id="detailForm" name="detailForm" action="#" method="POST">
+	<div class="xans-myshop-orderhistorydetail">
 	<!-- 주문정보 -->
 	<div class="orderArea">
 		<div class="title">
-        	<h3>주문정보</h3>
+        	
 		</div>
 
        <div class="boardView">
@@ -248,7 +281,7 @@ h1.page-title {
     <!-- 주문 상품 정보 -->
 	<div class="orderArea order_item">
     	<div class="title">
-        	<h3>주문상품</h3>
+
         </div>
 
         <div class="ec-base-table typeList">
@@ -280,7 +313,7 @@ h1.page-title {
     <!-- 배송지정보 -->
 <div class="orderArea">
             <div class="title">
-                <h3>배송지정보</h3>
+
             </div>
             <div class="boardView">
                 <table border="0">
@@ -308,6 +341,7 @@ h1.page-title {
 </tbody>
 </table>
 </div>
+        </div>
         </div>
 	</form>
 </div>

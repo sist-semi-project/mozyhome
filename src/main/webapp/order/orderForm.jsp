@@ -151,10 +151,10 @@ input[type="text"] {
     margin: 0;
 }
 .ec-base-table tbody th {
-    font-size: 1.2rem;
+
     font-weight: 400;
     color: #616161;
-    width: 57px;
+    width: 80px;
     display: flex;
     align-items: center;
     justify-content: flex-start;
@@ -197,6 +197,132 @@ input[type="text"] {
     font-size: 14px;
     background: url(//img.echosting.cafe24.com/skin/base/common/ico_info.gif) no-repeat 9px 4px;
 }
+
+
+
+
+
+
+
+.order_table {
+    display: block;
+    width: 100%;
+}
+.order_tbody {
+    row-gap: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.order_tr {
+    display: block;
+    width: 100%;
+}
+
+.order_td {
+    width: 100%;
+    display: block;
+}
+.order_body {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    padding: 4px 16px;
+    border-radius: 4px;
+    border: 1px solid #ECECEC;
+    box-sizing: border-box;
+    background: white;
+    width: 100%;
+}
+.body_main .info .product_name {
+    font-size: 13px;
+    font-weight: 400;
+    line-height: 21px;
+    color: #333;
+    margin-bottom: 4px;
+}
+.body_main .info .product_option {
+    width: 70%;
+    font-size: 12px;
+    line-height: 14px;
+    color: #929292;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    padding-bottom: 12px;
+}
+.body_main .info .price {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    column-gap: 21px;
+}
+.order_body .body_main {
+    column-gap: 16px;
+    padding: 12px 0;
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    width: 100%;
+}
+.order_body .body_main img {
+    width: 133px;
+    height: 133px;
+}
+.order_body .body_main .info {
+    display: flex;
+    flex-direction: column;
+    flex: 1 1 0%;
+    align-items: flex-start;
+    justify-content: center;
+    text-align: left;
+}
+.body_main .info .price {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    column-gap: 21px;
+}
+
+.body_main .info .price p {
+    position: relative;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 17px;
+    color: #616161;
+}
+
+.body_main .info .price p:first-child::after {
+    content: '';
+    position: absolute;
+    display: block;
+    width: 1px;
+    height: 12px;
+    top: 2px;
+    right: -10px;
+    background: #C7C7C7;
+}
+
+
+
+
+
+
+
+
+#ec-jigsaw-area-paymethod #payment_input_tcash table tbody tr td {
+    border: 0;
+}
+
+
+
+
+
+
+
+
 </style>
 <!-- 다음 우편번호 서비스 API 스크립트 로드 -->
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
@@ -248,7 +374,7 @@ MemberDto memberDto = memberDao.getMemberInfo(mem_id);
 Boolean directPurchase = (Boolean) session.getAttribute("directPurchase"); //바로구매 ture, 장바구니 false
 
 NumberFormat nf = NumberFormat.getInstance();
-	
+
 %>
 <!-- 주문 정보를 입력받는 폼 -->
 <div id="body">
@@ -257,9 +383,9 @@ NumberFormat nf = NumberFormat.getInstance();
 <h1 class="page-title">주문서</h1>
 <div id="userStyle" style="width: auto">
 <form action="orderAction.jsp" method="post">  
-
+	<div id="mCafe24Order">
 	<h3>주문상품</h3>
-    	<%  
+    	<%
     	String pro_main_img = "";// 상품 이미지
     	String pro_size = "";// 사이즈
     	String pro_color = "";// 색
@@ -316,19 +442,27 @@ NumberFormat nf = NumberFormat.getInstance();
 				pro_su = map.get("cart_su"); // 주문상세테이블에 들어갈 수???
 				pro_num = map.get("pro_num"); // 주문상세테이블에 들어갈 상품 번호???
     	%>
-	    <div style="overflow: hidden; margin-bottom: 20px;">
-		    <div style="float: left; margin-right: 10px;">
-		        <img src="<%=map.get("pro_main_img")%>" width="100" height="100" style="border: 1px solid #ccc;">
-		    </div>
-		    <div style="float: left;">
-		        <div><%=map.get("pro_name") %></div>
-		        <div>[옵션: <%=map.get("cart_size") %>]</div>
-		        <div>[옵션: <%=map.get("cart_color") %>]</div>
-		        <div>수량: <%=map.get("cart_su") %></div>
-		        <div>가격: <%=map.get("pro_price") %>원</div>
-		    </div>
-		</div>
-
+    	<table class="order_table">
+	    	<tbody class="order_tbody">
+		    	<tr class="order_tr">
+					<td class="order_td">		
+					<div class="order_body">
+						<div class="body_main">
+				            <a href="#"><img src="<%=map.get("pro_main_img")%>"></a>
+				            <div class="info">
+				                <p class="product_name"><%= map.get("pro_name") %></p>
+				                <p class="product_option">[<%=map.get("cart_size") %> : <%= map.get("cart_color") %>]</p>
+				                <div class="price">
+			                    	<p>&#8361;<%=map.get("pro_price") %></p>
+			                    	<p><%=map.get("cart_su") %>개</p>
+				                </div>
+				            </div>
+				        </div>
+					</div>
+					</td>
+				</tr>
+			</tbody>
+		</table>
     	<%	
 	    	}
 			
@@ -356,7 +490,7 @@ NumberFormat nf = NumberFormat.getInstance();
     <div class="ec-base-fold">
     
     <div class="title">
-    	<h2>배송지</h2>
+    	<h3>배송지</h3>
     </div>
     
     
@@ -418,48 +552,71 @@ NumberFormat nf = NumberFormat.getInstance();
 
 
 
-
-    <h3>결제 정보</h3>
+	<div id="ec-jigsaw-area-payment" class="ec-base-fold eToggle selected">
+	    <h3>결제 정보</h3>
+		
+		<%
+		
+		// 총 상품금액이 100원 초과일 경우 무료배송
+	    if(totalProductPrice > 100){
+	    	deliveryFee = 0;
+	    }
+	    
+	    // 최종 결제 금액 계산
+		finalPayment = totalProductPrice + deliveryFee;
+		
+		%>
+		총 상품금액: <%= nf.format(totalProductPrice) %>원<br>
+		배송비: <%= nf.format(deliveryFee) %>원<br>
+		최종 결제금액: <%= nf.format(finalPayment) %>원<br>
 	
-	<%
+	    <input type="hidden" name="deliveryFee" value="<%= deliveryFee %>">
+		<input type="hidden" name="finalPayment" value="<%= finalPayment %>">
+		
+		
+		
+		<!-- !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! -->
+		<div id="ec-jigsaw-area-paymethod" class="ec-base-fold eToggle selected">
+			<div id="ec-jigsaw-title-paymethod" class="title">
+		        <h3>결제수단</h3>
+		    </div>
+		    <div class="contents">
+		    	<div class="segment">
+	            	<ul class="payMethod">
+	            		<li class="ec-paymethod-newArea selected">
+	            			<label for="paymethod-new"><span class="displaynone">다른 </span>결제수단 선택</label>
+	            			<div class="inner">
+	            				<span class="ec-base-label"><input id="addr_paymethod0" name="addr_paymethod" fw-filter="isFill" fw-label="결제방식" fw-msg="" value="card" type="radio" checked="checked"  /><label for="addr_paymethod0" >카드 결제</label></span>
+	            				<span class="ec-base-label"><input id="addr_paymethod1" name="addr_paymethod" fw-filter="isFill" fw-label="결제방식" fw-msg="" value="cash" type="radio"  /><label for="addr_paymethod1" >무통장 입금</label></span> 
+	            			</div>
+	            		</li>
+	            	</ul>
+            	</div>
+		    </div>
+		</div>
+		
+		<!-- !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! -->
+	    <h3>결제 수단</h3>
+		<input type="radio" id="creditCard" name="payment_method" value="credit_card" onclick="showBankInfo()" required>
+		<label for="creditCard">신용카드</label><br>
+		<input type="radio" id="bankTransfer" name="payment_method" value="bank_transfer" onclick="showBankInfo()" required>
+		<label for="bankTransfer">무통장입금</label><br>
+		
+	    <!-- 무통장입금 선택 시 보이는 입금 정보 입력란 -->
+	    <div id="bankInfo" style="display: none;">
+	         입금은행: 
+	    <select name="bank_name">
+	        <option value="">은행 선택</option>
+	        <option value="KB국민은행">KB국민은행 10987654321098 주식회사 모지홈</option>
+	        <option value="카카오뱅크">카카오뱅크 123456789101112 주식회사 모지홈</option>
 	
-	// 총 상품금액이 100원 초과일 경우 무료배송
-    if(totalProductPrice > 100){
-    	deliveryFee = 0;
-    }
-    
-    // 최종 결제 금액 계산
-	finalPayment = totalProductPrice + deliveryFee;
-	
-	%>
-	총 상품금액: <%= nf.format(totalProductPrice) %>원<br>
-	배송비: <%= nf.format(deliveryFee) %>원<br>
-	최종 결제금액: <%= nf.format(finalPayment) %>원<br>
-
-    <input type="hidden" name="deliveryFee" value="<%= deliveryFee %>">
-	<input type="hidden" name="finalPayment" value="<%= finalPayment %>">
-	
-    <h3>결제 수단</h3>
-	<input type="radio" id="creditCard" name="payment_method" value="credit_card" onclick="showBankInfo()" required>
-	<label for="creditCard">신용카드</label><br>
-	<input type="radio" id="bankTransfer" name="payment_method" value="bank_transfer" onclick="showBankInfo()" required>
-	<label for="bankTransfer">무통장입금</label><br>
-	
-    <!-- 무통장입금 선택 시 보이는 입금 정보 입력란 -->
-    <div id="bankInfo" style="display: none;">
-         입금은행: 
-    <select name="bank_name">
-        <option value="">은행 선택</option>
-        <option value="KB국민은행">KB국민은행 10987654321098 주식회사 모지홈</option>
-        <option value="카카오뱅크">카카오뱅크 123456789101112 주식회사 모지홈</option>
-
-        <!-- 기타 은행 추가 가능 -->
-    </select><br>
-        입금자명: <input type="text" name="depositor_name"><br>
+	        <!-- 기타 은행 추가 가능 -->
+	    </select><br>
+	        입금자명: <input type="text" name="depositor_name"><br>
+	    </div>
     </div>
-    
     <button type="submit">주문하기</button>
-    
+    </div>
 </form>
 </div>
 </div>
