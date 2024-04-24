@@ -263,9 +263,9 @@ page-title {
 					       	</thead>
 					       	<tbody class="center order_tbody ">
 					       		<% 
-						            String mem_id = (String) session.getAttribute("mem_id"); 
+						            String myid = (String) session.getAttribute("myid"); 
 						       		MemberDao memberDao = new MemberDao();
-						       		MemberDto memberDto = memberDao.getMemberInfo("must12");//임시설정				       			
+						       		MemberDto memberDto = memberDao.getMemberInfo(myid);			       			
 						       		String mem_num = memberDto.getMem_num();
 						       		
 					                // 주문 목록을 가져오는 부분

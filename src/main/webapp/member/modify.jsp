@@ -262,10 +262,10 @@ function memberDelAction() {
 }
 </script>
 <%
-String mem_id = (String) session.getAttribute("mem_id");  
+String mem_id = (String) session.getAttribute("myid");  
 
 MemberDao dao = new MemberDao();
-MemberDto dto = dao.getMemberInfo("must12");//임시설정
+MemberDto dto = dao.getMemberInfo(mem_id);
 
 %>
 </head>

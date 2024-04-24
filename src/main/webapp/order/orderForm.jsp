@@ -239,7 +239,7 @@ input[type="text"] {
 </head>
 <body>
 <% 
-String mem_id = (String) session.getAttribute("mem_id");  
+String mem_id = (String) session.getAttribute("myid");  
 
 MemberDao memberDao = new MemberDao();
 MemberDto memberDto = memberDao.getMemberInfo(mem_id);

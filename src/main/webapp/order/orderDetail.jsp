@@ -13,10 +13,186 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<style type="text/css">
+#body {
+    background-color: #fff;
+}
+
+#body-begin {
+    clear: both;
+    height: 1px;
+}
+
+#body-end {
+    clear: both;
+    height: 200px;
+}
+.sub_container {
+    max-width: 800px;
+    padding: 0 20px;
+    margin: 0 auto;
+    box-sizing: border-box;
+}
+h1.page-title {
+    text-align: center;
+    font-size: 24px;
+    font-weight: 700;
+    letter-spacing: 5px;
+    color: #222;
+    line-height: 27px;
+    padding-top: 75px;
+    padding-bottom: 60px;
+}
+.orderArea:first-child .title {
+    margin-top: 0;
+}
+
+.boardView {
+    border-top: 1px solid #616161;
+    border-bottom: 1px solid #616161;
+}
+.boardView table {
+    width: 100%;
+    table-layout: fixed;
+    color: #353535;
+    line-height: 1.5;
+}
+
+.boardView tr {
+    display: flex;
+}
+.boardView th {
+    display: flex;
+    align-items: center;
+    font-size: 1.4rem;
+    color: #616161;
+    width: 97px;
+    padding: 12px 0 12px 10px;
+    font-weight: 500;
+    text-align: left;
+    border-top: 1px solid #e9e9e9;
+    background-color: #F5F5F5;
+}
+
+.boardView td {
+    font-size: 1.4rem;
+    color: var(--gray-6-color);
+    flex: 1;
+    padding: 12px;
+    border-top: 1px solid #e9e9e9;
+}
+.boardView tbody tr:first-child th, .boardView tbody tr:first-child td {
+    border-top: 0;
+}
+
+.boardView img {
+    vertical-align: middle;
+}
+.ec-base-table .message {
+    padding: 7rem 0;
+    text-align: center;
+    font-size: 1.4rem;
+    font-weight: 400;
+    color: #616161;
+    margin: 16px;
+    background-color: #F5F5F5;
+    border-radius: 8px;
+}
+.typeList {
+    border-radius: 4px;
+    border: 1px solid #D8D8D8;
+}
+.order_title {
+    display: flex;
+    justify-content: space-between;
+    padding: 16px;
+    background-color: #F5F5F5;
+    border-radius: 4px 4px 0 0;
+    font-size: 12px;
+    font-weight: 400;
+    color: #929292;
+}
+.order_title > p:nth-child(2) {
+    color: #141414;
+}
+.boardList {
+    width: 100%;
+    table-layout: fixed;
+    margin: 0 0 1px;
+    color: #353535;
+    line-height: 1.5;
+}
+.boardList th {
+    padding: 11px 0 9px;
+    border-left: 1px solid #e9e9e9;
+    font-weight: normal;
+    background: #fbfafa;
+}
+.boardList th:first-child {
+    border-left: 0;
+}
+.boardList td {
+    text-align: left;
+    vertical-align: middle;
+    word-wrap: break-word;
+}
+.boardList .name {
+    font-size: 14px;
+    font-weight: 500;
+    color: #333;
+}
+.boardList .option {
+    margin-top: 4px;
+    font-size: 12px;
+    font-weight: 400;
+    color: #929292;
+}
+.boardList .price_info {
+    display: flex;
+    gap: 20px;
+    font-size: 14px;
+    font-weight: 500;
+    color: #616161;
+    margin-top: 12px;
+}
+
+.boardList .price_info > li {
+    position: relative;
+}
+
+.boardList .price_info > li::after {
+    content: "";
+    display: block;
+    position: absolute;
+    top: 50%;
+    right: -10px;
+    transform: translate(0,-50%);
+    width: 1px;
+    height: 75%;
+    background-color: #C7C7C7;
+}
+.boardList tbody tr {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 16px;
+    display: flex;
+    gap: 16px;
+    border-bottom: 1px solid #D8D8D8;
+}
+.center {
+    text-align: center;
+}
+.left {
+    text-align: left;
+}
+.boardList .thumb {
+    width: 92px;
+}
+</style>
 <% 
-	String mem_id = (String) session.getAttribute("mem_id");
+	String mem_id = (String) session.getAttribute("myid");
 	MemberDao mdao = new MemberDao();
-	MemberDto mdto = mdao.getMemberInfo(mem_id);//임시설정		       			
+	MemberDto mdto = mdao.getMemberInfo(mem_id);	       			
 	
 	String order_num = request.getParameter("order_num");
 	OrderDao odao = new OrderDao();
@@ -32,7 +208,7 @@
 <body>
 <div id="body">
 <div id="body-begin"></div>
-
+<div class="sub_container">
 	<h1 class="page-title">ORDER INFO</h1>
 	<form id="detailForm" name="detailForm" action="#" method="POST">
 	<!-- 주문정보 -->
@@ -82,21 +258,17 @@
             </div>
             <table border="0" class=" boardList">
 			<rowsgroup><row style="width: 79px"></row><row style="width: auto"></row></rowsgroup>
-			<tbody class="xans-element- xans-myshop xans-myshop-orderhistorydetailbasic center">
+			<tbody class="center">
 			<tr class="xans-record-">
 			<td class="thumb">
-				<a href="/product/detail.html?product_no=8582&cate_no=1057"><img src="<%=pdto.getPro_main_img()%>"></a>
+				<a href="index.jsp?main=product/detailpage.jsp?pro_num=<%=pro_num %>"><img src="<%=pdto.getPro_main_img()%>"></a>
             </td>
 			<td class="left">
-			    <strong class="name"><a href = "index.jsp?main=product/detailpage.jsp?pro_num=<%=pro_num %>" class="ec-product-name" ><%= pdto.getPro_name() %></a></strong>
+			    <strong class="name"><%= pdto.getPro_name() %></strong>
 			    <div class="option ">[옵션: <%=odtdto.getOrder_color()%>: <%=odtdto.getOrder_size()%>]</div>
 				<ul class="price_info">
-				<li class="">
-				<strong>&#8361;<%=odto.getOrder_total_payment()%></strong>
-				    <div class="displaynone">
-				</div>
-				</li>
-				<li><%=odto.getOrder_status()%>개</li>
+					<li class=""><strong>&#8361;<%=pdto.getPro_price()%></strong></li>
+					<li><%=odtdto.getOrder_detail_su()%>개</li>
 				</ul>
 			</td>
 			</tr>
@@ -111,10 +283,7 @@
                 <h3>배송지정보</h3>
             </div>
             <div class="boardView">
-                <table border="0" summary="">
-<caption>
-                        배송지정보
-                    </caption>
+                <table border="0">
                     <tbody>
 <tr>
 <th scope="row">받으시는분</th>
@@ -122,21 +291,14 @@
                         </tr>
 
 <tr>
-<th scope="row">우편번호</th>
+<th scope="row">배송지</th>
                             <td><span class="authssl_delivery_rzipcode"><%=odto.getOrder_addr() %></span></td>
                         </tr>
-<tr>
-<th scope="row">주소</th>
-                            <td><span class="authssl_delivery_raddr">*****</span></td>
-                        </tr>
-<tr class="displaynone">
-<th scope="row">도시</th>
-                            <td></td>
-                        </tr>
+
 
 <tr>
 <th scope="row">휴대전화</th>
-                            <td><span class="authssl_delivery_rphone_2"><%=odto.getOrder_addr() %></span></td>
+                            <td><span class="authssl_delivery_rphone_2"><%=odto.getOrder_hp() %></span></td>
                         </tr>
 <tr>
 <th scope="row">배송메시지</th>
@@ -148,6 +310,7 @@
 </div>
         </div>
 	</form>
+</div>
 <div id="body-end"></div>
 </div>
 </body>

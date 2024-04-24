@@ -15,7 +15,7 @@
 request.setCharacterEncoding("utf-8");
 
 //회원 아이디
-String mem_id=(String)session.getAttribute("mem_id");
+String mem_id=(String)session.getAttribute("myid");
 
 //회원 번호
 MemberDao memberDao = new MemberDao();
@@ -46,7 +46,8 @@ int stockQuantity = productDto.getPro_stock(); // 재고량
 
 if (proSu <= stockQuantity) {
  	// 주문 가능한 경우: 재고량이 충분한 경우
-	productDao.updateStockQuantity(proNum, proSu);
+ 	boolean increase = false;
+	productDao.updateStockQuantity(proNum, proSu, increase);
  
 } else {
  	// 주문 불가능한 경우: 재고량이 부족한 경우

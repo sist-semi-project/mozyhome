@@ -109,12 +109,19 @@ h1.page-title {
 
 </style>
 </head>
-<%
-session.setAttribute("mem_id", "must12");
-String mem_id = (String) session.getAttribute("mem_id");
-
-%>
 <body>
+<%
+String mem_id = (String) session.getAttribute("myid");
+String loginok=(String)session.getAttribute("loginok");
+
+if(loginok==null|| loginok.equals("")){ //로그아웃상태
+	
+	//response.sendRedirect("../SemiLogin/Login.jsp");
+	//return;
+}else{
+	  
+}
+%>
 <div id="body">
 <div id="body-begin"></div>
 	<div class="sub_container">
