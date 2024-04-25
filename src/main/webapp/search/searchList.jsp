@@ -184,7 +184,7 @@
 		</div> 
 		
 		<!-- 상품 출력 -->
-		<tr class="list" align="center">
+		<tr class="list">
 		<%
 				int line=0;
 				
@@ -196,7 +196,7 @@
 							<%
 								// 품절 표시
 								if(pdto.getPro_sale_status().equals("품절")){%>
-									<span class="proPrice" style="color: #aaa;"><%=nf.format(pdto.getPro_price()) %></span><span style="background: black; color: white; font-size:13px; margin-left: 8px; text-align: center;">&nbsp;&nbsp;SOLD OUT&nbsp;&nbsp;</span></div> <br>
+									<span class="proPrice" style="color: #aaa; text-decoration: line-through;"><%=nf.format(pdto.getPro_price()) %></span><span style="background: black; color: white; font-size:13px; margin-left: 8px; text-align: center;">&nbsp;&nbsp;SOLD OUT&nbsp;&nbsp;</span></div> <br>
 								<%} else{%>
 									<span class="proPrice"><%=nf.format(pdto.getPro_price()) %></span> <br>
 								<%}

@@ -230,8 +230,8 @@
 					<option value="index.jsp?main=product/productList.jsp?cate_num=<%=cate_num%>&sort=1" <%="1".equals(sort)?"selected='selected'":""%>>신상품</option>
 					<option value="index.jsp?main=product/productList.jsp?cate_num=<%=cate_num%>&sort=2" <%="2".equals(sort)?"selected='selected'":""%>>상품명</option>
 					<option value="index.jsp?main=product/productList.jsp?cate_num=<%=cate_num%>&sort=3" <%="3".equals(sort)?"selected='selected'":""%>>낮은가격</option>
-					<option value="index.jsp?main=product/product/productList.jsp?cate_num=<%=cate_num%>&sort=4" <%="4".equals(sort)?"selected='selected'":""%>>높은가격</option>
-					<option value="index.jsp?main=product/product/productList.jsp?cate_num=<%=cate_num%>&sort=5" <%="5".equals(sort)?"selected='selected'":""%>>리뷰순</option>
+					<option value="index.jsp?main=product/productList.jsp?cate_num=<%=cate_num%>&sort=4" <%="4".equals(sort)?"selected='selected'":""%>>높은가격</option>
+					<option value="index.jsp?main=product/productList.jsp?cate_num=<%=cate_num%>&sort=5" <%="5".equals(sort)?"selected='selected'":""%>>리뷰순</option>
 				</select>
 			</div>	
 		</div> 
@@ -251,7 +251,7 @@
 							<%
 								// 품절 표시
 								if(pdto.getPro_sale_status().equals("품절")){%>
-									<span class="proPrice" style="color: #aaa;"><%=nf.format(pdto.getPro_price()) %></span><span style="background: black; color: white; font-size:13px; margin-left: 8px; text-align: center;">&nbsp;&nbsp;SOLD OUT&nbsp;&nbsp;</span></div> <br>
+									<span class="proPrice" style="color: #aaa; text-decoration: line-through;"><%=nf.format(pdto.getPro_price()) %></span><span style="background: black; color: white; font-size:13px; margin-left: 8px; text-align: center;">&nbsp;&nbsp;SOLD OUT&nbsp;&nbsp;</span></div> <br>
 								<%} else{%>
 									<span class="proPrice"><%=nf.format(pdto.getPro_price()) %></span> <br>
 								<%}
