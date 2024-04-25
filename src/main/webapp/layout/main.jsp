@@ -238,15 +238,15 @@ NumberFormat nf = new DecimalFormat("#,###.##원");
 									role="group" aria-label="1 / 5"
 									style="width: 481.333px; margin-right: 41px;">
 									<div class="thumbnail">
-										<a href="index.jsp?main=product/detailpage.jsp?pro_num=331">
+										<a href="index.jsp?main=product/detailpage.jsp?pro_num=436">
 											<picture>
-											<img src="//chapterone.kr/web/product/big/202404/3dd92c49d77959c3b96bd63dd6dc9210.png" 	alt=""></picture>
+											<img src="https://linetaste.com/web/product/small/202310/9929ace48353fe4c3a80da830200e7fa.jpeg" alt=""></picture>
 										</a>
 									</div>
 									<div class="infomation">
 										<div class="info">
-											<h4 class="title">상품명1</h3>
-											<p class="summary_desc">설명</p>
+											<h4 class="title">TeTaTeT Flute</h3>
+											<p class="summary_desc">램프 헤드는 가볍고 공중에 떠 있는 것처럼 보이며 테이블에 마법 같은 조명 효과를 줍니다. 휴대에도 용이한 이 조명은 테이블 주변 뿐만 아니라 모든 장소에서 독특한 분위기를 연출합니다.</p>
 
 										</div>
 									</div>
@@ -293,7 +293,7 @@ NumberFormat nf = new DecimalFormat("#,###.##원");
 									<div class="infomation">
 										<div class="info">
 											<h4 class="title">스토리지 SR01DWA</h3>
-											<p class="summary_desc">몬스트럭쳐는 사용자 중심의 모듈 선반 시스템 브랜드입니다. 지속적으로 만들어 가는 이야기의 즐거움을 사용자들과 함께 나누고 싶습니다. 다양성은 우리의 창의력을 끝없이 이끌어 낼 수 있습니다.</p>
+											<p class="summary_desc">몬스트럭쳐는 사용자 중심의 모듈 선반 시스템 브랜드입니다. 다양성은 우리의 창의력을 끝없이 이끌어 낼 수 있습니다.</p>
 
 										</div>
 									</div>

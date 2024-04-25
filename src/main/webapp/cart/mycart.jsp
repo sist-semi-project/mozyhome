@@ -49,8 +49,7 @@
 //2024-04-19 추가 
 session.setAttribute("directPurchase", false);
 
-//String id=(String)session.getAttribute("mem_id");
-String id = "must12";
+String id=(String)session.getAttribute("myid");
 System.out.println(id);
 CartDao cdao = new CartDao();
 List<HashMap<String, String>> list = cdao.getCartList(id);
