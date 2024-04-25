@@ -93,18 +93,16 @@
 </script>
 </head>
 <%
-	String pro_num="210";
-	//String pro_num = request.getParameter("pro_num");
 	
-	String loginok = "yes";
-	String mem_id= "dragon";
+	String pro_num = request.getParameter("pro_num");
 	
 	ReviewDao rdao=new ReviewDao();
 	
+	String loginok = (String) session.getAttribute("loginok");
+	String mem_id = (String) session.getAttribute("myid"); 
+
 	int mem_num=rdao.getNum(mem_id);
 
-	//String loginok = (String) session.getAttribute("loginok");
-	//String mem_id = (String) session.getAttribute("mem_id"); 
 %>
 
 <body>

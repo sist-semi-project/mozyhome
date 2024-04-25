@@ -22,8 +22,8 @@
 <%
 //리뷰 리스트 db에서 가져오기
 
-//String pro_num=(String)session.getAttribute("pro_num");
-String pro_num = "210";
+String pro_num=(String)session.getAttribute("pro_num");
+
 
 ReviewDao rdao = new ReviewDao();
 
@@ -112,7 +112,7 @@ if(endPage>totalPage)
 	</div>
 
 		<div>
-			<button onclick="location.href='reviewForm.jsp?pro_num=<%=pro_num %>'" class="write">WRITE</button>
+			<button onclick="location.href='index.jsp?main=review/reviewForm.jsp?pro_num=<%=pro_num %>'" class="write">WRITE</button>
 			<button onclick="location.href='reviewPage.jsp'">LIST</button>
 		</div>
 
@@ -123,7 +123,7 @@ if(endPage>totalPage)
 				if (startPage > 1) {
 				%>
 				<li class=""><a class=""
-					href="reviewList.jsp?currentPage=<%=startPage - 1%>"
+					href="index.jsp?main=review/reviewList.jsp?currentPage=<%=startPage - 1%>"
 					style="color: black;"> <i class="bi bi-arrow-left"></i>
 				</a></li>
 				<%
@@ -135,7 +135,7 @@ if(endPage>totalPage)
 				<li class="">
 				<a
 					class="<%=(pp == currentPage) ? "active" : ""%>"
-					href="reviewList.jsp?currentPage=<%=pp%>"> <%=pp%>
+					href="index.jsp?main=review/reviewList.jsp?currentPage=<%=pp%>"> <%=pp%>
 				</a></li>
 				<%
 				}
@@ -144,7 +144,7 @@ if(endPage>totalPage)
 				if (endPage < totalPage) {
 				%>
 				<li class=""><a class=""
-					href="reviewList.jsp?currentPage=<%=endPage+1%>"
+					href="index.jsp?main=review/reviewList.jsp?currentPage=<%=endPage+1%>"
 					style="color: black;"> <i class="bi bi-arrow-right"></i>
 				</a></li>
 				<%
