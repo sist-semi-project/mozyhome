@@ -125,7 +125,7 @@ NumberFormat nf = NumberFormat.getInstance();
 		</div>
 		<!-- 장바구니 button -->
 		<div>
-			<button type="submit" class="buy_btn"
+			<button type="submit" class="buy_btn" onclick="buyBtn()"
 				class="buy_btn">선택상품 구매</button>
 			<button class="all_buy_btn" onclick="allBuyBtn()" class="all_buy_btn"
 				type="submit">전체상품 구매</button>
@@ -168,6 +168,12 @@ $(document).ready(function(){
     // 선택 상품 구매 버튼
 	$(".buy_btn").click(function(){
 		var cart_num_su = []; // 선택된 상품들의 정보를 담을 배열
+		var cnt=$(".cart_select").length;
+    	 
+		if(cnt==0){
+            alert("장바구니에 상품이 없습니다.");
+            return;
+        };
           
         $(".cart_select:checked").each(function(i, elt){
       	    var cart_num = $(this).attr("cart_num");
@@ -250,18 +256,16 @@ $(document).ready(function(){
 	//buy함수
 	function buy(cart_num_su)
 	{
-		console.log({cart_num_su});
 	$.ajax({
 
-			  type:"post",
-			  url:"index.jsp?main=order/orderForm.jsp",
+
+			  type:"get",
+			  url:"../order/orderFrom.jsp",
 			  dataType:"json",
-			  traditional: true,
-			  data: { "cart_num_su": cart_num_su }, // 배열을 JSON 문자열로 변환하여 전송
-			  success:function(res){
-				  console.log({res});
+			  data:cart_num_su,
+			  success:function(){
 				  
-				  window.location.href = "index.jsp?main=order/orderForm.jsp";
+				  window.location.href = "../order/orderFrom.jsp";
 	    	    	
 	          }
 		  });

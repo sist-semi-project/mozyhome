@@ -574,13 +574,10 @@ MemberDao memberDao = new MemberDao();
 MemberDto memberDto = memberDao.getMemberInfo(mem_id);
 
 // 구매방법 여부
+session.setAttribute("directPurchase", false);// 임시로 장바구니 설정
 Boolean directPurchase = (Boolean) session.getAttribute("directPurchase"); //바로구매 ture, 장바구니 false
 
 NumberFormat nf = NumberFormat.getInstance();
-
-String[] carts = request.getParameterValues("cart_num_su");
-System.out.println(carts[0]);
-
 
 %>
 <!-- 주문 정보를 입력받는 폼 -->
