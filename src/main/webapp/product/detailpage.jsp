@@ -344,13 +344,13 @@ cdao.overlapProDel(pro_num);%>
 				type : "post",
 				dataType : "html",
 				data : cartdata,
-				url : "detailprocess.jsp",
+				url : "product/detailprocess.jsp",
 				success : function() {
 
 					var a = confirm("장바구니에 저장하였습니다\n장바구니로 이동하려면 [확인]을 눌러주세요");
 
 					if (a) {
-						location.href = "./index.jsp?main=cart/mycart.jsp";
+						location.href = "index.jsp?main=cart/mycart.jsp";
 					}
 				}
 			});
