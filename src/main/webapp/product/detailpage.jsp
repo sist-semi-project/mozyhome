@@ -316,7 +316,7 @@ boolean existwish = wdao.checkWishlist(mem_num, pro_num);
 	</form>
 	
 </div>
-	
+
 	<hr>
 	<div>
 		<% session.setAttribute("pro_num", pro_num); %>

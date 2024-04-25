@@ -24,6 +24,7 @@
 
 String pro_num=(String)session .getAttribute("pro_num");
 
+
 ReviewDao rdao = new ReviewDao();
 
 //페이지 번호 버튼

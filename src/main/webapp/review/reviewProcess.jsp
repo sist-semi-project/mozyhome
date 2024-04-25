@@ -85,7 +85,7 @@ rdto.setReview_image(photoUrl);
 rdao.insertReview(rdto);
 
 //방명록 목록으로 이동(수정했던 페이지로 이동)
-response.sendRedirect("index.jsp?main=product/detailpage.jsp?pro_num="+pro_num);
+response.sendRedirect("../index.jsp?main=product/detailpage.jsp?pro_num="+pro_num);
 
 %>
 </body>
