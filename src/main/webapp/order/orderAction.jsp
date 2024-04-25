@@ -15,7 +15,7 @@
 request.setCharacterEncoding("utf-8");
 
 //회원 아이디
-String mem_id=(String)session.getAttribute("mem_id");
+String mem_id=(String)session.getAttribute("myid");
 
 //회원 번호
 MemberDao memberDao = new MemberDao();
@@ -46,7 +46,8 @@ int stockQuantity = productDto.getPro_stock(); // 재고량
 
 if (proSu <= stockQuantity) {
  	// 주문 가능한 경우: 재고량이 충분한 경우
-	productDao.updateStockQuantity(proNum, proSu);
+ 	boolean increase = false;
+	productDao.updateStockQuantity(proNum, proSu, increase);
  
 } else {
  	// 주문 불가능한 경우: 재고량이 부족한 경우
@@ -120,7 +121,7 @@ if (paymentMethod.equals("credit_card")) {
             orderDetailDao.insertOrder(orderDetailDto);
             %>
             // 결제 성공 후 리다이렉트
-            location.href="orderComplete.jsp?orderNumber=<%= newOrderNumber %>";
+            location.href="../index.jsp?main=order/orderComplete.jsp?orderNumber=<%= newOrderNumber %>";
         } else { // 결제 실패 시
         	 console.log(rsp); 
         	 alert(rsp.error_msg); 
@@ -159,6 +160,11 @@ if (paymentMethod.equals("credit_card")) {
 	OrderDetailDao orderDetailDao = new OrderDetailDao();
 	orderDetailDao.insertOrder(orderDetailDto);
 	
-	response.sendRedirect("orderComplete.jsp?orderNumber=" + newOrderNumber); // 주문 완료 페이지로 리다이렉트
+%>
+<script>
+location.href="index.jsp?main=order/orderComplete.jsp?orderNumber=<%= newOrderNumber %>";
+</script>
+
+<%
 }
 %>

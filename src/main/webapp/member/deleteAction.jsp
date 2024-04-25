@@ -11,7 +11,7 @@
 <%
 // 회원 삭제를 위해 DAO 호출
 MemberDao dao = new MemberDao();
-String mem_id=request.getParameter("mem_id");
+String mem_id=request.getParameter("myid");
 boolean success = dao.deleteMember(mem_id); // 회원 삭제 메서드 호출
 
 if(success) {

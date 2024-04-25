@@ -1,3 +1,9 @@
+<%@page import="com.amazonaws.auth.AWSStaticCredentialsProvider"%>
+<%@page import="com.amazonaws.services.s3.AmazonS3"%>
+<%@page import="com.amazonaws.services.s3.AmazonS3ClientBuilder"%>
+<%@page import="com.amazonaws.auth.BasicAWSCredentials"%>
+<%@page import="db.AwsConnect"%>
+<%@page import="java.io.File"%>
 <%@page import="data.dao.MemberDao"%>
 <%@page import="data.dto.MemberDto"%>
 <%@page import="data.dto.ReviewDto"%>
@@ -17,31 +23,54 @@
 </head>
 <body>
 <%
-String loginok = (String) session.getAttribute("loginok");
-String mem_id = (String) session.getAttribute("mem_id"); 
+AwsConnect aws = new AwsConnect();
+String region = "ap-northeast-2";
+String bucketName = "mozy-bucket";
+String accessKeyID = aws.getAccessKey();
+String secretAccessKey = aws.getSecretKey();
 
+request.setCharacterEncoding("utf-8");
+
+String realPath=getServletContext().getRealPath("image/reviewSave");
 ReviewDao rdao=new ReviewDao();
 
-int mem_num= rdao.getNum(mem_id);
-
-
-String realPath=getServletContext().getRealPath("/image/reviewSave");
-System.out.println(realPath);
-
-int uploadSize=1024*1024*3;
+int uploadSize=1024*1024*10;
 
 MultipartRequest multi=null;
-try{
+
 multi=new MultipartRequest(request,realPath,uploadSize,"utf-8",new DefaultFileRenamePolicy());
+
+// AWS S3 클라이언트 설정
+BasicAWSCredentials awsCreds = new BasicAWSCredentials(accessKeyID, secretAccessKey);
+AmazonS3 s3Client = AmazonS3ClientBuilder.standard()
+        .withCredentials(new AWSStaticCredentialsProvider(awsCreds))
+        .withRegion(region) // 예: Regions.US_EAST_1
+        .build();
 
 int rating=Integer.parseInt(multi.getParameter("rating"));
 String content=multi.getParameter("content");
 String content_subject=multi.getParameter("content_subject");
-String photoname=multi.getFilesystemName("photo"); 
-int pro_num=Integer.parseInt(multi.getFilesystemName("pro_num"));
+
+String photoUrl = rdao.uploadFileToS3(multi, "photo", s3Client,bucketName );
+/* String photoname=multi.getFilesystemName("photo");  */
+String pro_numStr= multi.getParameter("pro_num");
+String mem_numStr= multi.getParameter("mem_num");
+
+int pro_num=Integer.parseInt(pro_numStr);
+int mem_num=Integer.parseInt(mem_numStr);
+
+
+String loginok = (String) session.getAttribute("loginok");
+String mem_id = (String) session.getAttribute("mem_id"); 
 
 
 
+System.out.println(rating);
+System.out.println(content);
+System.out.println(content_subject);
+System.out.println(photoUrl);
+System.out.println(pro_num);
+System.out.println(mem_num);
 //dto에 저장
 ReviewDto rdto=new ReviewDto();
 
@@ -50,21 +79,14 @@ rdto.setPro_num(pro_num);
 rdto.setReview_content(content);
 rdto.setReview_pyung(rating);
 rdto.setReview_subject(content_subject);
-rdto.setReview_image(photoname);
+rdto.setReview_image(photoUrl);
 
 //사진선택을 안하면 기존의 사진으로 저장
-
-
 rdao.insertReview(rdto);
 
-
-
 //방명록 목록으로 이동(수정했던 페이지로 이동)
-response.sendRedirect("");
+response.sendRedirect("reviewForm.jsp?pro_num="+pro_num);
 
-}catch(Exception e){
-
-}
 %>
 </body>
 </html>
