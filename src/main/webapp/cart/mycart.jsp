@@ -50,6 +50,7 @@
 session.setAttribute("directPurchase", false);
 
 String id=(String)session.getAttribute("myid");
+
 System.out.println(id);
 CartDao cdao = new CartDao();
 List<HashMap<String, String>> list = cdao.getCartList(id);
@@ -68,7 +69,7 @@ NumberFormat nf = NumberFormat.getInstance();
 	</div>
 
 	<!-- 장바구니 list -->
-	<form action="order/orderForm.jsp" class="cart_process">
+	<form action="index.jsp?main=order/orderForm.jsp" class="cart_process" method="post">
 		<div>
 			<input class="cart_select_all" id="cart_select_all" type="checkbox">
 			<hr class="cart_header_hr">
@@ -124,7 +125,7 @@ NumberFormat nf = NumberFormat.getInstance();
 		</div>
 		<!-- 장바구니 button -->
 		<div>
-			<button type="submit" class="buy_btn" onclick="buyBtn()"
+			<button type="button" class="buy_btn" onclick="buyBtn()"
 				class="buy_btn">선택상품 구매</button>
 			<button class="all_buy_btn" onclick="allBuyBtn()" class="all_buy_btn"
 				type="button">전체상품 구매</button>
@@ -163,29 +164,42 @@ $(document).ready(function(){
       location.href="index.jsp?main=product/detailpage.jsp?pro_num="+pro_num;
     });
 
-    //선택상품 구매 버튼
-    $(".buy_btn").click(function(){
-    	 var cnt=$(".cart_select:checked").length;
-    	 
-    	  if(cnt==0){
-              alert("먼저 구매할 상품을 1개 이상 선택해 주세요");
-              return;
-          };
-          
-          $(".cart_select:checked").each(function(i, elt){
-      	    var cart_num = $(this).attr("cart_num");
-			var cart_su = parseInt(document.getElementById('quantity' + i).value);	
-			cart_num_su.push({
-			        "cart_num": cart_num,
-			        "cart_su": cart_su
-			    });
-      	});
-      	    buy(cart_num_su);
-    });
-    
+	//선택상품 구매 버튼
+     $(".buy_btn").on("click", function() {
+    	    var formData = []; // 선택된 상품들의 정보를 담을 배열
+    	    
+    	    // 선택된 상품들의 정보 수집
+    	    $(".cart_select:checked").each(function() {
+    	        var cart_num = $(this).attr("cart_num");
+    	        var cart_su = parseInt($(this).closest("div").find(".quantity").val());
+    	        
+    	        // Form 데이터로 묶어 배열에 추가
+    	        formData.push({
+    	            "cart_num": cart_num,
+    	            "cart_su": cart_su
+    	        });
+    	    });
+    	    
+    	    // Form 데이터를 서버로 전송
+    	    $.ajax({
+    	        type: "POST",
+    	        url: "index.jsp?main=order/orderForm.jsp", // 데이터 처리를 위한 JSP 파일
+    	        data: formData, // JSON 데이터가 아닌 Form 데이터를 전송
+    	        success: function(response) {
+    	            alert("주문이 완료되었습니다.");
+    	            // 여기에 추가적인 동작을 구현할 수 있습니다.
+    	        },
+    	        error: function(xhr, status, error) {
+    	            alert("주문 요청에 실패했습니다. 다시 시도해주세요.");
+    	            console.error(error);
+    	        }
+    	    });
+    	});
+
+	});
     
     //전체상품 구매 버튼
-     $(".buy_btn").click(function(){
+     $(".all_buy_btn").click(function(){
     	 var cnt=$(".cart_select").length;
     	 
     	  if(cnt==0){
@@ -253,12 +267,7 @@ $(document).ready(function(){
 	{
 	 $.ajax({
 		  
-			  type:"get",
-			  url:"../order/orderForm.jsp",
-			  dataType:"json",
-			  data:cart_num_su,
-			  success:function(){
-				  
+  /* 머지하면서 지움 17:05 동희 */
 				  window.location.href = "index.jsp?main=order/orderForm.jsp";
         	    	
 	          }

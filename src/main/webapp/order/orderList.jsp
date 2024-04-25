@@ -306,7 +306,7 @@ page-title {
 				                                <a href="index.jsp?main=product/detailpage.jsp?pro_num=<%=pro_num %>"><img src="<%=pDto.getPro_main_img()%>" onerror="this.src='//img.echosting.cafe24.com/thumb/img_product_small.gif';"></a>
 				                                <div class="info">
 				                                    <p class="product_name"><%= pDto.getPro_name() %></p>
-				                                    <p class="product_option">[<%= orderDetailDto.getOrder_color() %> : <%= orderDetailDto.getOrder_detail_su() %>개]</p>
+				                                    <p class="product_option">[<%= orderDetailDto.getOrder_size() %> &nbsp;<%=orderDetailDto.getOrder_color() %> : <%= orderDetailDto.getOrder_detail_su() %>개]</p>
 				                                    <div class="price">
 				                                        <p>&#8361;<%= order.getOrder_total_payment() %></p>
 				                                        <p><%= orderDetailDto.getOrder_detail_su()%>개</p>
