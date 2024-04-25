@@ -196,7 +196,7 @@ $(document).ready(function(){
     	    });
     	});
 
-	});
+	
     
     //전체상품 구매 버튼
      $(".all_buy_btn").click(function(){
@@ -262,20 +262,9 @@ $(document).ready(function(){
 		  });
 	 }
     
-    //buy함수
-    function buy(cart_num_su)
-	{
-	 $.ajax({
-		  
-  /* 머지하면서 지움 17:05 동희 */
-				  window.location.href = "index.jsp?main=order/orderForm.jsp";
-        	    	
-	          }
-		  });
-	 }
-        
-        
 });
+        
+
 
 </script>
 </body>
