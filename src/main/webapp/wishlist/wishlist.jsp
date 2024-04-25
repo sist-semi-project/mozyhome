@@ -175,7 +175,7 @@
 	if(loginok!=null && totalCount>0){%>
 
 		<div style="margin:0 auto; width:800px">
-			<h3 style="padding: 75px; font-size: 24px;" align="center"><%=mem_id %>, WISH LIST</h3>
+			<h3 style="padding: 75px; font-size: 24px;" align="center">WISH LIST</h3>
 			<table align="center" class="table">
 			<div style="padding: 8px;">
 				<label><input type="checkbox" class="form-check allCheck" style="margin-right:5px; float: left;"> 전체선택</label>
@@ -249,7 +249,7 @@
 		response.sendRedirect("../index.jsp?main=SemiLogin/Login.jsp");
 	} else {%>
 		<div style="margin:0 auto; width:600px">
-			<h3 style="padding: 75px; font-size: 24px;" align="center"><%=mem_id %>WISH LIST</h3>
+			<h3 style="padding: 75px; font-size: 24px;" align="center">WISH LIST</h3>
 			<div style="padding: 90px; font-size: 16px;" align="center">
 				<span style="font-size: 14px; color: #616161;">관심상품이 없습니다.</span> <br>
 				<div style="margin-top: 20px;"><a href="index.jsp" style="color: white; background: #FF5C00; padding: 4px 35px; border-radius: 5px;">쇼핑하러가기</a></div>
