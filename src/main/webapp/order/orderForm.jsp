@@ -1,3 +1,10 @@
+<%@page import="data.dto.OrderDetailDto"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="java.util.Enumeration"%>
+<%@page import="org.json.simple.JSONObject"%>
+<%@page import="org.json.simple.JSONValue"%>
+<%@page import="org.json.simple.JSONArray"%>
+<%@page import="java.io.BufferedReader"%>
 <%@page import="data.dto.ProductDto"%>
 <%@page import="data.dao.ProductDao"%>
 <%@page import="data.dto.MemberDto"%>
@@ -640,78 +647,44 @@ NumberFormat nf = NumberFormat.getInstance();
     		
 		} else {
 		    // 장바구니에서 구매하는 경우의 처리
-			CartDao cdao=new CartDao();
-			List<HashMap<String,String>> list=cdao.getCartList(mem_id);
+		    
+
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+	    	
 			
-			for(int i=0; i<list.size(); i++ ){
-				HashMap<String,String> map=list.get(i);
-				pro_su = map.get("cart_su"); // 주문상세테이블에 들어갈 수???
-				pro_num = map.get("pro_num"); // 주문상세테이블에 들어갈 상품 번호???
-						
-						
-						
-						
-						
-						
-						
-						
-						
-						
-						
-						
-						
-						
-						
-						
-						
-						
-						
-						
-						
-						
-						
-						
-						
-						
-						
-						
-						
-						
-						
-						
-						
-						
-    	%>
-    	<table class="order_table">
-	    	<tbody class="order_tbody">
-		    	<tr class="order_tr">
-					<td class="order_td">		
-					<div class="order_body">
-						<div class="body_main">
-				            <a href="#"><img src="<%=map.get("pro_main_img")%>"></a>
-				            <div class="info">
-				                <p class="product_name"><%= map.get("pro_name") %></p>
-				                <p class="product_option">[<%=map.get("cart_size") %> : <%= map.get("cart_color") %>]</p>
-				                <div class="price">
-			                    	<p>&#8361;<%=map.get("pro_price") %></p>
-			                    	<p><%=map.get("cart_su") %>개</p>
-				                </div>
-				            </div>
-				        </div>
-					</div>
-					</td>
-				</tr>
-			</tbody>
-		</table>
-    	<%	
-	    	}
-			
-			// 총 상품금액 계산
-		    for (HashMap<String, String> map : list) {
-		        int price = Integer.parseInt(map.get("pro_price"));
-		        int quantity = Integer.parseInt(map.get("cart_su"));
-		        totalProductPrice += (price * quantity);
-		    }
 			
 		}
 	
