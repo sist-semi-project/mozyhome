@@ -69,12 +69,16 @@
 </style>
 </head>
 <%
- request.setCharacterEncoding("UTF-8");
+request.setCharacterEncoding("utf-8");
+
      String name = request.getParameter("mem_name");
      String email = request.getParameter("mem_email");
      
      MemberDao dao = new MemberDao();
  	String mem_id = dao.findId(name, email); //아이디를 디비에서 가져옴..실패시 널
+ 	
+ 	System.out.println(name);
+ 	System.out.println(email);
  
 %>
 <body>
@@ -91,7 +95,7 @@
 	      <h4>  입니다 </h4>
 	     </div>
 	     <div class = "found-login">
- 		    <input type="button" id="btnLogin" value="로그인" onClick="location.href='Login.jsp'"/>
+ 		    <input type="button" id="btnLogin" value="로그인" onClick="location.href='index.jsp?main=SemiLogin/Login.jsp'"/>
        	</div>
        </div>
       <%
@@ -104,7 +108,7 @@
        </div>
        <div class = "found-login">
  		    <input type="button" id="btnback" value="다시 찾기" onClick="history.back()"/>
- 		    <input type="button" id="btnjoin" value="회원가입" onClick="location.href='RegisterMain.jsp'"/>
+ 		    <input type="button" id="btnjoin" value="회원가입" onClick="location.href='index.jsp?main=SemiLogin/RegisterMain.jsp'"/>
        	</div> 
        <%
   }

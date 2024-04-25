@@ -96,7 +96,7 @@ input[type="text"], input[type="password"] {
 		}
 		
 		frm.method = "post";
-		frm.action = "index.jsp?main=pwFindResult.jsp"; // 넘어간 화면
+		frm.action = "index.jsp?main=SemiLogin/pwFindResult.jsp"; // 넘어간 화면
 		frm.submit();
 		
 	

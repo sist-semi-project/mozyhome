@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -92,7 +92,7 @@ input[type="text"], input[type="password"] {
 		}
 
 		frm.method = "post";
-		frm.action = "index.jsp?main=IdFindResult.jsp"; // 넘어간 화면
+		frm.action = "index.jsp?main=SemiLogin/IdFindResult.jsp"; // 넘어간 화면
 		frm.submit();
 	}
 </script>
