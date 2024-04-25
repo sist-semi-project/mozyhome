@@ -106,42 +106,20 @@
 	String loginok=(String)session.getAttribute("loginok");
 	String myid=(String)session.getAttribute("myid");
 	//System.out.println(myid);
-
-	// 카테고리 번호 받아오기
-	String cate_num=request.getParameter("cate_num");
-
-	// 0413 정렬 번호 받아오기
-	String sort=request.getParameter("sort");
-	//System.out.println("sort값:"+sort);
 	
 	// 상품리스트 dao 불러오기
 	ProductListDao pldao=new ProductListDao();
 	
-	// 부모/자식카테고리 이름 얻어오기
-	CategoryDto cdto=pldao.getCategory(cate_num);
-	CategoryDto pcdto=pldao.getParentCategory(cate_num);
-	
 	// 화폐 단위 정의
 	NumberFormat nf=new DecimalFormat("#,###.##원");
-	
-	// 카테고리 번호가 부모카테고리번호일 시 true 반환
-	boolean flag=pldao.isParentCateCheck(cate_num);
-	//System.out.println("======== 부모카테고리 여부: "+flag+" ========");
 	
 	// list 선언
 	List<ProductDto> list = new ArrayList<ProductDto>();	
 	
 	// * 페이징 ----------------------------------------------------------------------
 	// 전체 개수
-	int totalCount;
+	int totalCount=pldao.getNewTotalCount();
 	
-	if(flag){
-		// 부모카테고리 번호일 시
-		totalCount=pldao.getParentTotalCount(cate_num);
-	} else {
-		totalCount=pldao.getTotalCount(cate_num);
-	}
-			
 	int perPage=20; // 한페이지당 보여질 글의 개수
 	int perBlock=5; // 한블럭당 보여질 페이지 개수
 	int startNum; // db에서 가져올 글의 시작 번호(mysql은 첫글이 0번, oracle은 1번)
@@ -174,70 +152,18 @@
 	startNum=(currentPage-1)*perPage;
 				
 	// 각 페이지당 출력할 시작 번호 구하기
-	no=totalCount-(currentPage-1)*perPage;
-	
-	// 페이지에서 보여질 글만 가져오기 (정렬 적용)
-	if ("1".equals(sort)){
-		if(flag){
-			list=pldao.NEWgetParentPagingList(cate_num, startNum, perPage);
-		} else{
-			list=pldao.NEWgetPagingList(cate_num, startNum, perPage);
-		}
-	} else if("2".equals(sort)){
-		if(flag){
-			list=pldao.NAMEgetParentPagingList(cate_num, startNum, perPage);
-		} else{
-			list=pldao.NAMEgetPagingList(cate_num, startNum, perPage);
-		}
-	} else if("3".equals(sort)){
-		//System.out.println("실행확인3");
-		if(flag){
-			list=pldao.RPRICEgetParentPagingList(cate_num, startNum, perPage);
-		} else{
-			list=pldao.RPRICEgetPagingList(cate_num, startNum, perPage);
-		}
-	} else if("4".equals(sort)){
-		if(flag){
-			list=pldao.HPRICEgetParentPagingList(cate_num, startNum, perPage);
-		} else{
-			list=pldao.HPRICEgetPagingList(cate_num, startNum, perPage);
-		}
-	} else if("5".equals(sort)){
-		if(flag){
-			list=pldao.REVIEWGetParentPagingList(cate_num, startNum, perPage);
-		} else{
-			list=pldao.REVIEWgetPagingList(cate_num, startNum, perPage);
-		}
-	} else {
-		//System.out.println("실행확인 default");
-		if(flag){
-			list=pldao.getParentPagingList(cate_num, startNum, perPage);
-		} else{
-			list=pldao.getPagingList(cate_num, startNum, perPage);
-		}
-	}
+	list=pldao.getNewPagingList(startNum, perPage);
+
 	// --------------------------------------------------------------------------		
 %>
 <body>
 <div style="margin:0 auto; width:1400px;">
 	<table>
-		<div style="margin:100px 0px 10px 15px; float:left;">
-			<a class="pCate" pCateNum="<%=pcdto.getCate_num() %>"><%=pcdto.getCate_name() %></a> 
-			<a class="cate" cateNum="<%=cate_num%>"><%=cdto.getCate_name().equals(pcdto.getCate_name())?"":" > "+cdto.getCate_name() %> </a>
-			
-			<div style="margin: -28px 0px 0px 1290px; color: #aaa;">
-				<select name="sort" class="form-select form-select sort" style="width:100px;" onchange="window.open(value,'_self');">
-					<option value="index.jsp?main=product/productList.jsp?cate_num=<%=cate_num%>&sort=1" <%="1".equals(sort)?"selected='selected'":""%>>신상품</option>
-					<option value="index.jsp?main=product/productList.jsp?cate_num=<%=cate_num%>&sort=2" <%="2".equals(sort)?"selected='selected'":""%>>상품명</option>
-					<option value="index.jsp?main=product/productList.jsp?cate_num=<%=cate_num%>&sort=3" <%="3".equals(sort)?"selected='selected'":""%>>낮은가격</option>
-					<option value="index.jsp?main=product/productList.jsp?cate_num=<%=cate_num%>&sort=4" <%="4".equals(sort)?"selected='selected'":""%>>높은가격</option>
-					<option value="index.jsp?main=product/productList.jsp?cate_num=<%=cate_num%>&sort=5" <%="5".equals(sort)?"selected='selected'":""%>>리뷰순</option>
-				</select>
-			</div>	
+		<div style="margin:50px 0px 5px 15px;">
+			<h3 style="padding: 75px; font-size: 24px;" align="center">NEW</h3>
 		</div> 
 		
 		<!-- 상품 출력 -->
-		<div>
 		<tr class="list">
 		<%
 				int line=0;
@@ -251,7 +177,7 @@
 							<%
 								// 품절 표시
 								if(pdto.getPro_sale_status().equals("품절")){%>
-									<span class="proPrice" style="color: #aaa; text-decoration: line-through;"><%=nf.format(pdto.getPro_price()) %></span><span style="background: black; color: white; font-size:13px; margin-left: 8px; text-align: center;">&nbsp;&nbsp;SOLD OUT&nbsp;&nbsp;</span></div> <br>
+									<span class="proPrice" style="color: #aaa;"><%=nf.format(pdto.getPro_price()) %></span><span style="background: black; color: white; font-size:13px; margin-left: 8px; text-align: center;">&nbsp;&nbsp;SOLD OUT&nbsp;&nbsp;</span></div> <br>
 								<%} else{%>
 									<span class="proPrice"><%=nf.format(pdto.getPro_price()) %></span> <br>
 								<%}
@@ -288,25 +214,22 @@
 	
 	<!-- 페이지 번호 출력 -->
 	<ul class="pagination justify-content-center" style="margin-top: 90px;">
-		<%
-			if(sort!=null){
-				// 정렬 값이 있을 경우
-				
+		<%	
 				// 이전
 				if(startPage>1){%>
 					<li class="page-item">
-						<a class="page-link" href="index.jsp?main=product/productList.jsp?cate_num=<%=cate_num %>&currentPage=<%=startPage-1%>&sort=<%=sort %>" style="color:black;" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a>
+						<a class="page-link" href="index.jsp?main=product/newProductList.jsp?&currentPage=<%=startPage-1%>" style="color:black;" aria-label="Previous"><span aria-hidden="true">&#10094;</span></a>
 					</li>
 				<%}
 			
 				for(int pp=startPage; pp<=endPage; pp++){
 					if(pp==currentPage){%>
 						<li class="page-item active">
-							<a class="page-link" href="index.jsp?main=product/productList.jsp?cate_num=<%=cate_num %>&currentPage=<%=pp%>&sort=<%=sort %>"><%=pp %></a>
+							<a class="page-link" href="index.jsp?main=product/newProductList.jsp?&currentPage=<%=pp%>"><%=pp %></a>
 						</li>
 					<%} else{%>
 						<li class="page-item">
-							<a class="page-link" href="index.jsp?main=product/productList.jsp?cate_num=<%=cate_num %>&currentPage=<%=pp%>&sort=<%=sort %>"><%=pp %></a>
+							<a class="page-link" href="index.jsp?main=product/newProductList.jsp?&currentPage=<%=pp%>"><%=pp %></a>
 						</li>
 					<%}
 				}
@@ -314,38 +237,10 @@
 				// 다음
 				if(endPage<totalPage){%>
 					<li class="page-item">
-						<a class="page-link" href="index.jsp?main=product/productList.jsp?cate_num=<%=cate_num %>&currentPage=<%=endPage+1%>&sort=<%=sort %>" style="color:black" aria-label="Next"><span aria-hidden="true">&raquo;</span></a>
+						<a class="page-link" href="index.jsp?main=product/newProductList.jsp?&currentPage=<%=endPage+1%>" style="color:black" aria-label="Next"><span aria-hidden="true">&#10095;</span></a>
 					</li>			
-				<%}
-			} else {
-				// 정렬 값이 없을 경우
-				
-				// 이전
-				if(startPage>1){%>
-					<li class="page-item">
-						<a class="page-link" href="index.jsp?main=product/productList.jsp?cate_num=<%=cate_num %>&currentPage=<%=startPage-1%>" style="color:black;" aria-label="Previous"><span aria-hidden="true">&#10094;</span></a>
-					</li>
 				<%}
 			
-				for(int pp=startPage; pp<=endPage; pp++){
-					if(pp==currentPage){%>
-						<li class="page-item active">
-							<a class="page-link" href="index.jsp?main=product/productList.jsp?cate_num=<%=cate_num %>&currentPage=<%=pp%>"><%=pp %></a>
-						</li>
-					<%} else{%>
-						<li class="page-item">
-							<a class="page-link" href="index.jsp?main=product/productList.jsp?cate_num=<%=cate_num %>&currentPage=<%=pp%>"><%=pp %></a>
-						</li>
-					<%}
-				}
-				
-				// 다음
-				if(endPage<totalPage){%>
-					<li class="page-item">
-						<a class="page-link" href="index.jsp?main=product/productList.jsp?cate_num=<%=cate_num %>&currentPage=<%=endPage+1%>" style="color:black" aria-label="Next"><span aria-hidden="true">&#10095;</span></a>
-					</li>			
-				<%}
-			}
 			
 		%>
 	</ul>

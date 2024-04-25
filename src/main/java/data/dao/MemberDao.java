@@ -384,7 +384,7 @@ public class MemberDao {
         return success;
     }
     
-    // 회원 삭제 메서드
+    // 회원 탈퇴 메서드
     public boolean deleteMember(String mem_id) {
     	
         Connection conn = db.getConnection();
@@ -392,7 +392,7 @@ public class MemberDao {
         boolean success = false;
         
         try {
-            String sql = "DELETE FROM member WHERE mem_id = ?"; 
+            String sql = "UPDATE member SET mem_is_active = 'N' WHERE mem_id = ?"; 
             pstmt = conn.prepareStatement(sql);
             pstmt.setString(1, mem_id);
             int rowsAffected = pstmt.executeUpdate();

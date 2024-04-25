@@ -131,13 +131,15 @@ hr {
 </head>
 
 <%
+
 //2024-04-19 추가 
 session.setAttribute("directPurchase", true);
 
 String pro_num = request.getParameter("pro_num");
 
 String loginok = (String) session.getAttribute("loginok");
-String mem_id = (String) session.getAttribute("mem_id");
+
+String mem_id = (String) session.getAttribute("myid");
 
 
 //아이디에 해당하는 멤버 시퀀스
@@ -157,7 +159,7 @@ boolean existwish = wdao.checkWishlist(mem_num, pro_num);
 
 <body>
 
-	<form action="../order/orderForm.jsp" id="form1">
+	<form action="index.jsp?main=order/orderForm.jsp" id="form1" method="post">
 
 		<!-- cart 데이터에 넣을 mem_num, pro_num -->
 		<input type="hidden" name="mem_num" value="<%=mem_num%>"> <input
@@ -348,7 +350,7 @@ cdao.overlapProDel(pro_num);%>
 					var a = confirm("장바구니에 저장하였습니다\n장바구니로 이동하려면 [확인]을 눌러주세요");
 
 					if (a) {
-						location.href = "../cart/mycart.jsp";
+						location.href = "./index.jsp?main=cart/mycart.jsp";
 					}
 				}
 			});
