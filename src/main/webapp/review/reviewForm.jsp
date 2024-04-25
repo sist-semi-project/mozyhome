@@ -1,3 +1,4 @@
+<%@page import="data.dao.ReviewDao"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -92,10 +93,15 @@
 </script>
 </head>
 <%
-	String pro_num = request.getParameter("pro_num");
+	String pro_num="210";
+	//String pro_num = request.getParameter("pro_num");
 	
 	String loginok = "yes";
 	String mem_id= "dragon";
+	
+	ReviewDao rdao=new ReviewDao();
+	
+	int mem_num=rdao.getNum(mem_id);
 
 	//String loginok = (String) session.getAttribute("loginok");
 	//String mem_id = (String) session.getAttribute("mem_id"); 
@@ -104,12 +110,11 @@
 <body>
 	<div class="review_div">
 	
-		<!-- ReviewForm -->
+		<!-- ReviewForm --> 
 		<form action="reviewProcess.jsp" method="post" enctype="multipart/form-data">
 		
-	
 		<input type="hidden" name="pro_num" value="<%=pro_num%>">
-		
+		<input type="hidden" name="mem_num" value="<%=mem_num%>">
 		
 		<div id="review">REVIEW</div>
 		
@@ -221,11 +226,12 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     
     //리뷰 등록(submit) 버튼 함수
-    $(function(){
+<%--     $(function(){
     	$(".submit").click(function(){
-    		var pro_num=$(this).attr
+    		var pro_num=<%=pro_num%>
+    		location.href = "review/reviewProcess.jsp?pro_num=" + pro_num;
     	})
-    })
+    })  --%>
     
     //사진 아이콘 클릭 함수
     $(function(){
