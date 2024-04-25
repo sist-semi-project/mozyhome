@@ -47,6 +47,8 @@ AmazonS3 s3Client = AmazonS3ClientBuilder.standard()
         .withRegion(region) // 예: Regions.US_EAST_1
         .build();
 
+
+
 int rating=Integer.parseInt(multi.getParameter("rating"));
 String content=multi.getParameter("content");
 String content_subject=multi.getParameter("content_subject");

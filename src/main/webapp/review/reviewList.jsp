@@ -18,6 +18,7 @@
 <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
 
 <title>Insert title here</title>
+ <link rel="stylesheet" href="./review/reviewCss.css">
 </head>
 <%
 //리뷰 리스트 db에서 가져오기
@@ -56,13 +57,14 @@ if(endPage>totalPage)
 %>
 <body>
 
-	<!-- 리뷰 리스트 목차 ------------------------------------------>
-	<div>
+<!-- 리뷰 리스트 목차 ------------------------------------------>
+<div id="reviewList">
 	<h4>REVIEW</h4>
-		<table>
+	<div id="list">
+		<table id="listTable">
 			<tr>
 				<th>NO</th>
-				<th>SCORE</th>
+				<th>RATING</th>
 				<th>SUBJECT</th>
 				<th>NAME</th>
 				<th>DATE</th>
@@ -70,11 +72,12 @@ if(endPage>totalPage)
 
 			<!--리뷰 리스트 출력 ------------------------------------------->
 			<%
+			int count = (currentPage - 1) * perPage + 1; // count 변수 초기화
 			for (int i = 0; i < list.size(); i++) {
 				HashMap<String, String> map = list.get(i);
 			%>
 			<tr>
-				<td><%=i + 1%></td>
+				<td><%=count++%></td>
 				<td>
 					<%
 					String review_Pyung_str = map.get("review_pyung");
@@ -89,7 +92,7 @@ if(endPage>totalPage)
 
 					// 별 출력
 					for (int j = 0; j < starCount; j++) {
-						out.print("★");
+						 %><span class="star">★</span><%
 					}
 					%>
 				</td>
@@ -97,32 +100,31 @@ if(endPage>totalPage)
 				<td><%=map.get("mem_id")%></td>
 				<td><%=map.get("review_writeday")%></td>
 			</tr>
+			<tr>
+				<td colspan="5"><%=map.get("review_content")%> <%=map.get("review_image")%></td>
+			</tr>
+			
+
 			<%
 			}
 			%>
 		</table>
+
 	</div>
 
-
-	<!-- 페이지 번호 출력 ---------------------------------------------------------------->
-	<div style="margin: 50px 100px; width: 800px;">
-		<h6>
-			<b><%=totalCount%>개의 게시글이 있습니다</b>
-		</h6>
-	</div>
-
-		<div>
-			<button onclick="location.href='index.jsp?main=review/reviewForm.jsp?pro_num=<%=pro_num %>'" class="write">WRITE</button>
-			<button onclick="location.href='reviewPage.jsp'">LIST</button>
+		<div class="reviewBtnDiv">
+			<button onclick="location.href='index.jsp?main=review/reviewForm.jsp?pro_num=<%=pro_num %>'" class="reviewBtn">WRITE</button>
+			<button onclick="location.href='reviewPage.jsp'" class="reviewBtn">LIST</button>
 		</div>
 
-		<div>
+	<!-- 페이지 번호 출력 ---------------------------------------------------------------->
+		<div class="pageNumList">
 			<ul class="pagination justify-content-center">
 				<%
 				// 이전 페이지로 이동 링크
 				if (startPage > 1) {
 				%>
-				<li class=""><a class=""
+				<li class=""><a class="pageNum"
 					href="index.jsp?main=review/reviewList.jsp?currentPage=<%=startPage - 1%>"
 					style="color: black;"> <i class="bi bi-arrow-left"></i>
 				</a></li>
@@ -134,7 +136,7 @@ if(endPage>totalPage)
 				%>
 				<li class="">
 				<a
-					class="<%=(pp == currentPage) ? "active" : ""%>"
+					class="<%=(pp == currentPage) ? "active" : ""%> pageNum"
 					href="index.jsp?main=review/reviewList.jsp?currentPage=<%=pp%>"> <%=pp%>
 				</a></li>
 				<%
@@ -143,7 +145,7 @@ if(endPage>totalPage)
 				// 다음 페이지로 이동 링크
 				if (endPage < totalPage) {
 				%>
-				<li class=""><a class=""
+				<li class=""><a class="pageNum"
 					href="index.jsp?main=review/reviewList.jsp?currentPage=<%=endPage+1%>"
 					style="color: black;"> <i class="bi bi-arrow-right"></i>
 				</a></li>
@@ -152,6 +154,8 @@ if(endPage>totalPage)
 				%>
 			</ul>
 		</div>
+	</div>
+
 
 </body>
 </html>

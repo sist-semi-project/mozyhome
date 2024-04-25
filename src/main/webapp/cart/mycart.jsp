@@ -17,32 +17,8 @@
 	rel="stylesheet">
 <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
 <title>Insert title here</title>
-<style type="text/css">
-.cart_su {
-	border-radius: 10px; /* 둥근 정도를 조절할 수 있습니다. */
-	padding: 20px; /* 내용과 경계 사이의 간격을 조절할 수 있습니다. */
-	width: 24px;
-	height: 18px;
-	background: #FF5C00;
-	border-radius: 15px;
-}
+<link rel="stylesheet" href="./review/reviewCss.css">
 
-.cart_select_all {
-	width: 15px;
-	height: 15px;
-	background: #ffffff;
-	border-radius: 50%;
-	border: 1px solid #000000;
-}
-
-.cart_div {
-	
-}
-
-.cart_img {
-	width: 124px;
-}
-</style>
 </head>
 
 <%
@@ -52,8 +28,10 @@ session.setAttribute("directPurchase", false);
 String id=(String)session.getAttribute("myid");
 
 System.out.println(id);
+
 CartDao cdao = new CartDao();
 List<HashMap<String, String>> list = cdao.getCartList(id);
+int listSize=list.size();
 
 System.out.println(list);
 
@@ -61,18 +39,24 @@ NumberFormat nf = NumberFormat.getInstance();
 %>
 
 <body>
+
+<div id="mycart">
 	<!-- 장바구니 header -->
 	<div class="cart_div">
-		<h5>장바구니</h5>
-		<div class="cart_su"></div>
-		<hr width="780px" style="height: 0px; border: 1px solid #FF5C00;">
+		<div class="cart_title">
+			<h5 class="cart_title_cart">CART</h5>
+			<div class="cart_su"><%=listSize%></div>
+		</div>
+			<hr style="height: 0px; border: 1px solid #FF5C00;">
 	</div>
-
 	<!-- 장바구니 list -->
 	<form action="index.jsp?main=order/orderForm.jsp" class="cart_process" method="post">
-		<div>
+		<div class="cartListDiv">
+		<div class="cartAllChkDiv">
 			<input class="cart_select_all" id="cart_select_all" type="checkbox">
-			<hr class="cart_header_hr">
+			<p>전체선택</p>
+		</div>	
+			<hr style="height: 0px; border: 1px solid #000000;">
 			<%
 			int totalmoney = 0;
 			for (int i = 0; i < list.size(); i++) {
@@ -84,12 +68,12 @@ NumberFormat nf = NumberFormat.getInstance();
 				int total_price = cart_su * pro_price;
 				String pro_num = map.get("pro_num");
 			%>
-			<div>
+			<div class="cartListDiv2">
 
 				<input type="checkbox" class="cart_select"
 					name=<%=map.get("cart_num")%> cart_num="<%=map.get("cart_num")%>">
 
-				<div class="pro_num" pro_num="<%=map.get("pro_num")%>">
+				<div class="pro_num proInfo" pro_num="<%=map.get("pro_num")%>">
 
 					<img class="cart_img" alt="" src="<%=pro_main_img%>"> <b><%=map.get("pro_name")%></b>
 
@@ -107,7 +91,7 @@ NumberFormat nf = NumberFormat.getInstance();
 				<input type="hidden" id="realProPrice<%=i%>"
 					value="<%=real_pro_price%>"> <input type="number" min="1"
 					max="99" value="<%=map.get("cart_su")%>" step="1" name="cnt"
-					id="quantity<%=i%>" onchange="updateTotalPrice(<%=i%>)">
+					id="quantity<%=i%>" onchange="updateTotalPrice(<%=i%>)" class="cartCnt">
 
 				<%
 				String pro_priceStr = map.get("pro_price");
@@ -116,7 +100,10 @@ NumberFormat nf = NumberFormat.getInstance();
 				%>
 
 				<b id="totalPrice<%=i%>" value="<%=total_price%>">₩<%=nf.format(total_price)%></b>
-			</div>
+				
+				</div>
+		
+				<hr class="cartListHr">
 			<%
 			}
 			%>
@@ -124,17 +111,17 @@ NumberFormat nf = NumberFormat.getInstance();
 			</span> <span>할인금액</span> <span>배송비</span> <span>Total</span>
 		</div>
 		<!-- 장바구니 button -->
-		<div>
-			<button type="button" class="buy_btn" onclick="buyBtn()"
+		<div class="cartBtnDiv">
+			<button type="button" class="buy_btn cartbtn" onclick="buyBtn()"
 				class="buy_btn">선택상품 구매</button>
-			<button class="all_buy_btn" onclick="allBuyBtn()" class="all_buy_btn"
+			<button class="all_buy_btn" onclick="allBuyBtn()" class="all_buy_btn cartbtn"
 				type="button">전체상품 구매</button>
-			<button class="del_btn" class="del_btn" type="button">선택삭제</button>
-			<button class="all_del_btn" class="all_del_btn" type="button">전체삭제</button>
+			<button class="del_btn" class="del_btn cartbtn" type="button">선택삭제</button>
+			<button class="all_del_btn" class="all_del_btn cartbtn" type="button">전체삭제</button>
 		</div>
 	</form>
 
-
+</div>
 
 
 	<script type="text/javascript">
