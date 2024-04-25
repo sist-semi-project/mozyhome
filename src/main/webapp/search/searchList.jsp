@@ -166,12 +166,12 @@
 	// --------------------------------------------------------------------------
 %>
 <body>
-<div style="margin:0 auto; width:1500px">
+<div style="margin:0 auto; width:1400px">
 	<table>
 		<div style="margin:100px 0px 10px 15px; float:left;">
 		총 <b><%=totalCount %></b>개의 상품
 			
-			<div style="margin: -28px 0px 0px 1320px;">			
+			<div style="margin: -28px 0px 0px 1290px;">			
 				<select name="sort" class="form-select form-select sort" style="width:100px;" onchange="window.open(value,'_self');">
 					<option value="index.jsp?main=search/searchList.jsp?search=<%=search%>&sort=1" <%="1".equals(sort)?"selected='selected'":""%>>신상품</option>
 					<option value="index.jsp?main=search/searchList.jsp?search=<%=search%>&sort=2" <%="2".equals(sort)?"selected='selected'":""%>>상품명</option>
