@@ -121,7 +121,7 @@ if (paymentMethod.equals("credit_card")) {
             orderDetailDao.insertOrder(orderDetailDto);
             %>
             // 결제 성공 후 리다이렉트
-            location.href="orderComplete.jsp?orderNumber=<%= newOrderNumber %>";
+            location.href="../index.jsp?main=order/orderComplete.jsp?orderNumber=<%= newOrderNumber %>";
         } else { // 결제 실패 시
         	 console.log(rsp); 
         	 alert(rsp.error_msg); 
@@ -160,6 +160,6 @@ if (paymentMethod.equals("credit_card")) {
 	OrderDetailDao orderDetailDao = new OrderDetailDao();
 	orderDetailDao.insertOrder(orderDetailDto);
 	
-	response.sendRedirect("orderComplete.jsp?orderNumber=" + newOrderNumber); // 주문 완료 페이지로 리다이렉트
+	response.sendRedirect("../index.jsp?main=order/orderComplete.jsp?orderNumber=" + newOrderNumber); // 주문 완료 페이지로 리다이렉트
 }
 %>
