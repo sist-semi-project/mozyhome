@@ -206,9 +206,11 @@ h1, h3 {
         --><div class="list_header">
             <div class="info">
                <br>
-                <!-- <p class="desc">서브타이틀</p> -->
+             
             </div>
         </div>
+        
+        
 <div class="listmain_contain">
             <div class="listmain_cont pick-swiper swiper-initialized swiper-horizontal swiper-backface-hidden">
                 <ul class="list swiper-wrapper" id="swiper-wrapper-984f101776f2693cc" aria-live="polite">

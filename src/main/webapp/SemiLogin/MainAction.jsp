@@ -39,5 +39,10 @@ MemberDao dao = new MemberDao();
 
 dao.insertMember(dto);
 
-response.sendRedirect("loginMain.jsp");
 %>
+<script type="text/javascript">
+
+alert("회원가입에 성공하셨습니다!");
+window.location.href="./index.jsp?main=SemiLogin/Login.jsp");
+
+</script>
