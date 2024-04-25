@@ -37,7 +37,7 @@
 
 .md_pick .listmain_cont .list .infomation .info {
 	display: flex;
-	height: 210px;
+	height: 230px; /*mdpick 길이 조절*/
 	flex-flow: column;
 }
 
@@ -246,8 +246,7 @@ NumberFormat nf = new DecimalFormat("#,###.##원");
 									<div class="infomation">
 										<div class="info">
 											<h4 class="title">상품명1</h3>
-											<p class="summary_desc">킨토 테이블웨어는 시간이 흐를수록 변치않은 세련된과
-												친숙함으로 오래도록 사용하기 좋습니다. 프로모션 기간동안 30% 혜택으로 만나보세요.</p>
+											<p class="summary_desc">설명</p>
 
 										</div>
 									</div>
@@ -256,15 +255,14 @@ NumberFormat nf = new DecimalFormat("#,###.##원");
 									role="group" aria-label="2 / 5"
 									style="width: 481.333px; margin-right: 41px;">
 									<div class="thumbnail">
-										<a href="#"> <picture>
-											<img src="//chapterone.kr/web/product/big/202404/4bb9a15373bafb274e11e9461cb1cd44.png" alt=""></picture></a>
+										<a href="index.jsp?main=product/detailpage.jsp?pro_num=291"> <picture>
+											<img src="https://chapterone.kr/web/product/big/202208/6282ae7765987e2b26e5cc0440f5b154.jpg" alt=""></picture></a>
 									</div>
 									<div class="infomation">
 										<div class="info">
-											<h4 class="title">상품명2</h3>
+											<h4 class="title">TRIPODE G5 램프</h3>
 											<p class="summary_desc">
-												골동품 같은 따뜻함을 느낄 수 있는 CAST AMBER
-												series 입니다. 부담없이 사용하고 컵을 쌓아서 컴팩트하게 수납할 수 있습니다.</p>
+												Santa & Cole은 스페인에 본사를 둔 소규모의 독립형 글로벌 디자인 제품 에디트 브랜드입니다. 책 편집자가 이야기를 다루는 것처럼, Santa & Cole은 사물을 다룹니다.</p>
 										</div>
 									</div>
 								</li>
@@ -272,15 +270,15 @@ NumberFormat nf = new DecimalFormat("#,###.##원");
 									aria-label="3 / 5"
 									style="width: 481.333px; margin-right: 41px;">
 									<div class="thumbnail">
-										<a href="#"> <picture>
-											<img src="//chapterone.kr/web/product/big/202404/954d95be220417c280d8bad9bd957813.png" alt=""></picture></a>
+										<a href="index.jsp?main=product/detailpage.jsp?pro_num=428"> <picture>
+											<img src="https://chapterone.kr/web/product/big/202105/bb67da846f2800901558a92161cff185.jpg" alt=""></picture></a>
 									</div>
 									<div class="infomation">
 										<div class="info">
-											<h4 class="title">상품명3</h3>
+											<h4 class="title">서큘러 라운지 3인 소파</h3>
 											<p class="summary_desc">
-												단순하고 질서있는 아름다움을 가진 CAST. 손가락의 위치,
-												컵 본체에 미치는 중력, 들어올리려는 손의 힘, 이 3가지 요소의 섬세한 밸런스를 고려해 디자인 되었습니다.</p>
+												브랜드명인 Kar는 환생을 의미하는 산스크리트어 '카르마'에 그 뿌리를 두고 있습니다.
+												동양 철학을 기반으로 가구와 패션디자인을 아우르는 에스테틱 브랜드입니다.</p>
 
 										</div>
 									</div>
@@ -289,13 +287,13 @@ NumberFormat nf = new DecimalFormat("#,###.##원");
 									aria-label="4 / 5"
 									style="width: 481.333px; margin-right: 41px;">
 									<div class="thumbnail">
-										<a href="#"> <picture>
-											<img src="//chapterone.kr/web/product/big/202404/b423b7de2c760c8192cb7f265e687b64.png" alt=""></picture></a>
+										<a href="index.jsp?main=product/detailpage.jsp?pro_num=217"> <picture>
+											<img src="https://chapterone.kr/web/product/big/202205/38f75e4a474c665bf14a77de011a2e6b.png" alt=""></picture></a>
 									</div>
 									<div class="infomation">
 										<div class="info">
-											<h4 class="title">상품명4</h3>
-											<p class="summary_desc">설명</p>
+											<h4 class="title">스토리지 SR01DWA</h3>
+											<p class="summary_desc">몬스트럭쳐는 사용자 중심의 모듈 선반 시스템 브랜드입니다. 지속적으로 만들어 가는 이야기의 즐거움을 사용자들과 함께 나누고 싶습니다. 다양성은 우리의 창의력을 끝없이 이끌어 낼 수 있습니다.</p>
 
 										</div>
 									</div>
@@ -304,15 +302,14 @@ NumberFormat nf = new DecimalFormat("#,###.##원");
 									aria-label="5 / 5"
 									style="width: 481.333px; margin-right: 41px;">
 									<div class="thumbnail">
-										<a href="#"> <picture>
-											<img src="//chapterone.kr/web/product/big/202401/daf9a8e88fc60bf844f7692686e1731b.png" alt=""></picture></a>
+										<a href="index.jsp?main=product/detailpage.jsp?pro_num=245"> <picture>
+											<img src="https://chapterone.kr/web/product/big/202403/d25950984397edb368d7ee6ff99e8767.jpg" alt=""></picture></a>
 									</div>
 									<div class="infomation">
 										<div class="info">
-											<h4 class="title">상품명5</h3>
-											<p class="summary_desc">묵직한 황동의 손잡이와 은색 바디의 대비가 고급스럽죠.
-												표면의 망치 텍스쳐가 유니크함을 더해줍니다. 와인쿨러, 과일 혹은 꽃 바구니로도 활용 가능하니 어느곳에
-												두어도 멋진 오브제가 될거에요.</p>
+											<h4 class="title">스노우맨22 V2 테이블 스탠드</h3>
+											<p class="summary_desc">일광전구는 1962년 창립 이래 
+											반세기 동안 축적된 기술과 풍부한 경험을 바탕으로 국내 조명시장을 수성하는 토종 기업입니다.</p>
 
 										</div>
 									</div>
@@ -459,8 +456,8 @@ NumberFormat nf = new DecimalFormat("#,###.##원");
 
 						<td width="330px" align="center" style="padding: 20px 10px 0px;">
 							<a pronum="<%=rdto.getPro_num()%>" class="goDetail">
-								<img src="./image/reviewSave/etcB.jpg" style="padding-bottom: 8px;">
-								<%-- <img src="<%=rdto.getReview_image() %>" style="padding-bottom: 8px;"> --%>
+								<!-- <img src="./image/reviewSave/etcB.jpg" style="padding-bottom: 8px;"> -->
+								<img src="<%=rdto.getReview_image() %>" style="padding-bottom: 8px;">
 						</a>
 						</td>
 						<!-- 각 행의 끝 -->

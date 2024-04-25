@@ -143,7 +143,7 @@
 								</div>
 								<div class="header-nav__sub-nav-images">
 									<a href="index.jsp?main=product/productList.jsp?cate_num=1"> <img
-										src="./image/staticImage/sofaBanner.png"
+										src="./image/staticImage/sofaBanner1.png"
 										alt=""
 										width="330" height="248">
 										<p>Shop All Living</p>

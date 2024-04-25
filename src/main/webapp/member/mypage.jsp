@@ -110,7 +110,7 @@ h1.page-title {
 </style>
 </head>
 <%
-session.setAttribute("mem_id", "must12");
+//session.setAttribute("mem_id", "must12");
 String mem_id = (String) session.getAttribute("mem_id");
 
 %>
