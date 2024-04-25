@@ -157,7 +157,7 @@ boolean existwish = wdao.checkWishlist(mem_num, pro_num);
 
 <body>
 
-	<form action="../order/orderForm.jsp" id="form1">
+	<form action="index.jsp?main=order/orderForm.jsp" id="form1" method="post">
 
 		<!-- cart 데이터에 넣을 mem_num, pro_num -->
 		<input type="hidden" name="mem_num" value="<%=mem_num%>"> <input

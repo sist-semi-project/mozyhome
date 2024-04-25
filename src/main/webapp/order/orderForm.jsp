@@ -560,6 +560,7 @@ input[type="text"] {
 </head>
 <body>
 <% 
+request.setCharacterEncoding("utf-8");
 String mem_id = (String) session.getAttribute("myid");  
 
 MemberDao memberDao = new MemberDao();
@@ -577,7 +578,7 @@ NumberFormat nf = NumberFormat.getInstance();
 <div class="sub_container">
 <h1 class="page-title">주문서</h1>
 <div id="userStyle" style="width: auto">
-<form action="orderAction.jsp" method="post">  
+<form action="index.jsp?main=order/orderAction.jsp" method="post">  
 	<div id="mCafe24Order">
 	<h3>주문상품</h3>
     	<%
@@ -646,6 +647,40 @@ NumberFormat nf = NumberFormat.getInstance();
 				HashMap<String,String> map=list.get(i);
 				pro_su = map.get("cart_su"); // 주문상세테이블에 들어갈 수???
 				pro_num = map.get("pro_num"); // 주문상세테이블에 들어갈 상품 번호???
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
     	%>
     	<table class="order_table">
 	    	<tbody class="order_tbody">
