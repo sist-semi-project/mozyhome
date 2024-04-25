@@ -653,8 +653,17 @@ NumberFormat nf = NumberFormat.getInstance();
 			
 			for(int i=0; i<list.size(); i++ ){
 				HashMap<String,String> map=list.get(i);
-				pro_su = map.get("cart_su"); // 주문상세테이블에 들어갈 수???
-				pro_num = map.get("pro_num"); // 주문상세테이블에 들어갈 상품 번호???
+				pro_su = map.get("cart_su"); 
+				pro_num = map.get("pro_num");
+				pro_color = map.get("cart_color");
+				pro_size =map.get("cart_size");
+				
+				
+				
+				
+				
+				
+			
     	%>
 	    
 		<table class="order_table">
