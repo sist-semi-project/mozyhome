@@ -161,7 +161,7 @@ $(document).ready(function(){
     //상품 클릭시 디테일 페이지로 이동
      $("div.pro_num").click(function(){
       var pro_num=$(this).attr("pro_num");
-      location.href="../product/detailpage.jsp?pro_num="+pro_num;
+      location.href="index.jsp?main=product/detailpage.jsp?pro_num="+pro_num;
     });
 
 	//선택상품 구매 버튼
@@ -225,7 +225,7 @@ $(document).ready(function(){
       
       if(cnt==0){
           alert("먼저 삭제할 상품을 1개 이상 선택해 주세요");
-          return;
+          return ;
       };
       
       $(".cart_select:checked").each(function(i, elt){
@@ -251,7 +251,7 @@ $(document).ready(function(){
 	 $.ajax({
 		  
 			  type:"get",
-			  url:"cartdelete.jsp",
+			  url:"cart/cartdelete.jsp",
 			  dataType:"html",
 			  data:{"cart_num":cart_num},
 			  success:function(){
@@ -267,12 +267,7 @@ $(document).ready(function(){
 	{
 	 $.ajax({
 		  
-			  type:"post",
-			  url:"index.jsp?main=order/orderForm.jsp",
-			  dataType:"json",
-			  data:cart_num_su,
-			  success:function(){
-				  alert("장바구니 - > 주문서");
+  /* 머지하면서 지움 17:05 동희 */
 				  window.location.href = "index.jsp?main=order/orderForm.jsp";
         	    	
 	          }

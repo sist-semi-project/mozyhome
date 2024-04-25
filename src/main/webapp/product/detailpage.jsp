@@ -27,9 +27,14 @@
 	width: 577px;
 	height: 577px;
 	left: 363px;
-	top: 120px;
+	top: 136px;
 	background: #D9D9D9;
 	justify-content: space-between;
+}
+
+.subimgdiv{
+	width: px;
+	height: 
 }
 
 .subimgdiv .subimg {
@@ -125,6 +130,12 @@ hr {
 	padding: 0;
 	margin: 0;
 }
+
+#detail_div{
+	width: 1920px;
+	height: 1000px;
+}
+
 </style>
 <script type="text/javascript">
 </script>
@@ -158,7 +169,7 @@ boolean existwish = wdao.checkWishlist(mem_num, pro_num);
 %>
 
 <body>
-
+<div id="detail_div">
 	<form action="index.jsp?main=order/orderForm.jsp" id="form1" method="post">
 
 		<!-- cart 데이터에 넣을 mem_num, pro_num -->
@@ -303,7 +314,15 @@ boolean existwish = wdao.checkWishlist(mem_num, pro_num);
 			<br>
 		</div>
 	</form>
-
+	
+</div>
+	
+	<hr>
+	<div>
+		<% session.setAttribute("pro_num", pro_num); %>
+		<jsp:include page="../review/reviewList.jsp"></jsp:include>
+	</div>
+	
 
 
 
@@ -322,7 +341,7 @@ boolean existwish = wdao.checkWishlist(mem_num, pro_num);
 			
 			//장바구니에 같은 옵션있으면 '장바구니에 이미 담겨져 있습니다' alert 띄우기
 			<%CartDao cdao = new CartDao();
-cdao.overlapProDel(pro_num);%>
+			cdao.overlapProDel(pro_num);%>
 			
 				//옵션 선택 안하고 장바구니 넣을때
 				var pro_color = $('select[name="color"]').val();
@@ -344,7 +363,7 @@ cdao.overlapProDel(pro_num);%>
 				type : "post",
 				dataType : "html",
 				data : cartdata,
-				url : "product/detailprocess.jsp",
+				url : "index.jsp?main=product/detailprocess.jsp",
 				success : function() {
 
 					var a = confirm("장바구니에 저장하였습니다\n장바구니로 이동하려면 [확인]을 눌러주세요");
@@ -387,45 +406,42 @@ cdao.overlapProDel(pro_num);%>
 		
 
 		//위시리스트 버튼 함수
-		$("#heart").click(function() {
-			var login="<%=loginok%>";
+	    $("#heart").click(function() {
+	        var login = "<%=loginok%>";
 
-			if (login == "null") {
-				alert("먼저 로그인을 해주세요");
-				window.location.href = "loginMain.jsp";
-				return;
-			}
-			
-			var existwish = <%=existwish%>;
-			
-			var pro_num=<%=pro_num%>;
-			var mem_num= "<%=mem_num%>";
-			
-			
-			$.ajax({
-				type:"post",
-				dataType: "json",
-				data: { pro_num:pro_num, mem_num:mem_num},
-				url: "wishProccess.jsp",
-				success: function(res){
-					console.log({res});
-					
-					if (res.status) {
-		                $("#heart").html('<i class="bi bi-suit-heart-fill" style="font-size: 25px; color: #FF5C00;"></i>');
-		            } else {
-		                $("#heart").html('<i class="bi bi-suit-heart" style="font-size: 25px; color: #FF5C00;"></i>');
-		            }
-					
-					
-				},
-				 error: function(xhr, status, error) {
-				        console.error("AJAX 오류: ", error);
-				        alert("AJAX 오류 발생. 콘솔을 확인하세요.");
-				    }
-			})
-		})
+	        if (login == "null") {
+	            alert("먼저 로그인을 해주세요");
+	            window.location.href = "loginMain.jsp";
+	            return;
+	        }
+
+	        var existwish = <%=existwish%>;
+
+	        var pro_num = <%=pro_num%>;
+	        var mem_num = "<%=mem_num%>";
+
+	        $.ajax({
+	            type: "post",
+	            dataType: "json",
+	            data: { pro_num: pro_num, mem_num: mem_num },
+	            url: "product/wishProccess.jsp",
+	            success: function(res) {
+	                console.log({ res });
+
+	                if (res.status) {
+	                    $("#heart").html('<i class="bi bi-suit-heart-fill" style="font-size: 25px; color: #FF5C00;"></i>');
+	                } else {
+	                    $("#heart").html('<i class="bi bi-suit-heart" style="font-size: 25px; color: #FF5C00;"></i>');
+	                }
+	            },
+	            error: function(xhr, status, error) {
+	                console.error("AJAX 오류: ", error);
+	                alert("AJAX 오류 발생. 콘솔을 확인하세요.");
+	            }
+	        });
+	    });
 		
-	})
+	});
 	</script>
 
 </body>
