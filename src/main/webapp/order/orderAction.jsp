@@ -160,6 +160,11 @@ if (paymentMethod.equals("credit_card")) {
 	OrderDetailDao orderDetailDao = new OrderDetailDao();
 	orderDetailDao.insertOrder(orderDetailDto);
 	
-	response.sendRedirect("../index.jsp?main=order/orderComplete.jsp?orderNumber=" + newOrderNumber); // 주문 완료 페이지로 리다이렉트
+%>
+<script>
+location.href="index.jsp?main=order/orderComplete.jsp?orderNumber=<%= newOrderNumber %>";
+</script>
+
+<%
 }
 %>

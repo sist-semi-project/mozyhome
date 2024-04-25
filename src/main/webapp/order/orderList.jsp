@@ -270,7 +270,15 @@ page-title {
 						       		
 					                // 주문 목록을 가져오는 부분
 					                OrderDao orderDao = new OrderDao();
-					                List<OrderDto> orderList = orderDao.getOrdersByMember(mem_num);					                
+					                List<OrderDto> orderList = orderDao.getOrdersByMember(mem_num);		
+					                
+					                // 주문 목록이 비어있는 경우
+                                    if (orderList.isEmpty()) { 
+		                               %>
+		                                   <tr>
+		                                       <td colspan="7" style="text-align: center;">주문 목록이 비어 있습니다.</td>
+		                                   </tr>
+		                               <% } else { 
 					                
 					                // 각 주문을 테이블에 표시
 					                for (OrderDto order : orderList) {					               	
@@ -322,7 +330,7 @@ page-title {
 				                        </div>
 				                    </td>
 				            	</tr>
-				            	<% } %>
+				            	<% }} %>
 					       	</tbody>
 						</table>
 					</div>
