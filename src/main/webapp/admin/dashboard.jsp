@@ -127,10 +127,7 @@ body {
 		<button type="button" onclick="location.href='adminLogin.jsp'" class="btn btn-primary mt-4">로그아웃</button>
 		
 	</div>
-	
-	
 
-	<!-- <script src="dashScript.js"></script> -->
 </body>
 
 </html>

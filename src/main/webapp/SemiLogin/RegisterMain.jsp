@@ -88,7 +88,7 @@
 
 <body>
 	<div class="container">
-		<form id="signupForm" action="./SemiLogin/MainAction.jsp" method="post"
+		<form id="signupForm" action="index.jsp?main=SemiLogin/MainAction.jsp" method="post"
 			onsubmit="return validateForm(event)">
 			<div class="row">
 

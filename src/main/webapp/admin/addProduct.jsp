@@ -6,6 +6,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Dongle&family=Gaegu&family=Nanum+Pen+Script&family=Noto+Sans+KR:wght@100..900&family=Noto+Serif+KR&display=swap"
           rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+
     <title>상품 등록 페이지</title>
     <style>
         /* 파일 입력 필드 숨기기 */
@@ -204,10 +205,9 @@
 </head>
 <body>
 
-<div style="display: flex;">
-    <%@ include file="dashboard.jsp" %>
-    <form action="./addProductAction.jsp" method="post" enctype="multipart/form-data" id="productForm" style="width: 50%;">
-	<h2>상품 등록</h2>
+<h2>상품 등록</h2>
+
+<form action="./addProductAction.jsp" method="post" enctype="multipart/form-data" id="productForm">
     <div>
         <label>대분류 카테고리:</label>
         <select id="mainCategory" name="mainCategory" onchange="updateSubCategories()">
@@ -293,6 +293,6 @@
     </div>
     <button type="submit">상품 등록</button>
 </form>
-</div>
+
 </body>
 </html>

@@ -213,9 +213,8 @@ NumberFormat nf = new DecimalFormat("#,###.##원");
 
 	<div style="width: 1500px; margin: 0 auto;" align="center;">
 		<!-- md pick -->
-		<div class="mdpick" style="margin-top: 100px;">
-			<span style="font-size: 32px;">MD PICK</span> <img alt=""
-				src="./image/staticImage/Vector.png">
+		<div class="mdpick" style="margin-top: 150px;">
+			<span style="font-size: 32px;">MD PICK</span> <img alt="" src="./image/staticImage/Vector.png">
 
 			<div class="swiper mySwiper">
 				<section
@@ -227,177 +226,91 @@ NumberFormat nf = new DecimalFormat("#,###.##원");
 					<div class="list_header">
 						<div class="info">
 							<br>
-
+							<!-- <p class="desc">서브타이틀</p> -->
 						</div>
 					</div>
-
-
 					<div class="listmain_contain">
 						<div
 							class="listmain_cont pick-swiper swiper-initialized swiper-horizontal swiper-backface-hidden">
 							<ul class="list swiper-wrapper"
 								id="swiper-wrapper-984f101776f2693cc" aria-live="polite">
 								<li class="items swiper-slide xans-record- swiper-slide-active"
-									role="group" aria-label="1 / 9"
+									role="group" aria-label="1 / 5"
 									style="width: 481.333px; margin-right: 41px;">
 									<div class="thumbnail">
-										<a href="index.jsp?main=product/detailpage.jsp?pro_num=331">
+										<a href="index.jsp?main=product/detailpage.jsp?pro_num=436">
 											<picture>
-											<img
-												src="//chapterone.kr/web/product/big/202404/3dd92c49d77959c3b96bd63dd6dc9210.png"
-												alt=""></picture>
+											<img src="https://linetaste.com/web/product/small/202310/9929ace48353fe4c3a80da830200e7fa.jpeg" alt=""></picture>
 										</a>
 									</div>
 									<div class="infomation">
 										<div class="info">
-											<h3 class="title">[킨토 테이블웨어] 캐스트 엠버 저그 (2 SIZE)</h3>
-											<p class="summary_desc">킨토 테이블웨어는 시간이 흐를수록 변치않은 세련된과
-												친숙함으로 오래도록 사용하기 좋습니다. 프로모션 기간동안 30% 혜택으로 만나보세요.</p>
+											<h4 class="title">TeTaTeT Flute</h3>
+											<p class="summary_desc">램프 헤드는 가볍고 공중에 떠 있는 것처럼 보이며 테이블에 마법 같은 조명 효과를 줍니다. 휴대에도 용이한 이 조명은 테이블 주변 뿐만 아니라 모든 장소에서 독특한 분위기를 연출합니다.</p>
 
 										</div>
 									</div>
 								</li>
 								<li class="items swiper-slide xans-record- swiper-slide-next"
-									role="group" aria-label="2 / 9"
+									role="group" aria-label="2 / 5"
 									style="width: 481.333px; margin-right: 41px;">
 									<div class="thumbnail">
-										<a href="#"> <picture>
-											<img
-												src="//chapterone.kr/web/product/big/202404/4bb9a15373bafb274e11e9461cb1cd44.png"
-												alt=""></picture></a>
+										<a href="index.jsp?main=product/detailpage.jsp?pro_num=291"> <picture>
+											<img src="https://chapterone.kr/web/product/big/202208/6282ae7765987e2b26e5cc0440f5b154.jpg" alt=""></picture></a>
 									</div>
 									<div class="infomation">
 										<div class="info">
-											<h3 class="title">[킨토 테이블웨어] 캐스트 엠버 글래스 (4 SIZE)</h3>
-											<p class="summary_desc">골동품 같은 따뜻함을 느낄 수 있는 CAST AMBER
-												series 입니다. 부담없이 사용하고 컵을 쌓아서 컴팩트하게 수납할 수 있습니다.</p>
+											<h4 class="title">TRIPODE G5 램프</h3>
+											<p class="summary_desc">
+												Santa & Cole은 스페인에 본사를 둔 소규모의 독립형 글로벌 디자인 제품 에디트 브랜드입니다. 책 편집자가 이야기를 다루는 것처럼, Santa & Cole은 사물을 다룹니다.</p>
+										</div>
+									</div>
+								</li>
+								<li class="items swiper-slide xans-record-" role="group"
+									aria-label="3 / 5"
+									style="width: 481.333px; margin-right: 41px;">
+									<div class="thumbnail">
+										<a href="index.jsp?main=product/detailpage.jsp?pro_num=428"> <picture>
+											<img src="https://chapterone.kr/web/product/big/202105/bb67da846f2800901558a92161cff185.jpg" alt=""></picture></a>
+									</div>
+									<div class="infomation">
+										<div class="info">
+											<h4 class="title">서큘러 라운지 3인 소파</h3>
+											<p class="summary_desc">
+												브랜드명인 Kar는 환생을 의미하는 산스크리트어 '카르마'에 그 뿌리를 두고 있습니다.
+												동양 철학을 기반으로 가구와 패션디자인을 아우르는 에스테틱 브랜드입니다.</p>
 
 										</div>
 									</div>
 								</li>
 								<li class="items swiper-slide xans-record-" role="group"
-									aria-label="3 / 9"
+									aria-label="4 / 5"
 									style="width: 481.333px; margin-right: 41px;">
 									<div class="thumbnail">
-										<a href="#"> <picture>
-											<img
-												src="//chapterone.kr/web/product/big/202404/954d95be220417c280d8bad9bd957813.png"
-												alt=""></picture></a>
+										<a href="index.jsp?main=product/detailpage.jsp?pro_num=217"> <picture>
+											<img src="https://chapterone.kr/web/product/big/202205/38f75e4a474c665bf14a77de011a2e6b.png" alt=""></picture></a>
 									</div>
 									<div class="infomation">
 										<div class="info">
-											<h3 class="title">[킨토 테이블웨어] 캐스트 티컵 &amp; 소서 SET</h3>
-											<p class="summary_desc">단순하고 질서있는 아름다움을 가진 CAST. 손가락의 위치,
-												컵 본체에 미치는 중력, 들어올리려는 손의 힘, 이 3가지 요소의 섬세한 밸런스를 고려해 디자인 되었습니다.</p>
+											<h4 class="title">스토리지 SR01DWA</h3>
+											<p class="summary_desc">몬스트럭쳐는 사용자 중심의 모듈 선반 시스템 브랜드입니다. 다양성은 우리의 창의력을 끝없이 이끌어 낼 수 있습니다.</p>
 
 										</div>
 									</div>
 								</li>
 								<li class="items swiper-slide xans-record-" role="group"
-									aria-label="4 / 9"
+									aria-label="5 / 5"
 									style="width: 481.333px; margin-right: 41px;">
 									<div class="thumbnail">
-										<a href="#"> <picture>
-											<img
-												src="//chapterone.kr/web/product/big/202404/b423b7de2c760c8192cb7f265e687b64.png"
-												alt=""></picture></a>
+										<a href="index.jsp?main=product/detailpage.jsp?pro_num=245"> <picture>
+											<img src="https://chapterone.kr/web/product/big/202403/d25950984397edb368d7ee6ff99e8767.jpg" alt=""></picture></a>
 									</div>
 									<div class="infomation">
 										<div class="info">
-											<h3 class="title">[킨토 테이블웨어] 히비 젓가락 - 아이언우드 (2 SIZE)</h3>
-											<p class="summary_desc"></p>
+											<h4 class="title">스노우맨22 V2 테이블 스탠드</h3>
+											<p class="summary_desc">일광전구는 1962년 창립 이래 
+											반세기 동안 축적된 기술과 풍부한 경험을 바탕으로 국내 조명시장을 수성하는 토종 기업입니다.</p>
 
-										</div>
-									</div>
-								</li>
-								<li class="items swiper-slide xans-record-" role="group"
-									aria-label="5 / 9"
-									style="width: 481.333px; margin-right: 41px;">
-									<div class="thumbnail">
-										<a href="#"> <picture>
-											<img
-												src="//chapterone.kr/web/product/big/202401/daf9a8e88fc60bf844f7692686e1731b.png"
-												alt=""></picture></a>
-									</div>
-									<div class="infomation">
-										<div class="info">
-											<h3 class="title">가니메드 와인쿨러 실버 S</h3>
-											<p class="summary_desc">묵직한 황동의 손잡이와 은색 바디의 대비가 고급스럽죠.
-												표면의 망치 텍스쳐가 유니크함을 더해줍니다. 와인쿨러, 과일 혹은 꽃 바구니로도 활용 가능하니 어느곳에
-												두어도 멋진 오브제가 될거에요.</p>
-
-										</div>
-									</div>
-								</li>
-								<li class="items swiper-slide xans-record-" role="group"
-									aria-label="6 / 9"
-									style="width: 481.333px; margin-right: 41px;">
-									<div class="thumbnail">
-										<a href="#"> <picture>
-											<img
-												src="//chapterone.kr/web/product/big/202309/60d5f690f8059ad9e46010393d914b7e.png"
-												alt=""></picture></a>
-									</div>
-									<div class="infomation">
-										<div class="info">
-											<h3 class="title">얼음 집게</h3>
-											<p class="summary_desc">윤여동작가의 얼음 집게. 미끄러운 얼음을 보다 효율적으로
-												집기 위한 집게입니다. 와인쿨러, 파올라씨 고블렛잔과 함께 사용하기를 추천드려요.</p>
-
-										</div>
-									</div>
-								</li>
-								<li class="items swiper-slide xans-record-" role="group"
-									aria-label="7 / 9"
-									style="width: 481.333px; margin-right: 41px;">
-									<div class="thumbnail">
-										<a href="#"> <picture>
-											<img
-												src="//chapterone.kr/web/product/big/202402/4771b4dd34c12e47dae9cb097db0ff02.png"
-												alt=""></picture></a>
-									</div>
-									<div class="infomation">
-										<div class="info">
-											<h3 class="title">[THE GIFT IDEA] 튤립 고블렛</h3>
-											<p class="summary_desc">용도와 관계없이 무엇을 담아내어 놓든 그 공간의 감도가
-												올라가는 감각적인 디자인의 잔이에요. 누구에게 선물해도 기분 좋게 주고 받을 수 있는 선물은 술잔이 가장
-												좋은 것 같아요.</p>
-
-										</div>
-									</div>
-								</li>
-								<li class="items swiper-slide xans-record-" role="group"
-									aria-label="8 / 9"
-									style="width: 481.333px; margin-right: 41px;">
-									<div class="thumbnail">
-										<a href="#"> <picture>
-											<img
-												src="//chapterone.kr/web/product/big/202401/9b9d8d97a1b45b0209b5c87d9e776cfd.png"
-												alt=""></picture></a>
-									</div>
-									<div class="infomation">
-										<div class="info">
-											<h3 class="title">[THE GIFT IDEA] 방울 작은 잔 #1</h3>
-											<p class="summary_desc">다양한 물성을 다루는 작가들과의 협업으로 만들어진 작은 잔
-												기획전. 우리가 함께하는 첫 잔의 한 모금, 한 순간의 의미가 아름답게 기억되기를 바랍니다.</p>
-										</div>
-									</div>
-								</li>
-								<li class="items swiper-slide xans-record-" role="group"
-									aria-label="9 / 9"
-									style="width: 481.333px; margin-right: 41px;">
-									<div class="thumbnail">
-										<a href="#"> <picture>
-											<img
-												src="//chapterone.kr/web/product/big/202401/1aa2c27137052e4486c85a3d0a544534.png"
-												alt=""></picture></a>
-									</div>
-									<div class="infomation">
-										<div class="info">
-											<h3 class="title">[THE GIFT IDEA] 한지 작은 잔</h3>
-											<p class="summary_desc">얇게 빚으면 휘는 흙의 특징을 이용해서 한지가 가지고 있는
-												아름답고 고급스러운 질감을 도자기로 재현해냈습니다. 박성극 작가의 아름다운 한지 시리즈, 작은 잔으로
-												준비해보세요.</p>
 										</div>
 									</div>
 								</li>
@@ -419,7 +332,7 @@ NumberFormat nf = new DecimalFormat("#,###.##원");
 							<img src="	https://chapterone.kr/web/img/svg/prev_btn.svg"
 								alt="이전">
 						</div>
-						<script>
+			<script>
                 (()=>{
                     const timeSwiper = new Swiper(".pick-swiper",{
                         spaceBetween: 16,
@@ -447,11 +360,9 @@ NumberFormat nf = new DecimalFormat("#,###.##원");
 			</div>
 		</div>
 
-
 		<!-- new -->
 		<div class="new" style="margin-top: 180px;">
-			<span style="font-size: 32px;">NEW</span> <img alt=""
-				src="./image/staticImage/Vector.png">
+			<span style="font-size: 32px;">NEW</span> <img alt="" src="./image/staticImage/Vector.png">
 
 			<div>
 				<table>
@@ -544,9 +455,9 @@ NumberFormat nf = new DecimalFormat("#,###.##원");
 						%>
 
 						<td width="330px" align="center" style="padding: 20px 10px 0px;">
-							<a pronum="<%=rdto.getPro_num()%>" class="goDetail"> <!-- <img src="./image/reviewSave/etcB.jpg" style="padding-bottom: 8px;"> -->
-								<img src="<%=rdto.getReview_image()%>"
-								style="padding-bottom: 8px;">
+							<a pronum="<%=rdto.getPro_num()%>" class="goDetail">
+								<!-- <img src="./image/reviewSave/etcB.jpg" style="padding-bottom: 8px;"> -->
+								<img src="<%=rdto.getReview_image() %>" style="padding-bottom: 8px;">
 						</a>
 						</td>
 						<!-- 각 행의 끝 -->
@@ -585,9 +496,8 @@ NumberFormat nf = new DecimalFormat("#,###.##원");
 					%>
 
 					<tr>
-						<td colspan="4" align="center"><a id="newMore"
-							href="index.jsp?main=review/reviewList.jsp"> <img alt=""
-								src="./image/staticImage/more_bs.png" style="margin-top: 50px;"></a>
+						<td colspan="4" align="center"><a id="newMore" href="index.jsp?main=review/reviewList.jsp">
+							<img alt="" src="./image/staticImage/more_bs.png" style="margin-top: 50px;"></a>
 						</td>
 					</tr>
 				</table>

@@ -42,7 +42,8 @@ dao.insertMember(dto);
 %>
 <script type="text/javascript">
 
-alert("회원가입에 성공하셨습니다!");
-window.location.href="./index.jsp?main=SemiLogin/Login.jsp");
+alert("모지홈 가입을 환영합니다!");
+
+window.location.href="index.jsp?main=SemiLogin/Login.jsp";
 
 </script>
