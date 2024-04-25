@@ -22,6 +22,9 @@ html,body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,code,form,fieldset,legend,
     padding: 0;
     color: #353535;
 }
+.form-group > .row > div {
+    margin-bottom: 5px;
+}
 #body {
     background-color: #fff;
 }
@@ -140,7 +143,9 @@ h1.page-title {
     width: 100%;
     text-align: right;
 }
-
+#userStyle table tbody td {
+    padding: 0;
+}
 #mCafe24Order .contents .segment .ec-base-table td span {
     font-size: 16px;
     font-weight: 500;
@@ -182,6 +187,22 @@ h1.page-title {
 }
 #mCafe24Order .ec-base-fold .ec-base-prdInfo,#mCafe24Order .pannelArea .ec-base-prdInfo {
     margin: 0;
+}
+#mCafe24Order .ec-base-prdInfo {
+    position: relative;
+    margin: 0 0 7px;
+    padding: 16px;
+    box-sizing: border-box;
+    background: #fff;
+    border-bottom: 1px solid #ECECEC;
+}
+#mCafe24Order .ec-base-fold {
+    position: relative;
+    margin: 0 0 24px;
+    padding: 0;
+    border-top: 1px solid #D8D8D8;
+    border-bottom: 1px solid #D8D8D8;
+    background: #fff;
 }
 .segment {
     position: relative;
@@ -261,12 +282,27 @@ h1.page-title {
 }
 
 #mCafe24Order .ec-base-prdInfo .description .info li.price_info {
-    font-size: 1.4rem;
+
     font-weight: 500;
     margin-top: 12px;
     color: #616161;
 }
-
+#mCafe24Order .ec-base-prdInfo .option > li .name {
+    display: -webkit-flex;
+    display: -moz-flex;
+    display: -ms-flex;
+    display: flex;
+    min-height: 29px;
+    margin: 7px 0;
+    -webkit-justify-content: space-between;
+    -moz-justify-content: space-between;
+    -ms-justify-content: space-between;
+    justify-content: space-between;
+    -webkit-align-items: center;
+    -moz-align-items: center;
+    -ms-align-items: center;
+    align-items: center;
+}
 #mCafe24Order .ec-base-prdInfo .description .info li.price_info span {
     position: relative;
     display: inline-block;
@@ -298,7 +334,23 @@ h1.page-title {
     text-decoration: line-through;
     color: #bcbcbc;
 }
+#mCafe24Order .ec-base-prdInfo .description .info_cont {
+    margin-top: 12px !important;
+    display: flex;
+    justify-content: space-between;
+}
 
+#mCafe24Order .ec-base-prdInfo .description .info_cont .proCount {
+    font-size: 12px;
+    font-weight: 400;
+    color: var(--gray-5-color);
+}
+
+#mCafe24Order .ec-base-prdInfo .description .info_cont .proPrice {
+    font-size: 14px;
+    font-weight: 500;
+    color: #333;
+}
 #mCafe24Order .ec-base-prdInfo .description .info .price .discount.priceValue {
     display: block;
 }
@@ -349,7 +401,7 @@ h1.page-title {
     width: 50px;
 }
 #mCafe24Order .ec-base-prdInfo .description .info li.price_info {
-    font-size: 1.4rem;
+
     font-weight: 500;
     margin-top: 12px;
     color: #616161;
@@ -375,6 +427,14 @@ h1.page-title {
 }
 #mCafe24Order .pannelArea .contents .ec-base-table tr {
     padding: 8px 12px;
+}
+#mCafe24Order .ec-base-table tr {
+    border-bottom: 1px solid #F5F5F5;
+    padding: 12.5px 16px;
+    box-sizing: border-box;
+    width: 100%;
+    display: flex;
+    column-gap: 10px;
 }
 .order_result_style .ec-base-table tr {
     display: flex;
@@ -453,15 +513,44 @@ h1.page-title {
     font-size: 14px;
     font-weight: 500;
 }
+.order_result_style .totalPay {
+    background-color: #fff !important;
+    padding: 12px !important;
+}
+.order_result_style .totalPay .heading {
+    color: #616161 !important;
+    line-height: normal;
+}
 .order_result_style .totalPay .txtStrong {
     color: #EA6000 !important;
     font-size: 14px !important;
+}
+#mCafe24Order .discountDetail + .totalPay {
+    margin: -1px 0 0;
+}
+
+#mCafe24Order .discountDetail + .totalPay .txtEm {
+    color: #fff;
 }
 #mCafe24Order .segment .totalPay {
     border-top-width: 0;
     padding-bottom: 13px;
 }
+.ec-jigsawWrapper .totalPay {
+    background-color: #fff !important;
+    padding: 12px 16px !important;
+}
 
+.ec-jigsawWrapper .totalPay .heading,.ec-jigsawWrapper .totalPay .txtEm {
+    color: #141414 !important;
+    line-height: 17px;
+}
+
+.ec-jigsawWrapper .totalPay .txtEm {
+    font-size: 16px;
+    font-weight: 600;
+    color: #616161 !important;
+}
 .gCellNarrow.ec-base-table table tbody tr {
     display: table-row;
     align-items: center;
@@ -495,7 +584,9 @@ gCellNarrow th {
 .order_result_style .resultInfo .ec-base-table.gCellNarrow tbody th {
     font-weight: 400 !important;
 }
-
+.order_result_style .ec-base-table.gCellNarrow tbody th {
+    font-size: 12px !important;
+}
 #mCafe24Order .ec-base-button {
     margin: 10px auto;
     text-align: right;
@@ -507,7 +598,19 @@ gCellNarrow th {
     display: flex;
     margin: 0 16px;
 }
-
+#mCafe24Order .pannelArea {
+    margin: 0 0 30px;
+    padding: 0 16px;
+    box-sizing: border-box;
+    border-width: 1px 0;
+    background: #fff;
+}
+table {
+    width: 100%;
+    border: 0;
+    border-spacing: 0;
+    border-collapse: collapse;
+}
 #mCafe24Order .ec-base-button[class*="gColumn"]:after {
     content: none;
 }
@@ -554,6 +657,11 @@ gCellNarrow th {
 }
 a {
     text-decoration: none !important;
+}
+#mCafe24Order .contents .segment .ec-base-table td span {
+    font-size: 16px;
+    font-weight: 500;
+    color: #616161;
 }
 </style>
 </head>
@@ -697,41 +805,46 @@ ProductDto pdto = pdao.getProduct(pro_num);
         
         
 	        <!-- [결제정보] -->
-			<div class="pannelArea payment_info">
-	            <div class="title">
-	                <h2>결제정보</h2>
-	            </div>
-	            <div class="contents">
-	                <div class="segment">
-	                    <div class="ec-base-table gCellNarrow">
-	                        <table border="0">
-	                            <colgroup>
-								<col style="width: 140px">
-								<col style="width: auto">
-								</colgroup>
-								<tbody>
+		<div class="pannelArea pannel_product">
+        <div class="title">
+            <h2>결제정보</h2>
+        </div>
+        <div id="ec-jigsaw-area-payment" class="ec-base-fold eToggle selected">
+
+		    <div class="contents">
+		        <div class="segment">
+		            <div class="ec-base-table gCellNarrow">
+		                <table border="1">
+							<colgroup>
+								<col style="width:155px">
+								<col style="width:auto">
+							</colgroup>
+							<tbody>
 								<tr>
 									<th scope="row">주문상품</th>
-		                        	<td class="right">&#8361;<%=odto.getOrder_total_payment()%></td>
-		                        </tr>
+						        	<td class="right"><span id="total_product_base_price_id" class="price">&#8361;<%=odto.getOrder_total_payment()%></span></td>
+						        </tr>
 								<tr>
 									<th scope="row">배송비</th>
-		                        	<td class="right">+&#8361;<%=odto.getOrder_delivery_fee()%></td>
-		                        </tr>
-								</tbody>
-							</table>
-						</div>
-	                    <div class="totalPay gBlank10">
-	                        <h3 class="heading">총 결제금액</h3>
-	                        <strong class="txtStrong">&#8361;<%=odto.getOrder_total_payment()%></strong>
-	                    </div>
-	                </div>
-	            </div>
-	        </div>
+	                        		<td class="right"><span class="price">+<span id="total_ship_price_id">&#8361;<%=odto.getOrder_delivery_fee()%></span></span></td>
+	                    		</tr>
+								<tr>
+									<th scope="row">결제금액</th>
+						        	<td class="right"><span id="total_product_base_price_id" class="price">&#8361;<%=odto.getOrder_total_payment()%></span></td>
+	                    		</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>	
+		    </div>
+		</div>
+        </div>
+        
+        
         
         <div class="ec-base-button gColumn">
-            <a href="/myshop/order/list.html" class="btnEm btn_radius">주문확인하기</a>
-            <a href="/" class="btnSubmit btn_radius">쇼핑계속하기</a>
+            <a href="index.jsp?main=order/orderDetail.jsp?order_num=<%=order_num %>" class="btnEm btn_radius">주문확인하기</a>
+            <a href="index.jsp" class="btnSubmit btn_radius">쇼핑계속하기</a>
         </div>
         
         

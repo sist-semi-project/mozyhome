@@ -48,7 +48,7 @@ h1.page-title {
 #userStyle {
     padding: 40px 0 0;
 }
-.ec-base-fold {
+#mCafe24Order .ec-base-fold {
     position: relative;
     margin: 0 0 24px;
     padding: 0;
@@ -57,14 +57,14 @@ h1.page-title {
     background: #fff;
 }
 
-.ec-base-fold > .title {
+#mCafe24Order .ec-base-fold > .title {
     position: relative;
     border-bottom: 1px solid #ececec;
-    padding: 14.5px 16px;
+
     box-sizing: border-box;
 }
 
-.title h2 {
+#mCafe24Order .title h2 {
     font-size: 16px;
     font-weight: 700;
     color: #333;
@@ -317,6 +317,201 @@ input[type="text"] {
 }
 
 
+#mCafe24Order .segment {
+    position: relative;
+}
+
+#mCafe24Order .segment:first-child,#mCafe24Order .segment:first-child[class*='displaynone'] + .segment,#mCafe24Order .segment:first-child[style*='display: none'] + .segment {
+    border-top-width: 0;
+}
+#mCafe24Order .payMethod > li {
+    position: relative;
+    margin-bottom: 10px;
+    border-top: 1px solid #ECECEC;
+    overflow: hidden;
+}
+
+#mCafe24Order .payMethod > li.ec-paymethod-newArea .inner {
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+    padding: 0 16px;
+    gap: 12px;
+}
+
+#mCafe24Order .payMethod > li.ec-paymethod-recentArea {
+    padding: 0 16px;
+}
+
+#mCafe24Order .payMethod > li.ec-paymethod-recentArea > label {
+    padding: 10px 8px;
+}
+
+#mCafe24Order .payMethod > li.ec-paymethod-recentArea > .inner {
+    color: #fff !important;
+    background-color: #333;
+    border: 1px solid #EA6000;
+    text-align: center;
+    padding: 12px 20px !important;
+    width: calc(50% - 8px);
+    box-sizing: border-box;
+    margin-bottom: 8px;
+}
+#mCafe24Order .payMethod > li > input {
+    position: absolute;
+    right: 14px;
+    top: 9px;
+}
+
+#mCafe24Order .payMethod > li > label {
+    display: block;
+    margin: 0;
+    padding: 10px 24px;
+    box-sizing: border-box;
+    font-weight: 700;
+    color: #000;
+    font-size: 14px;
+}
+
+#mCafe24Order .payMethod > li > label::before,#mCafe24Order .payMethod > li > label::after {
+    display: none;
+}
+
+#mCafe24Order .payMethod > li .inner {
+    display: none;
+}
+
+#mCafe24Order .payMethod > li.selected > label {
+    color: #000;
+    background: #fff;
+}
+#mCafe24Order .payMethod > li.selected > .inner {
+    gap: 8px;
+    display: grid;
+    overflow: visible;
+    opacity: 1;
+    height: auto;
+    padding: 0 16px;
+    -webkit-transition: height .3s ease,opacity .3s ease-out;
+    -moz-transition: height .3s ease,opacity .3s ease-out;
+    -ms-transition: height .3s ease,opacity .3s ease-out;
+    -o-transition: height .3s ease,opacity .3s ease-out;
+    transition: height .3s ease,opacity .3s ease-out;
+    font-size: 14px;
+    font-weight: 500;
+    color: #212121;
+}
+
+#mCafe24Order #payment_input_cash table::before {
+    display: none;
+}
+
+#mCafe24Order #payment_input_cash #payment_input_cash {
+    padding: 12px 16px;
+}
+
+#mCafe24Order .payMethod > li .inner {
+    display: none;
+    opacity: 0;
+    height: 0;
+}
+#mCafe24Order .payMethod > li .inner > .ec-base-label {
+    display: inline-flex;
+    align-items: center;
+    margin: 0;
+}
+
+#mCafe24Order .payMethod > li .inner > .ec-base-label input {
+    width: 1px;
+    height: 1px;
+    display: none;
+}
+
+#mCafe24Order .payMethod > li .inner > .ec-base-label label {
+    text-align: center;
+    padding: 12px 20px;
+    width: 100%;
+    box-sizing: border-box;
+    background-color: #fff;
+    border: 1px solid #d8d8d8;
+}
+#mCafe24Order .payMethod > li .inner > .ec-base-label label::before,#mCafe24Order .payMethod > li .inner > .ec-base-label label::after {
+    display: none;
+}
+
+#mCafe24Order .payMethod > li .inner > .ec-base-label input:checked + label {
+    color: #fff;
+    background-color: #EA6000;
+    border: 1px solid #EA6000;
+}
+#mCafe24Order .ec-base-button {
+    margin: 10px auto;
+    text-align: right;
+}
+#mCafe24Order .ec-base-button.gFull {
+    margin: 0;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 0;
+}
+#mCafe24Order .ec-base-button.gFull [class*="btn"],[class*="btn"].gFull {
+    width: 100%;
+    margin-bottom: 0 !important;
+}
+
+#mCafe24Order .ec-base-button.gFull [class*="btn"] {
+    margin: 0 0 7px;
+    padding: 16px;
+    font-size: 16px;
+    font-weight: 600;
+    border-radius: 0 !important;
+}
+#mCafe24Order .btnNormal,#mCafe24Order .btnStrong,#mCafe24Order .btnBasic,#mCafe24Order .btnSubmit,#mCafe24Order .btnEm,#mCafe24Order .btnBase {
+    display: inline-block;
+    letter-spacing: -0.4px;
+    text-align: center;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+#mCafe24Order .btnSubmit {
+    padding: 14.5px 10px;
+    font-size: 16px;
+    font-weight: 600;
+    color: #fff;
+    border: 1px solid #EA6000;
+    background: #EA6000;
+}
+
+
+
+
+
+
+
+
+.ec-paymethod-input-detail .ec-base-table table {
+    border: 0;
+}
+#payment_input_cash table td {
+    border: 0;
+    text-align: left !important;
+}
+
+#mCafe24Order #omessage_select,#mCafe24Order #fmessage_select,#mCafe24Order #ship_hope_time,#mCafe24Order #fship_hope_time,#mCafe24Order .xans-order-ordadd select,#mCafe24Order #bankaccount,#mCafe24Order #receiver_id_card_type {
+    width: 100%;
+}
+#userStyle table tbody th {
+    padding: 0;
+    border: 0;
+    background-color: transparent;
+}
+
+#mCafe24Order .contents .segment .ec-base-table td span {
+    font-size: 16px;
+    font-weight: 500;
+    color: #616161;
+}
+
+
 
 
 
@@ -418,18 +613,28 @@ NumberFormat nf = NumberFormat.getInstance();
 			
 %>
     		
-    		<div style="overflow: hidden; margin-bottom: 20px;">
-		    <div style="float: left; margin-right: 10px;">
-		        <img src="<%=pro_main_img%>" width="100" height="100" style="border: 1px solid #ccc;">
-		    </div>
-		    <div style="float: left;">
-		        <div><%=pro_name%></div>
-		        <div>[옵션: <%=pro_size %>]</div>
-		        <div>[옵션: <%=pro_color %>]</div>
-		        <div>수량: <%=pro_su %></div>
-		        <div>가격: <%=totalProductPrice %>원</div>
-		    </div>
-		</div>
+			
+			<table class="order_table">
+	    	<tbody class="order_tbody">
+		    	<tr class="order_tr">
+					<td class="order_td">		
+					<div class="order_body">
+						<div class="body_main">
+				            <a href="#"><img src="<%=pro_main_img%>"></a>
+				            <div class="info">
+				                <p class="product_name"><%=pro_name%></p>
+				                <p class="product_option">[<%=pro_size %> : <%=pro_color %>]</p>
+				                <div class="price">
+			                    	<p>&#8361;<%=pro_price %></p>
+			                    	<p><%=pro_su %>개</p>
+				                </div>
+				            </div>
+				        </div>
+					</div>
+					</td>
+				</tr>
+			</tbody>
+		</table>
 		<%
     		
 		} else {
@@ -566,12 +771,47 @@ NumberFormat nf = NumberFormat.getInstance();
 		finalPayment = totalProductPrice + deliveryFee;
 		
 		%>
-		총 상품금액: <%= nf.format(totalProductPrice) %>원<br>
-		배송비: <%= nf.format(deliveryFee) %>원<br>
-		최종 결제금액: <%= nf.format(finalPayment) %>원<br>
 	
 	    <input type="hidden" name="deliveryFee" value="<%= deliveryFee %>">
 		<input type="hidden" name="finalPayment" value="<%= finalPayment %>">
+		
+		
+		
+		<!-- !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! -->
+		<div id="ec-jigsaw-area-payment" class="ec-base-fold eToggle selected">
+		    <div id="ec-jigsaw-title-payment" class="title">
+		        
+		    </div>
+		    <div class="contents">
+		        <div class="segment">
+		            <div class="ec-base-table gCellNarrow">
+		                <table border="1">
+							<colgroup>
+								<col style="width:155px">
+								<col style="width:auto">
+							</colgroup>
+							<tbody>
+								<tr>
+									<th scope="row">주문상품</th>
+						        	<td class="right"><span id="total_product_base_price_id" class="price">&#8361;<%= nf.format(totalProductPrice) %></span></td>
+						        </tr>
+								<tr>
+									<th scope="row">배송비</th>
+	                        		<td class="right"><span class="price">+<span id="total_ship_price_id">&#8361;<%= deliveryFee %></span></span></td>
+	                    		</tr>
+								<tr>
+									<th scope="row">결제금액</th>
+						        	<td class="right"><span id="total_product_base_price_id" class="price">&#8361;<%= nf.format(finalPayment) %></span></td>
+	                    		</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>	
+		    </div>
+		</div>
+	
+	
+	
 		
 		
 		
@@ -584,39 +824,61 @@ NumberFormat nf = NumberFormat.getInstance();
 		    	<div class="segment">
 	            	<ul class="payMethod">
 	            		<li class="ec-paymethod-newArea selected">
-	            			<label for="paymethod-new"><span class="displaynone">다른 </span>결제수단 선택</label>
+	            			<label for="paymethod-new">결제수단 선택</label>
 	            			<div class="inner">
-	            				<span class="ec-base-label"><input id="addr_paymethod0" name="addr_paymethod" fw-filter="isFill" fw-label="결제방식" fw-msg="" value="card" type="radio" checked="checked"  /><label for="addr_paymethod0" >카드 결제</label></span>
-	            				<span class="ec-base-label"><input id="addr_paymethod1" name="addr_paymethod" fw-filter="isFill" fw-label="결제방식" fw-msg="" value="cash" type="radio"  /><label for="addr_paymethod1" >무통장 입금</label></span> 
+	            				<span class="ec-base-label">
+		            				<input onclick="showBankInfo()" id="creditCard" name="payment_method" fw-filter="isFill" fw-label="결제방식" value="credit_card" type="radio" checked="checked"/>
+		            				<label for="creditCard" >카드 결제</label>
+	            				</span>
+	            				<span class="ec-base-label">
+		            				<input onclick="showBankInfo()" id="bankTransfer" name="payment_method" fw-filter="isFill" fw-label="결제방식" value="bank_transfer" type="radio"/>
+		            				<label for="bankTransfer" >무통장 입금</label>
+	            				</span> 
 	            			</div>
 	            		</li>
 	            	</ul>
+            	</div>
+            	<div id="bankInfo" style="display: none;">
+            	<div class="ec-paymethod-input-detail">
+            		<div id="payment_input_cash" class="ec-base-table typeWrite">
+	                	<table border="1">
+		                	<colgroup>
+								<col style="width:100px">
+								<col style="width:auto">
+							</colgroup>
+							<tbody>
+								<tr>
+								<th scope="row">입금은행 <img src="http://img.echosting.cafe24.com/skin/base_ko_KR/order/ico_required.gif" alt="필수"></th>
+									<td><select id="bankaccount" name="bankaccount" fw-label="무통장 입금은행" >
+										<option value="-1">::: 선택해 주세요. :::</option>
+										<option value="카카오뱅크">카카오뱅크 123456789101112 주식회사 모지홈</option>
+										</select>
+									</td>
+								</tr>
+								<tr>
+								<th scope="row">입금자명 <img src="http://img.echosting.cafe24.com/skin/base_ko_KR/order/ico_required.gif" alt="필수"></th>
+							    	<td><input id="pname" name="pname" fw-label="무통장 입금자명" class="inputTypeText" size="15" maxlength="20" type="text"/></td>
+								</tr>
+							</tbody>
+	                	</table>
+                	</div>
+            	</div>
             	</div>
 		    </div>
 		</div>
 		
 		<!-- !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! -->
-	    <h3>결제 수단</h3>
-		<input type="radio" id="creditCard" name="payment_method" value="credit_card" onclick="showBankInfo()" required>
-		<label for="creditCard">신용카드</label><br>
-		<input type="radio" id="bankTransfer" name="payment_method" value="bank_transfer" onclick="showBankInfo()" required>
-		<label for="bankTransfer">무통장입금</label><br>
-		
-	    <!-- 무통장입금 선택 시 보이는 입금 정보 입력란 -->
-	    <div id="bankInfo" style="display: none;">
-	         입금은행: 
-	    <select name="bank_name">
-	        <option value="">은행 선택</option>
-	        <option value="KB국민은행">KB국민은행 10987654321098 주식회사 모지홈</option>
-	        <option value="카카오뱅크">카카오뱅크 123456789101112 주식회사 모지홈</option>
-	
-	        <!-- 기타 은행 추가 가능 -->
-	    </select><br>
-	        입금자명: <input type="text" name="depositor_name"><br>
-	    </div>
-    </div>
-    <button type="submit">주문하기</button>
-    </div>
+
+	    
+	    
+	    
+	    <!-- !!!!!!!!!!!!!!!!!!!!! -->
+	    <div class="ec-base-button gFull" id="orderFixItem">
+            <button type="submit" class="btnSubmit" id="btn_payment">&#8361;
+                <span id="total_order_sale_price_view"><%= nf.format(finalPayment) %></span> 
+                <span class="">결제하기</span>
+            </button>
+        </div>
 </form>
 </div>
 </div>
