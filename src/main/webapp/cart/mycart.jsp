@@ -165,9 +165,11 @@ $(document).ready(function(){
     });
 
 	//선택상품 구매 버튼
-     $(".buy_btn").on("click", function() {
+     $(".buy_btn").click(function() {
     	    var formData = []; // 선택된 상품들의 정보를 담을 배열
     	    
+    	    var cnt=$(".cart_select").length;
+       	 
     	    // 선택된 상품들의 정보 수집
     	    $(".cart_select:checked").each(function() {
     	        var cart_num = $(this).attr("cart_num");
