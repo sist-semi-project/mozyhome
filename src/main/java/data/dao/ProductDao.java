@@ -475,31 +475,37 @@ public class ProductDao {
 		return delCount;
 	}
 	
-	// 2024-04-22 추가
+	// 2024-04-24 수정
 	// 상품의 재고량 업데이트
-    public boolean updateStockQuantity(String proNum, int quantity) {
-    	Connection conn = db.getConnection();
-        PreparedStatement pstmt = null;
-        boolean success = false;
-        
-        try {
-            String sql = "UPDATE product SET pro_stock = pro_stock - ? WHERE pro_num = ?";
-            pstmt = conn.prepareStatement(sql);
-            pstmt.setInt(1, quantity);
-            pstmt.setString(2, proNum);
-            
-            int rowsAffected = pstmt.executeUpdate();
-            if (rowsAffected > 0) {
-                success = true;
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        } finally {
-        	db.dbClose(pstmt, conn);
-        }
-        
-        return success;
-    }
+	public boolean updateStockQuantity(String proNum, int quantity, boolean increase) {
+	    Connection conn = db.getConnection();
+	    PreparedStatement pstmt = null;
+	    boolean success = false;
+	    
+	    try {
+	        String sql;
+	        if (increase) {
+	            sql = "UPDATE product SET pro_stock = pro_stock + ? WHERE pro_num = ?";
+	        } else {
+	            sql = "UPDATE product SET pro_stock = pro_stock - ? WHERE pro_num = ?";
+	        }
+	        pstmt = conn.prepareStatement(sql);
+	        pstmt.setInt(1, quantity);
+	        pstmt.setString(2, proNum);
+	        
+	        int rowsAffected = pstmt.executeUpdate();
+	        if (rowsAffected > 0) {
+	            success = true;
+	        }
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    } finally {
+	        db.dbClose(pstmt, conn);
+	    }
+	    
+	    return success;
+	}
+
 
 	public ProductDto getOneProduct(String num) {
 		ProductDto dto=new ProductDto();
@@ -719,4 +725,33 @@ public class ProductDao {
 		}
 	}
 
+	
+	public int getProPrice(String pro_num)
+	{
+		int pro_price = 0;
+		
+		Connection conn=db.getConnection();
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		
+		String sql="select pro_price from product where pro_num=?";
+		
+		try {
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setString(1, pro_num);
+			rs=pstmt.executeQuery();
+			
+			if(rs.next())
+			{
+				pro_price=rs.getInt(1);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			db.dbClose(rs, pstmt, conn);
+		}
+		
+		return pro_price;
+	}
 }

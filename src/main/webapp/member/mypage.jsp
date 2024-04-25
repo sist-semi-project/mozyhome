@@ -109,12 +109,21 @@ h1.page-title {
 
 </style>
 </head>
-<%
-//session.setAttribute("mem_id", "must12");
-String mem_id = (String) session.getAttribute("mem_id");
-
-%>
 <body>
+<%
+String mem_id = (String) session.getAttribute("myid");
+String loginok=(String)session.getAttribute("loginok");
+
+if(loginok==null|| loginok.equals("")){ //로그아웃상태
+	out.println("<script>");
+    out.println("alert('로그인페이지로 이동');");
+    out.println("location.href='index.jsp?main=SemiLogin/Login.jsp';");
+    out.println("</script>");
+    return;
+}else{
+	  
+}
+%>
 <div id="body">
 <div id="body-begin"></div>
 	<div class="sub_container">
@@ -138,7 +147,7 @@ String mem_id = (String) session.getAttribute("mem_id");
                         <svg width="18" height="18" viewbox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M7.27875 4.5L6.22125 5.5575L9.65625 9L6.22125 12.4425L7.27875 13.5L11.7788 9L7.27875 4.5Z" fill="black" fill-opacity="0.54"></path></svg></a>
                 </li>
                 <li class="myshop_item">
-                    <a href="/myshop/addr/list.html">
+                    <a href="#">
                         <span>고객센터</span>
                         <svg width="18" height="18" viewbox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M7.27875 4.5L6.22125 5.5575L9.65625 9L6.22125 12.4425L7.27875 13.5L11.7788 9L7.27875 4.5Z" fill="black" fill-opacity="0.54"></path></svg></a>
                 </li>

@@ -263,9 +263,9 @@ page-title {
 					       	</thead>
 					       	<tbody class="center order_tbody ">
 					       		<% 
-						            String mem_id = (String) session.getAttribute("mem_id"); 
+						            String myid = (String) session.getAttribute("myid"); 
 						       		MemberDao memberDao = new MemberDao();
-						       		MemberDto memberDto = memberDao.getMemberInfo("must12");//임시설정				       			
+						       		MemberDto memberDto = memberDao.getMemberInfo(myid);			       			
 						       		String mem_num = memberDto.getMem_num();
 						       		
 					                // 주문 목록을 가져오는 부분
@@ -293,7 +293,7 @@ page-title {
 				                                        <svg width="18" height="18" viewbox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M7.05002 12.95L6.52502 12.425L9.97502 8.975L6.52502 5.525L7.05002 5L11.025 8.975L7.05002 12.95Z" fill="black"></path></svg></a>
 				                        </div>
 				                        <div class="order_body">
-				                            <a href="index.jsp?main=order/orderComplete.jsp?orderNumber=<%=order_num %>" class="order_id">주문번호 : <%= order_num %></a>
+				                            <a href="index.jsp?main=order/orderDetail.jsp?order_num=<%=order_num %>" class="order_id">주문번호 : <%= order_num %></a>
 				                            <div class="body_main">
 				                                <a href="index.jsp?main=product/detailpage.jsp?pro_num=<%=pro_num %>"><img src="<%=pDto.getPro_main_img()%>" onerror="this.src='//img.echosting.cafe24.com/thumb/img_product_small.gif';"></a>
 				                                <div class="info">
