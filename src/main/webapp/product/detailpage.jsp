@@ -138,7 +138,9 @@ session.setAttribute("directPurchase", true);
 String pro_num = request.getParameter("pro_num");
 
 String loginok = (String) session.getAttribute("loginok");
+
 String mem_id = (String) session.getAttribute("myid");
+
 
 //아이디에 해당하는 멤버 시퀀스
 MemberDao mdao = new MemberDao();
@@ -348,7 +350,7 @@ cdao.overlapProDel(pro_num);%>
 					var a = confirm("장바구니에 저장하였습니다\n장바구니로 이동하려면 [확인]을 눌러주세요");
 
 					if (a) {
-						location.href = "../cart/mycart.jsp";
+						location.href = "./index.jsp?main=cart/mycart.jsp";
 					}
 				}
 			});
