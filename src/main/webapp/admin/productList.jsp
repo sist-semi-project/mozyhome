@@ -59,6 +59,8 @@
             padding: 20px;
             border-radius: 5px;
             box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            width:1500px;
+            
         }
         .form-group {
             margin-bottom: 10px;
@@ -1032,7 +1034,6 @@
 </head>
 
 
-
 <body>
 <!-- 수정 양식 모달 -->
 <div class="modal fade" id="editProductModal" tabindex="-1" aria-labelledby="editProductModalLabel" aria-hidden="true">
@@ -1153,7 +1154,7 @@
         </div>
     </div>
 </div>
-
+	
 <div class="header">상품목록</div>
 <form action="" method="get" class="search-form">
     <div class="form-group">
