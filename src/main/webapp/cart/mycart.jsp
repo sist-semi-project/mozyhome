@@ -50,7 +50,7 @@
 session.setAttribute("directPurchase", false);
 
 //String id=(String)session.getAttribute("mem_id");
-String id = "dragon";
+String id = "must12";
 System.out.println(id);
 CartDao cdao = new CartDao();
 List<HashMap<String, String>> list = cdao.getCartList(id);
@@ -86,41 +86,36 @@ NumberFormat nf = NumberFormat.getInstance();
 			%>
 			<div>
 
-				<input type="checkbox"
-					class="cart_select" name=<%=map.get("cart_num")%> cart_num="<%=map.get("cart_num") %>"
-					>
+				<input type="checkbox" class="cart_select"
+					name=<%=map.get("cart_num")%> cart_num="<%=map.get("cart_num")%>">
 
 				<div class="pro_num" pro_num="<%=map.get("pro_num")%>">
 
-					<img class="cart_img" alt="" src="<%=pro_main_img%>"> 
-					<b><%=map.get("pro_name")%></b>
+					<img class="cart_img" alt="" src="<%=pro_main_img%>"> <b><%=map.get("pro_name")%></b>
 
 					<b>[옵션:<%=map.get("cart_size")%>]
-					</b> 
-					<b>[옵션:<%=map.get("cart_color")%>]
+					</b> <b>[옵션:<%=map.get("cart_color")%>]
 					</b>
-					
+
 				</div>
-				
+
 				<%
 				ProductDao pdao = new ProductDao();
 				int real_pro_price = pdao.getProPrice(pro_num);
 				%>
-				
-					<input type="hidden" id="realProPrice<%=i%>"
-						value="<%=real_pro_price%>">
-						
-					<input type="number" min="1" max="99"
-					    value="<%=map.get("cart_su")%>" step="1" name="cnt"
-					    id="quantity<%=i%>" onchange="updateTotalPrice(<%=i%>)">
 
-					<%
-					String pro_priceStr = map.get("pro_price");
+				<input type="hidden" id="realProPrice<%=i%>"
+					value="<%=real_pro_price%>"> <input type="number" min="1"
+					max="99" value="<%=map.get("cart_su")%>" step="1" name="cnt"
+					id="quantity<%=i%>" onchange="updateTotalPrice(<%=i%>)">
 
-					pro_price = Integer.parseInt(pro_priceStr);
-					%>
+				<%
+				String pro_priceStr = map.get("pro_price");
 
-					<b id="totalPrice<%=i%>" value="<%=total_price%>">₩<%=nf.format(total_price)%></b>
+				pro_price = Integer.parseInt(pro_priceStr);
+				%>
+
+				<b id="totalPrice<%=i%>" value="<%=total_price%>">₩<%=nf.format(total_price)%></b>
 			</div>
 			<%
 			}
@@ -132,18 +127,18 @@ NumberFormat nf = NumberFormat.getInstance();
 		<div>
 			<button type="submit" class="buy_btn" onclick="buyBtn()"
 				class="buy_btn">선택상품 구매</button>
-			<button class="all_buy_btn" onclick="allBuyBtn()" class="all_buy_btn">전체상품
-				구매</button>
-			<button class="del_btn"  class="del_btn" type="button">선택삭제</button>
-			<button class="all_del_btn" onclick="allDelBtn()" class="all_del_btn">전체삭제</button>
+			<button class="all_buy_btn" onclick="allBuyBtn()" class="all_buy_btn"
+				type="button">전체상품 구매</button>
+			<button class="del_btn" class="del_btn" type="button">선택삭제</button>
+			<button class="all_del_btn" class="all_del_btn" type="button">전체삭제</button>
 		</div>
 	</form>
 
 
 
 
-<script type="text/javascript">
-    //수량 맞춰서 가격 변경
+	<script type="text/javascript">
+//수량 맞춰서 가격 변경
     function updateTotalPrice(index) {
         var quantity = parseInt(document.getElementById("quantity" + index).value);
         var real_pro_price = parseInt(document.getElementById("realProPrice" + index).value);
@@ -154,50 +149,126 @@ NumberFormat nf = NumberFormat.getInstance();
         document.getElementById("totalPrice" + index).innerHTML = "₩" + totalPrice.toLocaleString();
     }
 
-    //도큐먼트 준비하고 스크립트 적용 함수    
-    $(document).ready(function(){
-        //전체 선택 체크박스
-        $(".cart_select_all").click(function(){
-              var chk=$(this).is(":checked");
-              $(".cart_select").prop("checked",chk);
-          });
+//도큐먼트 준비하고 스크립트 적용 함수    
+$(document).ready(function(){
+	
+    //전체 선택 체크박스
+    $(".cart_select_all").click(function(){
+          var chk=$(this).is(":checked");
+          $(".cart_select").prop("checked",chk);
+      });
 
-        //상품 클릭시 디테일 페이지로 이동
-         $("div.pro_num").click(function(){
-          var pro_num=$(this).attr("pro_num");
-          location.href="../product/detailpage.jsp?pro_num="+pro_num;
-        });
+    //상품 클릭시 디테일 페이지로 이동
+     $("div.pro_num").click(function(){
+      var pro_num=$(this).attr("pro_num");
+      location.href="../product/detailpage.jsp?pro_num="+pro_num;
+    });
 
-        //선택삭제 버튼
-        $(".del_btn").click(function(){
-          var cnt=$(".cart_select:checked").length;
-          
-          if(cnt==0){
-              alert("먼저 삭제할 상품을 1개 이상 선택해 주세요");
+    //선택상품 구매 버튼
+    $(".buy_btn").click(function(){
+    	 var cnt=$(".cart_select:checked").length;
+    	 
+    	  if(cnt==0){
+              alert("먼저 구매할 상품을 1개 이상 선택해 주세요");
               return;
           };
           
           $(".cart_select:checked").each(function(i, elt){
-        	    var cart_num = $(this).attr("cart_num");
-        	    del(cart_num);
-        	});
-        });
+      	    var cart_num = $(this).attr("cart_num");
+			var cart_su = parseInt(document.getElementById('quantity' + i).value);	
+			cart_num_su.push({
+			        "cart_num": cart_num,
+			        "cart_su": cart_su
+			    });
+      	});
+      	    buy(cart_num_su);
+    });
+    
+    
+    //전체상품 구매 버튼
+     $(".buy_btn").click(function(){
+    	 var cnt=$(".cart_select").length;
+    	 
+    	  if(cnt==0){
+              alert("장바구니에 상품이 없습니다.");
+              return;
+          };
+          
+          $(".cart_select").each(function(i, elt){
+      	    var cart_num = $(this).attr("cart_num");
+			var cart_su = parseInt(document.getElementById('quantity' + i).value);	
+			cart_num_su.push({
+			        "cart_num": cart_num,
+			        "cart_su": cart_su
+			    });
+      	});
+      	    buy(cart_num_su);
+    });
+    
+    
+    //선택삭제 버튼
+    $(".del_btn").click(function(){
+      var cnt=$(".cart_select:checked").length;
+      
+      if(cnt==0){
+          alert("먼저 삭제할 상품을 1개 이상 선택해 주세요");
+          return;
+      };
+      
+      $(".cart_select:checked").each(function(i, elt){
+    	    var cart_num = $(this).attr("cart_num");
+    	    del(cart_num);
+    	});
+      
+    });
         
-        //del 함수
+    //전체삭제 버튼
+     $(".all_del_btn").click(function(){
+    	    if(confirm("모든 상품을 삭제하시겠습니까?")){
+    	        $(".cart_select").each(function(i, elt){
+    	            var cart_num = $(this).attr("cart_num");
+    	            del(cart_num);
+    	        });
+    	    }
+    	});
+     
+    //del 함수
 	function del(cart_num)
 	{
 	 $.ajax({
 		  
 			  type:"get",
-			  url:"cart/cartdelete.jsp",
+			  url:"cartdelete.jsp",
 			  dataType:"html",
 			  data:{"cart_num":cart_num},
 			  success:function(){
 				  
-			  }
-		 })
-	}
+        	    	location.reload();
+        	    	
+	          }
+		  });
+	 }
+    
+    //buy함수
+    function buy(cart_num_su)
+	{
+	 $.ajax({
+		  
+			  type:"get",
+			  url:"../order/orderFrom.jsp",
+			  dataType:"json",
+			  data:cart_num_su,
+			  success:function(){
+				  
+				  window.location.href = "../order/orderFrom.jsp";
+        	    	
+	          }
+		  });
+	 }
+        
+        
 });
+
 </script>
 </body>
 </html>
