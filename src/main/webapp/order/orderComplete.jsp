@@ -843,8 +843,8 @@ ProductDto pdto = pdao.getProduct(pro_num);
         
         
         <div class="ec-base-button gColumn">
-            <a href="../index.jsp?main=order/orderDetail.jsp?order_num=<%=order_num %>" class="btnEm btn_radius">주문확인하기</a>
-            <a href="../index.jsp" class="btnSubmit btn_radius">쇼핑계속하기</a>
+            <a href="index.jsp?main=order/orderDetail.jsp?order_num=<%=order_num %>" class="btnEm btn_radius">주문확인하기</a>
+            <a href="index.jsp" class="btnSubmit btn_radius">쇼핑계속하기</a>
         </div>
         
         
