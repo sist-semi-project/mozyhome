@@ -14,69 +14,10 @@
 	href="https://fonts.googleapis.com/css2?family=Dongle&family=Gaegu&family=Nanum+Pen+Script&family=Noto+Sans+KR:wght@100..900&family=Noto+Serif+KR&display=swap"
 	rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+<link rel="stylesheet" href="./review/reviewCss.css">
 <title>별점</title>
 <style type="text/css">
-.rating_box {
-	display: flex;
-}
 
-.rating {
-	position: relative;
-	color: #ddd;
-	font-size: 30px;
-	text-align: center;
-}
-
-.rating input {
-	position: absolute;
-	left: 0;
-	right: 0;
-	width: 100%;
-	height: 100%;
-	opacity: 0;
-	cursor: pointer;
-}
-
-.rating_star {
-	width: 0;
-	color: #ffc107;
-	position: absolute;
-	left: 0;
-	right: 0;
-	overflow: hidden;
-	pointer-events: none;
-}
-
-.bi-image-alt{
-	color: #FF5C00;
-	font-size: 20pt;
-}
-
-.submit{
-	background-color: #FF5C00;
-	color: white;
-	border: 0px;
-}
-
-#review{
-	font-family: "Noto Sans KR";
-	font-size: 24px; 
-}
-
-.review_div{
-	width: 1920 px;
-	
-}
-
-#showimg{
-	width: 100px;
-	height: 100px;
-	
-}
-
-.camera {
-	font-size: 100px;
-}
 </style>
 
 <script type="text/javascript">
@@ -106,10 +47,10 @@
 %>
 
 <body>
-	<div class="review_div">
-	
 		<!-- ReviewForm --> 
-		<form action="index.jsp?main=review/reviewProcess.jsp" method="post" enctype="multipart/form-data">
+		<form action="./review/reviewProcess.jsp" method="post" enctype="multipart/form-data">
+
+		<div id="reviewForm">	
 		
 		<input type="hidden" name="pro_num" value="<%=pro_num%>">
 		<input type="hidden" name="mem_num" value="<%=mem_num%>">
@@ -129,33 +70,6 @@
 					<input type="hidden" name="rating" value="0">
 				</div>
 			</div>
-
-			<!-- 선택 리뷰 작성 폼 
-			<dl class="">
-				<dt class="">사용성</dt>
-				<dd class="">
-					<div class="">
-						<input type="radio" class=""
-							id="choice1" name="" value=""
-							data-category="" checked="checked"> <label
-							class="" for="choice1">쉬워요</label>
-					</div>
-					<div class="">
-						<input type="radio" class=""
-							id="choice2" name="" value=""
-							data-category=""> <label
-							class="" for="choice2">보통이에요</label>
-					</div>
-					<div class="">
-						<input type="radio" class=""
-							id="choice3" name="" value=""
-							data-category=""> <label
-							class="" for="choice3">다소
-							어려워요</label>
-					</div>
-				</dd>
-			</dl>
--->
 
 			<p></p>
 
@@ -181,10 +95,10 @@
 			>취소</button>
 			
 			
-		</form>
+		<!-- 이미지미리보기 -->	
+		</div>
 
-		<!-- 이미지미리보기 -->
-	</div>
+		</form>
 
 	<script type="text/javascript">
 document.addEventListener('DOMContentLoaded', function() {

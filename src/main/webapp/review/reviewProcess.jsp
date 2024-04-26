@@ -31,7 +31,7 @@ String secretAccessKey = aws.getSecretKey();
 
 request.setCharacterEncoding("utf-8");
 
-String realPath=getServletContext().getRealPath("image/reviewSave");
+String realPath=getServletContext().getRealPath("./image/reviewSave");
 ReviewDao rdao=new ReviewDao();
 
 int uploadSize=1024*1024*10;

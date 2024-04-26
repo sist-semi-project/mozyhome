@@ -76,7 +76,7 @@ if(endPage>totalPage)
 			for (int i = 0; i < list.size(); i++) {
 				HashMap<String, String> map = list.get(i);
 			%>
-			<tr>
+			<tr class="has-details">
 				<td><%=count++%></td>
 				<td>
 					<%
@@ -100,7 +100,7 @@ if(endPage>totalPage)
 				<td><%=map.get("mem_id")%></td>
 				<td><%=map.get("review_writeday")%></td>
 			</tr>
-			<tr>
+			<tr class="hidden">
 				<td colspan="5"><%=map.get("review_content")%> <%=map.get("review_image")%></td>
 			</tr>
 			
@@ -156,6 +156,17 @@ if(endPage>totalPage)
 		</div>
 	</div>
 
-
+<script type="text/javascript">
+	document.addEventListener("DOMContentLoaded", function() {
+		  // 상위 tr 요소를 클릭할 때마다 하위 tr 요소를 숨기거나 보이게 함
+		  var parentTrs = document.querySelectorAll('tr.has-details');
+		  parentTrs.forEach(function(parentTr) {
+		    parentTr.addEventListener('click', function() {
+		      var detailsTr = this.nextElementSibling;
+		      detailsTr.classList.toggle('hidden');
+		    });
+		  });
+		});
+</script>
 </body>
 </html>
