@@ -103,35 +103,91 @@ if (paymentMethod.equals("credit_card")) {
 		if (rsp.success) { // 결제 성공 시 로직
             <%
             orderStatus = "결제완료";
-            //OrderDto 객체 생성 및 데이터 설정
-            OrderDto orderDto = new OrderDto();
-            orderDto.setOrder_num(newOrderNumber);
-            orderDto.setMem_num(memNum);
-            orderDto.setOrder_status(orderStatus);
-            orderDto.setOrder_delivery_request(orderDeliveryRequest);
-            orderDto.setOrder_addr(orderAddress);
-            orderDto.setOrder_name(orderName);
-            orderDto.setOrder_hp(orderHp);
-            orderDto.setOrder_delivery_fee(deliveryFee);
-            orderDto.setOrder_total_payment(finalPayment);
-
-            //DAO를 이용한 데이터베이스 저장
-            Orderdao.insertOrder(orderDto);
+            if (directPurchase != null && directPurchase) {
+            	// 제품 상세페이지에서 바로 구매하는 경우의 처리
+            	
+            	//OrderDto 객체 생성 및 데이터 설정
+	            OrderDto orderDto = new OrderDto();
+	            orderDto.setOrder_num(newOrderNumber);
+	            orderDto.setMem_num(memNum);
+	            orderDto.setOrder_status(orderStatus);
+	            orderDto.setOrder_delivery_request(orderDeliveryRequest);
+	            orderDto.setOrder_addr(orderAddress);
+	            orderDto.setOrder_name(orderName);
+	            orderDto.setOrder_hp(orderHp);
+	            orderDto.setOrder_delivery_fee(deliveryFee);
+	            orderDto.setOrder_total_payment(finalPayment);
+	
+	            //DAO를 이용한 데이터베이스 저장
+	            Orderdao.insertOrder(orderDto);
+	            
+	            //주문 상세(OrderDetailDto) 정보 저장
+	            OrderDetailDto orderDetailDto = new OrderDetailDto();
+	            orderDetailDto.setMem_num(memNum);
+	            orderDetailDto.setPro_num(proNum);
+	            orderDetailDto.setOrder_num(newOrderNumber);
+	            orderDetailDto.setOrder_size(proSize);
+	            orderDetailDto.setOrder_color(proColor);
+	            orderDetailDto.setOrder_detail_su(proSu);
+	
+	            OrderDetailDao orderDetailDao = new OrderDetailDao();
+	            orderDetailDao.insertOrder(orderDetailDto);
+  
+            } else {
+            	// 장바구니에서 구매하는 경우의 처리
+            	List<HashMap<String,String>> cartItems = (List<HashMap<String,String>>) session.getAttribute("cartItems");
+            	
+            	// 가져온 상품 리스트를 이용하여 필요한 작업 수행
+    			if (cartItems != null) {
+    				// 주문 정보 저장
+    				OrderDto orderDto = new OrderDto();
+    			    orderDto.setOrder_num(newOrderNumber);
+    			    orderDto.setMem_num(memNum);
+    			    orderDto.setOrder_status(orderStatus);
+    			    orderDto.setOrder_delivery_request(orderDeliveryRequest);
+    			    orderDto.setOrder_addr(orderAddress);
+    			    orderDto.setOrder_name(orderName);
+    			    orderDto.setOrder_hp(orderHp);
+    			    orderDto.setOrder_delivery_fee(deliveryFee);
+    			    orderDto.setOrder_total_payment(finalPayment);
+    				
+    				Orderdao.insertOrder(orderDto);
+    			    for (HashMap<String,String> map : cartItems) {
+    			    	int pro_su = Integer.parseInt(map.get("cart_su"));			        
+    			        String pro_num = map.get("pro_num");
+    			        String pro_color = map.get("cart_color");
+    			        String pro_size = map.get("cart_size");
+    			        
+    			        //out.println("상품 수량: " + pro_su + ", 상품 번호: " + pro_num + ", 색상: " + pro_color + ", 사이즈: " + pro_size + "<br>");
+    			    	
+    			     	// 주문 상세 정보 저장
+    			    	OrderDetailDto orderDetailDto = new OrderDetailDto();
+    			    	orderDetailDto.setMem_num(memNum);
+    			        orderDetailDto.setPro_num(pro_num);
+    			        orderDetailDto.setOrder_num(newOrderNumber);
+    			        orderDetailDto.setOrder_size(pro_size);
+    			        orderDetailDto.setOrder_color(pro_color);
+    			        orderDetailDto.setOrder_detail_su(pro_su);
+    			    	
+    			    	OrderDetailDao orderDetailDao = new OrderDetailDao();
+    			    	orderDetailDao.insertOrder(orderDetailDto);
+    			    
+    			    
+    			    }
+    			}
+            	
+            	
+            	
+            	
+            }
+        	    
             
-            //주문 상세(OrderDetailDto) 정보 저장
-            OrderDetailDto orderDetailDto = new OrderDetailDto();
-            orderDetailDto.setMem_num(memNum);
-            orderDetailDto.setPro_num(proNum);
-            orderDetailDto.setOrder_num(newOrderNumber);
-            orderDetailDto.setOrder_size(proSize);
-            orderDetailDto.setOrder_color(proColor);
-            orderDetailDto.setOrder_detail_su(proSu);
-
-            OrderDetailDao orderDetailDao = new OrderDetailDao();
-            orderDetailDao.insertOrder(orderDetailDto);
+            
+            
             %>
             // 결제 성공 후 리다이렉트
-            location.href="../index.jsp?main=order/orderComplete.jsp?orderNumber=<%= newOrderNumber %>";
+
+			location.href="index.jsp?main=order/orderComplete.jsp?orderNumber=<%= newOrderNumber %>";
         } else { // 결제 실패 시
         	 console.log(rsp); 
         	 alert(rsp.error_msg); 
