@@ -105,7 +105,11 @@ if (paymentMethod.equals("credit_card")) {
             orderStatus = "결제완료";
             if (directPurchase != null && directPurchase) {
             	// 제품 상세페이지에서 바로 구매하는 경우의 처리
-            	
+            	proNum = request.getParameter("pro_num"); // 상품 번호
+				proSu = Integer.parseInt(request.getParameter("pro_su")); // 상품 수
+				proColor = request.getParameter("pro_color"); // 상품 색
+				proSize = request.getParameter("pro_size"); // 상품 사이즈
+				
             	//OrderDto 객체 생성 및 데이터 설정
 	            OrderDto orderDto = new OrderDto();
 	            orderDto.setOrder_num(newOrderNumber);
