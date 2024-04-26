@@ -47,7 +47,7 @@ NumberFormat nf = NumberFormat.getInstance();
 			<h5 class="cart_title_cart">CART</h5>
 			<div class="cart_su"><%=listSize%></div>
 		</div>
-			<hr style="height: 0px; border: 1px solid #FF5C00;">
+			<hr class="titleHr" >
 	</div>
 	<!-- 장바구니 list -->
 	<form action="index.jsp?main=order/orderForm.jsp" class="cart_process" method="post">
@@ -73,63 +73,78 @@ NumberFormat nf = NumberFormat.getInstance();
 				<input type="checkbox" class="cart_select"
 					name=<%=map.get("cart_num")%> cart_num="<%=map.get("cart_num")%>">
 
+					<img class="cart_img" alt="" src="<%=pro_main_img%>">
+
 				<div class="pro_num proInfo" pro_num="<%=map.get("pro_num")%>">
-
-					<img class="cart_img" alt="" src="<%=pro_main_img%>"> <b><%=map.get("pro_name")%></b>
-
-					<b>[옵션:<%=map.get("cart_size")%>]
-					</b> <b>[옵션:<%=map.get("cart_color")%>]
-					</b>
-
+					<b class="pro_name_b"><%=map.get("pro_name")%></b>
+					
+					<div>
+					<b class="option_b">[옵션:<%=map.get("cart_size")%>]</b> 
+					<b class="option_b">[옵션:<%=map.get("cart_color")%>]</b>
+					</div>
+					
+					<div class="cart_number">
+					<%
+					ProductDao pdao = new ProductDao();
+					int real_pro_price = pdao.getProPrice(pro_num);
+					%>
+					<b>수량:</b>
+					<input type="number" min="1"
+						max="99" value="<%=map.get("cart_su")%>" step="1" name="cnt"
+						id="quantity<%=i%>" onchange="updateTotalPrice(<%=i%>)" class="cartCnt">
+					</div>
 				</div>
-
-				<%
-				ProductDao pdao = new ProductDao();
-				int real_pro_price = pdao.getProPrice(pro_num);
-				%>
 
 				<input type="hidden" id="realProPrice<%=i%>"
 					value="<%=real_pro_price%>"> 
 				
-				<input type="number" min="1"
-					max="99" value="<%=map.get("cart_su")%>" step="1" name="cnt"
-					id="quantity<%=i%>" onchange="updateTotalPrice(<%=i%>)" class="cartCnt">
-
 				<%
 				String pro_priceStr = map.get("pro_price");
 
 				pro_price = Integer.parseInt(pro_priceStr);
 				%>
 
-				<b id="totalPrice<%=i%>" value="<%=total_price%>">₩<%=nf.format(total_price)%></b>
+				<b class="pro_price2" id="totalPrice<%=i%>" value="<%=total_price%>">₩<%=nf.format(total_price)%></b>
 				
 				</div>
 		
 				<hr class="cartListHr">
 			<%
 			}
+			int total=0;
+			for (int i = 0; i < list.size(); i++) {
+				HashMap<String, String> map = list.get(i);
+				int cart_su = Integer.parseInt(map.get("cart_su"));
+				int pro_price = Integer.parseInt(map.get("pro_price"));
+				int total_price = cart_su * pro_price;
+				total+=total_price;
+			}
+			
+			int sale=total/20;
+			int finalprice=total-sale;
+			
 			%>
 			
 			
 			<div>
 				<div class="priceDiv" >
-					<span> 상품금액</span>
-					<p >원</p>
+					<span class="priceSpan"> 상품금액</span>
+					<p ><b><%=nf.format(total)%>원</b></p>
 				</div>
 					<hr>
 				<div class="priceDiv">	
-					<span>할인금액</span>
-					<p>0원</p>
+					<span class="priceSpan">할인금액</span>
+					<p><b><%=nf.format(sale)%>원</b></p>
 				</div>
 					<hr>
 				<div class="priceDiv">	 
-					<span>배송비</span>
-					<p>0원</p>
+					<span class="priceSpan">배송비</span>
+					<p><b>0원</b></p>
 				</div>
 					<hr class="boldHr">
 				<div class="priceDiv">	 
-					<span>Total</span>
-					<p >원</p>
+					<span class="priceSpan">Total</span>
+					<p class="finalPrice"><b><%=nf.format(finalprice)%>원</b></p>
 				</div>	
 			</div>
 			
