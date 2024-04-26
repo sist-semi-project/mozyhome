@@ -19,7 +19,12 @@
 <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
 <title>주문 목록</title>
 <style type="text/css">
-
+.sub_container {
+    max-width: 800px;
+    padding: 0 20px;
+    margin: 0 auto;
+    box-sizing: border-box;
+}
 .displaynone {
     display: none;
 }
@@ -232,17 +237,11 @@ page-title {
     padding-top: 75px;
     padding-bottom: 60px;
 }
-.sub_container {
-    max-width: 800px;
-    padding: 0 20px;
-    margin: 0 auto;
-    box-sizing: border-box;
-}
 </style>
 </head>
 <body>
 <div id="body">
-	<div id="body-begin" style="margin:100px 0px 10px 15px;"></div>
+	<div id="body-begin"></div>
 	<div class="sub_container">
 		<h1 class="page-title">ORDER LIST</h1>
 		<div class="order_history">
@@ -263,25 +262,22 @@ page-title {
 					       	</thead>
 					       	<tbody class="center order_tbody ">
 					       		<% 
-						            String myid = (String) session.getAttribute("myid"); 
+						            String mem_id = (String) session.getAttribute("myid"); 
+					       			
 						       		MemberDao memberDao = new MemberDao();
-						       		MemberDto memberDto = memberDao.getMemberInfo(myid);			       			
+						       		MemberDto memberDto = memberDao.getMemberInfo(mem_id);
+					       			System.out.println(mem_id);
 						       		String mem_num = memberDto.getMem_num();
-						       		
+						       		System.out.println("회원번호: "+mem_num);
 					                // 주문 목록을 가져오는 부분
 					                OrderDao orderDao = new OrderDao();
-					                List<OrderDto> orderList = orderDao.getOrdersByMember(mem_num);		
+					                List<OrderDto> orderList = orderDao.getOrdersByMember(mem_num);
 					                
-					                // 주문 목록이 비어있는 경우
-                                    if (orderList.isEmpty()) { 
-		                               %>
-		                                   <tr>
-		                                       <td colspan="7" style="text-align: center;">주문 목록이 비어 있습니다.</td>
-		                                   </tr>
-		                               <% } else { 
+					                
 					                
 					                // 각 주문을 테이블에 표시
-					                for (OrderDto order : orderList) {					               	
+					                for (OrderDto order : orderList) {
+					                	
 					                	String order_num = order.getOrder_num();
 					                	
 					                	OrderDetailDao orderDetailDao = new OrderDetailDao();
@@ -292,7 +288,7 @@ page-title {
 					                	ProductDto pDto = pDao.getProduct(pro_num);
 					                	
 					            %>
-					       		<tr class="order_tr xans-record-" data-order-num="<%= order_num %>">
+					       		<tr class="order_tr xans-record-">
 									<td class="order_td">
 				                    	<div class="order_top">
 				                                    <p class="order_date"><%= new SimpleDateFormat("yyyy-MM-dd").format(order.getOrder_date()) %></p>
@@ -301,12 +297,12 @@ page-title {
 				                                        <svg width="18" height="18" viewbox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M7.05002 12.95L6.52502 12.425L9.97502 8.975L6.52502 5.525L7.05002 5L11.025 8.975L7.05002 12.95Z" fill="black"></path></svg></a>
 				                        </div>
 				                        <div class="order_body">
-				                            <a href="index.jsp?main=order/orderDetail.jsp?order_num=<%=order_num %>" class="order_id">주문번호 : <%= order_num %></a>
+				                            <a href="#" class="order_id">주문번호 : <%= order_num %></a>
 				                            <div class="body_main">
-				                                <a href="index.jsp?main=product/detailpage.jsp?pro_num=<%=pro_num %>"><img src="<%=pDto.getPro_main_img()%>" onerror="this.src='//img.echosting.cafe24.com/thumb/img_product_small.gif';"></a>
+				                                <a href="/product/detail.html?product_no=14801&cate_no=1"><img src="<%=pDto.getPro_main_img()%>" onerror="this.src='//img.echosting.cafe24.com/thumb/img_product_small.gif';" alt=""></a>
 				                                <div class="info">
 				                                    <p class="product_name"><%= pDto.getPro_name() %></p>
-				                                    <p class="product_option">[<%= orderDetailDto.getOrder_size() %> &nbsp;<%=orderDetailDto.getOrder_color() %> : <%= orderDetailDto.getOrder_detail_su() %>개]</p>
+				                                    <p class="product_option">[<%= orderDetailDto.getOrder_color() %> : <%= orderDetailDto.getOrder_detail_su() %>개]</p>
 				                                    <div class="price">
 				                                        <p>&#8361;<%= order.getOrder_total_payment() %></p>
 				                                        <p><%= orderDetailDto.getOrder_detail_su()%>개</p>
@@ -319,7 +315,7 @@ page-title {
 				                                	<% 
 					                                    if (order.getOrder_status().equals("입금대기")) { 
 					                                %>
-				                                		<a href="#" class="btnNormal cancelOrderBtn">취소신청</a>
+				                                		<a href="#" class="btnNormal">취소신청</a>
 				                                	<% } else if (order.getOrder_status().equals("배송중")) { %>	
 				                                		<a href="#" class="btnNormal">배송조회</a>
 				                                	<% } else if (order.getOrder_status().equals("배송완료")) { %>
@@ -330,7 +326,7 @@ page-title {
 				                        </div>
 				                    </td>
 				            	</tr>
-				            	<% }} %>
+				            	<% } %>
 					       	</tbody>
 						</table>
 					</div>
@@ -343,34 +339,7 @@ page-title {
 
 
 
-<script>
-    $(document).ready(function() {
-    	$(".cancelOrderBtn").on("click", function(e) {
-    	    e.preventDefault(); // 링크 클릭 기본 이벤트 제거
-    	    var orderNumber = $(this).closest("tr").data("order-num"); // 주문번호 가져오기
-    	    var confirmation = confirm("주문을 취소하시겠습니까?");
-    	    if (confirmation) {
-    	        cancelOrder(orderNumber);
-    	    }
-    	});
 
-        function cancelOrder(orderNumber) {
-            $.ajax({
-                type: "POST",
-                url: "index.jsp?main=order/cancelOrder.jsp",
-                data: { orderNumber: orderNumber },
-                success: function(response) {
-                    alert("주문이 취소되었습니다.");
-                    location.reload();
-                },
-                error: function(xhr, status, error) {
-                    alert("주문 취소에 실패했습니다. 다시 시도해주세요.");
-                    console.error(xhr.responseText);
-                }
-            });
-        }
-    });
-</script>
 
 </body>
 </html>
