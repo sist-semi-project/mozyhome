@@ -574,7 +574,6 @@ MemberDao memberDao = new MemberDao();
 MemberDto memberDto = memberDao.getMemberInfo(mem_id);
 
 // 구매방법 여부
-session.setAttribute("directPurchase", false);// 임시로 장바구니 설정
 Boolean directPurchase = (Boolean) session.getAttribute("directPurchase"); //바로구매 ture, 장바구니 false
 
 NumberFormat nf = NumberFormat.getInstance();
@@ -649,21 +648,13 @@ NumberFormat nf = NumberFormat.getInstance();
 		} else {
 		    // 장바구니에서 구매하는 경우의 처리
 			CartDao cdao=new CartDao();
+		    
 			List<HashMap<String,String>> list=cdao.getCartList(mem_id);
-			
+
 			for(int i=0; i<list.size(); i++ ){
+				
 				HashMap<String,String> map=list.get(i);
-				pro_su = map.get("cart_su"); 
-				pro_num = map.get("pro_num");
-				pro_color = map.get("cart_color");
-				pro_size =map.get("cart_size");
-				
-				
-				
-				
-				
-				
-			
+	
     	%>
 	    
 		<table class="order_table">
@@ -689,6 +680,8 @@ NumberFormat nf = NumberFormat.getInstance();
 			</table>
     	<%	
 	    	}
+			// 장바구니 상품 리스트를 세션에 저장
+		    session.setAttribute("cartItems", list);
 			
 			// 총 상품금액 계산
 		    for (HashMap<String, String> map : list) {
