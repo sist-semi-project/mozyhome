@@ -7,6 +7,9 @@ public class OrderDetailDto {
     private String order_size;
     private String order_color;
     private int order_detail_su;
+	private String pro_name;
+	private int pro_price;
+	private String pro_main_image;
     
     
 	public String getOrder_size() {
@@ -45,5 +48,22 @@ public class OrderDetailDto {
 	public void setOrder_detail_su(int order_detail_su) {
 		this.order_detail_su = order_detail_su;
 	}
-    
+	public String getPro_name() {
+		return pro_name;
+	}
+	public void setPro_name(String pro_name) {
+		this.pro_name = pro_name;
+	}
+	public int getPro_price() {
+		return pro_price;
+	}
+	public void setPro_price(int pro_price) {
+		this.pro_price = pro_price;
+	}
+	public String getPro_main_image() {
+		return pro_main_image;
+	}
+	public void setPro_main_image(String pro_main_image) {
+		this.pro_main_image = pro_main_image;
+	}
 }

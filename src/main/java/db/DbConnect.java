@@ -106,8 +106,5 @@ public class DbConnect {
 		}
 	}
 
-//	public static void main(String[] args) {
-//		DbConnect db=new DbConnect();	
-//	}
 
 }

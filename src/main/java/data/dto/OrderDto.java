@@ -13,6 +13,9 @@ public class OrderDto {
     private String order_hp;
     private int order_delivery_fee;
     private int order_total_payment;
+	private String mem_name;
+	private String pro_name;
+	private int totalCount;
     
 	public String getOrder_num() {
 		return order_num;
@@ -74,5 +77,22 @@ public class OrderDto {
 	public void setOrder_total_payment(int order_total_payment) {
 		this.order_total_payment = order_total_payment;
 	}
-   
+	public int getTotalCount() {
+		return totalCount;
+	}
+	public void setTotalCount(int totalCount) {
+		this.totalCount = totalCount;
+	}
+	public String getPro_name() {
+		return pro_name;
+	}
+	public void setPro_name(String pro_name) {
+		this.pro_name = pro_name;
+	}
+	public String getMem_name() {
+		return mem_name;
+	}
+	public void setMem_name(String mem_name) {
+		this.mem_name = mem_name;
+	}
 }

@@ -73,4 +73,46 @@ public class OrderDetailDao {
         return order;
     }
 
+	// 주문번호에 맞는 상품 전부 가져오기(list)
+	public List<OrderDetailDto> getAllOrderDetail(String orderNum) {
+		List<OrderDetailDto> list = new ArrayList<OrderDetailDto>();
+
+		Connection conn = db.getConnection();
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+
+		//상품명, 사이즈옵션, 색상옵션, 개수
+		String sql = "select p.pro_name, p.pro_price,p.pro_main_img, od.order_size, od.order_color, od.order_detail_su\n" +
+				"from order_detail as od\n" +
+				"left join product as p on p.pro_num = od.pro_num\n" +
+				"where od.order_num = ?;";
+
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, orderNum);
+
+			rs = pstmt.executeQuery();
+
+			while (rs.next()) {
+				OrderDetailDto dto = new OrderDetailDto();
+
+				dto.setPro_name(rs.getString("p.pro_name"));
+				dto.setPro_price(rs.getInt("p.pro_price"));
+				dto.setOrder_size(rs.getString("od.order_size"));
+				dto.setOrder_color(rs.getString("od.order_color"));
+				dto.setOrder_detail_su(rs.getInt("od.order_detail_su"));
+				dto.setPro_main_image(rs.getString("p.pro_main_img"));
+
+
+				list.add(dto);
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			db.dbClose(rs, pstmt, conn);
+		}
+		return list;
+	}
+
 }

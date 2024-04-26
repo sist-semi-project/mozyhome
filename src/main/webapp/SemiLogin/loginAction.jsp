@@ -15,9 +15,10 @@
   String id=request.getParameter("mem_id");
   String pass=request.getParameter("mem_password");
   String cbsave=request.getParameter("cbsave");  //체크안하면 null
-  
+
   MemberDao dao=new MemberDao();
   boolean b=dao.isIdPass(id, pass);
+
   
   //아이디비번 맞으면 세션3개저장  로그인메인
   if(b){
