@@ -26,7 +26,6 @@
 session.setAttribute("directPurchase", false);
 
 String id=(String)session.getAttribute("myid");
-
 System.out.println(id);
 
 CartDao cdao = new CartDao();
@@ -135,6 +134,7 @@ NumberFormat nf = NumberFormat.getInstance();
 			
 		</div>
 		<!-- 장바구니 button -->
+
 		<div class="cartBtnDiv">
 			<button type="button" class="buy_btn cartbtn" 
 				>선택상품 구매</button>
@@ -144,6 +144,7 @@ NumberFormat nf = NumberFormat.getInstance();
 				<button  class="del_btn cartbtn" type="button">선택삭제</button>
 				<button class="all_del_btn cartbtn" type="button">전체삭제</button>
 			</div>
+
 		</div>
 	</form>
 
@@ -210,9 +211,7 @@ $(document).ready(function(){
     	        }
     	    });
     	});
-
-	
-    
+   
     //전체상품 구매 버튼
      $(".all_buy_btn").click(function(){
     	 var cnt=$(".cart_select").length;
@@ -277,6 +276,24 @@ $(document).ready(function(){
 		  });
 	 }
     
+
+	//buy함수
+	function buy(cart_num_su)
+	{
+	$.ajax({
+
+
+			  type:"get",
+			  url:"../order/orderFrom.jsp",
+			  dataType:"json",
+			  data:cart_num_su,
+			  success:function(){
+				  
+				  window.location.href = "../order/orderFrom.jsp";
+	    	    	
+	          }
+		  });
+	 }
 
 });
         

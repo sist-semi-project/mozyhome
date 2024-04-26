@@ -108,7 +108,7 @@
 	// 전체 개수
 	int totalCount=pldao.getSearchTotalCount(search);	
 	
-	int perPage=20; // 한페이지당 보여질 글의 개수
+	int perPage=16; // 한페이지당 보여질 글의 개수
 	int perBlock=5; // 한블럭당 보여질 페이지 개수
 	int startNum; // db에서 가져올 글의 시작 번호(mysql은 첫글이 0번, oracle은 1번)
 	int startPage; // 각 블럭마다 보여질 시작페이지

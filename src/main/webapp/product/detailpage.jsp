@@ -53,7 +53,7 @@ WishlistDao wdao = new WishlistDao();
 boolean existwish = wdao.checkWishlist(mem_num, pro_num);
 %>
 
-<body>
+
 <div id="detailpage">
 	<form action="index.jsp?main=order/orderForm.jsp" id="form1" method="post">
 		<div id="detailpagediv">
