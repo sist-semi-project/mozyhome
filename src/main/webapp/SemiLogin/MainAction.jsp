@@ -39,5 +39,11 @@ MemberDao dao = new MemberDao();
 
 dao.insertMember(dto);
 
-response.sendRedirect("loginMain.jsp");
 %>
+<script type="text/javascript">
+
+alert("모지홈 가입을 환영합니다!");
+
+window.location.href="index.jsp?main=SemiLogin/Login.jsp";
+
+</script>

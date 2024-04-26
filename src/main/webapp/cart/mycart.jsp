@@ -50,7 +50,6 @@
 session.setAttribute("directPurchase", false);
 
 String id=(String)session.getAttribute("myid");
-
 System.out.println(id);
 CartDao cdao = new CartDao();
 List<HashMap<String, String>> list = cdao.getCartList(id);
