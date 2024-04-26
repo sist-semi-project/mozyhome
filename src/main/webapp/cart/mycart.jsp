@@ -17,32 +17,8 @@
 	rel="stylesheet">
 <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
 <title>Insert title here</title>
-<style type="text/css">
-.cart_su {
-	border-radius: 10px; /* 둥근 정도를 조절할 수 있습니다. */
-	padding: 20px; /* 내용과 경계 사이의 간격을 조절할 수 있습니다. */
-	width: 24px;
-	height: 18px;
-	background: #FF5C00;
-	border-radius: 15px;
-}
+<link rel="stylesheet" href="./review/reviewCss.css">
 
-.cart_select_all {
-	width: 15px;
-	height: 15px;
-	background: #ffffff;
-	border-radius: 50%;
-	border: 1px solid #000000;
-}
-
-.cart_div {
-	
-}
-
-.cart_img {
-	width: 124px;
-}
-</style>
 </head>
 
 <%
@@ -51,8 +27,10 @@ session.setAttribute("directPurchase", false);
 
 String id=(String)session.getAttribute("myid");
 System.out.println(id);
+
 CartDao cdao = new CartDao();
 List<HashMap<String, String>> list = cdao.getCartList(id);
+int listSize=list.size();
 
 System.out.println(list);
 
@@ -60,18 +38,24 @@ NumberFormat nf = NumberFormat.getInstance();
 %>
 
 <body>
+
+<div id="mycart">
 	<!-- 장바구니 header -->
 	<div class="cart_div">
-		<h5>장바구니</h5>
-		<div class="cart_su"></div>
-		<hr width="780px" style="height: 0px; border: 1px solid #FF5C00;">
+		<div class="cart_title">
+			<h5 class="cart_title_cart">CART</h5>
+			<div class="cart_su"><%=listSize%></div>
+		</div>
+			<hr style="height: 0px; border: 1px solid #FF5C00;">
 	</div>
-
 	<!-- 장바구니 list -->
 	<form action="index.jsp?main=order/orderForm.jsp" class="cart_process" method="post">
-		<div>
+		<div class="cartListDiv">
+		<div class="cartAllChkDiv">
 			<input class="cart_select_all" id="cart_select_all" type="checkbox">
-			<hr class="cart_header_hr">
+			<p>전체선택</p>
+		</div>	
+			<hr style="height: 0px; border: 1px solid #000000;">
 			<%
 			int totalmoney = 0;
 			for (int i = 0; i < list.size(); i++) {
@@ -83,12 +67,12 @@ NumberFormat nf = NumberFormat.getInstance();
 				int total_price = cart_su * pro_price;
 				String pro_num = map.get("pro_num");
 			%>
-			<div>
+			<div class="cartListDiv2">
 
 				<input type="checkbox" class="cart_select"
 					name=<%=map.get("cart_num")%> cart_num="<%=map.get("cart_num")%>">
 
-				<div class="pro_num" pro_num="<%=map.get("pro_num")%>">
+				<div class="pro_num proInfo" pro_num="<%=map.get("pro_num")%>">
 
 					<img class="cart_img" alt="" src="<%=pro_main_img%>"> <b><%=map.get("pro_name")%></b>
 
@@ -104,9 +88,11 @@ NumberFormat nf = NumberFormat.getInstance();
 				%>
 
 				<input type="hidden" id="realProPrice<%=i%>"
-					value="<%=real_pro_price%>"> <input type="number" min="1"
+					value="<%=real_pro_price%>"> 
+				
+				<input type="number" min="1"
 					max="99" value="<%=map.get("cart_su")%>" step="1" name="cnt"
-					id="quantity<%=i%>" onchange="updateTotalPrice(<%=i%>)">
+					id="quantity<%=i%>" onchange="updateTotalPrice(<%=i%>)" class="cartCnt">
 
 				<%
 				String pro_priceStr = map.get("pro_price");
@@ -115,25 +101,54 @@ NumberFormat nf = NumberFormat.getInstance();
 				%>
 
 				<b id="totalPrice<%=i%>" value="<%=total_price%>">₩<%=nf.format(total_price)%></b>
-			</div>
+				
+				</div>
+		
+				<hr class="cartListHr">
 			<%
 			}
 			%>
-			<span> 상품금액<span></span>
-			</span> <span>할인금액</span> <span>배송비</span> <span>Total</span>
+			
+			
+			<div>
+				<div class="priceDiv" >
+					<span> 상품금액</span>
+					<p >원</p>
+				</div>
+					<hr>
+				<div class="priceDiv">	
+					<span>할인금액</span>
+					<p>0원</p>
+				</div>
+					<hr>
+				<div class="priceDiv">	 
+					<span>배송비</span>
+					<p>0원</p>
+				</div>
+					<hr class="boldHr">
+				<div class="priceDiv">	 
+					<span>Total</span>
+					<p >원</p>
+				</div>	
+			</div>
+			
 		</div>
 		<!-- 장바구니 button -->
-		<div>
-			<button type="submit" class="buy_btn" onclick="buyBtn()"
-				class="buy_btn">선택상품 구매</button>
-			<button class="all_buy_btn" onclick="allBuyBtn()" class="all_buy_btn"
-				type="submit">전체상품 구매</button>
-			<button class="del_btn" class="del_btn" type="button">선택삭제</button>
-			<button class="all_del_btn" class="all_del_btn" type="button">전체삭제</button>
+
+		<div class="cartBtnDiv">
+			<button type="button" class="buy_btn cartbtn" 
+				>선택상품 구매</button>
+			<button  class="all_buy_btn cartbtn"
+				type="button">전체상품 구매</button>
+			<div class="cartDelBtn">
+				<button  class="del_btn cartbtn" type="button">선택삭제</button>
+				<button class="all_del_btn cartbtn" type="button">전체삭제</button>
+			</div>
+
 		</div>
 	</form>
 
-
+</div>
 
 
 	<script type="text/javascript">
@@ -163,30 +178,39 @@ $(document).ready(function(){
       location.href="index.jsp?main=product/detailpage.jsp?pro_num="+pro_num;
     });
 
-	
-    // 선택 상품 구매 버튼
-	$(".buy_btn").click(function(){
-		var cart_num_su = []; // 선택된 상품들의 정보를 담을 배열
-		var cnt=$(".cart_select").length;
-    	 
-		if(cnt==0){
-            alert("장바구니에 상품이 없습니다.");
-            return;
-        };
-          
-        $(".cart_select:checked").each(function(i, elt){
-      	    var cart_num = $(this).attr("cart_num");
-    		var cart_su = parseInt(document.getElementById('quantity' + i).value);	
-    		cart_num_su.push({
-    		        "cart_num": cart_num,
-    		        "cart_su": cart_su
-			});
-			console.log(cart_num_su);
-
-      	});
-		buy(cart_num_su);
-	});
-   
+	//선택상품 구매 버튼
+     $(".buy_btn").click(function() {
+    	    var formData = []; // 선택된 상품들의 정보를 담을 배열
+    	    
+    	    var cnt=$(".cart_select").length;
+       	 
+    	    // 선택된 상품들의 정보 수집
+    	    $(".cart_select:checked").each(function() {
+    	        var cart_num = $(this).attr("cart_num");
+    	        var cart_su = parseInt($(this).closest("div").find(".quantity").val());
+    	        
+    	        // Form 데이터로 묶어 배열에 추가
+    	        formData.push({
+    	            "cart_num": cart_num,
+    	            "cart_su": cart_su
+    	        });
+    	    });
+    	    
+    	    // Form 데이터를 서버로 전송
+    	    $.ajax({
+    	        type: "POST",
+    	        url: "index.jsp?main=order/orderForm.jsp", // 데이터 처리를 위한 JSP 파일
+    	        data: formData, // JSON 데이터가 아닌 Form 데이터를 전송
+    	        success: function(response) {
+    	            alert("주문이 완료되었습니다.");
+    	            // 여기에 추가적인 동작을 구현할 수 있습니다.
+    	        },
+    	        error: function(xhr, status, error) {
+    	            alert("주문 요청에 실패했습니다. 다시 시도해주세요.");
+    	            console.error(error);
+    	        }
+    	    });
+    	});
    
     //전체상품 구매 버튼
      $(".all_buy_btn").click(function(){
@@ -252,6 +276,7 @@ $(document).ready(function(){
 		  });
 	 }
     
+
 	//buy함수
 	function buy(cart_num_su)
 	{
@@ -269,7 +294,7 @@ $(document).ready(function(){
 	          }
 		  });
 	 }
-    
+
 });
         
 

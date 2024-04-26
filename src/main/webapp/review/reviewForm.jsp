@@ -109,7 +109,7 @@
 	<div class="review_div">
 	
 		<!-- ReviewForm --> 
-		<form action="reviewProcess.jsp" method="post" enctype="multipart/form-data">
+		<form action="index.jsp?main=review/reviewProcess.jsp" method="post" enctype="multipart/form-data">
 		
 		<input type="hidden" name="pro_num" value="<%=pro_num%>">
 		<input type="hidden" name="mem_num" value="<%=mem_num%>">
