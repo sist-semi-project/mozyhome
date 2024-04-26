@@ -89,7 +89,9 @@ NumberFormat nf = NumberFormat.getInstance();
 				%>
 
 				<input type="hidden" id="realProPrice<%=i%>"
-					value="<%=real_pro_price%>"> <input type="number" min="1"
+					value="<%=real_pro_price%>"> 
+				
+				<input type="number" min="1"
 					max="99" value="<%=map.get("cart_su")%>" step="1" name="cnt"
 					id="quantity<%=i%>" onchange="updateTotalPrice(<%=i%>)" class="cartCnt">
 
@@ -107,17 +109,41 @@ NumberFormat nf = NumberFormat.getInstance();
 			<%
 			}
 			%>
-			<span> 상품금액<span></span>
-			</span> <span>할인금액</span> <span>배송비</span> <span>Total</span>
+			
+			
+			<div>
+				<div class="priceDiv" >
+					<span> 상품금액</span>
+					<p >원</p>
+				</div>
+					<hr>
+				<div class="priceDiv">	
+					<span>할인금액</span>
+					<p>0원</p>
+				</div>
+					<hr>
+				<div class="priceDiv">	 
+					<span>배송비</span>
+					<p>0원</p>
+				</div>
+					<hr class="boldHr">
+				<div class="priceDiv">	 
+					<span>Total</span>
+					<p >원</p>
+				</div>	
+			</div>
+			
 		</div>
 		<!-- 장바구니 button -->
 		<div class="cartBtnDiv">
-			<button type="button" class="buy_btn cartbtn" onclick="buyBtn()"
-				class="buy_btn">선택상품 구매</button>
-			<button class="all_buy_btn" onclick="allBuyBtn()" class="all_buy_btn cartbtn"
+			<button type="button" class="buy_btn cartbtn" 
+				>선택상품 구매</button>
+			<button  class="all_buy_btn cartbtn"
 				type="button">전체상품 구매</button>
-			<button class="del_btn" class="del_btn cartbtn" type="button">선택삭제</button>
-			<button class="all_del_btn" class="all_del_btn cartbtn" type="button">전체삭제</button>
+			<div class="cartDelBtn">
+				<button  class="del_btn cartbtn" type="button">선택삭제</button>
+				<button class="all_del_btn cartbtn" type="button">전체삭제</button>
+			</div>
 		</div>
 	</form>
 
@@ -251,6 +277,7 @@ $(document).ready(function(){
 		  });
 	 }
     
+
 });
         
 
