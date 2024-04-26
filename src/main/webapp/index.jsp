@@ -36,6 +36,8 @@
 
 </head>
 <%
+request.setCharacterEncoding("utf-8");
+
 	String main = "/layout/main.jsp";
 	
  	if (request.getParameter("main") != null) {

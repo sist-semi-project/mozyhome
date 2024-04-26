@@ -275,8 +275,8 @@ input[type="text"] {
     width: 100%;
 }
 .order_body .body_main img {
-    width: 133px;
-    height: 133px;
+    width: 100px;
+    height: 100px;
 }
 .order_body .body_main .info {
     display: flex;
@@ -623,68 +623,72 @@ NumberFormat nf = NumberFormat.getInstance();
     		
 			
 			<table class="order_table">
-	    	<tbody class="order_tbody">
-		    	<tr class="order_tr">
-					<td class="order_td">		
-					<div class="order_body">
-						<div class="body_main">
-				            <a href="#"><img src="<%=pro_main_img%>"></a>
-				            <div class="info">
-				                <p class="product_name"><%=pro_name%></p>
-				                <p class="product_option">[<%=pro_size %> : <%=pro_color %>]</p>
-				                <div class="price">
-			                    	<p>&#8361;<%=pro_price %></p>
-			                    	<p><%=pro_su %>개</p>
-				                </div>
-				            </div>
-				        </div>
-					</div>
-					</td>
-				</tr>
-			</tbody>
-		</table>
+		    	<tbody class="order_tbody">
+			    	<tr class="order_tr">
+						<td class="order_td">		
+						<div class="order_body">
+							<div class="body_main">
+					            <a href="#"><img src="<%=pro_main_img%>"></a>
+					            <div class="info">
+					                <p class="product_name"><%=pro_name%></p>
+					                <p class="product_option">[<%=pro_size %> : <%=pro_color %>]</p>
+					                <div class="price">
+				                    	<p>&#8361;<%=price %></p>
+				                    	<p><%=pro_su %>개</p>
+					                </div>
+					            </div>
+					        </div>
+						</div>
+						</td>
+					</tr>
+				</tbody>
+			</table>
 		<%
     		
 		} else {
 		    // 장바구니에서 구매하는 경우의 처리
+			CartDao cdao=new CartDao();
 		    
+			List<HashMap<String,String>> list=cdao.getCartList(mem_id);
 
-						
-						
-						
-						
-						
-						
-						
-						
-						
-						
-						
-						
-						
-						
-						
-						
-						
-						
-						
-						
-						
-						
-						
-						
-						
-						
-						
-						
-						
-						
-						
-						
-						
-						
-	    	
+			for(int i=0; i<list.size(); i++ ){
+				
+				HashMap<String,String> map=list.get(i);
+	
+    	%>
+	    
+		<table class="order_table">
+		    	<tbody class="order_tbody">
+			    	<tr class="order_tr">
+						<td class="order_td">		
+						<div class="order_body">
+							<div class="body_main">
+					            <a href="#"><img src="<%=map.get("pro_main_img")%>"></a>
+					            <div class="info">
+					                <p class="product_name"><%=map.get("pro_name") %></p>
+					                <p class="product_option">[<%=map.get("cart_size") %> : <%=map.get("cart_color") %>]</p>
+					                <div class="price">
+				                    	<p>&#8361;<%=map.get("pro_price") %></p>
+				                    	<p><%=map.get("cart_su") %>개</p>
+					                </div>
+					            </div>
+					        </div>
+						</div>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+    	<%	
+	    	}
+			// 장바구니 상품 리스트를 세션에 저장
+		    session.setAttribute("cartItems", list);
 			
+			// 총 상품금액 계산
+		    for (HashMap<String, String> map : list) {
+		        int price = Integer.parseInt(map.get("pro_price"));
+		        int quantity = Integer.parseInt(map.get("cart_su"));
+		        totalProductPrice += (price * quantity);
+		    }
 			
 		}
 	

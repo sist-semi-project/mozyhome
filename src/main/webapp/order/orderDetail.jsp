@@ -1,3 +1,4 @@
+<%@page import="java.util.List"%>
 <%@page import="data.dto.OrderDetailDto"%>
 <%@page import="data.dao.OrderDetailDao"%>
 <%@page import="data.dto.ProductDto"%>
@@ -229,12 +230,17 @@ h3 {
 	String order_num = request.getParameter("order_num");
 	OrderDao odao = new OrderDao();
 	OrderDto odto = odao.getOneData(order_num);
-
+	
+    
 	OrderDetailDao odtdao = new OrderDetailDao();
 	OrderDetailDto odtdto = odtdao.getOrderDetailsByMember(order_num);
-	String pro_num = odtdto.getPro_num();
-	ProductDao pdao = new ProductDao();
-	ProductDto pdto = pdao.getProduct(pro_num); 
+	String pro_num = odtdto.getPro_num();	
+	ProductDao productDao = new ProductDao();
+	ProductDto pdto = productDao.getProduct(pro_num);
+	// ProductDao 인스턴스 생성
+    
+
+    // getProduct 메서드를 사용하여 상품 정보 가져오기
 %>
 </head>
 <body>
@@ -290,22 +296,68 @@ h3 {
                 <p><%=odto.getOrder_status()%></p>
             </div>
             <table border="0" class=" boardList">
-			<rowsgroup><row style="width: 79px"></row><row style="width: auto"></row></rowsgroup>
-			<tbody class="center">
-			<tr class="xans-record-">
-			<td class="thumb">
-				<a href="index.jsp?main=product/detailpage.jsp?pro_num=<%=pro_num %>"><img src="<%=pdto.getPro_main_img()%>"></a>
-            </td>
-			<td class="left">
-			    <strong class="name"><%= pdto.getPro_name() %></strong>
-			    <div class="option ">[옵션: <%=odtdto.getOrder_color()%>: <%=odtdto.getOrder_size()%>]</div>
-				<ul class="price_info">
-					<li class=""><strong>&#8361;<%=pdto.getPro_price()%></strong></li>
-					<li><%=odtdto.getOrder_detail_su()%>개</li>
-				</ul>
-			</td>
-			</tr>
-			</tbody>
+            <%
+            
+         	// OrderDetailDao 인스턴스 생성
+            OrderDetailDao orderDetailDao = new OrderDetailDao();
+            
+         	// getOrderDetails 메서드를 사용하여 주문 목록 가져오기
+            List<OrderDetailDto> orderDetails = orderDetailDao.getOrderDetails(order_num);
+            
+         	// 주문 목록을 화면에 출력
+            if (orderDetails != null && !orderDetails.isEmpty()) {
+            	for (OrderDetailDto orderDetail : orderDetails) {
+            		
+            		// 각 주문 상세 정보에서 상품 번호를 가져옴
+                    String p_num = orderDetail.getPro_num();
+            		//System.out.println("상품 번호: " + p_num);
+            		
+            		// ProductDao 인스턴스 생성
+                    ProductDao pDao = new ProductDao();
+
+                    // getProduct 메서드를 사용하여 상품 정보 가져오기
+                    ProductDto pDto = pDao.getProduct(p_num);
+                    
+                    //System.out.println("상품 번호: " + p_num + "상품명: " + pDto.getPro_name()+"상품 가격: "+ pDto.getPro_price());
+            %>
+            	<rowsgroup><row style="width: 79px"></row><row style="width: auto"></row></rowsgroup>
+				<tbody class="center">
+				<tr class="xans-record-">
+					<td class="thumb">
+						<a href="index.jsp?main=product/detailpage.jsp?pro_num=<%=p_num %>"><img src="<%=pDto.getPro_main_img()%>"></a>
+		            </td>
+					<td class="left">
+					    <strong class="name"><%= pDto.getPro_name() %></strong>
+					    <div class="option ">[옵션: <%=orderDetail.getOrder_color()%>: <%=orderDetail.getOrder_size()%>]</div>
+						<ul class="price_info">
+							<li class=""><strong>&#8361;<%=pDto.getPro_price()%></strong></li>
+							<li><%=orderDetail.getOrder_detail_su()%>개</li>
+						</ul>
+					</td>
+				</tr>
+				</tbody>
+				<%
+            	}
+            }
+            %>
+            <!--  
+				<rowsgroup><row style="width: 79px"></row><row style="width: auto"></row></rowsgroup>
+				<tbody class="center">
+				<tr class="xans-record-">
+					<td class="thumb">
+						<a href="index.jsp?main=product/detailpage.jsp?pro_num=<%=pro_num %>"><img src="<%=pdto.getPro_main_img()%>"></a>
+		            </td>
+					<td class="left">
+					    <strong class="name"><%= pdto.getPro_name() %></strong>
+					    <div class="option ">[옵션: <%=odtdto.getOrder_color()%>: <%=odtdto.getOrder_size()%>]</div>
+						<ul class="price_info">
+							<li class=""><strong>&#8361;<%=pdto.getPro_price()%></strong></li>
+							<li><%=odtdto.getOrder_detail_su()%>개</li>
+						</ul>
+					</td>
+				</tr>
+				</tbody>
+				-->
 			</table>
 		</div>
 
