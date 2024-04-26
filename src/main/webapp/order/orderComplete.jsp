@@ -1,3 +1,4 @@
+<%@page import="java.util.List"%>
 <%@page import="data.dao.ProductDao"%>
 <%@page import="data.dto.ProductDto"%>
 <%@page import="data.dto.OrderDetailDto"%>
@@ -776,8 +777,59 @@ ProductDto pdto = pdao.getProduct(pro_num);
 	                <div class="orderArea">
 	                    <div class="" nspace="normal">
 	                        <div class="xans-element- xans-order">
+	                        
+	                        <!--
 	                        	<div class="ec-base-prdInfo">
-	                                <div class="prdBox">
+	                        	
+	                        	
+	                        		<div class="prdBox">
+	                                  -->
+	                                	<%
+	                                	// OrderDetailDao 인스턴스 생성
+	                                    OrderDetailDao orderDetailDao = new OrderDetailDao();
+	                                    
+	                                 	// getOrderDetails 메서드를 사용하여 주문 목록 가져오기
+	                                    List<OrderDetailDto> orderDetails = orderDetailDao.getOrderDetails(order_num);
+	                                 	
+	                                 	// 주문 목록을 화면에 출력
+	                                    if (orderDetails != null && !orderDetails.isEmpty()) {
+	                                    	for (OrderDetailDto orderDetail : orderDetails) {
+	                                    		// 각 주문 상세 정보에서 상품 번호를 가져옴
+	                                            String p_num = orderDetail.getPro_num();
+	                                    		
+	                                         	// ProductDao 인스턴스 생성
+	                                            ProductDao pDao = new ProductDao();
+
+	                                            // getProduct 메서드를 사용하여 상품 정보 가져오기
+	                                            ProductDto pDto = pDao.getProduct(p_num);
+	                                            %>
+	                                            <div class="ec-base-prdInfo">
+	                                            <div class="prdBox">
+	                                            <div class="thumbnail">
+		                                        <a href="index.jsp?main=product/detailpage.jsp?pro_num=<%=p_num %>"><img src="<%=pDto.getPro_main_img()%>" width="90" height="90"></a>
+			                                    </div>
+			                                    <div class="description">
+			                                        <strong class="name" title="상품명"><%= pDto.getPro_name() %></strong>
+			                                        <ul class="info">
+			                                            <li title="옵션">
+			                                                <p class="option ">
+			                                                    [옵션: <%=orderDetail.getOrder_color()%>: <%=orderDetail.getOrder_size()%>]
+			                                                 </p>
+			                                            </li>
+			                                            <li class="price_info">
+			                                                <span id="">&#8361;<%=pDto.getPro_price()%></span>
+			                                                <span><%=orderDetail.getOrder_detail_su()%>개</span>
+			                                            </li> 
+			                                        </ul>
+												</div>
+												</div>
+												</div>
+	                                        <%
+	                                    	}
+	                                    }
+	                                	
+	                                	%>
+	                                	<!--  
 	                                    <div class="thumbnail">
 	                                        <a href="index.jsp?main=product/detailpage.jsp?pro_num=<%=pro_num %>"><img src="<%=pdto.getPro_main_img()%>" width="90" height="90"></a>
 	                                    </div>
@@ -795,8 +847,15 @@ ProductDto pdto = pdao.getProduct(pro_num);
 	                                            </li> 
 	                                        </ul>
 										</div>
+										
+										
+										
+										
 	                                </div>
+	                                
 	                            </div>
+	                            -->
+	                            
 							</div>
 	                    </div> 
 	                </div>
