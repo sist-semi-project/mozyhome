@@ -15,7 +15,7 @@
     <link rel="stylesheet" href="dashStyle.css">
 
     <title>Admin Dashboard</title>
-    <style type="text/css">
+<%--    <style type="text/css">
         /* 네비게이션 바 색상 */
         .sidebar {
             background-color: #343a40; /* 어두운 회색 */
@@ -70,6 +70,14 @@
         }
 
 
+    </style>--%>
+    <style>
+        body {
+            display: flex;
+            height: 1250px;
+            background-color: #f8f9fa;
+            font-family: 'Noto Sans KR', sans-serif;
+        }
     </style>
 </head>
 <body>
