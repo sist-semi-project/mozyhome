@@ -15,7 +15,11 @@
     <link rel="stylesheet" href="dashStyle.css">
 
     <title>Admin Dashboard</title>
+<<<<<<< HEAD
 <%--    <style type="text/css">
+=======
+    <style type="text/css">
+>>>>>>> 61b139a (0426 관리자페이지 기능(상품,주문,회원관리))
         /* 네비게이션 바 색상 */
         .sidebar {
             background-color: #343a40; /* 어두운 회색 */
@@ -58,6 +62,7 @@
             border-radius: 5px;
             font-size: 20px;
             background-color: #495057;
+<<<<<<< HEAD
         }
 
         .sidebar {
@@ -78,6 +83,20 @@
             background-color: #f8f9fa;
             font-family: 'Noto Sans KR', sans-serif;
         }
+=======
+        }
+
+        .sidebar {
+            text-align: center; /* 텍스트를 가운데 정렬합니다. */
+        }
+
+        .logo {
+            display: inline-block; /* 이미지를 인라인 블록 요소로 설정합니다. */
+            margin-bottom: 20px; /* 이미지 아래 여백을 추가합니다. */
+        }
+
+
+>>>>>>> 61b139a (0426 관리자페이지 기능(상품,주문,회원관리))
     </style>
 </head>
 <body>
