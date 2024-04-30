@@ -17,6 +17,9 @@
             list-style: none;
         }
 
+<%--    <style type="text/css">
+        /* 네비게이션 바 색상 */
+>>>>>>> e6a3eb4 (dashboard 수정)
         .sidebar {
             width: 225px;
             height: calc(100vh - 100px);
@@ -83,6 +86,14 @@
         }
 
 
+    </style>--%>
+    <style>
+        body {
+            display: flex;
+            height: 1250px;
+            background-color: #f8f9fa;
+            font-family: 'Noto Sans KR', sans-serif;
+        }
     </style>
 </head>
 <body>
