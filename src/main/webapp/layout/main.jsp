@@ -457,7 +457,7 @@ NumberFormat nf = new DecimalFormat("#,###.##원");
 						<td width="330px" align="center" style="padding: 20px 10px 0px;">
 							<a pronum="<%=rdto.getPro_num()%>" class="goDetail">
 								<!-- <img src="./image/reviewSave/etcB.jpg" style="padding-bottom: 8px;"> -->
-								<img src="<%=rdto.getReview_image() %>" style="padding-bottom: 8px;">
+								<img src="<%=rdto.getReview_image() %>" style="padding-bottom: 8px; height: 280px; width: 280px;">
 						</a>
 						</td>
 						<!-- 각 행의 끝 -->

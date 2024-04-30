@@ -114,7 +114,7 @@ public class ProductListDao {
 				+ " LEFT JOIN review r ON p.pro_num = r.pro_num"
 				+ " LEFT JOIN member m ON w.mem_num = m.mem_num"
 				+ " where pro_sale_status!='단종'"
-				+ " GROUP BY p.pro_num"
+				+ " GROUP BY p.pro_num, w.wish_num"
 				+ " having p.cate_num in ("
 				+ " select cate_num from category where parent_cate_num=?"
 				+ ")"
@@ -202,7 +202,7 @@ public class ProductListDao {
 				+ " LEFT JOIN review r ON p.pro_num = r.pro_num"
 				+ " LEFT JOIN member m ON w.mem_num = m.mem_num"
 				+ " where pro_sale_status!='단종'" 
-				+ " GROUP BY p.pro_num" 
+				+ " GROUP BY p.pro_num, w.wish_num" 
 				+ " having p.cate_num=?"
 				+ " order by pro_num desc limit ?,?";
 
@@ -290,7 +290,7 @@ public class ProductListDao {
 				+ " LEFT JOIN review r ON p.pro_num = r.pro_num"
 				+ " LEFT JOIN member m ON w.mem_num = m.mem_num"
 				+ " where pro_sale_status!='단종'" 
-				+ " GROUP BY p.pro_num"
+				+ " GROUP BY p.pro_num, w.wish_num"
 				+ " having p.cate_num in ("
 				+ " select cate_num from category where parent_cate_num=?"
 				+ ")"
@@ -352,7 +352,7 @@ public class ProductListDao {
 				+ " LEFT JOIN review r ON p.pro_num = r.pro_num"
 				+ " LEFT JOIN member m ON w.mem_num = m.mem_num"
 				+ " where pro_sale_status!='단종'" 
-				+ " GROUP BY p.pro_num"
+				+ " GROUP BY p.pro_num, w.wish_num"
 				+ " having p.cate_num in ("
 				+ " select cate_num from category where parent_cate_num=?"
 				+ ")"
@@ -414,7 +414,7 @@ public class ProductListDao {
 				+ " LEFT JOIN review r ON p.pro_num = r.pro_num"
 				+ " LEFT JOIN member m ON w.mem_num = m.mem_num"
 				+ " where pro_sale_status!='단종'" 
-				+ " GROUP BY p.pro_num"
+				+ " GROUP BY p.pro_num, w.wish_num"
 				+ " having p.cate_num in ("
 				+ " select cate_num from category where parent_cate_num=?"
 				+ ")"
@@ -476,7 +476,7 @@ public class ProductListDao {
 				+ " LEFT JOIN review r ON p.pro_num = r.pro_num"
 				+ " LEFT JOIN member m ON w.mem_num = m.mem_num"
 				+ " where pro_sale_status!='단종'" 
-				+ " GROUP BY p.pro_num"
+				+ " GROUP BY p.pro_num, w.wish_num"
 				+ " having p.cate_num in ("
 				+ " select cate_num from category where parent_cate_num=?"
 				+ ")"
@@ -538,7 +538,7 @@ public class ProductListDao {
 				+ " LEFT JOIN review r ON p.pro_num = r.pro_num"
 				+ " LEFT JOIN member m ON w.mem_num = m.mem_num"
 				+ " where pro_sale_status!='단종'" 
-				+ " GROUP BY p.pro_num"
+				+ " GROUP BY p.pro_num, w.wish_num"
 				+ " having p.cate_num in ("
 				+ " select cate_num from category where parent_cate_num=?"
 				+ ")"
@@ -601,7 +601,7 @@ public class ProductListDao {
 				+ " LEFT JOIN review r ON p.pro_num = r.pro_num" 
 				+ " LEFT JOIN member m ON w.mem_num = m.mem_num"
 				+ " where pro_sale_status!='단종'" 
-				+ " GROUP BY p.pro_num" 
+				+ " GROUP BY p.pro_num, w.wish_num" 
 				+ " having p.cate_num=?"
 				+ " order by pro_create_date desc limit ?,?";
 
@@ -661,7 +661,7 @@ public class ProductListDao {
 				+ " LEFT JOIN review r ON p.pro_num = r.pro_num" 
 				+ " LEFT JOIN member m ON w.mem_num = m.mem_num"
 				+ " where pro_sale_status!='단종'" 
-				+ " GROUP BY p.pro_num" 
+				+ " GROUP BY p.pro_num, w.wish_num" 
 				+ " having p.cate_num=?"
 				+ " order by pro_name asc limit ?,?";
 
@@ -721,7 +721,7 @@ public class ProductListDao {
 				+ " LEFT JOIN review r ON p.pro_num = r.pro_num" 
 				+ " LEFT JOIN member m ON w.mem_num = m.mem_num"
 				+ " where pro_sale_status!='단종'" 
-				+ " GROUP BY p.pro_num" 
+				+ " GROUP BY p.pro_num, w.wish_num" 
 				+ " having p.cate_num=?"
 				+ " order by pro_price asc limit ?,?";
 
@@ -781,7 +781,7 @@ public class ProductListDao {
 				+ " LEFT JOIN review r ON p.pro_num = r.pro_num" 
 				+ " LEFT JOIN member m ON w.mem_num = m.mem_num"
 				+ " where pro_sale_status!='단종'" 
-				+ " GROUP BY p.pro_num" 
+				+ " GROUP BY p.pro_num, w.wish_num" 
 				+ " having p.cate_num=?"
 				+ " order by pro_price desc limit ?,?";
 
@@ -841,7 +841,7 @@ public class ProductListDao {
 				+ " LEFT JOIN review r ON p.pro_num = r.pro_num" 
 				+ " LEFT JOIN member m ON w.mem_num = m.mem_num"
 				+ " where pro_sale_status!='단종'" 
-				+ " GROUP BY p.pro_num" 
+				+ " GROUP BY p.pro_num, w.wish_num" 
 				+ " having p.cate_num=?"
 				+ " order by reviewCount desc limit ?,?";
 
@@ -926,7 +926,7 @@ public class ProductListDao {
 				+ " LEFT JOIN review r ON p.pro_num = r.pro_num" 
 				+ " LEFT JOIN member m ON w.mem_num = m.mem_num"
 				+ " where pro_sale_status!='단종'"
-				+ " GROUP BY p.pro_num" 
+				+ " GROUP BY p.pro_num, w.wish_num" 
 				+ " having p.pro_name LIKE ?"
 				+ " limit ?,?";
 
@@ -987,7 +987,7 @@ public class ProductListDao {
 				+ " LEFT JOIN review r ON p.pro_num = r.pro_num" 
 				+ " LEFT JOIN member m ON w.mem_num = m.mem_num"
 				+ " where pro_sale_status!='단종'"
-				+ " GROUP BY p.pro_num" 
+				+ " GROUP BY p.pro_num, w.wish_num" 
 				+ " having p.pro_name LIKE ?"
 				+ " order by pro_create_date desc limit ?,?";
 
@@ -1048,7 +1048,7 @@ public class ProductListDao {
 				+ " LEFT JOIN review r ON p.pro_num = r.pro_num" 
 				+ " LEFT JOIN member m ON w.mem_num = m.mem_num"
 				+ " where pro_sale_status!='단종'"
-				+ " GROUP BY p.pro_num" 
+				+ " GROUP BY p.pro_num, w.wish_num" 
 				+ " having p.pro_name LIKE ?"
 				+ " order by pro_name asc limit ?,?";
 
@@ -1109,7 +1109,7 @@ public class ProductListDao {
 				+ " LEFT JOIN review r ON p.pro_num = r.pro_num" 
 				+ " LEFT JOIN member m ON w.mem_num = m.mem_num"
 				+ " where pro_sale_status!='단종'"
-				+ " GROUP BY p.pro_num" 
+				+ " GROUP BY p.pro_num, w.wish_num" 
 				+ " having p.pro_name LIKE ?"
 				+ " order by pro_price asc limit ?,?";
 
@@ -1170,7 +1170,7 @@ public class ProductListDao {
 				+ " LEFT JOIN review r ON p.pro_num = r.pro_num" 
 				+ " LEFT JOIN member m ON w.mem_num = m.mem_num"
 				+ " where pro_sale_status!='단종'"
-				+ " GROUP BY p.pro_num" 
+				+ " GROUP BY p.pro_num, w.wish_num" 
 				+ " having p.pro_name LIKE ?"
 				+ " order by pro_price desc limit ?,?";
 
@@ -1231,7 +1231,7 @@ public class ProductListDao {
 				+ " LEFT JOIN review r ON p.pro_num = r.pro_num" 
 				+ " LEFT JOIN member m ON w.mem_num = m.mem_num"
 				+ " where pro_sale_status!='단종'"
-				+ " GROUP BY p.pro_num" 
+				+ " GROUP BY p.pro_num, w.wish_num" 
 				+ " having p.pro_name LIKE ?"
 				+ " order by reviewCount desc limit ?,?";
 
@@ -1319,7 +1319,7 @@ public class ProductListDao {
 				+ " LEFT JOIN review r ON p.pro_num = r.pro_num"
 				+ " LEFT JOIN member m ON w.mem_num = m.mem_num"
 				+ " where pro_sale_status!='단종'"
-				+ " GROUP BY p.pro_num"
+				+ " GROUP BY p.pro_num, w.wish_num"
 				+ " order by pro_create_date desc limit ?,?";
 
 		try {

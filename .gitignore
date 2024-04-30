@@ -28,3 +28,4 @@ local.properties
 .project
 build/
 src/main/java/db/db.properties
+src/main/java/db/DbConnect.java
