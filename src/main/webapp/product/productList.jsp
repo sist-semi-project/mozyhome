@@ -23,31 +23,35 @@
 <title>상품리스트</title>
 <style type="text/css">
 	body{
-	 	font-family: "Noto Sans KR";
-	 	font-size: 14px;
+	 	text-decoration: none !important;
+		color:black !important;
 	}
 	
 	a, .goDetail{
-		text-decoration: none;
-		color:black;
+		text-decoration: none !important;
+		color:black !important;
 		cursor: pointer;
 	}
 	
 	.sort{
-		color:#aaa;
-		border-color: white;
-		font-size: 14px;
+		font-size: 14px !important;
+		color:#aaa !important;
+		border-color: white !important;
 	}
 	
 	/* 페이징 디자인 */
+	body > div.layout.main > div > ul > li > a{
+		color: black !important;
+	}
+	
 	.page-link {
-	  color: black; 
+	  color: black !important;
 	  background-color: white;
 	  
 	}
 	.page-item.active .page-link {
-		 z-index: 1;
-		 color: white;
+		 z-index: 1 !important;
+		 color: white !important;
 		 background-color: #FF5C00;
 		 border-color: #FF5C00;
 	}
@@ -138,7 +142,7 @@
 		totalCount=pldao.getTotalCount(cate_num);
 	}
 			
-	int perPage=20; // 한페이지당 보여질 글의 개수
+	int perPage=16; // 한페이지당 보여질 글의 개수
 	int perBlock=5; // 한블럭당 보여질 페이지 개수
 	int startNum; // db에서 가져올 글의 시작 번호(mysql은 첫글이 0번, oracle은 1번)
 	int startPage; // 각 블럭마다 보여질 시작페이지
@@ -215,24 +219,25 @@
 	// --------------------------------------------------------------------------		
 %>
 <body>
-<div style="margin:0 auto; width:1400px">
+<div style="margin:0 auto; width:1400px;">
 	<table>
 		<div style="margin:100px 0px 10px 15px; float:left;">
 			<a class="pCate" pCateNum="<%=pcdto.getCate_num() %>"><%=pcdto.getCate_name() %></a> 
 			<a class="cate" cateNum="<%=cate_num%>"><%=cdto.getCate_name().equals(pcdto.getCate_name())?"":" > "+cdto.getCate_name() %> </a>
 			
-			<div style="margin: -28px 0px 0px 1320px;">
+			<div style="margin: -28px 0px 0px 1290px; color: #aaa;">
 				<select name="sort" class="form-select form-select sort" style="width:100px;" onchange="window.open(value,'_self');">
-					<option value="../product/productList.jsp?cate_num=<%=cate_num%>&sort=1" <%="1".equals(sort)?"selected='selected'":""%>>신상품</option>
-					<option value="../product/productList.jsp?cate_num=<%=cate_num%>&sort=2" <%="2".equals(sort)?"selected='selected'":""%>>상품명</option>
-					<option value="../product/productList.jsp?cate_num=<%=cate_num%>&sort=3" <%="3".equals(sort)?"selected='selected'":""%>>낮은가격</option>
-					<option value="../product/productList.jsp?cate_num=<%=cate_num%>&sort=4" <%="4".equals(sort)?"selected='selected'":""%>>높은가격</option>
-					<option value="../product/productList.jsp?cate_num=<%=cate_num%>&sort=5" <%="5".equals(sort)?"selected='selected'":""%>>리뷰순</option>
+					<option value="index.jsp?main=product/productList.jsp?cate_num=<%=cate_num%>&sort=1" <%="1".equals(sort)?"selected='selected'":""%>>신상품</option>
+					<option value="index.jsp?main=product/productList.jsp?cate_num=<%=cate_num%>&sort=2" <%="2".equals(sort)?"selected='selected'":""%>>상품명</option>
+					<option value="index.jsp?main=product/productList.jsp?cate_num=<%=cate_num%>&sort=3" <%="3".equals(sort)?"selected='selected'":""%>>낮은가격</option>
+					<option value="index.jsp?main=product/productList.jsp?cate_num=<%=cate_num%>&sort=4" <%="4".equals(sort)?"selected='selected'":""%>>높은가격</option>
+					<option value="index.jsp?main=product/productList.jsp?cate_num=<%=cate_num%>&sort=5" <%="5".equals(sort)?"selected='selected'":""%>>리뷰순</option>
 				</select>
 			</div>	
 		</div> 
 		
 		<!-- 상품 출력 -->
+		<div>
 		<tr class="list">
 		<%
 				int line=0;
@@ -246,7 +251,7 @@
 							<%
 								// 품절 표시
 								if(pdto.getPro_sale_status().equals("품절")){%>
-									<span class="proPrice" style="color: #aaa;"><%=nf.format(pdto.getPro_price()) %></span><span style="background: black; color: white; font-size:13px; margin-left: 8px; text-align: center;">&nbsp;&nbsp;SOLD OUT&nbsp;&nbsp;</span></div> <br>
+									<span class="proPrice" style="color: #aaa; text-decoration: line-through;"><%=nf.format(pdto.getPro_price()) %></span><span style="background: black; color: white; font-size:13px; margin-left: 8px; text-align: center;">&nbsp;&nbsp;SOLD OUT&nbsp;&nbsp;</span></div> <br>
 								<%} else{%>
 									<span class="proPrice"><%=nf.format(pdto.getPro_price()) %></span> <br>
 								<%}
@@ -290,18 +295,18 @@
 				// 이전
 				if(startPage>1){%>
 					<li class="page-item">
-						<a class="page-link" href="productList.jsp?cate_num=<%=cate_num %>&currentPage=<%=startPage-1%>&sort=<%=sort %>" style="color:black;" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a>
+						<a class="page-link" href="index.jsp?main=product/productList.jsp?cate_num=<%=cate_num %>&currentPage=<%=startPage-1%>&sort=<%=sort %>" style="color:black;" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a>
 					</li>
 				<%}
 			
 				for(int pp=startPage; pp<=endPage; pp++){
 					if(pp==currentPage){%>
 						<li class="page-item active">
-							<a class="page-link" href="productList.jsp?cate_num=<%=cate_num %>&currentPage=<%=pp%>&sort=<%=sort %>"><%=pp %></a>
+							<a class="page-link" href="index.jsp?main=product/productList.jsp?cate_num=<%=cate_num %>&currentPage=<%=pp%>&sort=<%=sort %>"><%=pp %></a>
 						</li>
 					<%} else{%>
 						<li class="page-item">
-							<a class="page-link" href="productList.jsp?cate_num=<%=cate_num %>&currentPage=<%=pp%>&sort=<%=sort %>"><%=pp %></a>
+							<a class="page-link" href="index.jsp?main=product/productList.jsp?cate_num=<%=cate_num %>&currentPage=<%=pp%>&sort=<%=sort %>"><%=pp %></a>
 						</li>
 					<%}
 				}
@@ -309,7 +314,7 @@
 				// 다음
 				if(endPage<totalPage){%>
 					<li class="page-item">
-						<a class="page-link" href="productList.jsp?cate_num=<%=cate_num %>&currentPage=<%=endPage+1%>&sort=<%=sort %>" style="color:black" aria-label="Next"><span aria-hidden="true">&raquo;</span></a>
+						<a class="page-link" href="index.jsp?main=product/productList.jsp?cate_num=<%=cate_num %>&currentPage=<%=endPage+1%>&sort=<%=sort %>" style="color:black" aria-label="Next"><span aria-hidden="true">&raquo;</span></a>
 					</li>			
 				<%}
 			} else {
@@ -318,18 +323,18 @@
 				// 이전
 				if(startPage>1){%>
 					<li class="page-item">
-						<a class="page-link" href="productList.jsp?cate_num=<%=cate_num %>&currentPage=<%=startPage-1%>" style="color:black;" aria-label="Previous"><span aria-hidden="true">&#10094;</span></a>
+						<a class="page-link" href="index.jsp?main=product/productList.jsp?cate_num=<%=cate_num %>&currentPage=<%=startPage-1%>" style="color:black;" aria-label="Previous"><span aria-hidden="true">&#10094;</span></a>
 					</li>
 				<%}
 			
 				for(int pp=startPage; pp<=endPage; pp++){
 					if(pp==currentPage){%>
 						<li class="page-item active">
-							<a class="page-link" href="productList.jsp?cate_num=<%=cate_num %>&currentPage=<%=pp%>"><%=pp %></a>
+							<a class="page-link" href="index.jsp?main=product/productList.jsp?cate_num=<%=cate_num %>&currentPage=<%=pp%>"><%=pp %></a>
 						</li>
 					<%} else{%>
 						<li class="page-item">
-							<a class="page-link" href="productList.jsp?cate_num=<%=cate_num %>&currentPage=<%=pp%>"><%=pp %></a>
+							<a class="page-link" href="index.jsp?main=product/productList.jsp?cate_num=<%=cate_num %>&currentPage=<%=pp%>"><%=pp %></a>
 						</li>
 					<%}
 				}
@@ -337,7 +342,7 @@
 				// 다음
 				if(endPage<totalPage){%>
 					<li class="page-item">
-						<a class="page-link" href="productList.jsp?cate_num=<%=cate_num %>&currentPage=<%=endPage+1%>" style="color:black" aria-label="Next"><span aria-hidden="true">&#10095;</span></a>
+						<a class="page-link" href="index.jsp?main=product/productList.jsp?cate_num=<%=cate_num %>&currentPage=<%=endPage+1%>" style="color:black" aria-label="Next"><span aria-hidden="true">&#10095;</span></a>
 					</li>			
 				<%}
 			}

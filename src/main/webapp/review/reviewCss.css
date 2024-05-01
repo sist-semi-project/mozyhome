@@ -1,0 +1,436 @@
+@charset "utf-8";
+
+/*reviewList.jsp css---------------------------------------------------------*/
+#reviewList {
+	width: 100%;
+}
+
+#reviewList #listTable {
+	border-collapse: collapse;
+	width: 100%;
+}
+
+#reviewList h4 {
+	text-align: center;
+	margin-top: 24px;
+	margin-bottom: 24px;
+}
+
+#reviewList #list {
+	width: 70%;
+	display: flex;
+	margin: auto;
+}
+
+#reviewList #listTable {
+	border-collapse: collapse;
+	width: 100%;
+	margin-top: 24px;
+	margin-bottom: 24px;
+	border-top: 1px solid #ccc;
+}
+
+#reviewList #listTable th, #listTable td {
+	border-top: 1px solid #ccc; /* 위쪽에만 선 추가 */
+	border-bottom: 1px solid #ccc; /* 아래쪽에만 선 추가 */
+	padding: 8px;
+	text-align: left;
+}
+
+#reviewList #listTable th {
+	background-color: fffffff;
+}
+
+#reviewList #listTable tr:first-child th {
+	border-top: none; /* 첫 번째 행의 위쪽 선 삭제 */
+}
+
+#reviewList .pageNumList {
+	margin: auto;
+	width: 70%;
+}
+
+#reviewList .pagination {
+	margin: auto;
+	width: 100%;
+}
+
+#reviewList .pageNumList .pageNum {
+	margin-top: 100px;
+	text-decoration: none; /* 기본 하이퍼링크 텍스트 장식 제거 */
+	display: inline-block; /* 인라인 요소를 블록 요소로 변경하여 너비와 높이를 조정할 수 있게 함 */
+	padding: 10px 20px; /* 버튼 내부 여백 */
+	border: 1px solid #ccc; /* 테두리 추가 */
+	background-color: #ffffff; /* 배경색 설정 */
+	color: #333; /* 텍스트 색상 설정 */
+	font-size: 16px; /* 폰트 크기 설정 */
+	cursor: pointer; /* 마우스 커서를 포인터로 변경하여 클릭 가능한 상태로 표시 */
+	border-radius: 0px;
+}
+
+#reviewList .reviewBtnDiv {
+	margin: auto;
+	width: 70%;
+}
+
+#reviewList .reviewBtn {
+	float: right;
+	width: 130px;
+	height: 30px;
+	margin-left: 16px;
+	background-color: #ffffff;
+	border: 1px solid #ccc; /* 테두리 추가 */
+}
+
+#reviewList .star {
+	color: #FF5C00;
+}
+
+#reviewList .hidden {
+	display: none;
+}
+
+/*reviewForm.jsp css---------------------------------------------------------*/
+#reviewForm {
+	width: 100%;
+	margin: auto;
+}
+
+#reviewForm .rating_box {
+	display: flex;
+}
+
+#reviewForm .rating {
+	
+	color: #ddd;
+	font-size: 30px;
+	text-align: center;
+}
+
+#reviewForm .rating input {
+	
+	opacity: 0;
+	cursor: pointer;
+}
+
+#reviewForm .rating_star {
+	width: 0;
+	color: #ffc107;
+	position: absolute;
+	left: 0;
+	right: 0;
+	overflow: hidden;
+	pointer-events: none;
+}
+
+#reviewForm .bi-image-alt {
+	color: #FF5C00;
+	font-size: 20pt;
+}
+
+#reviewForm .submit {
+	background-color: #FF5C00;
+	color: white;
+	border: 0px;
+}
+
+#reviewForm #review {
+	font-family: "Noto Sans KR";
+	font-size: 24px;
+	width: 70%;
+	margin: auto;
+}
+
+#reviewForm #showimg {
+	width: 100px;
+	height: 100px;
+}
+
+#reviewForm .camera {
+	font-size: 100px;
+}
+
+/*mycart.jsp css---------------------------------------------------------*/
+#mycart {
+	width: 100%;
+	margin: auto;
+	margin-top: 120px;
+}
+
+#mycart .cart_img {
+	width: 124px;
+	margin-right: 16px;
+}
+
+#mycart .cart_su {
+	color: white;
+	height: 20px;
+	width: 30px;
+	background: #FF5C00;
+	border-radius: 8px;
+	text-align: center;
+	margin-left: 10px;
+}
+
+#mycart .cart_select_all {
+	width: 15px;
+	height: 15px;
+	background: #ffffff;
+	border-radius: 100%;
+	border: 1px solid #000000;
+	margin-right: 8px;
+}
+
+#mycart .cart_div {
+	width: 50%;
+	margin: auto;
+}
+
+#mycart .cartListDiv {
+	width: 50%;
+	margin: auto;
+}
+
+#mycart .cartAllChkDiv {
+	display: flex;
+	align-items: center;
+	margin-top: 8px;
+}
+
+#mycart .cart_title {
+	width: 100%;
+	justify-content: center;
+	display: flex;
+	align-items: center;
+}
+
+#mycart .cart_title_cart {
+	font-size: 24px;
+	font-family: noto sans kr;
+}
+
+#mycart .cartListDiv2 {
+	display: flex;
+}
+
+#mycart .proInfo {
+	width: 80%;
+}
+
+#mycart .proInfo .pro_name_b {
+	width: 80%;
+	font-size: 16px;
+}
+
+#mycart .proInfo .option_b {
+	font-size: 12px;
+	color: #777777;
+}
+
+#mycart .proInfo .cart_number {
+	margin-top: 48px;
+}
+
+#mycart .cart_select {
+	margin-right: 30px;
+}
+
+#mycart .cartCnt {
+	border: none;
+	width: 30px;
+	height: 30px;
+}
+
+#mycart .cartBtnDiv {
+	width: 50%;
+	margin: auto;
+}
+
+#mycart .buy_btn {
+	width: 100%;
+	height: 64px;
+	margin-bottom: 16px;
+	margin-top: 24px;
+	border: 1px solid #000000;
+	background-color: #ffffff;
+}
+
+#mycart .all_buy_btn {
+	width: 100%;
+	height: 64px;
+	margin-bottom: 16px;
+	border: 0px;
+	background-color: #FF5C00;
+	color: #ffffff;
+}
+
+#mycart .cartDelBtn {
+	display: flex;
+	justify-content: space-between;
+}
+
+#mycart .all_del_btn {
+	width: 49%;
+	height: 64px;
+	border: 1px solid #000000;
+	background-color: #ffffff;
+}
+
+#mycart .del_btn {
+	width: 49%;
+	height: 64px;
+	border: 1px solid #000000;
+	background-color: #ffffff;
+}
+
+#mycart .boldHr {
+	height: 2px;
+	background-color: black;
+}
+
+#mycart .priceDiv {
+	display: flex;
+	justify-content: space-between;
+}
+
+#mycart .priceSpan {
+	font-size: 14px;
+}
+
+#mycart .finalPrice {
+	font-size: 21px;
+}
+
+#mycart .titleHr {
+	border: 2px solid #FF5C00;
+}
+
+#mycart .pro_price2 {
+	font-size: 16px;
+}
+
+/*detailpage.jsp css---------------------------------------------------------*/
+#detailpage {
+	width: 100%;
+	margin: auto;
+	margin-bottom: 200px;
+	margin-top: 120px;
+}
+
+#detailpage .infobtn {
+	background: none;
+	border: none;
+	cursor: pointer;
+	font-size: inherit;
+	text-decoration: none;
+	padding: 0;
+	margin: 0;
+}
+
+#detailpage hr {
+	height: 1px;
+	background-color: #000000;
+	border: none;
+}
+
+#detailpage .infodiv {
+	width: 100%;
+	height: 450px;
+}
+
+#detailpage .btndiv .soldout {
+	position: relative;
+	box-sizing: border-box;
+	width: 336px;
+	height: 84px;
+	line-height: 84px;
+	font-size: 16px;
+	background-color: #eeeeee;
+	color: #aaaaaa;
+	margin-right: 24px;
+	border: none;
+}
+
+#detailpage .btndiv .no_buynow {
+	position: relative;
+	box-sizing: border-box;
+	width: 336px;
+	height: 84px;
+	line-height: 84px;
+	font-size: 20px;
+	background-color: #000000;
+	color: #ffffff;
+	margin-right: 24px;
+	border: none;
+}
+
+#detailpage .btndiv .buynow {
+	position: relative;
+	box-sizing: border-box;
+	width: 336px;
+	height: 84px;
+	line-height: 84px;
+	font-size: 20px;
+	background-color: #FF5C00;
+	color: #ffffff;
+	margin-right: 24px;
+	border: none;
+}
+
+#detailpage .btndiv .heart, .btndiv .cart {
+	position: relative;
+	box-sizing: border-box;
+	width: 84px;
+	height: 84px;
+	border: 1px solid #000000;
+	background-color: #ffffff;
+	margin-right: 24px;
+}
+
+#detailpage .btndiv {
+	width: 100%;
+	margin: auto;
+	height: 200px;
+}
+
+#detailpage .mainimgdiv .imgmain {
+	width: 577px;
+	height: 577px;
+}
+
+#detailpage .subimgdiv .subimg {
+	width: 124px;
+	height: 124px;
+	background: #D9D9D9;
+	margin-top: 32px;
+	margin-right: 24px;
+}
+
+#detailpage .subimgdiv {
+	width: 100%;
+}
+
+#detailpage .mainimgdiv {
+	width: 100%;
+}
+
+#detailpage .imgmain {
+	width: 577px;
+	height: 577px;
+}
+
+#detailpage #detailpagediv {
+	width: 70%;
+	margin: auto;
+	display: flex;
+}
+
+#detailpage .imgdiv {
+	width: 50%;
+}
+
+#detailpage .info_and_btn_div {
+	width: 50%;
+	margin-left: 20px; /* 좌측 여백을 줍니다. */
+}
+

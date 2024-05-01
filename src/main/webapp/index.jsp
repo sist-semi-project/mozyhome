@@ -8,7 +8,7 @@
 	href="https://fonts.googleapis.com/css2?family=Dongle&family=Gaegu&family=Nanum+Pen+Script&family=Noto+Sans+KR:wght@100..900&family=Noto+Serif+KR&display=swap"
 	rel="stylesheet">
 <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
-<link rel="stylesheet" href="../header/header.css"/>
+<link rel="stylesheet" href="./header/header.css"/>
 <title>mozyhome</title>
 <style type="text/css">
 	div.title{
@@ -21,25 +21,26 @@
 	}
 	
 	div.main{
-		font-size: 14pt;
+		font-size: 14px;
 		font-family: 'Noto Sans KR';
 		border: 0px groove purple;
-		text-decoration: none;
-		color:black;
 	}
 	
 	div.footer{
-	
+		font-size: 14px;
+		font-family: 'Noto Sans KR';
+		margin-top: 200px;
 	}
 
 </style>
 
 </head>
-
 <%
+request.setCharacterEncoding("utf-8");
+
 	String main = "/layout/main.jsp";
 	
-	if (request.getParameter("main") != null) {
+ 	if (request.getParameter("main") != null) {
 		main = request.getParameter("main");
 	}
 %>

@@ -49,11 +49,11 @@ public class WishlistDao {
 		PreparedStatement pstmt=null;
 		ResultSet rs=null;
 		
-		String sql="SELECT w.wish_num AS wish_num, p.pro_num, p.pro_name, p.pro_price, p.pro_main_img, m.mem_id"
+		String sql="SELECT w.wish_num AS wish_num, p.pro_num, p.pro_name, p.pro_price, p.pro_main_img, m.mem_id, w.wish_date"
 				+ " FROM product p, wishlist w, member m"
 				+ " where w.pro_num=p.pro_num and w.mem_num=m.mem_num and m.mem_id=?"
 				+ " GROUP BY p.pro_num"
-				+ " order by pro_num desc limit ?,?";
+				+ " order by w.wish_date desc limit ?,?";
 		
 		try {
 			pstmt=conn.prepareStatement(sql);
@@ -83,7 +83,7 @@ public class WishlistDao {
 		return list;
 	}
 	
-	// 위시리스트 삭제
+	// 위시리스트 삭제 (한동희)
 	public void deleteWishlist(String wish_num) {
 		Connection conn=db.getConnection();
 		PreparedStatement pstmt=null;
@@ -102,25 +102,25 @@ public class WishlistDao {
 		}
 	}
 	
-	// 위시리스트 삭제 2
-		public void deleteWishlist2(String pro_num, String mem_num) {
-			Connection conn=db.getConnection();
-			PreparedStatement pstmt=null;
-			
-			String sql="delete from wishlist where pro_num=? and mem_num=?";
-			
-			try {
-				pstmt=conn.prepareStatement(sql);
-				pstmt.setString(1, pro_num);
-				pstmt.setString(2, mem_num);
-				pstmt.execute();
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} finally {
-				db.dbClose(pstmt, conn);
-			}
+	// 위시리스트 삭제 2 (박범수)
+	public void deleteWishlist2(String pro_num, String mem_num) {
+		Connection conn=db.getConnection();
+		PreparedStatement pstmt=null;
+
+		String sql="delete from wishlist where pro_num=? and mem_num=?";
+
+		try {
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setString(1, pro_num);
+			pstmt.setString(2, mem_num);
+			pstmt.execute();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			db.dbClose(pstmt, conn);
 		}
+	}
 	
 	//위시리스트 체크 확인
 	public boolean checkWishlist(String mem_num, String pro_num) {
@@ -149,12 +149,13 @@ public class WishlistDao {
 		return b;
 	}
 	
+	// 위시리스트 추가
 	public void insertWishlist(String mem_num, String pro_num) {
 		Connection conn=db.getConnection();
 		PreparedStatement pstmt=null;
-		
-		String sql="insert into wishlist values(null,?,?)";
-		
+
+		String sql="insert into wishlist values(null,?,?,now())";
+
 		try {
 			pstmt=conn.prepareStatement(sql);
 			pstmt.setString(1, mem_num);

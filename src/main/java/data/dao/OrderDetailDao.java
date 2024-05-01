@@ -72,5 +72,39 @@ public class OrderDetailDao {
 
         return order;
     }
+	
+	public List<OrderDetailDto> getOrderDetails(String order_num) {
+	    List<OrderDetailDto> orders = new ArrayList<>();
+	    
+	    Connection conn = db.getConnection();
+	    PreparedStatement pstmt = null;
+	    ResultSet rs = null;
+
+	    String sql = "SELECT * FROM order_detail WHERE order_num = ?";
+
+	    try {
+	        pstmt = conn.prepareStatement(sql);
+	        pstmt.setString(1, order_num);
+	        rs = pstmt.executeQuery();
+
+	        while (rs.next()) {
+	            OrderDetailDto order = new OrderDetailDto();
+	            order.setOrder_num(rs.getString("order_num"));
+	            order.setMem_num(rs.getString("mem_num"));
+	            order.setPro_num(rs.getString("pro_num"));
+	            order.setOrder_color(rs.getString("order_size"));  
+	            order.setOrder_size(rs.getString("order_color"));
+	            order.setOrder_detail_su(rs.getInt("order_detail_su"));
+	            orders.add(order);
+	        }
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    } finally {
+	        db.dbClose(rs, pstmt, conn);
+	    }
+
+	    return orders;
+	}
+
 
 }
