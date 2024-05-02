@@ -9,12 +9,12 @@
 <link rel="stylesheet" href="./header/header.css" />
 
 <style type="text/css">
+	
 /* 검색 토글창 디자인 시작 */
 	body {
 		font-family: 'Noto Sans KR';
 		text-decoration: none;
 		font-size: 14px;
-
 	}
 	#shopify-section-header > header > div > ul > li > a, 
 	#shopify-section-header > header > div > ul > li > a,
@@ -143,9 +143,8 @@
 								</div>
 								<div class="header-nav__sub-nav-images">
 									<a href="index.jsp?main=product/productList.jsp?cate_num=1"> <img
-										src="//maidenhome.com/cdn/shop/files/01_Shop_All_Living_Top_Nav.jpg?v=1710959897&amp;width=330"
+										src="./image/staticImage/sofaBanner1.png"
 										alt=""
-										srcset="//maidenhome.com/cdn/shop/files/01_Shop_All_Living_Top_Nav.jpg?v=1710959897&amp;width=330 330w"
 										width="330" height="248">
 										<p>Shop All Living</p>
 									</a><a
@@ -153,9 +152,8 @@
 										<img
 										src="//maidenhome.com/cdn/shop/files/02_The_Ella_Table_Top_Nav.jpg?v=1710959897&amp;width=330"
 										alt=""
-										srcset="//maidenhome.com/cdn/shop/files/02_The_Ella_Table_Top_Nav.jpg?v=1710959897&amp;width=330 330w"
 										width="330" height="248">
-										<p>The Ella Coffee Table</p>
+										<p>Coffee Table</p>
 									</a>
 								</div>
 							</div>
@@ -179,19 +177,17 @@
 								</div>
 								<div class="header-nav__sub-nav-images">
 									<a href="index.jsp?main=product/productList.jsp?cate_num=2"> <img
-										src="//maidenhome.com/cdn/shop/files/03_Shop_All_Dining_Top_Nav.jpg?v=1710959896&amp;width=330"
+										src="./image/staticImage/diningBanner.png"
 										alt=""
-										srcset="//maidenhome.com/cdn/shop/files/03_Shop_All_Dining_Top_Nav.jpg?v=1710959896&amp;width=330 330w"
 										width="330" height="248">
 										<p>Shop All Dining</p>
 									</a><a
 										href="index.jsp?main=product/productList.jsp?cate_num=22">
 										<img
-										src="//maidenhome.com/cdn/shop/files/04_The_Garrett_Chair_Top_Nav.jpg?v=1710959896&amp;width=330"
-										alt=""
-										srcset="//maidenhome.com/cdn/shop/files/04_The_Garrett_Chair_Top_Nav.jpg?v=1710959896&amp;width=330 330w"
+										src="./image/staticImage/dchairBanner.png"
+										alt=""				
 										width="330" height="248">
-										<p>The Garrett Dining Chair</p>
+										<p>Dining Chair</p>
 									</a>
 								</div>
 							</div>
@@ -217,9 +213,8 @@
 								</div>
 								<div class="header-nav__sub-nav-images">
 									<a href="index.jsp?main=product/productList.jsp?cate_num=3"> <img
-										src="//maidenhome.com/cdn/shop/files/05_Shop_All_Bedroom_Top_Nav.jpg?v=1710959896&amp;width=330"
+										src="./image/staticImage/bedBanner.png"
 										alt=""
-										srcset="//maidenhome.com/cdn/shop/files/05_Shop_All_Bedroom_Top_Nav.jpg?v=1710959896&amp;width=330 330w"
 										width="330" height="248">
 										<p>Shop All Bedroom</p>
 									</a><a
@@ -229,7 +224,7 @@
 										alt=""
 										srcset="//maidenhome.com/cdn/shop/files/06_The_Marais_Dresser_Top_Nav.jpg?v=1710959896&amp;width=330 330w"
 										width="330" height="248">
-										<p>The Marais 6-Drawer Dresser</p>
+										<p>Dresser</p>
 									</a>
 								</div>
 							</div>
@@ -253,12 +248,8 @@
 								<div class="header-nav__sub-nav-images">
 									<a
 										href="index.jsp?main=product/productList.jsp?cate_num=4">
-										<img
-										src="//maidenhome.com/cdn/shop/files/07_Collections_Top_Nav_1.jpg?v=1711376362&amp;width=330"
-										alt=""
-										srcset="//maidenhome.com/cdn/shop/files/07_Collections_Top_Nav_1.jpg?v=1711376362&amp;width=330 330w"
-										width="330" height="248">
-										<p>Spring/Summer 2024</p>
+										<img src="./image/staticImage/lampBanner.png" alt="" width="330" height="248">
+										<p>ALL LAMPS</p>
 									</a>
 								</div>
 							</div>
@@ -283,11 +274,10 @@
 								</div>
 								<div class="header-nav__sub-nav-images">
 									<a href="index.jsp?main=product/productList.jsp?cate_num=5"> <img
-										src="//maidenhome.com/cdn/shop/files/08_Swatches_Top_Nav.jpg?v=1710959897&amp;width=330"
+										src="./image/staticImage/etcBanner.png"
 										alt=""
-										srcset="//maidenhome.com/cdn/shop/files/08_Swatches_Top_Nav.jpg?v=1710959897&amp;width=330 330w"
 										width="330" height="248">
-										<p></p>
+										<p>etc..</p>
 									</a>
 								</div>
 							</div>
@@ -318,11 +308,35 @@
 						src="./image/staticImage/searchicon_bs.png"></a>
 					</li>
 
+					<%
+					// 세션에 로그인 정보가 있는지 확인
+					String loginStatus = (String) session.getAttribute("loginok");
+					String myid = (String) session.getAttribute("myid");
+
+					// 로그인 상태 확인
+					boolean isLoggedIn = "yes".equals(loginStatus);
+
+					if (isLoggedIn) {
+						// 로그인 상태인 경우 처리
+					%>
+					<li
+						class="header__nav-top-level header__nav-top-level--has-children">
+						<a href="SemiLogin/logoutAction.jsp"
+						class="header__nav-top-level-link" data-name="Logout">Logout</a>
+					</li>
+					<%
+					} else {
+					// 로그인 상태가 아닌 경우 처리
+					%>
 					<li
 						class="header__nav-top-level header__nav-top-level--has-children">
 						<a href="index.jsp?main=SemiLogin/Login.jsp"
 						class="header__nav-top-level-link" data-name="Login">Login</a>
 					</li>
+					<%
+					}
+					%>
+
 
 
 

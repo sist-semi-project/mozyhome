@@ -49,7 +49,7 @@ public class CartDao {
 		PreparedStatement pstmt=null;
 		ResultSet rs=null;
 		
-		String sql="select p.pro_name, p.pro_price, p.pro_main_img, c.cart_size, c.cart_color, c.cart_su, m.mem_num, p.pro_num "
+		String sql="select p.pro_name, p.pro_price, p.pro_main_img, c.cart_num, c.cart_size, c.cart_color, c.cart_su, m.mem_num, p.pro_num "
 				+ " from cart c, product p, member m "
 				+ " where c.mem_num=m.mem_num and c.pro_num=p.pro_num and m.mem_id=? ";
 		
@@ -62,6 +62,7 @@ public class CartDao {
 			{
 				HashMap<String, String> map=new HashMap<String, String>();
 				
+				map.put("cart_num" , rs.getString("cart_num"));
 				map.put("pro_num" , rs.getString("pro_num"));
 				map.put("pro_price", rs.getString("pro_price"));
 				map.put("pro_main_img", rs.getString("pro_main_img"));
@@ -131,6 +132,25 @@ public class CartDao {
 		
 	}
 
-
+	
+	public void deleteCartNum(String cart_num) {
+		
+		Connection conn=db.getConnection();
+		PreparedStatement pstmt=null;
+		
+		String sql="delete from cart where cart_num=?";
+		
+		try {
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setString(1, cart_num);
+			pstmt.execute();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			db.dbClose(pstmt, conn);
+		}
+		
+	}
 
 }

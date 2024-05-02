@@ -17,109 +17,7 @@
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 <title>사용자 등록</title>
-<style type="text/css">
-.container {
-	margin-left: auto;
-	margin-right: auto;
-}
-
-.container {
-	position: relative;
-	padding-left: 15px;
-	padding-right: 15px;
-}
-
-.hr-join {
-	margin: 10px 0 40px;
-	height: 2px;
-	background-color: #cecece;
-	border: 0 none;
-	color: #cecece;
-}
-
-.ttl-join h3 {
-	margin: 0;
-	font-size: 1.17em;
-	font-weight: bold;
-}
-
-body, body * {
-	box-sizing: border-box;
-}
-
-body {
-	font-family: Pretendard, 'Noto Sans KR', 'Apple SD Gothic Neo',
-		'Malgun Gothic', sans-serif;
-}
-
-h3 {
-	font-size: 1.17em;
-	margin-block-start: 1em;
-	margin-block-end: 1em;
-	margin-inline-start: 0px;
-	margin-inline-end: 0px;
-	font-weight: bold;
-	unicode-bidi: isolate;
-}
-
-.ttl-join {
-	display: flex;
-	align-items: center;
-}
-
-.ttl-join .required-span {
-	float: right;
-}
-
-.required-span {
-	margin-left: auto;
-}
-
-.section:first-child {
-	margin: 80px 0 100px;
-}
-
-.required {
-	color: #c00;
-	vertical-align: middle;
-}
-
-.buttons .btn-primary {
-	min-width: 150px;
-}
-
-h1.page-title {
-	text-align: center;
-	font-size: 24px;
-	font-weight: 700;
-	letter-spacing: 5px;
-	color: #222;
-	line-height: 27px;
-	padding-top: 75px;
-}
-
-.page-title {
-	padding-bottom: 35px !important;
-}
-
-.page-title-sub {
-	display: block;
-	margin-bottom: 35px;
-	text-align: center;
-}
-
-.btn-orange {
-    background-color: #FF5C00;
-    border-color: #FF5C00;
-    color: white;
-}
-
-.btn-orange:hover {
-    background-color: #fff;
-    border-color: #FF5C00;
-    color: #FF5C00;
-}
-</style>
+<link rel="stylesheet" href="./SemiLogin/Register.css" >
 
 <script type="text/javascript">
 	$(function() {
@@ -130,7 +28,7 @@ h1.page-title {
 
 			$.ajax({
 				type : "get",
-				url : "idCheck.jsp",
+				url : "./SemiLogin/idCheck.jsp",
 				dataType : "json",
 				data : {
 					"mem_id" : mem_id
@@ -154,7 +52,7 @@ h1.page-title {
 
 			$.ajax({
 				type : "get",
-				url : "nicknameCheck.jsp",
+				url : "./SemiLogin/nicknameCheck.jsp",
 				dataType : "json",
 				data : {
 					"mem_nickname" : mem_nickname
@@ -162,10 +60,9 @@ h1.page-title {
 				success : function(res) {
 					if (res.count == 1) {
 						alert("이미 사용중인 닉네임입니다.\n");
-						$("span.nicknamesuccess").text("not ok!!");
+						$("#mem_nickname").val("");
 					} else {
 						alert("사용 가능한 닉네임입니다.");
-						$("span.nicknamesuccess").text("ok!!");
 					}
 				}
 			});
@@ -181,16 +78,7 @@ h1.page-title {
 		});
 	})
 
-	function check(f) {
-		if (f.pass.value != f.pass2.value) {
-			alert("비밀번호가 일치하지 않습니다.");
-			//초기화
-			f.pass.value = "";
-			f.pass2.value = "";
-			pass.focus();
-			return false; //action 호출하지 않음.
-		}
-	}
+	
 </script>
 </head>
 <h1 class="page-title">mozyhome</h1>
@@ -200,7 +88,7 @@ h1.page-title {
 
 <body>
 	<div class="container">
-		<form id="signupForm" action="MainAction.jsp" method="post"
+		<form id="signupForm" action="index.jsp?main=SemiLogin/MainAction.jsp" method="post"
 			onsubmit="return validateForm(event)">
 			<div class="row">
 
@@ -234,13 +122,17 @@ h1.page-title {
 								<input type="password" name="mem_password" id="mem_password"
 									class="form-control" onblur="validatePass()">
 								<div class="input-group-append">
-									<span class="input-group-text" id="togglePassword"> <i
-										class="bi bi-eye-slash" onclick="togglePassword()"></i>
-									</span>
+									<button type="button" class="btn_show">
+										<span class="blind">비밀번호 숨기기</span>
+									</button>
 								</div>
+							</div>
+							<div class="password_info">
+								<em class="how_secure" id="secureLevel"></em>
 							</div>
 						</div>
 					</div>
+
 
 					<div class="form-group row">
 						<label for="pass2" class="col-sm-2 col-form-label">비밀번호 확인<span
@@ -363,8 +255,8 @@ h1.page-title {
 						class="required">*</span></label>
 					<div class="col-sm-5">
 						<div class="input-group">
-							<input type="text" name="mem_hp" id="mem_hp"
-								class="form-control" onblur="validateHp()">
+							<input type="text" name="mem_hp" id="mem_hp" class="form-control"
+								onblur="validateHp()">
 						</div>
 					</div>
 				</div>
@@ -400,8 +292,9 @@ h1.page-title {
 						</div>
 					</div>
 				</div>
-				<input type="hidden" id="mem_is_active" name="mem_is_active" value="N">
-				 
+				<input type="hidden" id="mem_is_active" name="mem_is_active"
+					value="Y">
+
 			</div>
 
 			<div class="form-group">
@@ -421,16 +314,16 @@ h1.page-title {
 					<span id="emailError" style="color: red;"></span>
 				</div>
 			</div>
-			<br><br>
+			<br> <br>
 			<!-- } 주소지 입력사항 -->
 			<div class="form-group" align="center">
-				<button type="submit" class="btn btn-outline-info btn-orange" 
-				style="width: 150px; height:50px;" value="가입">가입하기</button>
+				<button type="submit" class="btn btn-outline-info btn-orange"
+					style="width: 150px; height: 50px;" value="가입">가입하기</button>
 			</div>
 		</form>
 	</div>
 
-	<script src="validation.js"></script>
+	<script src="./SemiLogin/validation.js"></script>
 </body>
 
 </html>

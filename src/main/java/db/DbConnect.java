@@ -14,7 +14,8 @@ import java.util.Properties;
 
 public class DbConnect {
 	static final String MYSQLDRIVER = "com.mysql.cj.jdbc.Driver"; // 상수
-	static final String MYSQL_URL = "jdbc:mysql://mozyhome.cvg4y8a4acvj.ap-northeast-2.rds.amazonaws.com:3306/mozyhome";
+	//static final String MYSQL_URL = "jdbc:mysql://mozyhome.cvg4y8a4acvj.ap-northeast-2.rds.amazonaws.com:3306/mozyhome";
+	static final String MYSQL_URL = "jdbc:mysql://localhost:3306/semi2";
 	Properties prop = new Properties();
 	String DB_USER_NAME;
 	String DB_PASSWORD;
@@ -23,8 +24,13 @@ public class DbConnect {
 		try {
 			InputStream input = DbConnect.class.getClassLoader().getResourceAsStream("db/db.properties");
 			prop.load(input);
-			DB_USER_NAME = prop.getProperty("aws.database.username").replace("\"", "");
-			DB_PASSWORD = prop.getProperty("aws.database.password").replace("\"", "");
+			/*
+			 * DB_USER_NAME = prop.getProperty("aws.database.username").replace("\"", "");
+			 * DB_PASSWORD = prop.getProperty("aws.database.password").replace("\"", "");
+			 */
+			DB_USER_NAME = "root";
+			DB_PASSWORD = "1234";
+			
 
 			Class.forName(MYSQLDRIVER);
 			System.out.println("드라이버 연결 성공");

@@ -12,7 +12,7 @@
 <body>
   <%
    session.removeAttribute("loginok");
-   response.sendRedirect("../index.jsp?main=login/loginmain.jsp");
+   response.sendRedirect("../index.jsp");
   %>
 </body>
 </html>

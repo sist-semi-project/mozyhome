@@ -111,7 +111,7 @@ public class OrderDao {
         PreparedStatement pstmt = null;
         ResultSet rs = null;
 
-        String sql = "SELECT * FROM order_info WHERE mem_num = ?";
+        String sql = "SELECT * FROM order_info WHERE mem_num = ? order by order_date desc";
 
         try {
             pstmt = conn.prepareStatement(sql);
