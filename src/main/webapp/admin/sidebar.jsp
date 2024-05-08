@@ -94,6 +94,6 @@
             </ul></li>
     </ul>
 
-    <button type="button" onclick="location.href='adminLogin.jsp'" class="btn btn-logout"><i class="fa-solid fa-arrow-right-from-bracket" style="color: #ffffff;"></i>     로그아웃</button>
+    <button type="button" onclick="location.href='/admin/adminLogout.jsp'" class="btn btn-logout"><i class="fa-solid fa-arrow-right-from-bracket" style="color: #ffffff;"></i>     로그아웃</button>
 
 </div>

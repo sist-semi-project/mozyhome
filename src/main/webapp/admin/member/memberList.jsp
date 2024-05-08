@@ -318,6 +318,16 @@
         }
     </style>
     <%
+        String adminID = (String) session.getAttribute("adminID");
+        if (adminID == null) {
+    %>
+
+    <script type="text/javascript">
+        alert("접근권한이 없습니다.");
+        window.location.href = "/admin/adminLogin.jsp"; // 리디렉션을 JavaScript에서 처리
+    </script>
+    <%}
+
         MemberDao dao = new MemberDao();
         int memberCount = dao.getMemberCount();
         SimpleDateFormat sdf = new SimpleDateFormat("YYYY-MM-dd");
