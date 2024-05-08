@@ -15,7 +15,7 @@ import java.util.Properties;
 public class DbConnect {
 	static final String MYSQLDRIVER = "com.mysql.cj.jdbc.Driver"; // 상수
 	//static final String MYSQL_URL = "jdbc:mysql://mozyhome.cvg4y8a4acvj.ap-northeast-2.rds.amazonaws.com:3306/mozyhome";
-	static final String MYSQL_URL = "jdbc:mysql://localhost:3306/semi2";
+	static final String MYSQL_URL = "jdbc:mysql://localhost:3306/mozyhome";
 	Properties prop = new Properties();
 	String DB_USER_NAME;
 	String DB_PASSWORD;
@@ -112,5 +112,8 @@ public class DbConnect {
 		}
 	}
 
+//	public static void main(String[] args) {
+//		DbConnect db=new DbConnect();	
+//	}
 
 }

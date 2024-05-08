@@ -14,12 +14,8 @@
 <%
   String id=request.getParameter("mem_id");
   String pass=request.getParameter("mem_password");
-<<<<<<< HEAD
   String cbsave=request.getParameter("cbsave");  //체크안하면 null
 
-=======
-  
->>>>>>> master
   MemberDao dao=new MemberDao();
   boolean b=dao.isIdPass(id, pass);
 
