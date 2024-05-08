@@ -15,9 +15,8 @@
 2. 팀소개
 3. 기술스택
 4. ERD
-5. 플로우차트
-6. 주요기능
-7. 프로젝트 산출물
+5. 주요기능
+6. 프로젝트 산출물
 
 
 <br>
@@ -51,8 +50,6 @@
 ## 4. ERD
 <div align=center><img src="https://github.com/sist-semi-project/mozyhome/assets/155527545/62f2baff-26d7-476a-acb6-eaec738cb3bf" style="width:800px;"></div>
 
-## 5. 플로우차트
+## 5. 주요기능
 
-## 6. 주요기능
-
-## 7. 프로젝트 산출물
+## 6. 프로젝트 산출물
