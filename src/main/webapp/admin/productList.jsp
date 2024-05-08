@@ -25,9 +25,10 @@
     <title>Product List for Admin</title>
     <style>
         body {
+            display: flex;
+            height: 1100px;
+            background-color: #f8f9fa;
             font-family: 'Noto Sans KR', sans-serif;
-            padding: 20px;
-            background-color: #f5f5f5;
         }
         .header {
             font-size: 24px;
@@ -59,9 +60,13 @@
             padding: 20px;
             border-radius: 5px;
             box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            width: 92%;
         }
         .form-group {
             margin-bottom: 10px;
+        }
+        .pagination{
+            margin-right: 14%;
         }
         .pagination .page-item a {
             color: black; /* 텍스트 색상 검정으로 변경 */
@@ -122,16 +127,7 @@
             color: #0056b3; /* 호버 시 색상 변경 */
         }
         /* 이미지 아이콘 스타일 */
-/*        .imageIcon {
-            cursor: pointer;
-            border: 1px solid #ddd;
-            margin: 5px;
-            height: 100px;
-            width: 100px;
-            background-size: contain !important;
-            background-position: center center !important;
-            background-repeat: no-repeat !important;
-        }*/
+
         .imageIcon {
             cursor: pointer;
             border: 1px solid #ddd;
@@ -204,27 +200,6 @@
         .maincategory-tag {
             background-color: #34495E;
         }
-        /*
-        #livingroom-tag {
-            background-color: #0d6efd; !* 기본: Blue *!
-        }
-
-        #kitchen-tag {
-            background-color: #20c997; !* 거실: Teal *!
-        }
-
-        #bedroom-tag {
-            background-color: #ffc107; !* 주방: Amber *!
-        }
-
-        #lighting-tag {
-            background-color: #fd7e14; !* 램프: Orange *!
-        }
-
-        #others-tag {
-            background-color: #d63384; !* 기타: Pink *!
-        }
-        */
 
         /* 하위 카테고리별 색상 설정 */
         .subcategory-tag {
@@ -285,29 +260,6 @@
             margin-top: 20px;
         }
 
-/*        .modal-content {
-            background-color: #fff5e6; !* Light wood color background *!
-            color: #5a3e36; !* Dark wood color text *!
-            border: 2px solid #decab9; !* Lighter shade for the border *!
-        }
-
-        .modal-header {
-            background-color: #decab9;
-        }
-
-        .modal-body {
-            padding: 20px;
-        }*/
-/*        .modal-content {
-            font-family: 'Noto Sans KR', sans-serif;
-            background-color: #fff5e6; !*카피*!
-        }
-        .modal-header, .modal-footer {
-            background-color: #decab9;
-        }
-        .modal-body img {
-            margin-right: 10px;
-        }*/
         .main-image, .sub-image {
             width: 100px;  /* Consistent image size */
             margin-right: 5px;  /* Spacing between sub-images */
@@ -359,31 +311,107 @@
         .table-bordered td:nth-child(2) {
             text-align: left;
         }
-
-
-        /*
-
-        .table-bordered td {
-            word-wrap: break-word;  !* Allows words to break and wrap onto the next line *!
-            max-width: 0;  !* Enables overflow to be handled gracefully *!
-            overflow: hidden;  !* Hide overflowed content *!
-            text-overflow: ellipsis;  !* Add an ellipsis to clipped text *!
+        .input_component {
+            display: inline-block;
+            position: relative;
+            height: 34px;
+            box-sizing: border-box;
+            border: solid 1px;
+            border-color: rgb(221, 221, 221);
+        }
+        #btnSubmit {
+            margin: 0;
+            padding: 0;
+            font-size: 13px;
+            cursor: pointer;
+            display: inline-block;
+            width: 56px;
+            height: 34px;
+            background-color: #000000;
+            border: 0;
+            color: #fff;
+        }
+        #searchText{
+            margin: 0;
+            padding: 0;
+            font-size: 13px;
+            width: 199px;
+            height: 32px;
+            padding: 0 12px;
+            border: 0;
+            box-sizing: border-box;
+            background-color: rgb(255, 255, 255);
+            color: rgb(51, 51, 51);
+        }
+        .btn-date{
+            margin-left: 4px;
+            border: none;
+            background-color: #5b4e4e;
+            height: 33px;
+            color: white;
+        }
+        .batch-action-container {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            margin: 9px 0;
+            width: 27%;
         }
 
-        !* Specific style for product description to allow vertical expansion *!
-        td.product-description {
-            white-space: normal;  !* Allow wrapping *!
-            vertical-align: top;  !* Align text to the top *!
+        .select_control, .btn {
+            flex: 0 0 auto;
         }
-        */
+
+        .select_control {
+            margin-right: 10px;
+        }
 
 
+        .batch-action-container > label {
+            white-space: nowrap;
+            flex: 0 1 15%;
+            margin-right: 10px;
+            font-weight: 1000;
 
+        }
 
+        .status_select_control {
+            width: 20%; /* Adjust according to your layout */
+            display: block;
+            padding: 3.5px 0px;
+            font-size: 1rem;
+            font-weight: 400;
+            line-height: 1.5;
+            color: black;
+            -moz-appearance: none;
+            background-color: white;
+            background-clip: padding-box;
+            border-radius: 5px;
+            transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+            margin-right: 5px;
 
+        }
+
+        .btn {
+            flex: 0 1 29%; /* Allows button to shrink if necessary */
+        }
+        #btnStatus{
+            background-color: #3d3d3d;
+            padding: 4px 13px;
+            border-style: none;
+        }
 
     </style>
     <%
+        String adminID = (String) session.getAttribute("adminID");
+        if (adminID == null) {
+    %>
+
+    <script type="text/javascript">
+        alert("접근권한이 없습니다.");
+        window.location.href = "/admin/adminLogin.jsp"; // 리디렉션을 JavaScript에서 처리
+    </script>
+    <%}
         ProductDao dao = new ProductDao();
         List<ProductDto> list = dao.getAllProductForAdmin();
         SimpleDateFormat sdf = new SimpleDateFormat("YYYY-MM-dd");
@@ -531,11 +559,11 @@
                 }
 
                 if (startPage > 1) {
-                    pagination.prepend('<li class="page-item"><a class="page-link filtered-page-link" href="#" data-filterpage="' + (startPage - 5) + '">&#8249;</a></li>');
+                    pagination.prepend('<li class="page-item"><a class="page-link filtered-page-link" href="#" data-filterpage="' + (startPage - 5) + '">&#10094;</a></li>');
                 }
 
                 if (endPage < totalPages) {
-                    pagination.append('<li class="page-item"><a class="page-link filtered-page-link" href="#" data-filterpage="' + (endPage + 1) + '">&#8250;</a></li>');
+                    pagination.append('<li class="page-item"><a class="page-link filtered-page-link" href="#" data-filterpage="' + (endPage + 1) + '">&#10095;</a></li>');
                 }
             }
 
@@ -574,7 +602,7 @@
 
                     $.ajax({
                         type: "post",
-                        url:"./deleteProduct.jsp",
+                        url:"deleteProduct.jsp",
                         dataType: "json",
                         data:{num},
                         success: function (res) {
@@ -668,11 +696,11 @@
                 // 수정폼에서 새로 추가된(교체된) 이미지 파일만 추가
                 ['main_image', 'sub_image1', 'sub_image2', 'sub_image3', 'sub_image4', 'sub_image5']
                     .forEach(function(id) {
-                    var input = document.getElementById(id);
-                    if (input.files[0]) {
-                        formData.append(id, input.files[0]); // 파일이 있으면 추가
-                    }
-                });
+                        var input = document.getElementById(id);
+                        if (input.files[0]) {
+                            formData.append(id, input.files[0]); // 파일이 있으면 추가
+                        }
+                    });
 
                 // 색상 태그들을 문자열로 변환
                 var colorTags = Array.from(colorTagsContainer.children).map(function(tag) {
@@ -733,7 +761,7 @@
                             }
                         });
 
-                        // Append rows to the table
+
                         detailsTable.append(
                             '<tr><td><strong>카테고리</strong></td><td>' + product.parent_cate_num + ' > ' + product.cate_num + '</td></tr>' +
                             '<tr><td><strong>상품명</strong></td><td>' + product.pro_name + '</td></tr>' +
@@ -993,21 +1021,23 @@
             const startDate = document.getElementById('startDate');
             const endDate = document.getElementById('endDate');
             const today = new Date();
+            const tomorrow = new Date(today.getFullYear(), today.getMonth(), today.getDate() + 1);
 
             if (range === 'today') {
-                startDate.value = endDate.value = formatDate(today);
+                startDate.value = formatDate(today);
+                endDate.value = formatDate(tomorrow);
             } else if (range === 'week') {
                 const oneWeekAgo = new Date(today.getFullYear(), today.getMonth(), today.getDate() - 7);
                 startDate.value = formatDate(oneWeekAgo);
-                endDate.value = formatDate(today);
+                endDate.value = formatDate(tomorrow);
             } else if (range === 'month') {
                 const oneMonthAgo = new Date(today.getFullYear(), today.getMonth() - 1, today.getDate());
                 startDate.value = formatDate(oneMonthAgo);
-                endDate.value = formatDate(today);
+                endDate.value = formatDate(tomorrow);
             } else if (range === 'threeMonth') {
                 const threeMonthAgo = new Date(today.getFullYear(), today.getMonth() - 3, today.getDate());
                 startDate.value = formatDate(threeMonthAgo);
-                endDate.value = formatDate(today);
+                endDate.value = formatDate(tomorrow);
             }
         }
 
@@ -1024,6 +1054,44 @@
 
             return [year, month, day].join('-');
         }
+        function updateSaleStatus() {
+            var selectedStatus = document.getElementById('statusChangeSelect').value;
+            var selectedProducts = [];
+
+            document.querySelectorAll('.delete-checkbox:checked').forEach(function(checkbox) {
+                selectedProducts.push(checkbox.getAttribute('data-num'));
+            });
+            console.log({selectedStatus,selectedProducts});
+
+            if (selectedProducts.length > 0) {
+                console.log({selectedStatus,selectedProducts});
+                $.ajax({
+                    url: 'updateSaleStates.jsp',
+                    type: 'GET',
+                    data: { selectedProducts: selectedProducts,selectedStatus:selectedStatus },
+                    dataType: 'json',
+                    traditional:true,
+                    success: function(product) {
+                        console.log({product});
+                        if (product.is_update) {
+                            // 반복문을 사용하여 모든 선택된 주문에 대해 상태 업데이트
+                            selectedProducts.forEach(function(proNum) {
+                                // data-order-id 속성을 사용하여 특정 주문의 테이블 행을 찾음
+                                var productRow = $('tr[data-product-id="' + proNum + '"]');
+                                // 테이블 행 내의 주문상태 셀을 찾아 상태를 업데이트
+                                productRow.find('td').eq(6).text(product.sale_satus);
+                            });
+                            alert('판매 상태가 업데이트 되었습니다.');
+                        } else {
+                            alert('판매 상태 업데이트에 실패했습니다.');
+                        }
+
+                    }
+                });
+            } else {
+                alert('선택된 항목이 없습니다.');
+            }
+        }
 
 
 
@@ -1034,218 +1102,228 @@
 
 
 <body>
-<!-- 수정 양식 모달 -->
-<div class="modal fade" id="editProductModal" tabindex="-1" aria-labelledby="editProductModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="editProductModalLabel">상품 수정</h5>
-                <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close" style="background-color: white; border-style: none;">
-                    <span aria-hidden="true" style="font-size: 19px">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <form id="editProductForm" action="">
-                    <input type="hidden" id="editProductId" name="productId">
-                    <!--상위 카테고리 -->
-                    <div class="form-group">
-                        <label for="editMainCategory">상위 카테고리:</label>
-                        <select name="editMainCategory" id="editMainCategory" onchange="updateSubCategories()">
-                            <option value="1">거실</option>
-                            <option value="2">주방</option>
-                            <option value="3">침실</option>
-                            <option value="4">조명</option>
-                            <option value="5">기타</option>
-                        </select>
-                    </div>
-
-                    <!--하위 카테고리 -->
-                    <div class="form-group">
-                        <label for="editSubCategory">하위 카테고리:</label>
-                        <select name="editSubCategory" id="editSubCategory" >
-                            <option value="11">소파</option>
-                            <option value="12">테이블</option>
-                        </select>
-                    </div>
-
-                    <!--판매 상태-->
-                    <div class="form-group">
-                        <label for="editSaleStatus">판매 상태:</label>
-                        <select name="editSaleStatus" id="editSaleStatus">
-                            <option value="on_sale">판매중</option>
-                            <option value="out_of_stock">품절</option>
-                            <option value="discontinued">단종</option>
-                        </select>
-                    </div>
-
-                    <!--상품명 -->
-                    <div class="form-group">
-                        <label for="editProductName">상품명:</label>
-                        <input type="text" class="form-control" id="editProductName" name="editProductName" required>
-                    </div>
-
-                    <!--상품 설명 -->
-                    <div class="form-group">
-                        <label for="editProductDescription">상품 설명:</label>
-                        <textarea name="product_description" class="form-control" id="editProductDescription" name="editProductDescription" rows="4" cols="50"></textarea>
-                    </div>
-
-                    <!--색상 옵션 -->
-                    <div class="form-group">
-                        <label for="editColorInput">색상 옵션:</label>
-                        <input type="text" class="form-control" id="editColorInput" name="editColor" placeholder="추가할 색상 입력 후 엔터" >
-                        <button type="button" id="addColor" style="display: none">색상 추가</button>
-                        <!-- 사이즈 태그를 표시할 컨테이너 -->
-                        <div id="colorTags"></div>
-                    </div>
-
-                    <!--사이즈 옵션 -->
-                    <div class="form-group">
-                        <label for="editSizeInput">사이즈 옵션:</label>
-                        <input type="text" class="form-control" id="editSizeInput" name="editSize" placeholder="추가할 사이즈 입력 후 엔터" >
-                        <button type="button" id="addSize" style="display: none">사이즈 추가</button>
-                        <!-- 사이즈 태그를 표시할 컨테이너 -->
-                        <div id="sizeTags"></div>
-                    </div>
-
-                    <!--재고  -->
-                    <div class="form-group">
-                        <label for="editStockInput">재고:</label>
-                        <input type="number" class="form-control" id="editStockInput" name="editStock" min="0" required>
-                    </div>
-
-                    <!--가격  -->
-                    <div class="form-group">
-                        <label for="editPriceInput">가격:</label>
-                        <input type="number" class="form-control" id="editPriceInput" name="editPrice" min="0" required>
-                        <span id="priceDisplay"></span>
-                    </div>
-
-                    <div class="form-group imageIconContainer">
-                        <div class="imageIconRow">
-                            <!-- 이미지 아이콘과 숨겨진 파일 입력 필드 -->
-                            <div id="icon1" class="imageIcon" onclick="previewImage('main_image', 'icon1')" style="background-image: url('../image/staticImage/icon_mainimage.png');"></div>
-                            <input type="file" id="main_image" name="main_image" accept="image/*" class="fileInput">
-                            <!-- 서브 이미지 -->
-                            <div id="icon2" class="imageIcon" onclick="previewImage('sub_image1', 'icon2')" style="background-image: url('../image/staticImage/icon_subimage.png');"></div>
-                            <input type="file" id="sub_image1" name="sub_image1" accept="image/*" class="fileInput">
-                            <div id="icon3" class="imageIcon" onclick="previewImage('sub_image2', 'icon3')" style="background-image: url('../image/staticImage/icon_subimage.png');"></div>
+<jsp:include page="sidebar.jsp"/>
+<div class="content">
+    <!-- 수정 양식 모달 -->
+    <div class="modal fade" id="editProductModal" tabindex="-1" aria-labelledby="editProductModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="editProductModalLabel">상품 수정</h5>
+                    <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close" style="background-color: white; border-style: none;">
+                        <span aria-hidden="true" style="font-size: 19px">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form id="editProductForm" action="">
+                        <input type="hidden" id="editProductId" name="productId">
+                        <!--상위 카테고리 -->
+                        <div class="form-group">
+                            <label for="editMainCategory">상위 카테고리:</label>
+                            <select name="editMainCategory" id="editMainCategory" onchange="updateSubCategories()">
+                                <option value="1">거실</option>
+                                <option value="2">주방</option>
+                                <option value="3">침실</option>
+                                <option value="4">조명</option>
+                                <option value="5">기타</option>
+                            </select>
                         </div>
-                        <div class="imageIconRow">
-                            <input type="file" id="sub_image2" name="sub_image2" accept="image/*" class="fileInput">
-                            <div id="icon4" class="imageIcon" onclick="previewImage('sub_image3', 'icon4')" style="background-image: url('../image/staticImage/icon_subimage.png');"></div>
-                            <input type="file" id="sub_image3" name="sub_image3" accept="image/*" class="fileInput">
-                            <div id="icon5" class="imageIcon" onclick="previewImage('sub_image4', 'icon5')" style="background-image: url('../image/staticImage/icon_subimage.png');"></div>
-                            <input type="file" id="sub_image4" name="sub_image4" accept="image/*" class="fileInput">
-                            <div id="icon6" class="imageIcon" onclick="previewImage('sub_image5', 'icon6')" style="background-image: url('../image/staticImage/icon_subimage.png');"></div>
-                            <input type="file" id="sub_image5" name="sub_image5" accept="image/*" class="fileInput">
+
+                        <!--하위 카테고리 -->
+                        <div class="form-group">
+                            <label for="editSubCategory">하위 카테고리:</label>
+                            <select name="editSubCategory" id="editSubCategory" >
+                                <option value="11">소파</option>
+                                <option value="12">테이블</option>
+                            </select>
                         </div>
-                        <!-- 태그값 전송을 위한 히든필드 -->
-                        <input type="hidden" name="colors" id="colors">
-                        <input type="hidden" name="sizes" id="sizes">
-                    </div>
-                    <div class="form-group" style="text-align: right; padding-top: 10px;">
-                        <button type="button" class="btn btn-light btn-cancel" data-bs-dismiss="modal">취소</button>
-                        <button type="submit" class="btn btn-dark">저장하기</button>
-                    </div>
-                </form>
+
+                        <!--판매 상태-->
+                        <div class="form-group">
+                            <label for="editSaleStatus">판매 상태:</label>
+                            <select name="editSaleStatus" id="editSaleStatus">
+                                <option value="on_sale">판매중</option>
+                                <option value="out_of_stock">품절</option>
+                                <option value="discontinued">단종</option>
+                            </select>
+                        </div>
+
+                        <!--상품명 -->
+                        <div class="form-group">
+                            <label for="editProductName">상품명:</label>
+                            <input type="text" class="form-control" id="editProductName" name="editProductName" required>
+                        </div>
+
+                        <!--상품 설명 -->
+                        <div class="form-group">
+                            <label for="editProductDescription">상품 설명:</label>
+                            <textarea name="product_description" class="form-control" id="editProductDescription" name="editProductDescription" rows="4" cols="50"></textarea>
+                        </div>
+
+                        <!--색상 옵션 -->
+                        <div class="form-group">
+                            <label for="editColorInput">색상 옵션:</label>
+                            <input type="text" class="form-control" id="editColorInput" name="editColor" placeholder="추가할 색상 입력 후 엔터" >
+                            <button type="button" id="addColor" style="display: none">색상 추가</button>
+                            <!-- 사이즈 태그를 표시할 컨테이너 -->
+                            <div id="colorTags"></div>
+                        </div>
+
+                        <!--사이즈 옵션 -->
+                        <div class="form-group">
+                            <label for="editSizeInput">사이즈 옵션:</label>
+                            <input type="text" class="form-control" id="editSizeInput" name="editSize" placeholder="추가할 사이즈 입력 후 엔터" >
+                            <button type="button" id="addSize" style="display: none">사이즈 추가</button>
+                            <!-- 사이즈 태그를 표시할 컨테이너 -->
+                            <div id="sizeTags"></div>
+                        </div>
+
+                        <!--재고  -->
+                        <div class="form-group">
+                            <label for="editStockInput">재고:</label>
+                            <input type="number" class="form-control" id="editStockInput" name="editStock" min="0" required>
+                        </div>
+
+                        <!--가격  -->
+                        <div class="form-group">
+                            <label for="editPriceInput">가격:</label>
+                            <input type="number" class="form-control" id="editPriceInput" name="editPrice" min="0" required>
+                            <span id="priceDisplay"></span>
+                        </div>
+
+                        <div class="form-group imageIconContainer">
+                            <div class="imageIconRow">
+                                <div id="icon1" class="imageIcon" onclick="previewImage('main_image', 'icon1')" style="background-image: url('../image/staticImage/icon_mainimage.png');"></div>
+                                <input type="file" id="main_image" name="main_image" accept="image/*" class="fileInput">
+                                <div id="icon2" class="imageIcon" onclick="previewImage('sub_image1', 'icon2')" style="background-image: url('../image/staticImage/icon_subimage.png');"></div>
+                                <input type="file" id="sub_image1" name="sub_image1" accept="image/*" class="fileInput">
+                                <div id="icon3" class="imageIcon" onclick="previewImage('sub_image2', 'icon3')" style="background-image: url('../image/staticImage/icon_subimage.png');"></div>
+                            </div>
+                            <div class="imageIconRow">
+                                <input type="file" id="sub_image2" name="sub_image2" accept="image/*" class="fileInput">
+                                <div id="icon4" class="imageIcon" onclick="previewImage('sub_image3', 'icon4')" style="background-image: url('../image/staticImage/icon_subimage.png');"></div>
+                                <input type="file" id="sub_image3" name="sub_image3" accept="image/*" class="fileInput">
+                                <div id="icon5" class="imageIcon" onclick="previewImage('sub_image4', 'icon5')" style="background-image: url('../image/staticImage/icon_subimage.png');"></div>
+                                <input type="file" id="sub_image4" name="sub_image4" accept="image/*" class="fileInput">
+                                <div id="icon6" class="imageIcon" onclick="previewImage('sub_image5', 'icon6')" style="background-image: url('../image/staticImage/icon_subimage.png');"></div>
+                                <input type="file" id="sub_image5" name="sub_image5" accept="image/*" class="fileInput">
+                            </div>
+                            <!-- 태그값 전송을 위한 히든필드 -->
+                            <input type="hidden" name="colors" id="colors">
+                            <input type="hidden" name="sizes" id="sizes">
+                        </div>
+                        <div class="form-group" style="text-align: right; padding-top: 10px;">
+                            <button type="button" class="btn btn-light btn-cancel" data-bs-dismiss="modal">취소</button>
+                            <button type="submit" class="btn btn-dark">저장하기</button>
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
     </div>
-</div>
 
-<div class="header">상품목록</div>
-<form action="" method="get" class="search-form">
-    <div class="form-group">
-        <label id="salestatus">판매상태:</label>
-        <input type="checkbox" id="selling" name="salesStatus" value="판매중"><label for="selling" class="categoryName">판매중</label>
-        <input type="checkbox" id="soldout" name="salesStatus" value="품절"><label for="soldout" class="categoryName">품절</label>
-        <input type="checkbox" id="discontinued" name="salesStatus" value="단종"><label for="discontinued" class="categoryName">단종</label>
-    </div>
-    <div class="form-group">
-        <label id="maincategory">상위 카테고리:</label>
-        <input type="checkbox" id="livingroom" name="mainCategory" value="거실"><label for="livingroom" class="categoryName">거실</label>
-        <input type="checkbox" id="kitchen" name="mainCategory" value="주방"><label for="kitchen" class="categoryName">주방</label>
-        <input type="checkbox" id="bedroom" name="mainCategory" value="침실"><label for="bedroom" class="categoryName">침실</label>
-        <input type="checkbox" id="lighting" name="mainCategory" value="조명"><label for="lighting" class="categoryName">램프</label>
-        <input type="checkbox" id="others" name="mainCategory" value="기타"><label for="others" class="categoryName">기타</label>
-    </div>
-    <div class="form-group">
-        <label id="subcategory">하위 카테고리:</label>
-        <input type="checkbox" id="sofa" name="subCategory" value="소파"><label for="sofa" class="categoryName">소파</label>
-        <input type="checkbox" id="table" name="subCategory" value="테이블"><label for="table" class="categoryName">테이블</label>
-        <input type="checkbox" id="diningtable" name="subCategory" value="식탁"><label for="diningtable" class="categoryName">식탁</label>
-        <input type="checkbox" id="chair" name="subCategory" value="의자"><label for="chair" class="categoryName">의자</label>
-        <input type="checkbox" id="bed" name="subCategory" value="침대"><label for="bed" class="categoryName">침대</label>
-        <input type="checkbox" id="closet" name="subCategory" value="옷장"><label for="closet" class="categoryName">옷장</label>
-        <input type="checkbox" id="longstand" name="subCategory" value="장스탠드"><label for="longstand" class="categoryName">장스탠드</label>
-        <input type="checkbox" id="shortstand" name="subCategory" value="단스탠드"><label for="shortstand" class="categoryName">단스탠드</label>
-    </div>
-    <div class="form-group">
-        <label>등록일:</label>
-        <input class="dateInput" type="date" name="startDate" id="startDate" placeholder="hihi">  ~
-        <input class="dateInput"type="date" name="endDate" id="endDate" value="<%= LocalDate.now().toString() %>">
-        <button type="button" onclick="setDates('today')" style="margin-left: 4px">당일</button>
-        <button type="button" onclick="setDates('week')">1주일</button>
-        <button type="button" onclick="setDates('month')">1개월</button>
-        <button type="button" onclick="setDates('threeMonth')">3개월</button>
-    </div>
-    <div class="form-group">
-        <label>상품명:</label>
-        <input type="text" name="productName">
-        <button type="submit">검색</button>
-    </div>
-    <div class="form-group">
-        <div id="filter-tags"></div>
-    </div>
-</form>
-<div><h6 id="result-count">총 <%=list.size()%>개</h6></div>
-<table class="table table-hover" id="productTable" style="width: 1500px" >
-    <thead>
-    <tr style="background-color: #e6f7ff">
-        <th style="background-color: #e6f7ff"><input type="checkbox" id="selectAll"/></th>
-        <th style="background-color: #e6f7ff">상품번호</th>
-        <th style="background-color: #e6f7ff">카테고리</th>
-        <th style="background-color: #e6f7ff">상품명</th>
-        <th style="background-color: #e6f7ff">가격</th>
-        <th style="background-color: #e6f7ff">재고</th>
-        <th style="background-color: #e6f7ff">판매상태</th>
-        <th style="background-color: #e6f7ff">대표 이미지</th>
-        <th style="background-color: #e6f7ff">등록일시</th>
-        <th style="background-color: #e6f7ff">판매량</th>
-        <th style="background-color: #e6f7ff">관리</th>
-    </tr>
-    </thead>
-    <tbody>
-    <%--테이블 값이 채워질 공간--%>
-    </tbody>
-</table>
 
-<nav aria-label="Page navigation example">
-    <ul class="pagination justify-content-center">
-        <!-- 페이징 공간 -->
-    </ul>
-</nav>
+    <div class="header">상품목록</div>
+    <form action="" method="get" class="search-form">
+        <div class="form-group">
+            <label id="salestatus">판매상태:</label>
+            <input type="checkbox" id="selling" name="salesStatus" value="판매중"><label for="selling" class="categoryName">판매중</label>
+            <input type="checkbox" id="soldout" name="salesStatus" value="품절"><label for="soldout" class="categoryName">품절</label>
+            <input type="checkbox" id="discontinued" name="salesStatus" value="단종"><label for="discontinued" class="categoryName">단종</label>
+        </div>
+        <div class="form-group">
+            <label id="maincategory">상위 카테고리:</label>
+            <input type="checkbox" id="livingroom" name="mainCategory" value="거실"><label for="livingroom" class="categoryName">거실</label>
+            <input type="checkbox" id="kitchen" name="mainCategory" value="주방"><label for="kitchen" class="categoryName">주방</label>
+            <input type="checkbox" id="bedroom" name="mainCategory" value="침실"><label for="bedroom" class="categoryName">침실</label>
+            <input type="checkbox" id="lighting" name="mainCategory" value="조명"><label for="lighting" class="categoryName">램프</label>
+            <input type="checkbox" id="others" name="mainCategory" value="기타"><label for="others" class="categoryName">기타</label>
+        </div>
+        <div class="form-group">
+            <label id="subcategory">하위 카테고리:</label>
+            <input type="checkbox" id="sofa" name="subCategory" value="소파"><label for="sofa" class="categoryName">소파</label>
+            <input type="checkbox" id="table" name="subCategory" value="테이블"><label for="table" class="categoryName">테이블</label>
+            <input type="checkbox" id="diningtable" name="subCategory" value="식탁"><label for="diningtable" class="categoryName">식탁</label>
+            <input type="checkbox" id="chair" name="subCategory" value="의자"><label for="chair" class="categoryName">의자</label>
+            <input type="checkbox" id="bed" name="subCategory" value="침대"><label for="bed" class="categoryName">침대</label>
+            <input type="checkbox" id="closet" name="subCategory" value="옷장"><label for="closet" class="categoryName">옷장</label>
+            <input type="checkbox" id="longstand" name="subCategory" value="장스탠드"><label for="longstand" class="categoryName">장스탠드</label>
+            <input type="checkbox" id="shortstand" name="subCategory" value="단스탠드"><label for="shortstand" class="categoryName">단스탠드</label>
+        </div>
+        <div class="form-group">
+            <label>등록일:</label>
+            <input class="dateInput" type="date" name="startDate" id="startDate" placeholder="hihi">  ~
+            <input class="dateInput"type="date" name="endDate" id="endDate" value="<%= java.time.LocalDate.now().plusDays(1).toString() %>">
+            <button type="button" class="btn-date" onclick="setDates('today')" style="margin-left: 4px">당일</button><button type="button" class="btn-date" onclick="setDates('week')">1주일</button><button type="button" class="btn-date" onclick="setDates('month')">1개월</button><button type="button" class="btn-date" onclick="setDates('threeMonth')">3개월</button>
 
-<%--상품 상세정보 모달창--%>
-<div class="modal fade" id="productDetailsModal" tabindex="-1" aria-labelledby="productDetailsModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered-view" style="max-width: 60%;">
-        <div class="modal-content detail-view">
-            <div class="modal-header">
-                <h5 class="modal-title" id="productDetailsModalLabel">상품 상세정보</h5>
-                <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close" style="background-color: white; border-style: none;">
-                    <span aria-hidden="true" style="font-size: 19px">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <table class="table table-bordered">
-                    <tbody id="productDetailsTable">
-                    <%--상품 정보 공간--%>
-                    </tbody>
-                </table>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-dark" data-bs-dismiss="modal" style="padding: 6px 26px">닫기</button>
+
+
+        </div>
+        <div class="form-group">
+            <label>상품명:</label>
+            <div class="input_component"><input type="text" id="searchText" name="productName" placeholder="검색어 입력" style="width: 200px;"></div><button type="submit" id="btnSubmit">검색</button>
+        </div>
+        <div class="form-group">
+            <div id="filter-tags"></div>
+        </div>
+    </form>
+    <div><h6 id="result-count">총 <%=list.size()%>개</h6></div>
+    <table class="table table-hover" id="productTable" style="width: 1500px" >
+        <thead>
+        <tr style="background-color: #e6f7ff">
+            <th style="background-color: #e6f7ff"><input type="checkbox" id="selectAll"/></th>
+            <th style="background-color: #e6f7ff">상품번호</th>
+            <th style="background-color: #e6f7ff">카테고리</th>
+            <th style="background-color: #e6f7ff">상품명</th>
+            <th style="background-color: #e6f7ff">가격</th>
+            <th style="background-color: #e6f7ff">재고</th>
+            <th style="background-color: #e6f7ff">판매상태</th>
+            <th style="background-color: #e6f7ff">대표 이미지</th>
+            <th style="background-color: #e6f7ff">등록일시</th>
+            <th style="background-color: #e6f7ff">판매량</th>
+            <th style="background-color: #e6f7ff">관리</th>
+        </tr>
+        </thead>
+        <tbody>
+        <%--테이블 값이 채워질 공간--%>
+        </tbody>
+    </table>
+    <div class="batch-action-container">
+        <label for="statusChangeSelect" style="font-size: 18px;">선택한 항목 </label>
+        <select id="statusChangeSelect" class="status_select_control" style="border: 1px solid">
+            <option value="on_sale">판매중</option>
+            <option value="out_of_stock">품절</option>
+            <option value="discontinued">단종</option>
+        </select>
+        <button type="button" onclick="updateSaleStatus()" class="btn btn-primary" id="btnStatus">판매상태 변경</button>
+    </div>
+
+    <nav aria-label="Page navigation example">
+        <ul class="pagination justify-content-center">
+            <!-- 페이징 공간 -->
+        </ul>
+    </nav>
+
+    <%--상품 상세정보 모달창--%>
+    <div class="modal fade" id="productDetailsModal" tabindex="-1" aria-labelledby="productDetailsModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered-view" style="max-width: 60%;">
+            <div class="modal-content detail-view">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="productDetailsModalLabel">상품 상세정보</h5>
+                    <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close" style="background-color: white; border-style: none;">
+                        <span aria-hidden="true" style="font-size: 19px">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <table class="table table-bordered">
+                        <tbody id="productDetailsTable">
+                        <%--상품 정보 공간--%>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-dark" data-bs-dismiss="modal" style="padding: 6px 26px">닫기</button>
+                </div>
             </div>
         </div>
     </div>

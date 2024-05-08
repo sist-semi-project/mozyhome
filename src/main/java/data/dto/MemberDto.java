@@ -18,6 +18,9 @@ public class MemberDto {
 	private String mem_gender;
 	private Timestamp mem_gaipday;
 	private String mem_is_active;
+	private int buyCount;
+	private int totalCount;
+	private int reviewCount;
 
 	public String getMem_num() {
 		return mem_num;
@@ -131,4 +134,27 @@ public class MemberDto {
 		this.mem_is_active = mem_is_active;
 	}
 
+	public int getBuyCount() {
+		return buyCount;
+	}
+
+	public void setBuyCount(int buyCount) {
+		this.buyCount = buyCount;
+	}
+
+	public int getTotalCount() {
+		return totalCount;
+	}
+
+	public void setTotalCount(int totalCount) {
+		this.totalCount = totalCount;
+	}
+
+	public int getReviewCount() {
+		return reviewCount;
+	}
+
+	public void setReviewCount(int reviewCount) {
+		this.reviewCount = reviewCount;
+	}
 }

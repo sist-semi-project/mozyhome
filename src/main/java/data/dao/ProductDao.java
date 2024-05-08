@@ -725,6 +725,61 @@ public class ProductDao {
 		}
 	}
 
+
+	//다중 판매 상태 업데이트
+	public int updateSaleStatus(String saleStatus, String[] selectedProducts) {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		int totalUpdated = 0;
+
+		try {
+			// 데이터베이스 연결을 가져옵니다.
+			conn = db.getConnection();
+
+			// 주문 상태에 따라 SQL 문을 설정합니다.
+			String sql = "";
+			if (saleStatus.equals("on_sale")) {
+				sql = "UPDATE product SET pro_sale_status = '판매중' WHERE pro_num = ?;";
+			} else if (saleStatus.equals("out_of_stock")) {
+				sql = "UPDATE product SET pro_sale_status = '품절' WHERE pro_num = ?;";
+			} else if (saleStatus.equals("discontinued")) {
+				sql = "UPDATE product SET pro_sale_status = '단종' WHERE pro_num = ?;";
+			}
+
+			// PreparedStatement를 준비합니다.
+			pstmt = conn.prepareStatement(sql);
+
+			// selectedOrders 배열의 모든 요소에 대해 SQL 문을 실행합니다.
+			for (String proNum : selectedProducts) {
+				pstmt.setString(1, proNum);
+				int updatedCount = pstmt.executeUpdate();
+				if (updatedCount > 0) {
+					totalUpdated += updatedCount;
+				}
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			if (pstmt != null) {
+				try {
+					pstmt.close();
+				} catch (SQLException se) {
+					se.printStackTrace();
+				}
+			}
+			if (conn != null) {
+				try {
+					conn.close();
+				} catch (SQLException se) {
+					se.printStackTrace();
+				}
+			}
+		}
+		return totalUpdated;
+	}
+
+
+
 	
 	public int getProPrice(String pro_num)
 	{

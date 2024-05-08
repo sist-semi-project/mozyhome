@@ -5,7 +5,6 @@
     String num = request.getParameter("num");
     ProductDao dao = new ProductDao();
 
-    System.out.println("<deleteProduct> num: " + num);
 
     JSONObject ob = new JSONObject();
 
