@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<meta charset="UTF-8">
 <style>
     /*sidebar */
 
@@ -71,29 +73,29 @@
 </style>
 
 <div class="sidebar">
-    <img src="/image/staticImage/logo2.png" class="logo" alt="쇼핑몰 로고">
+    <img src="/mozyhome/image/staticImage/logo2.png" class="logo" alt="쇼핑몰 로고">
     <ul class="menu">
         <li class="menu-item"><a href="#"  style="font-size: 25px; line-height: 24px;"><i class="fa-solid fa-cart-shopping"  style="margin-right: 5px;"></i>상품<span
                 class=""></span></a>
             <ul class="">
-                <li><a href="/admin/addProduct.jsp">상품등록</a></li>
-                <li><a href="/admin/productList.jsp">상품관리</a></li>
+                <li><a href="/mozyhome/admin/addProduct.jsp">상품등록</a></li>
+                <li><a href="/mozyhome//admin/productList.jsp">상품관리</a></li>
             </ul>
         </li>
         <li class="menu-item"><a href="#"  style="font-size: 25px; line-height: 24px;"><i class="fas fa-users" style="margin-right: 5px;"></i>회원<span
                 class=""></span></a>
             <ul class="">
-                <li><a href="/admin/member/memberList.jsp">회원관리</a></li>
+                <li><a href="/mozyhome//admin/member/memberList.jsp">회원관리</a></li>
 
             </ul></li>
         <li class="menu-item"><a href="#"  style="font-size: 25px; line-height: 24px;"><i class="fas fa-shopping-basket" style="margin-right: 5px;"></i>주문<span
                 class=""></span></a>
             <ul class="">
-                <li><a href="/admin/order/orderList.jsp">주문관리</a></li>
+                <li><a href="/mozyhome//admin/order/orderList.jsp">주문관리</a></li>
 
             </ul></li>
     </ul>
 
-    <button type="button" onclick="location.href='/admin/adminLogout.jsp'" class="btn btn-logout"><i class="fa-solid fa-arrow-right-from-bracket" style="color: #ffffff;"></i>     로그아웃</button>
+    <button type="button" onclick="location.href='/mozyhome//admin/adminLogout.jsp'" class="btn btn-logout"><i class="fa-solid fa-arrow-right-from-bracket" style="color: #ffffff;"></i>로그아웃</button>
 
 </div>
