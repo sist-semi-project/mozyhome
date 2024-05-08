@@ -50,9 +50,10 @@ public class WishlistDao {
 		ResultSet rs=null;
 		
 		String sql="SELECT w.wish_num AS wish_num, p.pro_num, p.pro_name, p.pro_price, p.pro_main_img, m.mem_id, w.wish_date"
-				+ " FROM product p, wishlist w, member m"
-				+ " where w.pro_num=p.pro_num and w.mem_num=m.mem_num and m.mem_id=?"
-				+ " GROUP BY p.pro_num"
+				+ " FROM wishlist w"
+				+ " left join product p on p.pro_num=w.pro_num"
+				+ " left join member m on m.mem_num = w.mem_num"
+				+ " where m.mem_id like ?"
 				+ " order by w.wish_date desc limit ?,?";
 		
 		try {
