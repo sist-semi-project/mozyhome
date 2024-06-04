@@ -43,7 +43,7 @@
 
 	<script type="text/javascript">
 		alert("접근권한이 없습니다.");
-		window.location.href = "/admin/adminLogin.jsp"; // 리디렉션을 JavaScript에서 처리
+		window.location.href = "/mozyhome/admin/adminLogin.jsp"; // 리디렉션을 JavaScript에서 처리
 	</script>
 	<%}%>
 
