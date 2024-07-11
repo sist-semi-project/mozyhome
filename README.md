@@ -75,19 +75,41 @@
 
 ## 6. 프로젝트 산출물 (정리중)
 ### 메인페이지
-<img src="https://github.com/sist-semi-project/mozyhome/assets/155527545/76fb78cf-178f-4a86-ab49-9ab4d20b2bb7">
+<div><video src="https://github.com/SIST-FinalProject/ETMarket/assets/155527545/67f07f84-7dfa-44ed-bf52-d5fa625992a7" type="video/mp4"></video></div>
 
+### 회원가입, 아이디/비밀번호 찾기, 로그인
+<div><video src="https://github.com/SIST-FinalProject/ETMarket/assets/155527545/36233c1b-1c4e-40d1-8702-a4fa3600d80a" type="video/mp4"></video></div>
 
-### 로그인/회원가입
 ### 상품리스트
+<div><video src="https://github.com/SIST-FinalProject/ETMarket/assets/155527545/17124b2c-0a0e-4c15-9cc0-88b69aed7b81" type="video/mp4"></video></div>
+
 ### 상품상세
+<div><video src="https://github.com/SIST-FinalProject/ETMarket/assets/155527545/28d97d08-1975-4f51-9518-875aa26ec900" type="video/mp4"></video></div>
+
 ### 장바구니
+<div><video src="https://github.com/SIST-FinalProject/ETMarket/assets/155527545/84f5d8d5-a18b-4fff-aac7-5e53fa580390" type="video/mp4"></video></div>
+
 ### 주문/결제
+<div><video src="https://github.com/SIST-FinalProject/ETMarket/assets/155527545/e72ac0b1-84d4-408f-a900-199357a630f3" type="video/mp4"></video></div>
+
 ### 리뷰
+<div><video src="https://github.com/SIST-FinalProject/ETMarket/assets/155527545/8883f9f2-6ea0-478a-8323-066efda621ed" type="video/mp4"></video></div>
+
 ### 위시리스트
-### 마이페이지 - 주문내역
-### 마이페이지 - 회원정보
+<div><video src="https://github.com/SIST-FinalProject/ETMarket/assets/155527545/aa04ae19-b43b-4a96-88dc-937f6b86a0ae" type="video/mp4"></video></div>
+
+### 마이페이지 - 주문내역, 회원정보 
+<div><video src="https://github.com/SIST-FinalProject/ETMarket/assets/155527545/31f83c55-f8cd-49a8-919d-a788eecb23c9" type="video/mp4"></video></div>
+
 ### 검색
+<div><video src="https://github.com/SIST-FinalProject/ETMarket/assets/155527545/4120e28b-01fd-48b3-a845-9752648b03e5" type="video/mp4"></video></div>
+
 ### 관리자페이지 - 회원관리
+<div><video src="" type="video/mp4"></video></div>
+
 ### 관리자페이지 - 상품관리
+<div><video src="" type="video/mp4"></video></div>
+
 ### 관리자페이지 - 주문관리
+<div><video src="" type="video/mp4"></video></div>
+
