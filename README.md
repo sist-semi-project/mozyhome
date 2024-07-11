@@ -105,10 +105,13 @@
 <div><video src="https://github.com/SIST-FinalProject/ETMarket/assets/155527545/4120e28b-01fd-48b3-a845-9752648b03e5" type="video/mp4"></video></div>
 
 ### 관리자페이지 - 회원관리
-<div><video src="" type="video/mp4"></video></div>
+<div><video src="https://github.com/SIST-FinalProject/ETMarket/assets/155527545/2a54b984-cf63-4b8c-920e-9c00d15ff70d" type="video/mp4"></video></div>
+
+### 관리자페이지 - 상품등록
+<div><video src="https://github.com/SIST-FinalProject/ETMarket/assets/155527545/86d96a62-f396-4414-a77f-929a5d842f8f" type="video/mp4"></video></div>
 
 ### 관리자페이지 - 상품관리
-<div><video src="" type="video/mp4"></video></div>
+<div><video src="https://github.com/SIST-FinalProject/ETMarket/assets/155527545/c2b4a78a-731d-4a69-9c48-34453521311d" type="video/mp4"></video></div>
 
 ### 관리자페이지 - 주문관리
 <div><video src="" type="video/mp4"></video></div>
