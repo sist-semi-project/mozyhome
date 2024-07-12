@@ -767,7 +767,7 @@
                             '<tr><td><strong>상품명</strong></td><td>' + product.pro_name + '</td></tr>' +
                             '<tr><td><strong>상품 설명</strong></td><td class="product-description">' + product.pro_explain + '</td></tr>' +
                             '<tr><td><strong>가격</strong></td><td>' + product.pro_price + '원</td></tr>' +
-                            '<tr><td><strong>재고</strong></td><td>' + product.pro_stock + '</td></tr>' +
+                            '<tr><td><strong>재고</strong></td><td>' + product.pro_stock + '개</td></tr>' +
                             '<tr><td><strong>판매상태</strong></td><td>' + product.pro_sale_status + '</td></tr>' +
                             '<tr><td><strong>메인 이미지</strong></td><td><img src="' + product.pro_main_img + '" alt="메인 이미지" class="main-image"></td></tr>' +
                             '<tr><td><strong>서브 이미지</strong></td><td>' + subImagesHtml + '</td></tr>' +
@@ -790,11 +790,14 @@
                     var label = $('label[for="' + $(this).attr('id') + '"]').text();
                     var categoryLabel = $(this).closest('.form-group').find('label').first();
                     var categoryId = categoryLabel.attr('id');
-                    var tagClass = categoryId + "-tag";
-                    var tagID = $(this).attr('id') + "-tag";
 
-                    var tag = $('<span class="filter-tag ' + tagClass + '" id='+tagID+'>' + label + '<button class="remove-tag" data-target-id="' + $(this).attr('id') + '">&times;</button></span>');
-                    $('#filter-tags').append(tag);
+                    if (categoryId && $(this).attr('id')) {
+                        var tagClass = categoryId + "-tag";
+                        var tagID = $(this).attr('id') + "-tag";
+
+                        var tag = $('<span class="filter-tag ' + tagClass + '" id='+tagID+'>' + label + '<button class="remove-tag" data-target-id="' + $(this).attr('id') + '">&times;</button></span>');
+                        $('#filter-tags').append(tag);
+                    }
                 });
 
                 // 태그 제거 버튼 이벤트 핸들러
@@ -1012,7 +1015,7 @@
             // 각 필드 업데이트
             row.find('.product-name').text(product.pro_name);
             row.find('.product-price').text(product.pro_price + '원');
-            row.find('.product-stock').text(product.pro_stock);
+            row.find('.product-stock').text(product.pro_stock + '개');
             row.find('.product-status').text(product.pro_sale_status);
             row.find('.product-image img').attr('src', product.pro_main_img);
             row.find('.product-category').text(product.parent_cate_num + ' > ' + product.cate_num);
