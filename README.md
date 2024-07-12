@@ -104,15 +104,17 @@
 ### 검색
 <div><video src="https://github.com/SIST-FinalProject/ETMarket/assets/155527545/4120e28b-01fd-48b3-a845-9752648b03e5" type="video/mp4"></video></div>
 
-### 관리자페이지 - 회원관리
-<div><video src="https://github.com/SIST-FinalProject/ETMarket/assets/155527545/2a54b984-cf63-4b8c-920e-9c00d15ff70d" type="video/mp4"></video></div>
-
 ### 관리자페이지 - 상품등록
-<div><video src="https://github.com/SIST-FinalProject/ETMarket/assets/155527545/86d96a62-f396-4414-a77f-929a5d842f8f" type="video/mp4"></video></div>
+<div><video src="https://github.com/user-attachments/assets/90d8a344-c55d-4b2d-8703-e0c14509e1ca" type="video/mp4"></video></div>
 
 ### 관리자페이지 - 상품관리
-<div><video src="https://github.com/SIST-FinalProject/ETMarket/assets/155527545/c2b4a78a-731d-4a69-9c48-34453521311d" type="video/mp4"></video></div>
+<div><video src="https://github.com/user-attachments/assets/dace6ce7-6ae6-41db-a30b-5db02073a901 type="video/mp4"></video></div>
 
 ### 관리자페이지 - 주문관리
-<div><video src="https://github.com/user-attachments/assets/f41af252-b0ac-4e56-a192-b11a424cee0a" type="video/mp4"></video></div>
+<div><video src="https://github.com/user-attachments/assets/942954c1-e12d-47f1-8ba6-33e566d988ed" type="video/mp4"></video></div>
+
+### 관리자페이지 - 회원관리
+<div><video src="https://github.com/user-attachments/assets/7ecd556a-daaf-4da9-9d4f-24b946c1aa52" type="video/mp4"></video></div>
+
+
 
