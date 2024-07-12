@@ -49,12 +49,12 @@ public class WishlistDao {
 		PreparedStatement pstmt=null;
 		ResultSet rs=null;
 		
-		String sql="SELECT w.wish_num AS wish_num, p.pro_num, p.pro_name, p.pro_price, p.pro_main_img, m.mem_id, w.wish_date\n" +
-				"FROM wishlist w\n" +
-				"left join product p on p.pro_num=w.pro_num\n" +
-				"left join member m on m.mem_num = w.mem_num\n" +
-				"where m.mem_id like ?\n" +
-				"order by w.wish_date desc limit ?,?;";
+		String sql="SELECT w.wish_num AS wish_num, p.pro_num, p.pro_name, p.pro_price, p.pro_main_img, m.mem_id, w.wish_date"
+				+ " FROM wishlist w"
+				+ " left join product p on p.pro_num=w.pro_num"
+				+ " left join member m on m.mem_num = w.mem_num"
+				+ " where m.mem_id like ?"
+				+ " order by w.wish_date desc limit ?,?";
 		
 		try {
 			pstmt=conn.prepareStatement(sql);
