@@ -108,7 +108,7 @@
 <div><video src="https://github.com/user-attachments/assets/90d8a344-c55d-4b2d-8703-e0c14509e1ca" type="video/mp4"></video></div>
 
 ### 관리자페이지 - 상품관리
-<div><video src="https://github.com/user-attachments/assets/dace6ce7-6ae6-41db-a30b-5db02073a901 type="video/mp4"></video></div>
+<div><video src="https://github.com/user-attachments/assets/dace6ce7-6ae6-41db-a30b-5db02073a901" type="video/mp4"></video></div>
 
 ### 관리자페이지 - 주문관리
 <div><video src="https://github.com/user-attachments/assets/942954c1-e12d-47f1-8ba6-33e566d988ed" type="video/mp4"></video></div>
