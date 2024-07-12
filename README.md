@@ -73,7 +73,7 @@
 <br>
 <br>
 
-## 6. 프로젝트 산출물 (정리중)
+## 6. 프로젝트 시연영상
 ### 메인페이지
 <div><video src="https://github.com/SIST-FinalProject/ETMarket/assets/155527545/67f07f84-7dfa-44ed-bf52-d5fa625992a7" type="video/mp4"></video></div>
 
@@ -114,5 +114,5 @@
 <div><video src="https://github.com/SIST-FinalProject/ETMarket/assets/155527545/c2b4a78a-731d-4a69-9c48-34453521311d" type="video/mp4"></video></div>
 
 ### 관리자페이지 - 주문관리
-<div><video src="" type="video/mp4"></video></div>
+<div><video src="https://github.com/user-attachments/assets/f41af252-b0ac-4e56-a192-b11a424cee0a" type="video/mp4"></video></div>
 
